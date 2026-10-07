@@ -18,7 +18,7 @@
   color-scheme:dark;
   --table:#1B1530; --table2:#261D42; --card:#FFF8EA; --ink:#2A2118; --muted:#7A6A55; --cream:#F6E9CF; --gold:#F2B441; --gold2:#C98A1B;
   --ok:#2E9E5B; --ko:#D2493A; --duo:#3D7FD6; --carre:#E7A52C; --cash:#D2493A;
-  --c-coran:#2E9E5B; --c-sira:#E8862F; --c-prophetes:#3D7FD6; --c-piliers:#D24B6A; --c-histoire:#8A5CD0; --c-culture:#E2B72E;
+  --c-coran:#2E9E5B; --c-sira:#E8862F; --c-prophetes:#3D7FD6; --c-piliers:#D24B6A; --c-histoire:#8A5CD0; --c-culture:#E2B72E; --c-adab:#139C9A;
   --f-display:"Reem Kufi", "Trebuchet MS", sans-serif; --f-body:"Figtree", "Segoe UI", system-ui, sans-serif;
 }
 *{box-sizing:border-box}
@@ -48,7 +48,7 @@ button{touch-action:manipulation}
 .dock{z-index:50}.sheet{z-index:60}.cardfx{z-index:70}.win{z-index:80}.toast{z-index:75}#fx{z-index:90}
 .shield{color:#7FD1FF;font-weight:800}
 #board{display:block;width:100%;height:auto;border-radius:16px}
-.sq-num{font:800 9px var(--f-body);fill:#fff;pointer-events:none}
+.sq-num{font:800 9px var(--f-body);fill:#fff;pointer-events:none;paint-order:stroke;stroke:rgba(0,0,0,.35);stroke-width:2px}
 .pulse{animation:pulse 1.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 @keyframes pulse{50%{transform:scale(1.25);opacity:.4}}
 .pawn{transition:none}
@@ -118,6 +118,7 @@ button{touch-action:manipulation}
 .timer i{display:block;height:100%;background:var(--gold2);transform-origin:left}
 .say{border:1.5px solid #E0CDA6;background:transparent;border-radius:999px;padding:3px 10px;font-weight:800;font-size:13px;color:var(--ink)}
 .pickcat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.pickcat button:last-child:nth-child(odd){grid-column:1/-1}
 .pickcat button{border:0;border-radius:16px;padding:16px 8px;color:#fff;font-family:var(--f-display);font-size:17px;font-weight:700;box-shadow:0 5px 0 rgba(0,0,0,.25)}
 /* bannière résultat */
 .toast{position:fixed;left:50%;top:22%;z-index:30;transform:translate(-50%,-20px) scale(.8);opacity:0;pointer-events:none;transition:all .35s cubic-bezier(.2,.9,.3,1.3);text-align:center;width:min(92vw,480px)}
@@ -194,6 +195,12 @@ button{touch-action:manipulation}
     <marker id="ah-o" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#C0622B"/></marker>
     <radialGradient id="sand" cx="50%" cy="40%" r="75%"><stop offset="0" stop-color="#F3D9A4"/><stop offset=".7" stop-color="#E4BE7C"/><stop offset="1" stop-color="#C99A55"/></radialGradient>
     <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2C2350"/><stop offset="1" stop-color="#E9A963"/></linearGradient>
+    <radialGradient id="capHi" cx="35%" cy="28%" r="80%"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="#fff" stop-opacity=".08"/><stop offset="1" stop-color="#000" stop-opacity=".22"/></radialGradient>
+    <linearGradient id="cyl" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#000" stop-opacity=".55"/><stop offset=".3" stop-color="#000" stop-opacity=".15"/><stop offset=".55" stop-color="#fff" stop-opacity=".12"/><stop offset="1" stop-color="#000" stop-opacity=".6"/></linearGradient>
+    <linearGradient id="dune" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBE6B6"/><stop offset=".35" stop-color="#EBC584"/><stop offset="1" stop-color="#B9843F"/></linearGradient>
+    <linearGradient id="duneS" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7A4E1E" stop-opacity="0"/><stop offset="1" stop-color="#6B3F12" stop-opacity=".45"/></linearGradient>
+    <radialGradient id="vig" cx="50%" cy="50%" r="75%"><stop offset=".6" stop-color="#3A1E05" stop-opacity="0"/><stop offset="1" stop-color="#3A1E05" stop-opacity=".45"/></radialGradient>
+    <filter id="blur3" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="2.2"/></filter>
     <filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="2" stdDeviation="1.4" flood-color="#5B3A12" flood-opacity=".45"/></filter>
   </defs>
 </svg>
@@ -404,6 +411,125 @@ const QDATA = [
 ["culture",3,"Quel titre portent les épouses du Prophète ﷺ ?","Mères des croyants (Ummahât al-Mu'minîn)",["Filles de l'islam","Dames du Paradis","Sœurs des croyants"]],
 ["culture",3,"Quelle école juridique est majoritaire en Turquie ?","L'école hanafite",["L'école malikite","L'école chafiite","L'école hanbalite"]],
 ["culture",3,"Quel imam est l'auteur du « Muwatta' », l'un des plus anciens recueils de hadiths ?","L'imam Mâlik",["L'imam al-Bukhârî","L'imam Ahmad","L'imam an-Nawawî"]],
+["adab",1,"Tu éternues. Que dis-tu ?","Alhamdulillâh",["Bismillâh", "Astaghfirullâh", "Subhânallâh"]],
+["adab",1,"Quelqu'un éternue et dit « Alhamdulillâh ». Que lui réponds-tu ?","« Yarhamuka Llâh » (qu'Allah te fasse miséricorde)",["« Bârak Allâhu fîk »", "« Mâ châ' Allâh »", "« Inchâ'Allâh »"],"Il te répond ensuite : « Yahdîkumu Llâh wa yuslihu bâlakum » (qu'Allah vous guide et améliore votre état)."],
+["adab",1,"Quelqu'un te dit « As-salâmu ʿalaykum ». Que réponds-tu ?","« Wa ʿalaykumu s-salâm »",["« Bismillâh »", "« Alhamdulillâh »", "« Allâhu akbar »"]],
+["adab",1,"Que dis-tu avant de commencer à manger ?","Bismillâh",["Alhamdulillâh", "Allâhu akbar", "Astaghfirullâh"]],
+["adab",1,"Avec quelle main le Prophète ﷺ recommandait-il de manger et de boire ?","La main droite",["La main gauche", "Les deux mains", "Peu importe"]],
+["adab",1,"Que dis-tu quand tu as fini de manger ?","Alhamdulillâh",["Bismillâh", "Inchâ'Allâh", "Astaghfirullâh"]],
+["adab",1,"Tu parles de ce que tu vas faire demain. Quelle formule ajoutes-tu ?","Inchâ'Allâh",["Mâ châ' Allâh", "Alhamdulillâh", "Astaghfirullâh"],"Le Coran le demande dans la sourate Al-Kahf (18:23-24)."],
+["adab",1,"Tu apprends le décès de quelqu'un. Que dis-tu ?","« Innâ lillâhi wa innâ ilayhi râjiʿûn »",["« Alhamdulillâh »", "« Mâ châ' Allâh »", "« Bârak Allâhu fîk »"],"« Nous sommes à Allah et c'est vers Lui que nous retournons » (2:156)."],
+["adab",1,"Tu as fait une erreur ou un péché. Quelle formule dis-tu pour demander pardon à Allah ?","Astaghfirullâh",["Mâ châ' Allâh", "Inchâ'Allâh", "Bismillâh"]],
+["adab",1,"Tu trouves beau le bébé d'une amie. Que dis-tu ?","« Mâ châ' Allâh, Bârak Allâhu fîh »",["« Astaghfirullâh »", "« Innâ lillâh »", "« Rien, il ne faut pas en parler »"],"On invoque la bénédiction (baraka) sur ce qui nous plaît."],
+["adab",1,"Selon un hadith, sourire à ton frère, c'est…","Une aumône (sadaqa)",["De l'hypocrisie", "Une perte de temps", "Réservé à la famille"]],
+["adab",1,"Que dit-on avant de commencer à lire le Coran ?","« Aʿûdhu billâhi mina ch-chaytâni r-rajîm »",["« Alhamdulillâh » trois fois", "« Allâhu akbar »", "« Astaghfirullâh »"],"On demande la protection d'Allah contre Satan (16:98)."],
+["adab",1,"Une pierre ou un objet dangereux traîne au milieu du chemin. Que fais-tu ?","Je l'enlève pour que personne ne se blesse",["Je passe à côté, ce n'est pas mon problème", "Je le laisse, quelqu'un d'autre le fera", "Je le montre à mes amis et je continue"],"Selon un hadith, écarter du chemin ce qui peut blesser est une branche de la foi."],
+["adab",1,"Avec quel pied entre-t-on dans la mosquée, selon la sunna ?","Le pied droit",["Le pied gauche", "Les deux pieds joints", "Peu importe"]],
+["adab",1,"Ton ami te confie un secret. Que fais-tu ?","Je le garde : c'est un dépôt (amâna)",["Je le raconte à ma famille", "Je le partage s'il est drôle", "Je le dis à tout le monde sauf à lui"]],
+["adab",1,"Tes parents te demandent quelque chose qui t'énerve. Comment te comportes-tu ?","Je leur parle avec douceur et respect",["Je soupire et je les ignore", "Je hausse le ton pour qu'ils comprennent", "Je fais semblant de ne pas entendre"],"Le Coran demande d'être bon envers ses parents et de leur parler avec respect (17:23)."],
+["adab",1,"Que dit-on en entrant chez soi ?","« Bismillâh » puis « As-salâmu ʿalaykum »",["Rien", "« Allâhu akbar »", "« Astaghfirullâh »"]],
+["adab",1,"Tu as promis quelque chose à quelqu'un. Que dois-tu faire ?","Tenir ma promesse",["L'oublier si c'est une petite promesse", "La tenir seulement si elle est écrite", "La tenir seulement si c'est un musulman"]],
+["adab",1,"Tu bâilles. Que recommande la sunna ?","Le retenir et mettre la main devant la bouche",["Dire « Alhamdulillâh » à voix haute", "Bâiller bruyamment", "Dire « Allâhu akbar »"]],
+["adab",1,"Ton voisin, qui n'est pas musulman, a besoin d'aide. Que t'enseigne l'islam ?","L'aider : le voisin a des droits, quel qu'il soit",["L'aider seulement s'il est musulman", "Ne pas s'en mêler", "Attendre qu'il le demande trois fois"],"Le Prophète ﷺ a dit que Jibrîl n'a cessé de lui recommander le voisin."],
+["adab",1,"Tu es très en colère. Que conseille le Prophète ﷺ ?","Demander la protection d'Allah contre Satan et s'asseoir si on est debout",["Crier pour se libérer", "Répondre tout de suite", "Casser quelque chose"]],
+["adab",1,"Quelqu'un te demande de l'aide mais tu n'as rien à lui donner. Que fais-tu ?","Je lui réponds avec gentillesse : une bonne parole est une aumône",["Je l'ignore", "Je le repousse", "Je lui fais la morale"]],
+["adab",1,"Comment le musulman doit-il traiter les animaux ?","Avec douceur : la bonté envers eux est récompensée",["Comme il veut, ce ne sont que des animaux", "Il ne doit pas s'en approcher", "Seulement bien traiter les animaux utiles"],"Selon un hadith, un homme a été pardonné pour avoir donné à boire à un chien assoiffé."],
+["adab",1,"Un ami est malade. Que représente le fait d'aller lui rendre visite ?","Une bonne action récompensée",["Une perte de temps", "Une chose interdite", "Un devoir réservé aux médecins"]],
+["adab",1,"Quelqu'un t'a rendu service. Quelle formule dit-on pour le remercier ?","« Jazâk Allâhu khayran »",["« Innâ lillâh »", "« Astaghfirullâh »", "« Aʿûdhu billâh »"],"« Qu'Allah te récompense par le bien »."],
+["adab",1,"Selon le hadith, qui mérite le plus ta bonne compagnie ?","Ta mère",["Ton père", "Ton meilleur ami", "Ton frère aîné"],"Le Prophète ﷺ a répondu trois fois « ta mère », puis « ton père »."],
+["adab",1,"Un camarade fait une erreur et les autres se moquent de lui. Que fais-tu ?","Je ne me moque pas et je le défends",["Je me moque aussi pour rester dans le groupe", "Je filme pour rigoler", "Je fais semblant de ne rien voir"],"La sourate Al-Hujurât interdit de se moquer des autres (49:11)."],
+["adab",2,"Pendant le Ramadan, tu as mangé par oubli. Que fais-tu ?","Je continue mon jeûne jusqu'au coucher du soleil",["J'arrête de jeûner pour la journée", "Je dois jeûner 60 jours", "Je donne une aumône à la place du jeûne"],"Selon le hadith, c'est Allah qui t'a nourri. L'école malikite demande en plus de rattraper ce jour."],
+["adab",2,"Tu as oublié de dire « Bismillâh » au début du repas. Que dis-tu quand tu t'en souviens ?","« Bismillâhi awwalahu wa âkhirahu »",["« Astaghfirullâh » et j'arrête de manger", "Je recommence le repas", "Rien, c'est trop tard"]],
+["adab",2,"Selon le Coran (4:86), comment doit-on répondre à une salutation ?","Par une salutation égale ou meilleure",["Par une salutation plus courte", "Seulement si on connaît la personne", "Ce n'est pas obligatoire"]],
+["adab",2,"La médisance (al-ghîba), c'est…","Dire sur quelqu'un d'absent une chose vraie qu'il n'aimerait pas entendre",["Inventer un mensonge sur quelqu'un", "Critiquer quelqu'un en face de lui", "Parler de quelqu'un en bien"],"Si ce qu'on dit est faux, c'est encore pire : c'est la calomnie (buhtân)."],
+["adab",2,"Dans le Coran, à quoi la médisance est-elle comparée ?","Manger la chair de son frère mort",["Boire de l'eau salée", "Allumer un feu", "Marcher sans chaussures"],"Sourate Al-Hujurât (49:12)."],
+["adab",2,"Quelqu'un rapporte des paroles pour fâcher deux personnes entre elles. Comment s'appelle ce péché ?","An-namîma (le colportage)",["Ar-riyâ' (l'ostentation)", "Al-kibr (l'orgueil)", "Al-hasad (la jalousie)"]],
+["adab",2,"Tu reçois une rumeur grave sur quelqu'un dans un groupe WhatsApp. Que demande le Coran ?","Vérifier l'information avant de la croire ou de la partager",["La partager pour prévenir tout le monde", "La croire si plusieurs personnes la répètent", "La partager en précisant « à vérifier »"],"Sourate Al-Hujurât (49:6)."],
+["adab",2,"Tu es fâché avec un ami musulman. Combien de jours au maximum le Prophète ﷺ permet-il de se bouder ?","3 jours",["1 semaine", "40 jours", "1 mois"]],
+["adab",2,"Deux musulmans sont fâchés. Selon le hadith, lequel est le meilleur des deux ?","Celui qui salue le premier",["Celui qui avait raison", "Le plus âgé", "Celui qui attend des excuses"]],
+["adab",2,"Tes parents ne sont pas musulmans. Comment le Coran demande-t-il de les traiter ?","Rester bon avec eux, sans leur obéir dans ce qui va contre la foi",["Couper les liens avec eux", "Leur obéir en tout", "Ne leur parler que de religion"],"Sourate Luqmân (31:15)."],
+["adab",2,"Tu prêtes de l'argent à quelqu'un. Que recommande le plus long verset du Coran ?","Mettre la dette par écrit",["Ne rien écrire, par confiance", "Demander des intérêts", "Exiger un objet en échange"],"Âyat ad-dayn, sourate Al-Baqara (2:282)."],
+["adab",2,"Quelqu'un te fait du mal. Que conseille le Coran (41:34) ?","Repousser le mal par ce qui est meilleur",["Rendre la pareille", "Se venger en secret", "Couper définitivement les ponts"]],
+["adab",2,"Tu es en voyage. Quel allègement est permis pour les prières de 4 rakʿa ?","Les raccourcir à 2 rakʿa",["Ne plus les prier", "Les prier sans ablutions", "Les remplacer par une aumône"],"Le Maghrib (3 rakʿa) et le Fajr (2 rakʿa) ne se raccourcissent pas."],
+["adab",2,"Tu t'es endormi et tu as raté la prière du Fajr. Que fais-tu ?","Je la prie dès que je me réveille",["Je la laisse tomber", "Je la prie le lendemain avec l'autre Fajr", "Je prie deux fois le Dhuhr"]],
+["adab",2,"Avec quel pied entre-t-on dans les toilettes, selon la sunna ?","Le pied gauche",["Le pied droit", "Les deux pieds joints", "Peu importe"]],
+["adab",2,"Quelqu'un te fait un cadeau. Que faisait le Prophète ﷺ ?","Il acceptait les cadeaux et offrait en retour",["Il refusait par politesse", "Il les donnait aussitôt à quelqu'un d'autre", "Il n'acceptait que la nourriture"]],
+["adab",2,"Tu es invité au repas de mariage (walîma) d'un ami. Que recommande la sunna ?","Répondre à l'invitation",["Refuser pour ne pas déranger", "Venir seulement si c'est la famille", "Envoyer de l'argent à la place"]],
+["adab",2,"« Aucun de vous ne croit vraiment tant qu'il n'aime pas pour son frère… »","… ce qu'il aime pour lui-même",["… plus de richesse que pour lui", "… la meilleure place à la mosquée", "… autant qu'il aime ses parents"]],
+["adab",2,"« Que celui qui croit en Allah et au Jour dernier dise du bien ou… »","… qu'il se taise",["… qu'il s'en aille", "… qu'il prie", "… qu'il demande pardon"]],
+["adab",2,"Est-il permis de jurer « sur la tête de ma mère » ou « sur ma vie » ?","Non, on ne jure que par Allah",["Oui, si c'est pour dire la vérité", "Oui, si c'est pour rire", "Oui, mais seulement pour des petites choses"]],
+["adab",2,"Selon le hadith, quels sont les trois signes de l'hypocrite ?","Il ment, il trahit la confiance et ne tient pas ses promesses",["Il dort, il mange et il rit beaucoup", "Il est riche, célèbre et voyage beaucoup", "Il parle fort, marche vite et s'habille bien"]],
+["adab",2,"Selon un hadith, quel verset récité avant de dormir protège jusqu'au matin ?","Âyat al-Kursî",["Le premier verset de Al-Fâtiha", "Le dernier verset de Al-Baqara seulement", "Le premier verset de Yâ-Sîn"]],
+["adab",2,"Tu entres dans une mosquée en dehors de la prière en commun. Que recommande la sunna avant de t'asseoir ?","Prier 2 rakʿa (tahiyyat al-masjid)",["Faire le tawâf de la mosquée", "Réciter l'adhân", "Rien, on s'assoit directement"]],
+["adab",2,"Que faut-il éviter quand quelqu'un est en train de prier ?","Passer juste devant lui",["Prier à côté de lui", "Lire le Coran dans la même pièce", "Faire ses ablutions"]],
+["adab",2,"Pendant le sermon (khutba) du vendredi, que doit-on faire ?","Écouter en silence",["Discuter à voix basse", "Lire ses messages", "Prier des rakʿa surérogatoires"]],
+["adab",2,"« Le fort n'est pas celui qui terrasse les autres, mais celui qui… »","… se maîtrise quand il est en colère",["… prie toute la nuit", "… a le plus d'amis", "… gagne toutes les disputes"]],
+["adab",2,"Que dit le Coran (7:31) à propos de la nourriture ?","Mangez et buvez, mais ne gaspillez pas",["Ne mangez qu'une fois par jour", "Jeûnez un jour sur deux", "Mangez autant que vous voulez"]],
+["adab",2,"Selon le hadith, « n'est pas des nôtres » celui qui…","… n'a pas de pitié pour nos petits et ne respecte pas nos aînés",["… n'a pas fait le pèlerinage", "… ne parle pas arabe", "… n'habite pas près d'une mosquée"]],
+["adab",2,"Selon le hadith, le vrai musulman est celui dont les autres sont à l'abri…","… de sa langue et de sa main",["… de son argent", "… de son regard", "… de ses voisins"]],
+["adab",2,"Selon un hadith, pourquoi une femme est-elle entrée en Enfer ?","Elle avait enfermé une chatte sans la nourrir",["Elle ne savait pas lire", "Elle était pauvre", "Elle avait trop de chats"]],
+["adab",2,"Selon le hadith, « le meilleur d'entre vous est… »","… le meilleur envers sa famille",["… le plus riche", "… celui qui parle le mieux", "… celui qui a le plus voyagé"]],
+["adab",3,"Pendant la prière, tu doutes : 3 ou 4 rakʿa ? Que fais-tu ?","Je retiens 3, je complète et je fais les prosternations de l'oubli (sujûd as-sahw)",["Je recommence la prière depuis le début", "Je retiens 4 et je termine", "J'arrête et je prie plus tard"],"On se base sur ce qui est certain, c'est-à-dire le plus petit nombre."],
+["adab",3,"Tu montes dans une voiture ou un avion. Quelle invocation le Coran enseigne-t-il ?","« Subhâna lladhî sakhkhara lanâ hâdhâ… »",["« Innâ lillâhi wa innâ ilayhi râjiʿûn »", "« Rabbanâ âtinâ fî d-dunyâ hasana… »", "« Lâ ilâha illâ anta subhânaka… »"],"« Gloire à Celui qui a mis ceci à notre service » (43:13)."],
+["adab",3,"Tu as juré par Allah de faire quelque chose, puis tu ne l'as pas fait. Quelle est l'expiation (kaffâra) ?","Nourrir ou vêtir dix pauvres, sinon jeûner trois jours",["Jeûner 60 jours d'affilée", "Donner un euro à la mosquée", "Il n'y a rien à faire"],"Sourate Al-Mâ'ida (5:89)."],
+["adab",3,"Dans quels cas le Prophète ﷺ a-t-il toléré de ne pas dire l'exacte vérité ?","Pour réconcilier des gens, en temps de guerre, et entre époux pour s'entendre",["Pour éviter une punition", "Pour faire rire ses amis", "Jamais, dans aucun cas"],"Hadith d'Umm Kulthûm (Muslim). Tromper pour nuire reste interdit."],
+["adab",3,"Tu trouves un portefeuille perdu dans la rue. Que dit la sunna ?","L'annoncer pour retrouver son propriétaire",["Le garder, c'est un cadeau d'Allah", "Le jeter", "Donner l'argent aux pauvres tout de suite"],"Le hadith demande de faire connaître l'objet trouvé pendant un an."],
+["adab",3,"Que dit-on en sortant de chez soi, selon la sunna ?","« Bismillâh, tawakkaltu ʿalâ Llâh, lâ hawla wa lâ quwwata illâ billâh »",["« Allâhumma bârik lanâ fîmâ razaqtanâ »", "« Subhâna rabbiya l-aʿlâ »", "« Rabbi zidnî ʿilmâ »"]],
+["adab",3,"Selon le Coran (25:63), que répondent les serviteurs du Tout Miséricordieux quand des ignorants les provoquent ?","« Paix ! » (salâmâ)",["Ils les insultent en retour", "Ils se taisent pour toujours", "Ils les dénoncent"]],
+["adab",3,"Selon le hadith, que recommande la sunna avant la prière du vendredi ?","Se laver (ghusl), se parfumer et mettre de beaux habits",["Jeûner la veille", "Faire le tour de la mosquée", "Arriver juste à la fin du sermon"]],
+["adab",3,"Tu vois une injustice. Selon le hadith, quel est le degré le plus faible de la foi ?","La désapprouver dans son cœur",["La filmer", "En parler plus tard", "Faire comme si de rien n'était"],"Le hadith dit : la changer par la main, sinon par la parole, sinon par le cœur."],
+["adab",3,"Le Prophète ﷺ a conseillé à Abû Dharr, quand il prépare un bouillon…","… d'y ajouter de l'eau et d'en donner à ses voisins",["… de le manger seul", "… de le garder pour le lendemain", "… de n'inviter que sa famille"]],
+["coran",1,"Quelle sourate récite-t-on dans chaque rakʿa de la prière ?","Al-Fâtiha",["Al-Ikhlâs", "An-Nâs", "Al-Kawthar"]],
+["coran",1,"Combien de versets compte la sourate Al-Fâtiha ?","7",["5", "6", "10"]],
+["coran",1,"Que signifie le mot « Qur'ân » (Coran) ?","La lecture, la récitation",["La lumière", "La loi", "Le message"]],
+["coran",1,"Quelle sourate commence par « Qul huwa Llâhu ahad » ?","Al-Ikhlâs",["Al-Falaq", "An-Nâs", "Al-Kâfirûn"]],
+["coran",1,"Comment appelle-t-on un verset du Coran ?","Une âya",["Une sourate", "Un juz'", "Un hadith"]],
+["coran",1,"Comment appelle-t-on un chapitre du Coran ?","Une sourate",["Une âya", "Un hizb", "Une sunna"]],
+["coran",1,"Que signifie « Al-Baqara », le nom de la 2e sourate ?","La vache",["L'éléphant", "La fourmi", "Le chameau"]],
+["coran",1,"Que signifie « Al-Fîl », le nom de la sourate 105 ?","L'éléphant",["Le cheval", "La baleine", "Le lion"]],
+["coran",2,"Quelle sourate porte le nom d'un fruit ?","At-Tîn (la figue)",["Al-Mâ'ida", "Al-Fîl", "Al-Kahf"]],
+["coran",3,"Combien de versets compte le Coran, selon le décompte le plus répandu ?","6 236",["6 666", "6 000", "7 000"],"Le chiffre de 6 666 souvent cité n'est pas exact."],
+["sira",1,"Qui est le dernier prophète en islam ?","Muhammad ﷺ",["ʿÎsâ", "Mûsâ", "Ibrâhîm"]],
+["sira",1,"Comment s'appelle la mosquée du Prophète ﷺ à Médine ?","Al-Masjid an-Nabawî",["Al-Aqsâ", "Al-Masjid al-Harâm", "La mosquée de Qubâ'"]],
+["sira",1,"Que signifie « ﷺ », écrit après le nom du Prophète ?","Que la prière et la paix d'Allah soient sur lui",["Qu'Allah l'agrée", "Paix à son âme", "Gloire à Allah"]],
+["sira",1,"Le Prophète ﷺ savait-il lire et écrire ?","Non, il était illettré (ummî)",["Oui, il était scribe", "Oui, il a écrit le Coran lui-même", "Seulement en persan"]],
+["sira",2,"Quel métier le Prophète ﷺ exerçait-il pour le compte de Khadîja ?","Il menait ses caravanes de commerce",["Forgeron", "Agriculteur", "Scribe"]],
+["sira",2,"Lors de quelle bataille des archers ont-ils quitté leur poste, causant de lourdes pertes ?","Uhud",["Badr", "Al-Khandaq", "Hunayn"]],
+["sira",3,"Quel jour de la semaine le Prophète ﷺ est-il né ?","Le lundi",["Le vendredi", "Le jeudi", "Le dimanche"],"Il a aussi reçu la première révélation un lundi."],
+["prophetes",1,"Quel prophète est appelé « Al-Masîh » (le Messie) ?","ʿÎsâ (Jésus)",["Mûsâ", "Yahyâ", "Ilyâs"]],
+["prophetes",1,"Quel prophète a fendu la mer avec son bâton ?","Mûsâ (Moïse)",["Nûh", "Ibrâhîm", "Sulaymân"]],
+["prophetes",1,"Quel prophète a reçu l'ordre de sacrifier son fils, remplacé ensuite par un bélier ?","Ibrâhîm",["Yaʿqûb", "Âdam", "Nûh"]],
+["prophetes",2,"Quelle est la seule femme citée par son nom dans le Coran ?","Maryam",["Âsiya", "Khadîja", "Hawwâ'"]],
+["prophetes",3,"Selon le hadith, comment s'appelait le jeune serviteur qui accompagnait Mûsâ à la recherche d'al-Khadir ?","Yûshaʿ ibn Nûn",["Hârûn", "Ilyâs", "Yûsuf"]],
+["piliers",1,"Comment s'appelle le mois de jeûne ?","Ramadan",["Muharram", "Chaʿbân", "Rajab"]],
+["piliers",1,"Pendant le Ramadan, on jeûne…","De l'aube au coucher du soleil",["Du matin à midi", "Toute la journée et toute la nuit", "Seulement le vendredi"]],
+["piliers",1,"Comment s'appelle le repas de rupture du jeûne ?","L'iftâr",["Le suhûr", "La walîma", "Le ʿîd"]],
+["piliers",1,"Quel jour a lieu la grande prière en commun de la semaine ?","Le vendredi",["Le lundi", "Le samedi", "Le dimanche"]],
+["piliers",1,"Comment appelle-t-on celui qui fait l'appel à la prière ?","Le muezzin (mu'adhdhin)",["L'imam", "Le mufti", "Le hâfiz"]],
+["piliers",1,"Comment s'appelle la prière du coucher du soleil ?","Al-Maghrib",["Al-ʿAsr", "Al-ʿIchâ'", "Adh-Dhuhr"]],
+["piliers",1,"Quelle parole prononce-t-on pour commencer la prière ?","« Allâhu akbar »",["« Bismillâh »", "« As-salâmu ʿalaykum »", "« Âmîn »"]],
+["piliers",1,"Combien de fois dans sa vie le pèlerinage (Hajj) est-il obligatoire ?","Une fois, pour qui en a les moyens",["Chaque année", "Deux fois", "Jamais, il est facultatif"]],
+["piliers",2,"Combien de rakʿa compte la prière du ʿIchâ' ?","4",["2", "3", "5"]],
+["piliers",2,"Combien de rakʿa compte la prière de l'ʿAsr ?","4",["2", "3", "6"]],
+["piliers",3,"Que dit-on en se prosternant (sujûd) ?","« Subhâna rabbiya l-aʿlâ »",["« Subhâna rabbiya l-ʿazîm »", "« Samiʿa Llâhu liman hamidah »", "« Rabbanâ wa laka l-hamd »"],"En inclinaison (rukûʿ), on dit « Subhâna rabbiya l-ʿazîm »."],
+["piliers",3,"Lors du Miʿrâj, combien de prières avaient d'abord été prescrites avant d'être réduites à 5 ?","50",["10", "7", "100"]],
+["histoire",1,"Quelle est la ville la plus sainte de l'islam ?","La Mecque",["Médine", "Jérusalem", "Le Caire"]],
+["histoire",1,"Quelle est la deuxième ville sainte de l'islam ?","Médine",["Jérusalem", "Damas", "Bagdad"]],
+["histoire",1,"Le calendrier musulman commence à partir de quel événement ?","L'Hégire, l'émigration vers Médine",["La naissance du Prophète ﷺ", "La première révélation", "La conquête de La Mecque"]],
+["histoire",1,"Le calendrier musulman est basé sur…","La lune",["Le soleil", "Les saisons", "Les étoiles"]],
+["histoire",2,"Quelle ville les Ottomans ont-ils choisie comme capitale après 1453 ?","Constantinople (Istanbul)",["Damas", "Le Caire", "Bagdad"]],
+["histoire",3,"Quel calife omeyyade a fait construire le Dôme du Rocher à Jérusalem ?","ʿAbd al-Malik ibn Marwân",["Muʿâwiya", "Hârûn ar-Rachîd", "Al-Walîd"]],
+["histoire",3,"Quel calife omeyyade, célèbre pour sa justice, est parfois appelé « le cinquième calife bien guidé » ?","ʿUmar ibn ʿAbd al-ʿAzîz",["Muʿâwiya", "Hârûn ar-Rachîd", "Al-Maʾmûn"]],
+["culture",1,"Que signifie « Subhânallâh » ?","Gloire à Allah",["Allah est le plus grand", "Louange à Allah", "Au nom d'Allah"]],
+["culture",1,"Que signifie « Allâhu akbar » ?","Allah est le plus grand",["Gloire à Allah", "Allah est unique", "Allah est miséricordieux"]],
+["culture",1,"Que signifie « Bismillâh » ?","Au nom d'Allah",["Merci Allah", "Allah est grand", "Si Allah le veut"]],
+["culture",1,"Que signifie « As-salâmu ʿalaykum » ?","Que la paix soit sur vous",["Bonjour mon frère", "Qu'Allah vous bénisse", "Bienvenue chez moi"]],
+["culture",1,"Comment s'appelle le lieu de prière des musulmans ?","La mosquée (masjid)",["La medersa", "Le hammam", "La zaouïa"]],
+["culture",1,"Que signifie « halâl » ?","Permis, licite",["Interdit", "Recommandé", "Sacré"]],
+["culture",1,"Quelle viande est interdite aux musulmans ?","Le porc",["Le bœuf", "Le poulet", "Le mouton"]],
+["culture",1,"Combien y a-t-il de grandes fêtes (ʿîd) dans l'année ?","2",["1", "3", "5"]],
+["culture",1,"Selon le hadith, combien de noms Allah a-t-Il ?","99",["33", "40", "100"]],
+["culture",2,"Que signifie « Ar-Rahmân » ?","Le Tout Miséricordieux",["Le Tout Puissant", "L'Unique", "Le Créateur"]],
 ];
 
 (() => {
@@ -412,6 +538,7 @@ const QDATA = [
 const CATS = {
   coran: { name: "Le Coran", color: "#2E9E5B" }, sira: { name: "Vie du Prophète ﷺ", color: "#E8862F" }, prophetes: { name: "Les prophètes", color: "#3D7FD6" },
   piliers: { name: "Piliers et pratique", color: "#D24B6A" }, histoire: { name: "Histoire de l'islam", color: "#8A5CD0" }, culture: { name: "Compagnons et culture", color: "#E2B72E", ink: "#2A2118" },
+  adab: { name: "Comportement du musulman", color: "#139C9A" },
 };
 const KEYS = Object.keys(CATS);
 const SPEC = {
@@ -507,10 +634,16 @@ function boardSVG() {
     ["palm", 20, 440, 34], ["palm", 300, 360, 40], ["palm", 16, 230, 30], ["palm", 318, 150, 34], ["palm", 150, 250, 26], ["palm", 210, 520, 30],
     ["well", 250, 390, 26], ["well", 90, 110, 22],
   ];
-  const dunes = `<path d="M0 520 Q60 490 120 515 T240 505 T360 500 V640 H0Z" fill="#E0B870" opacity=".55"/><path d="M0 300 Q80 270 150 295 T300 285 T360 290 V360 Q300 350 240 360 T120 355 T0 360Z" fill="#EDC98A" opacity=".5"/><path d="M0 170 Q70 150 140 168 T280 160 T360 165 V200 Q280 190 200 200 T0 200Z" fill="#EDC98A" opacity=".45"/>`;
+  const dune = (d, o = 1) => `<path d="${d}" fill="url(#dune)" opacity="${o}"/><path d="${d}" fill="url(#duneS)" opacity="${o}"/>`;
+  const dunes = [
+    "M0 140 Q40 112 95 126 Q150 140 190 118 Q250 92 300 116 Q335 130 360 122 V340 H0Z",
+    "M0 300 Q55 262 120 284 Q175 302 220 276 Q275 248 330 270 Q348 278 360 274 V470 H0Z",
+    "M0 430 Q30 404 80 418 Q130 432 170 410 Q230 380 290 404 Q330 420 360 410 V560 H0Z",
+    "M0 520 Q60 484 125 508 Q180 528 235 500 Q300 472 360 494 V640 H0Z",
+  ].map((d, i) => dune(d, .7 + i * .1) + `<path d="${d.split(" V")[0]}" fill="none" stroke="#FFF2CF" stroke-width="1.6" opacity=".7"/>`).join("");
   const stars = Array.from({ length: 22 }, (_, i) => `<circle cx="${(i * 71) % 360}" cy="${4 + (i * 37) % 40}" r="${i % 3 ? .8 : 1.3}" fill="#fff" opacity="${.4 + (i % 4) * .15}"/>`).join("");
   let sq = "", links = "";
-  const disc = (x, y, rr, top, side) => `<ellipse cx="${x}" cy="${y + 4.5}" rx="${rr}" ry="${rr * .92}" fill="${side}"/><ellipse cx="${x}" cy="${y + 4.5}" rx="${rr}" ry="${rr * .92}" fill="rgba(40,20,0,.38)"/><rect x="${x - rr}" y="${y}" width="${rr * 2}" height="4.5" fill="${side}"/><rect x="${x - rr}" y="${y}" width="${rr * 2}" height="4.5" fill="rgba(40,20,0,.38)"/><circle cx="${x}" cy="${y}" r="${rr}" fill="${top}"/>`;
+  const disc = (x, y, rr, top, side, h = 7) => `<ellipse cx="${x + 3}" cy="${y + h + 4}" rx="${rr * 1.05}" ry="${rr * .8}" fill="rgba(60,30,5,.45)" filter="url(#blur3)"/><path d="M${x - rr} ${y} v${h} a${rr} ${rr * .92} 0 0 0 ${rr * 2} 0 v${-h}Z" fill="${side}"/><path d="M${x - rr} ${y} v${h} a${rr} ${rr * .92} 0 0 0 ${rr * 2} 0 v${-h}Z" fill="rgba(40,20,0,.3)"/><path d="M${x - rr} ${y} v${h} a${rr} ${rr * .92} 0 0 0 ${rr * 2} 0 v${-h}Z" fill="url(#cyl)"/><circle cx="${x}" cy="${y}" r="${rr}" fill="${top}"/><circle cx="${x}" cy="${y}" r="${rr}" fill="url(#capHi)"/>`;
   pts.forEach((p, i) => {
     const c = game.cells[i];
     if ((c.t === "short" || c.t === "trap") && c.to != null) {
@@ -523,7 +656,7 @@ function boardSVG() {
     }
     if (c.t === "start" || c.t === "end") return;
     if (c.t === "cat") sq += `<g>${disc(p.x, p.y, r, CATS[c.cat].color, CATS[c.cat].color)}<circle cx="${p.x}" cy="${p.y}" r="${r}" fill="none" stroke="#FFF6E0" stroke-width="2.2"/><ellipse cx="${p.x - r * .3}" cy="${p.y - r * .35}" rx="${r * .45}" ry="${r * .22}" fill="rgba(255,255,255,.3)"/><text class="sq-num" x="${p.x}" y="${p.y + 3}" text-anchor="middle">${i}</text></g>`;
-    else { const top = c.t === "carte" ? "#FFE3A0" : c.t === "short" ? "#DFF3E4" : c.t === "trap" ? "#F8DCC6" : "#FFF3D6"; sq += `<g>${disc(p.x, p.y, r + 1.5, top, "#C9A36A")}<circle cx="${p.x}" cy="${p.y}" r="${r + 1.5}" fill="none" stroke="#8A5A2B" stroke-width="1.8"/><use href="#${SPEC[c.t].icon}" x="${p.x - r * .78}" y="${p.y - r * .78}" width="${r * 1.56}" height="${r * 1.56}"/></g>`; }
+    else { const top = c.t === "carte" ? "#FFE3A0" : c.t === "short" ? "#DFF3E4" : c.t === "trap" ? "#F8DCC6" : "#FFF3D6"; sq += `<g>${disc(p.x, p.y, r + 1.5, top, "#B88E52", 9)}<circle cx="${p.x}" cy="${p.y}" r="${r + 1.5}" fill="none" stroke="#8A5A2B" stroke-width="1.8"/><use href="#${SPEC[c.t].icon}" x="${p.x - r * .78}" y="${p.y - r * .78}" width="${r * 1.56}" height="${r * 1.56}"/></g>`; }
   });
   const s0 = pts[0], sE = pts[n - 1];
   return `<svg id="board" viewBox="0 0 ${W} ${H}" role="img" aria-label="Plateau de jeu">
@@ -531,13 +664,17 @@ function boardSVG() {
     <rect width="${W}" height="70" fill="url(#sky)"/><path d="M0 70 Q90 56 180 66 T360 62 V74 H0Z" fill="#E4BE7C"/>${stars}
     <circle cx="40" cy="26" r="11" fill="#FFF3C4"/><circle cx="45" cy="22" r="10" fill="#3A2F63"/>
     ${dunes}
-    <path d="${PATH}" fill="none" stroke="#B98B4E" stroke-width="${r * 2 + 10}" stroke-linecap="round" opacity=".45"/>
+    <rect width="${W}" height="${H}" fill="url(#vig)"/>
+    <path d="${PATH}" transform="translate(3 7)" fill="none" stroke="rgba(70,35,5,.45)" stroke-width="${r * 2 + 14}" stroke-linecap="round" filter="url(#blur3)"/>
+    <path d="${PATH}" transform="translate(0 5)" fill="none" stroke="#8C5E2A" stroke-width="${r * 2 + 12}" stroke-linecap="round"/>
+    <path d="${PATH}" fill="none" stroke="#D2A766" stroke-width="${r * 2 + 12}" stroke-linecap="round"/>
+    <path d="${PATH}" transform="translate(-1 -1.5)" fill="none" stroke="#F1D49C" stroke-width="${r * 2 + 4}" stroke-linecap="round" opacity=".55"/>
     <path d="${PATH}" fill="none" stroke="#FFF1D2" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round" opacity=".9"/>
-    ${deco.map(([id, x, y, w]) => `<use href="#${id}" x="${x}" y="${y}" width="${w}" height="${id === "palm" ? w * 1.5 : w}"/>`).join("")}
+    ${deco.map(([id, x, y, w]) => `<ellipse cx="${x + w * .65}" cy="${y + (id === "palm" ? w * 1.47 : w * .86)}" rx="${w * .5}" ry="${w * .13}" fill="rgba(60,30,5,.4)" filter="url(#blur3)"/><use href="#${id}" x="${x}" y="${y}" width="${w}" height="${id === "palm" ? w * 1.5 : w}"/>`).join("")}
     <use href="#tent" x="${s0.x - 52}" y="${s0.y - 58}" width="54" height="36"/><use href="#tent" x="${s0.x - 18}" y="${s0.y - 64}" width="40" height="27"/>
-    <g filter="url(#sh)"><circle cx="${s0.x}" cy="${s0.y}" r="${r + 6}" fill="#1B1530" stroke="#F2B441" stroke-width="3"/><text x="${s0.x}" y="${s0.y + 4}" text-anchor="middle" style="font:800 10px var(--f-body);fill:#F2B441">DÉPART</text></g>
+    <g filter="url(#sh)">${disc(s0.x, s0.y, r + 6, "#1B1530", "#0E0A1C", 9)}<circle cx="${s0.x}" cy="${s0.y}" r="${r + 6}" fill="#1B1530" stroke="#F2B441" stroke-width="3"/><text x="${s0.x}" y="${s0.y + 4}" text-anchor="middle" style="font:800 10px var(--f-body);fill:#F2B441">DÉPART</text></g>
     <use href="#city" x="${sE.x - 70}" y="${sE.y - 82}" width="120" height="70"/>
-    <g filter="url(#sh)"><circle cx="${sE.x}" cy="${sE.y}" r="${r + 7}" fill="#F2B441" stroke="#FFF3C4" stroke-width="3"/><text x="${sE.x}" y="${sE.y + 4}" text-anchor="middle" style="font:800 9.5px var(--f-body);fill:#2A1A05">ARRIVÉE</text></g>
+    <g filter="url(#sh)">${disc(sE.x, sE.y, r + 7, "#F2B441", "#A8721A", 9)}<circle cx="${sE.x}" cy="${sE.y}" r="${r + 7}" fill="#F2B441" stroke="#FFF3C4" stroke-width="3"/><text x="${sE.x}" y="${sE.y + 4}" text-anchor="middle" style="font:800 9.5px var(--f-body);fill:#2A1A05">ARRIVÉE</text></g>
     ${links}${sq}
     <g id="marks"></g><g id="pawns"></g>
   </svg>`;
@@ -550,7 +687,7 @@ function drawPawns() {
   const g = $("#pawns"); if (!g) return;
   const order = game.players.map((_, i) => i).filter(i => i !== game.cur).concat(game.cur);
   g.innerHTML = order.map(i => { const p = game.players[i], pt = geo.pts[p.pos], [ox, oy] = pawnOffset(i, p.pos), s = geo.r * 2.1;
-    return `<g class="pawn ${i === game.cur ? "cur" : ""}" id="pw${i}" transform="translate(${pt.x + ox} ${pt.y + oy})"><g class="pbody"><ellipse cx="0" cy="2" rx="${s * .42}" ry="${s * .12}" fill="rgba(60,30,5,.35)"/><use href="#camel" x="${-s / 2}" y="${-s * .78}" width="${s}" height="${s * .8}" fill="${PCOL[i]}" stroke="#FFF6E0" stroke-width="1.6" paint-order="stroke"/></g></g>`; }).join("");
+    return `<g class="pawn ${i === game.cur ? "cur" : ""}" id="pw${i}" transform="translate(${pt.x + ox} ${pt.y + oy})"><g class="pbody"><ellipse cx="2.5" cy="4" rx="${s * .46}" ry="${s * .15}" fill="rgba(40,20,0,.5)" filter="url(#blur3)"/><use href="#camel" x="${-s / 2}" y="${-s * .78}" width="${s}" height="${s * .8}" fill="${PCOL[i]}" stroke="#FFF6E0" stroke-width="1.6" paint-order="stroke"/></g></g>`; }).join("");
 }
 function markDest(list) { const g = $("#marks"); if (!g) return; g.innerHTML = (list || []).map(([i, c]) => { const p = geo.pts[i]; return `<circle class="pulse" cx="${p.x}" cy="${p.y}" r="${geo.r + 5}" fill="none" stroke="${c}" stroke-width="3.5"/>`; }).join(""); }
 async function animateMove(pi, from, to) {
@@ -583,7 +720,7 @@ let setup = store.get("setup3", { players: [{ name: "Joueur 1", level: "normal" 
 let game = store.get("game3", null), busy = false;
 function save() { store.set("setup3", setup); if (game) store.set("game3", game); else store.del("game3"); }
 const root = $("#root");
-function levelRange(level, final) { if (final) return level === "facile" ? [2, 3] : [3, 3]; return { facile: [1, 1], normal: [1, 2], expert: [2, 3] }[level]; }
+function levelRange(level, final) { if (final) return { facile: [1, 2], normal: [2, 3], expert: [3, 3] }[level]; return { facile: [1, 1], normal: [1, 2], expert: [2, 3] }[level]; }
 function draw(cat, level, final) {
   const [lo, hi] = levelRange(level, final); const seen = new Set(store.get("seen", [])), used = new Set(game.used);
   let pool = Q.filter(q => q.cat === cat && q.d >= lo && q.d <= hi && !used.has(q.id));
@@ -626,7 +763,7 @@ function renderSetup() {
       <p class="hint" style="opacity:.9">Cartes chance et malchance · raccourcis par les ponts de corde · sables mouvants qui font reculer · oasis (rejoue) · vent (+2) · tempête (−3) · puits (passe un tour). Rien n'est joué avant la question finale : si tu la rates, tu recules de 5 cases.</p>
     </section>
     <button class="big w" id="start">Partir à l'aventure</button>
-    <p class="hint" style="text-align:center">${Q.length} questions · Coran, vie du Prophète ﷺ, prophètes, piliers, histoire, compagnons</p>
+    <p class="hint" style="text-align:center">${Q.length} questions · Coran, vie du Prophète ﷺ, prophètes, piliers, histoire, compagnons, comportement</p>
   </div>`;
   const read = () => setup.players.forEach((p, i) => { const n = $("#pn" + i), l = $("#pl" + i); if (n) p.name = n.value.trim() || "Joueur " + (i + 1); if (l) p.level = l.value; });
   root.querySelectorAll("input,select").forEach(el => el.onchange = () => { read(); save(); });
@@ -691,7 +828,7 @@ async function rollImpl() {
   const cube = $("#cube"); if (cube) cube.style.transform = `rotateX(${ROT[v][0] + 360 * spin}deg) rotateY(${ROT[v][1] + 360 * spin}deg) rotateZ(${spin % 2 ? 0 : 0}deg)`;
   await sleep(1050); game.die = v;
   const p = game.players[game.cur], cell = game.cells[p.pos];
-  const cat = cell.t === "cat" ? cell.cat : KEYS[Math.floor(Math.random() * 6)];
+  const cat = cell.t === "cat" ? cell.cat : KEYS[Math.floor(Math.random() * KEYS.length)];
   toast(`${v}`, "", "#2A2118", 700); await sleep(500);
   game.q = { id: draw(cat, p.level, false), cat, mode: null, final: false }; game.phase = "question"; save();
 }
@@ -843,7 +980,7 @@ async function drawCard(pi) {
   if (c.k === "bad" && protect(p)) { await sleep(1000); return false; }
   const r = await c.run(pi, target); save(); chips();
   if (r === "defi") {
-    const cat = KEYS[Math.floor(Math.random() * 6)];
+    const cat = KEYS[Math.floor(Math.random() * KEYS.length)];
     game.q = { id: draw(cat, p.level, false), cat, mode: "cash", final: false, bonus: true }; game.phase = "question"; save(); step(); return "q";
   }
   if (r === true) { toast("Tu rejoues !", "", "#2E9E5B", 1200); await sleep(700); }
