@@ -58,9 +58,13 @@ h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.1;text-wrap:balance
 /* vue 3D à la première personne */
 .w3d{position:fixed;inset:0;z-index:45;opacity:0;pointer-events:none;transition:opacity .45s ease;background:#EFC89A}
 .w3d.on{opacity:1}
+.w3d.board{z-index:2;transition:opacity .9s ease}
+.w3d .w3hud{opacity:0;transition:opacity .3s}.w3d.fp .w3hud{opacity:1}
+body.b3d .stage{visibility:hidden}
+body.b3d .top{background:linear-gradient(rgba(12,9,24,.7),rgba(12,9,24,0))}
 .w3d canvas{display:block;width:100%;height:100%}
 .w3d::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,transparent 55%,rgba(40,20,5,.45));pointer-events:none}
-.w3hud{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));left:12px;display:flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;border-radius:999px;background:rgba(20,14,36,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#FFF6E0;font-weight:800;z-index:1}
+.w3hud{position:absolute;top:calc(60px + env(safe-area-inset-top,0px));left:12px;display:flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;border-radius:999px;background:rgba(20,14,36,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);color:#FFF6E0;font-weight:800;z-index:1}
 .w3hud i{width:14px;height:14px;border-radius:50%;box-shadow:0 0 0 2px #FFF6E0}
 .w3hud small{opacity:.8;font-weight:700}
 button{touch-action:manipulation}
@@ -768,9 +772,9 @@ function drawPawns() {
     + order.map(i => `<div class="pw ${i === game.cur ? "cur" : ""}" id="pw${i}" style="width:${w}px;height:${hh}px"><div class="pbody"><svg viewBox="0 0 40 32" style="${PFLIP[i] ? "transform:scaleX(-1)" : ""}"><use href="#camel" fill="${PCOL[i]}" stroke="#FFF6E0" stroke-width="1.6" paint-order="stroke"/></svg></div></div>`).join("");
   order.forEach(i => { const pt = geo.pts[game.players[i].pos], [ox, oy] = pawnOffset(i, game.players[i].pos); placePawn(i, pt.x + ox, pt.y + oy); });
 }
-function markDest(list) { const g = $("#marks"); if (!g) return; g.innerHTML = (list || []).map(([i, c]) => { const p = geo.pts[i]; return `<circle class="pulse" cx="${p.x}" cy="${p.y}" r="${geo.r + 5}" fill="none" stroke="${c}" stroke-width="3.5"/>`; }).join(""); }
+function markDest(list) { w3dMarks(list); const g = $("#marks"); if (!g) return; g.innerHTML = (list || []).map(([i, c]) => { const p = geo.pts[i]; return `<circle class="pulse" cx="${p.x}" cy="${p.y}" r="${geo.r + 5}" fill="none" stroke="${c}" stroke-width="3.5"/>`; }).join(""); }
 async function animateMove(pi, from, to) {
-  if (from !== to && await w3dReady()) { try { await w3dWalk(pi, from, to); game.players[pi].pos = to; drawPawns(); chips(); return; } catch (e) { console.warn(e); w3dHide(); } }
+  if (from !== to && await w3dReady()) { try { await w3dWalk(pi, from, to); game.players[pi].pos = to; drawPawns(); chips(); w3dPlaceCamels(); return; } catch (e) { console.warn(e); w3dHide(); } }
   const dir = to > from ? 1 : -1, cam = !reduceMotion;
   if (cam) { const a = geo.pts[from]; camFollow(a.x, a.y); await sleep(CAM.cur && CAM.cur.zoom > CAM.fit * 1.8 ? 120 : 650); }
   for (let s = from; s !== to; s += dir) {
@@ -783,7 +787,7 @@ async function animateMove(pi, from, to) {
 }
 
 /* ============ monde 3D : quand une caravane avance, on est debout dans le désert, à hauteur d'yeux ============ */
-const W3D = { ok: false, loading: null, vis: false, hideT: 0, key: "", raf: 0, anim: null };
+const W3D = { ok: false, loading: null, vis: false, key: "", raf: 0, anim: null, marks: [], fp: null, busy: false };
 const K3 = .065; /* 1 px du plateau = 6,5 cm : une case fait ~2 m, un palmier 7 à 11 m */
 const EYE = 1.65;
 function w3dOn() { return !reduceMotion && setup.view3d !== false; }
@@ -887,7 +891,7 @@ async function w3dBuild() {
   const T = W3D.T, n = game.cells.length, key = game.cells.map(c => c.t + (c.cat || "") + (c.to ?? "")).join(",");
   if (W3D.key === key && W3D.scene) return; W3D.key = key; const tb = performance.now();
   if (W3D.scene) W3D.scene.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) [].concat(o.material).forEach(m => { for (const k in m) if (m[k] && m[k].isTexture) m[k].dispose(); m.dispose(); }); });
-  const scene = new T.Scene(); W3D.scene = scene;
+  const scene = new T.Scene(); W3D.scene = scene; W3D.marks = []; W3D.lnow = null;
   const HORIZ = new T.Color("#EFC89A"); scene.fog = new T.Fog(HORIZ, 40, 330); scene.background = HORIZ;
   /* chemin : points denses en mètres */
   const P = document.createElementNS("http://www.w3.org/2000/svg", "path"); P.setAttribute("d", PATH);
@@ -966,10 +970,10 @@ async function w3dBuild() {
     const mm = new T.Mesh(gg, new T.MeshStandardMaterial({ map: dash, transparent: true, alphaTest: .4, roughness: .8, polygonOffset: true, polygonOffsetFactor: -3 })); mm.receiveShadow = true; scene.add(mm); });
   { const [ex, ez] = tileX(n - 1), [px2, pz2] = tileX(Math.max(0, n - 3)), dx = ex - px2, dz = ez - pz2, l = Math.hypot(dx, dz) || 1; W3D.cityX = ex + dx / l * 30; W3D.cityZ = ez + dz / l * 30; W3D.cityYaw = Math.atan2(-dx, -dz); }
   /* palmiers 3D (tronc + palmes), tous fusionnés en 2 objets */
-  const palmSpots = DECO.filter(d => d[0] === "palm").map(([, x, y, w]) => [(x + w / 2 - W / 2) * K3, (y + w * 1.45 - H / 2) * K3, .8 + w / 40]).filter(([x, z]) => dPath(x, z) > RW + 2.6);
-  for (let k = 0, tries = 0; k < 46 && tries < 900; tries++) { const ang = h2(tries, 31) * 6.283, rad = 3 + h2(tries, 32) * 46, cl = Math.floor(h2(tries, 33) * 7), ca = cl / 7 * 6.283 + .4, cr = 26 + (cl % 3) * 9;
-    const x = k < 22 ? (h2(tries, 34) - .5) * 2 * (BX + 2) : Math.cos(ca) * cr + Math.cos(ang) * 6, z = k < 22 ? (h2(tries, 35) - .5) * 2 * (BZ + 2) : Math.sin(ca) * cr * 1.3 + Math.sin(ang) * 6;
-    if (dPath(x, z) < RW + 3.4 || Math.hypot(x - W3D.cityX, z - W3D.cityZ) < 42 || palmSpots.some(p => Math.hypot(p[0] - x, p[1] - z) < 3)) continue; palmSpots.push([x, z, .75 + h2(tries, 36) * .6]); k++; }
+  const palmSpots = DECO.filter(d => d[0] === "palm").map(([, x, y, w]) => [(x + w / 2 - W / 2) * K3, (y + w * 1.45 - H / 2) * K3, .8 + w / 40]).filter(([x, z]) => dPath(x, z) > RW + 5);
+  for (let k = 0, tries = 0; k < 40 && tries < 900; tries++) { const ang = h2(tries, 31) * 6.283, rad = 3 + h2(tries, 32) * 46, cl = Math.floor(h2(tries, 33) * 7), ca = cl / 7 * 6.283 + .4, cr = 26 + (cl % 3) * 9;
+    const inner = k < 9, x = inner ? (h2(tries, 34) - .5) * 2 * (BX + 2) : Math.cos(ca) * cr + Math.cos(ang) * 6, z = inner ? (h2(tries, 35) - .5) * 2 * (BZ + 2) : Math.sin(ca) * cr * 1.3 + Math.sin(ang) * 6;
+    if (dPath(x, z) < RW + (inner ? 5.5 : 3.4) || Math.hypot(x - W3D.cityX, z - W3D.cityZ) < 42 || palmSpots.some(p => Math.hypot(p[0] - x, p[1] - z) < 3)) continue; palmSpots.push([x, z, .75 + h2(tries, 36) * .6]); k++; }
   const trunkParts = [], frondParts = [], up = new T.Vector3(0, 1, 0);
   palmSpots.forEach(([px, pz, s], pi) => {
     const Ht = (6.5 + h2(pi, 41) * 4) * s, la = h2(pi, 42) * 6.283, lean = (.6 + h2(pi, 43) * 1.4) * s, base = hAt(px, pz) - .1, SEGS = 12; let prev = null, top = null;
@@ -1017,7 +1021,7 @@ async function w3dBuild() {
   /* les autres caravanes : figurines de chameaux */
   W3D.camels = [];
   for (let i = 0; i < game.players.length; i++) { const im = await symImg("camel", 400, 320, PCOL[i]);
-    const sp = new T.Sprite(new T.SpriteMaterial({ map: im ? ctex(cvs(400, 320, g2 => g2.drawImage(im, 0, 0))) : null, alphaTest: .3 })); sp.scale.set(2.6, 2.08, 1); sp.center.set(.5, .02);
+    const sp = new T.Sprite(new T.SpriteMaterial({ map: im ? ctex(cvs(400, 320, g2 => g2.drawImage(im, 0, 0))) : null, alphaTest: .05, transparent: true })); sp.scale.set(2.6, 2.08, 1); sp.center.set(.5, .02);
     const sh = new T.Mesh(new T.CircleGeometry(.95, 20), new T.MeshBasicMaterial({ color: "#3A2208", transparent: true, opacity: .35, depthWrite: false })); sh.rotation.x = -Math.PI / 2;
     scene.add(sp, sh); W3D.camels.push([sp, sh]); }
   /* poussière qui flotte dans la lumière */
@@ -1032,56 +1036,136 @@ function pathPos(l) { /* l en mètres le long de la piste */
   return [S[i].x + (S[i + 1].x - S[i].x) * t, S[i].z + (S[i + 1].z - S[i].z) * t];
 }
 const tileL = i => W3D.Lm * i / (game.cells.length - 1);
-function w3dPlaceCamels(skip) {
-  game.players.forEach((p, i) => { const pair = W3D.camels[i]; if (!pair) return; const [sp, sh] = pair, vis = i !== skip; sp.visible = sh.visible = vis; if (!vis) return;
-    const q = geo.pts[p.pos], [ox, oy] = pawnOffset(i, p.pos), x = (q.x + ox * 1.6 - W / 2) * K3, z = (q.y + oy * 1.6 - H / 2) * K3; sp.position.set(x, .2, z); sh.position.set(x, .21, z); });
+const ease = t => t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+const tileXZ = i => [(geo.pts[i].x - W / 2) * K3, (geo.pts[i].y - H / 2) * K3];
+function camelXZ(i, pos) { const q = geo.pts[pos], [ox, oy] = pawnOffset(i, pos); return [(q.x + ox * 1.6 - W / 2) * K3, (q.y + oy * 1.6 - H / 2) * K3]; }
+function setCamel(i, x, z, h = 0, vis = true, op = 1) {
+  const pair = W3D.camels[i]; if (!pair) return; const [sp, sh] = pair, k = Math.max(.4, 1 - h / 6);
+  sp.visible = sh.visible = vis && op > .02; sp.material.opacity = op; sp.position.set(x, .2 + h, z); sh.position.set(x, .21, z); sh.userData.k = k; sh.material.opacity = .35 * k * op; W3D.dirty = true;
 }
-function w3dResize() { const r = W3D.r, c = r.domElement, w = c.clientWidth, h = c.clientHeight; if (!w || !h) return; if (c.width !== Math.round(w * r.getPixelRatio()) || c.height !== Math.round(h * r.getPixelRatio())) { r.setSize(w, h, false); const a = w / h; W3D.cam.aspect = a; W3D.cam.fov = a < 1 ? Math.min(92, 2 * Math.atan(Math.tan(27 * Math.PI / 180) / a) * 180 / Math.PI) : 62; W3D.cam.updateProjectionMatrix(); } }
+function w3dPlaceCamels() { if (!W3D.scene || !game) return; game.players.forEach((p, i) => { const [x, z] = camelXZ(i, p.pos); setCamel(i, x, z, 0, i !== W3D.fp); }); }
+function w3dResize() { const r = W3D.r, c = r.domElement, w = c.clientWidth, h = c.clientHeight; if (!w || !h) return false; if (c.width !== Math.round(w * r.getPixelRatio()) || c.height !== Math.round(h * r.getPixelRatio())) { r.setSize(w, h, false); const a = w / h; W3D.cam.aspect = a; W3D.cam.fov = a < 1 ? Math.min(92, 2 * Math.atan(Math.tan(27 * Math.PI / 180) / a) * 180 / Math.PI) : 62; W3D.cam.updateProjectionMatrix(); return true; } return false; }
 const W3V = { x: 0, y: EYE, z: 0, lx: 0, ly: EYE, lz: -5 };
+const VK = ["x", "y", "z", "lx", "ly", "lz"];
 function w3dSetView(x, y, z, lx, ly, lz) { Object.assign(W3V, { x, y, z, lx, ly, lz }); }
+const curView = () => VK.map(k => W3V[k]);
+/* vue drone : au-dessus et un peu derrière la caravane, tournée vers la ville */
+const dronePoseAt = (x, z) => [x, 25, z + 11, x, 0, z - 2.5];
+function dronePose(i) { if (!game || !game.players[i]) return curView(); const [x, z] = camelXZ(i, game.players[i].pos); return dronePoseAt(x, z); }
 function w3dFrame(now) {
   if (!W3D.vis) { W3D.raf = 0; return; }
-  if (W3D.anim) W3D.anim(now);
-  const cam = W3D.cam; w3dResize(); cam.position.set(W3V.x, W3V.y, W3V.z); cam.lookAt(W3V.lx, W3V.ly, W3V.lz);
-  const sun = W3D.sun, SD = W3D.SD; sun.target.position.set(W3V.x, 0, W3V.z); sun.position.set(W3V.x + SD.x * 90, SD.y * 90, W3V.z + SD.z * 90); W3D.sky.position.copy(cam.position);
-  const d = W3D.dust; d.position.set(W3V.x, 0, W3V.z); d.rotation.y = now * .00002; d.position.y = Math.sin(now * .0004) * .3 + W3D.hAt(W3V.x, W3V.z);
-  W3D.r.render(W3D.scene, cam); W3D.raf = requestAnimationFrame(w3dFrame);
+  const dt = Math.min(.1, (now - (W3D.lastF || now)) / 1000); W3D.lastF = now;
+  let draw = W3D.dirty || W3D.marks.length > 0; W3D.dirty = false;
+  if (W3D.anim) { W3D.anim(now); draw = true; }
+  else if (W3D.fp == null && !W3D.busy && game) { const t = dronePose(W3D.focus ?? game.cur), a = 1 - Math.exp(-dt * 2.4); VK.forEach((k, j) => { const d = t[j] - W3V[k]; if (Math.abs(d) > .003) { W3V[k] += d * a; draw = true; } }); }
+  if (w3dResize()) draw = true;
+  if (draw) {
+    const cam = W3D.cam; cam.position.set(W3V.x, W3V.y, W3V.z); cam.lookAt(W3V.lx, W3V.ly, W3V.lz);
+    const sun = W3D.sun, SD = W3D.SD, fx = (W3V.x + W3V.lx) / 2, fz = (W3V.z + W3V.lz) / 2; sun.target.position.set(fx, 0, fz); sun.position.set(fx + SD.x * 90, SD.y * 90, fz + SD.z * 90); W3D.sky.position.copy(cam.position);
+    const d = W3D.dust; d.position.set(W3V.x, 0, W3V.z); d.rotation.y = now * .00002; d.position.y = Math.sin(now * .0004) * .3 + W3D.hAt(W3V.x, W3V.z); d.visible = W3V.y < 6;
+    const pu = 1 + Math.sin(now / 180) * .12; W3D.marks.forEach(m => m.scale.set(pu, pu, 1));
+    const cs = 1 + Math.max(0, W3V.y - 4) / 13; W3D.camels.forEach(([sp, sh]) => { sp.scale.set(2.6 * cs, 2.08 * cs, 1); sh.scale.setScalar(cs * (sh.userData.k || 1)); });
+    W3D.r.render(W3D.scene, cam);
+  }
+  W3D.raf = requestAnimationFrame(w3dFrame);
 }
+function runAnim(D, f) { if (W3D.animRes) W3D.animRes(); return new Promise(res => { const t0 = performance.now(); W3D.animRes = res; W3D.anim = now => { const t = Math.min(1, (now - t0) / D); f(t); if (t >= 1) { W3D.anim = null; W3D.animRes = null; res(); } }; }); }
+function flyTo(pose, D, onT) { const s = curView(); return runAnim(D, t => { const e = ease(t), g = typeof pose === "function" ? pose() : pose; w3dSetView(...s.map((v, j) => v + (g[j] - v) * e)); if (onT) onT(t, e); }); }
 function w3dHud(pi, i) { const h = W3D.box.querySelector(".w3hud"); h.querySelector("i").style.background = PCOL[pi]; h.querySelector("b").textContent = game.players[pi].name; h.querySelector("small").textContent = i === 0 ? "Départ" : i === game.cells.length - 1 ? "Arrivée" : "Case " + i; }
-async function w3dShow(pi, at) {
-  clearTimeout(W3D.hideT); w3dPlaceCamels(pi); w3dHud(pi, at);
-  if (W3D.vis) return;
-  W3D.vis = true; W3D.box.classList.add("on"); if (!W3D.raf) W3D.raf = requestAnimationFrame(w3dFrame);
-  await sleep(480);
+/* ---------- le plateau 3D permanent ---------- */
+function w3dBoardOn() {
+  if (!W3D.ok || !W3D.scene || !game) return;
+  W3D.box.classList.add("on", "board"); document.body.classList.add("b3d");
+  if (!W3D.vis) { W3D.vis = true; W3D.fp = null; W3D.busy = false; W3D.focus = game.cur; const t = dronePose(game.cur); w3dSetView(t[0], t[1] + 40, t[2] + 30, t[3], t[4], t[5]); }
+  w3dPlaceCamels(); W3D.dirty = true; if (!W3D.raf) W3D.raf = requestAnimationFrame(w3dFrame);
 }
-function w3dLater() { clearTimeout(W3D.hideT); W3D.hideT = setTimeout(w3dHide, 650); }
-function w3dHide() { if (!W3D.box) return; W3D.box.classList.remove("on"); setTimeout(() => { if (!W3D.box.classList.contains("on")) { W3D.vis = false; W3D.anim = null; } }, 500); }
-function lookFrom(l, dir, ahead = 7) { const [x, z] = pathPos(l), [lx, lz] = pathPos(l + dir * ahead); return [x, z, lx, lz]; }
-function runAnim(D, f) { return new Promise(res => { const t0 = performance.now(); W3D.anim = now => { const t = Math.min(1, (now - t0) / D); f(t); if (t >= 1) { W3D.anim = null; res(); } }; }); }
+function w3dBoardOff() { if (!W3D.box) return; W3D.box.classList.remove("on", "board", "fp"); document.body.classList.remove("b3d"); W3D.vis = false; W3D.anim = null; W3D.fp = null; W3D.busy = false; W3D.rising = false; clearTimeout(W3D.riseT); w3dMarks([]); }
+const w3dHide = w3dBoardOff;
+function w3dFocus(i) { if (!W3D.vis) return; W3D.focus = i; if (W3D.fp != null && W3D.fp !== i && !W3D.busy) w3dRise(); W3D.dirty = true; }
+function w3dMarks(list) {
+  if (!W3D.scene) return; const T = W3D.T;
+  W3D.marks.forEach(m => { W3D.scene.remove(m); m.geometry.dispose(); m.material.dispose(); });
+  W3D.marks = (W3D.vis ? list || [] : []).map(([i, c]) => { const [x, z] = tileXZ(i), r = geo.r * K3, m = new T.Mesh(new T.RingGeometry(r * 1.12, r * 1.42, 48), new T.MeshBasicMaterial({ color: c, transparent: true, opacity: .95, depthWrite: false, fog: false }));
+    m.rotation.x = -Math.PI / 2; m.position.set(x, .27, z); W3D.scene.add(m); return m; });
+  W3D.dirty = true;
+}
+function w3dScreen(i) { const T = W3D.T, [x, z] = tileXZ(i), v = new T.Vector3(x, .6, z).project(W3D.cam), b = W3D.r.domElement.getBoundingClientRect(); return [b.left + (v.x + 1) / 2 * b.width, b.top + (1 - v.y) / 2 * b.height]; }
+/* ---------- zoom sur moi → première personne → le drone remonte ---------- */
+async function w3dDive(pi, from, dir) {
+  const [cx, cz] = camelXZ(pi, from), l = tileL(from), [ax, az] = pathPos(l + dir * 4), n = Math.hypot(ax - cx, az - cz) || 1, ux = (ax - cx) / n, uz = (az - cz) / n;
+  w3dHud(pi, from); setCamel(pi, cx, cz, 0, true, 1);
+  await flyTo([cx - ux * 4.4, 2.7, cz - uz * 4.4, cx + ux * 2.2, .85, cz + uz * 2.2], 1400);
+  await sleep(220);
+  const [fx, fz] = pathPos(l - dir * 1.2), [gx, gz] = pathPos(l + dir * 4.8);
+  W3D.box.classList.add("fp");
+  await flyTo([fx, EYE, fz, gx, EYE - .9, gz], 750, (t) => setCamel(pi, cx, cz, 0, true, 1 - Math.min(1, t * 1.6)));
+  W3D.fp = pi; setCamel(pi, cx, cz, 0, false); W3V.yaw = Math.atan2(gx - fx, gz - fz); W3D.lnow = l - dir * 1.2;
+}
+function w3dRiseLater() { clearTimeout(W3D.riseT); W3D.riseT = setTimeout(() => w3dRise(), 1200); }
+async function w3dRise() {
+  clearTimeout(W3D.riseT); if (W3D.busy || W3D.fp == null) return;
+  const pi = W3D.fp; W3D.fp = null; W3D.rising = true; W3D.box.classList.remove("fp");
+  const p = game.players[pi], [cx, cz] = camelXZ(pi, p.pos);
+  await flyTo(() => dronePose(W3D.focus ?? game.cur), 1800, (t) => setCamel(pi, cx, cz, 0, true, Math.min(1, t * 2.5)));
+  if (W3D.rising) { W3D.rising = false; w3dPlaceCamels(); }
+}
+async function w3dRiseNow() { if (W3D.fp == null) return; W3D.busy = false; await w3dRise(); }
+function beginOp() { clearTimeout(W3D.riseT); W3D.rising = false; W3D.busy = true; if (!W3D.vis) w3dBoardOn(); }
 async function w3dWalk(pi, from, to) {
   const dir = to > from ? 1 : -1;
-  { const [x, z, lx, lz] = lookFrom(tileL(from) - dir * 1.2, dir); w3dSetView(x, EYE, z, lx, EYE - .9, lz); W3V.yaw = Math.atan2(lx - x, lz - z); }
-  await w3dShow(pi, from);
-  let lprev = tileL(from) - dir * 1.2; W3V.lt = 0;
-  for (let s = from; s !== to; s += dir) {
-    const l0 = lprev, l1 = tileL(s + dir); SFX.step(Math.abs(s - from)); buzz(8);
-    await runAnim(560, t => { const e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2, l = l0 + (l1 - l0) * e, [x, z] = pathPos(l), [ax, az] = pathPos(l + dir * 3.6);
-      const ty = Math.atan2(ax - x, az - z); let dy = ty - W3V.yaw; dy = Math.atan2(Math.sin(dy), Math.cos(dy)); const nowT = performance.now(), dt = Math.min(.25, (nowT - (W3V.lt || nowT)) / 1000); W3V.lt = nowT; W3V.yaw += dy * (1 - Math.exp(-dt * 9));
-      const bob = Math.abs(Math.sin(Math.PI * t)) * .09, sway = Math.sin(Math.PI * t) * .03 * (s % 2 ? 1 : -1);
-      w3dSetView(x + Math.cos(W3V.yaw) * sway, EYE + bob, z - Math.sin(W3V.yaw) * sway, x + Math.sin(W3V.yaw) * 6, EYE - 1.05 + bob * .5, z + Math.cos(W3V.yaw) * 6); });
-    lprev = l1; w3dHud(pi, s + dir); await sleep(30);
-  }
-  await sleep(420); w3dLater();
+  if (W3D.fp !== pi && pi !== game.cur) return w3dDroneMove(pi, from, to);
+  if (W3D.fp != null && W3D.fp !== pi) await w3dRiseNow();
+  beginOp();
+  try {
+    if (W3D.fp !== pi) await w3dDive(pi, from, dir);
+    let lprev = W3D.lnow ?? tileL(from); W3V.lt = 0;
+    for (let s = from; s !== to; s += dir) {
+      const l0 = lprev, l1 = tileL(s + dir); SFX.step(Math.abs(s - from)); buzz(8);
+      await runAnim(560, t => { const e = ease(t), l = l0 + (l1 - l0) * e, [x, z] = pathPos(l), [ax, az] = pathPos(l + dir * 3.6);
+        const ty = Math.atan2(ax - x, az - z); let dy = ty - W3V.yaw; dy = Math.atan2(Math.sin(dy), Math.cos(dy)); const nowT = performance.now(), dt = Math.min(.25, (nowT - (W3V.lt || nowT)) / 1000); W3V.lt = nowT; W3V.yaw += dy * (1 - Math.exp(-dt * 9));
+        const bob = Math.abs(Math.sin(Math.PI * t)) * .09, sway = Math.sin(Math.PI * t) * .03 * (s % 2 ? 1 : -1);
+        w3dSetView(x + Math.cos(W3V.yaw) * sway, EYE + bob, z - Math.sin(W3V.yaw) * sway, x + Math.sin(W3V.yaw) * 6, EYE - 1.05 + bob * .5, z + Math.cos(W3V.yaw) * 6); });
+      lprev = l1; w3dHud(pi, s + dir); await sleep(30);
+    }
+    W3D.lnow = tileL(to);
+  } finally { W3D.busy = false; }
+  await sleep(300); w3dRiseLater();
+}
+async function w3dDroneMove(pi, from, to) {
+  await w3dRiseNow(); beginOp();
+  try {
+    const dir = to > from ? 1 : -1; W3D.focus = pi;
+    await flyTo(() => dronePose(pi), 700);
+    for (let s = from; s !== to; s += dir) {
+      const [ax, az] = camelXZ(pi, s), [bx, bz] = camelXZ(pi, s + dir); SFX.step(Math.abs(s - from));
+      await runAnim(380, t => { const e = ease(t), x = ax + (bx - ax) * e, z = az + (bz - az) * e; setCamel(pi, x, z, Math.sin(Math.PI * t) * .9); const g = dronePoseAt(x, z); VK.forEach((k, j) => { W3V[k] += (g[j] - W3V[k]) * .12; }); });
+    }
+    await sleep(450);
+  } finally { W3D.busy = false; W3D.focus = game.cur; }
 }
 async function w3dJump(pi, from, to) {
-  const up = to > from; const [ax, az] = pathPos(tileL(from)), [bx, bz] = pathPos(tileL(to)), [nx, nz] = pathPos(tileL(to) + (up ? 6 : -6));
-  w3dSetView(ax, EYE, az, bx, EYE - .5, bz); await w3dShow(pi, from);
-  up ? SFX.bonus() : SFX.whoosh(); buzz(up ? [20, 30, 20] : 80);
-  if (!up) await runAnim(700, t => { const sh = Math.sin(t * 40) * .06 * (1 - t); w3dSetView(ax + sh, EYE - t * 1.25, az, bx, EYE - .5 - t, bz); });
-  await runAnim(up ? 1700 : 1300, t => { const e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2, x = ax + (bx - ax) * e, z = az + (bz - az) * e, hgt = Math.sin(Math.PI * t) * (up ? 14 : 3) + (up ? 0 : (1 - t) * -1.25);
-    const lk = Math.min(1, t * 1.4), lx = bx + (nx - bx) * Math.max(0, t - .5) * 2, lz = bz + (nz - bz) * Math.max(0, t - .5) * 2;
-    w3dSetView(x, EYE + hgt, z, lx * lk + bx * (1 - lk), EYE - .5 + hgt * (1 - t) * .3, lz * lk + bz * (1 - lk)); });
-  w3dHud(pi, to); await sleep(480); w3dLater();
+  if (W3D.fp !== pi) return w3dDroneJump(pi, from, to);
+  beginOp();
+  try {
+    const up = to > from; const [ax, az] = pathPos(W3D.lnow ?? tileL(from)), [bx, bz] = pathPos(tileL(to)), [nx, nz] = pathPos(tileL(to) + (up ? 6 : -6));
+    await flyTo([ax, EYE, az, bx, EYE - .5, bz], 450);
+    up ? SFX.bonus() : SFX.whoosh(); buzz(up ? [20, 30, 20] : 80);
+    if (!up) await runAnim(700, t => { const sh = Math.sin(t * 40) * .06 * (1 - t); w3dSetView(ax + sh, EYE - t * 1.25, az, bx, EYE - .5 - t, bz); });
+    await runAnim(up ? 1700 : 1300, t => { const e = ease(t), x = ax + (bx - ax) * e, z = az + (bz - az) * e, hgt = Math.sin(Math.PI * t) * (up ? 14 : 3) + (up ? 0 : (1 - t) * -1.25);
+      const lk = Math.min(1, t * 1.4), lx = bx + (nx - bx) * Math.max(0, t - .5) * 2, lz = bz + (nz - bz) * Math.max(0, t - .5) * 2;
+      w3dSetView(x, EYE + hgt, z, lx * lk + bx * (1 - lk), EYE - .5 + hgt * (1 - t) * .3, lz * lk + bz * (1 - lk)); });
+    W3V.yaw = Math.atan2(nx - bx, nz - bz); W3D.lnow = tileL(to); w3dHud(pi, to);
+  } finally { W3D.busy = false; }
+  await sleep(380); w3dRiseLater();
+}
+async function w3dDroneJump(pi, from, to) {
+  await w3dRiseNow(); beginOp();
+  try {
+    const up = to > from, [ax, az] = camelXZ(pi, from), [bx, bz] = camelXZ(pi, to); W3D.focus = pi;
+    await flyTo(() => dronePose(pi), 600); up ? SFX.bonus() : SFX.whoosh(); buzz(up ? [20, 30, 20] : 80);
+    await runAnim(1300, t => { const e = ease(t), x = ax + (bx - ax) * e, z = az + (bz - az) * e; setCamel(pi, x + (up ? 0 : Math.sin(t * 30) * .15), z, up ? Math.sin(Math.PI * t) * 7 : Math.sin(Math.PI * t) * 1.2); const g = dronePoseAt(x, z); VK.forEach((k, j) => { W3V[k] += (g[j] - W3V[k]) * .1; }); });
+    await sleep(400);
+  } finally { W3D.busy = false; W3D.focus = game.cur; }
 }
 async function w3dReady() {
   if (!w3dOn()) return false;
@@ -1181,14 +1265,14 @@ function renderGame() {
   $("#snd").onclick = () => { muted = !muted; store.set("muted", muted); if (muted) try { speechSynthesis.cancel(); } catch (e) {} renderGame(); };
   $("#quit").onclick = () => { if ($("#quit").dataset.sure) { stopRec(); try { speechSynthesis.cancel(); } catch (e) {} game = null; save(); renderSetup(); } else { $("#quit").dataset.sure = "1"; $("#quit").style.background = "var(--ko)"; toast("Touche encore la croix pour quitter", "", "#6B4526", 1600); setTimeout(() => { const q = $("#quit"); if (q) { delete q.dataset.sure; q.style.background = ""; } }, 2500); } };
   camStart(); drawPawns(); chips(); step();
-  if (w3dOn()) setTimeout(() => { if (game && game.phase === "roll") w3dReady(); }, 700);
+  if (w3dOn()) w3dReady().then(ok => { if (ok && game && $("#scene")) w3dBoardOn(); });
 }
 function chips() { const c = $("#chips"); if (!c) return; c.innerHTML = game.players.map((p, i) => `<div class="chip ${i === game.cur ? "cur" : ""}">${av(i)}<span>${esc(p.name)} <small>· ${p.pos}</small>${p.streak >= 2 ? ` <span class="fire">×${p.streak}</span>` : ""}${p.skip ? ` <small>(passe)</small>` : ""}${p.shield ? ` <span class="shield">bouclier</span>` : ""}</span></div>`).join(""); const cur = c.querySelector(".cur"); if (cur) cur.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" }); }
 function toast(t, s, bg, ms = 1500) { const el = $("#toast"); if (!el) return; el.innerHTML = `<span class="t" style="background:${bg}">${t}</span>${s ? `<span class="s">${s}</span>` : ""}`; el.classList.add("show"); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove("show"), ms); }
 function openSheet(html) { const c = $("#card"); c.innerHTML = html; c.scrollTop = 0; requestAnimationFrame(() => $("#sheet").classList.add("open")); }
 function closeSheet() { const s = $("#sheet"); if (s) s.classList.remove("open"); markDest([]); }
 function step() {
-  chips(); drawPawns();
+  chips(); drawPawns(); w3dFocus(game.cur);
   if (game.winner != null) return showWin();
   const p = game.players[game.cur], dock = $("#dock");
   if (game.phase === "roll") {
@@ -1317,7 +1401,7 @@ const pick = a => a[Math.floor(Math.random() * a.length)];
 async function moveBy(pi, k) { const p = game.players[pi], n = game.cells.length, to = Math.max(0, Math.min(n - 1, p.pos + k)); if (to !== p.pos) await animateMove(pi, p.pos, to); }
 async function jumpMove(pi, to) {
   const p0 = game.players[pi];
-  if (p0.pos !== to && await w3dReady()) { try { await w3dJump(pi, p0.pos, to); p0.pos = to; drawPawns(); chips(); return; } catch (e) { console.warn(e); w3dHide(); } }
+  if (p0.pos !== to && await w3dReady()) { try { await w3dJump(pi, p0.pos, to); p0.pos = to; drawPawns(); chips(); w3dPlaceCamels(); return; } catch (e) { console.warn(e); w3dHide(); } }
   const p = game.players[pi], a = geo.pts[p.pos], b = geo.pts[to], t0 = performance.now(), D = 900, up = to > p.pos;
   up ? SFX.bonus() : SFX.whoosh(); buzz(up ? [20, 30, 20] : 80);
   if (!reduceMotion) { camFollow(a.x, a.y); await sleep(CAM.cur && CAM.cur.zoom > CAM.fit * 1.8 ? 100 : 550); }
@@ -1337,7 +1421,7 @@ async function land(pi) {
   if (cell.t === "carte") return await drawCard(pi);
   return false;
 }
-function ptScreen(i) { const pr = $("#probe"), pt = geo.pts[i]; if (!pr) return [innerWidth / 2, innerHeight / 2]; pr.style.transform = `translate3d(${pt.x}px,${pt.y}px,0)`; const b = pr.getBoundingClientRect(); return [b.left + b.width / 2, b.top + b.height / 2]; }
+function ptScreen(i) { if (W3D.vis) return w3dScreen(i); const pr = $("#probe"), pt = geo.pts[i]; if (!pr) return [innerWidth / 2, innerHeight / 2]; pr.style.transform = `translate3d(${pt.x}px,${pt.y}px,0)`; const b = pr.getBoundingClientRect(); return [b.left + b.width / 2, b.top + b.height / 2]; }
 const leaderIdx = () => { let m = -1, k = 0; game.players.forEach((x, i) => { if (x.pos > m) { m = x.pos; k = i; } }); return k; };
 const lastIdx = () => { let m = 1e9, k = 0; game.players.forEach((x, i) => { if (x.pos < m) { m = x.pos; k = i; } }); return k; };
 const CARDS = {
