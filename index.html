@@ -1239,7 +1239,7 @@ async function w3dReady() {
 
 /* ============ jeu en ligne : Firebase Realtime Database, sans librairie (REST + flux SSE) ============ */
 /* Le joueur dont c'est le tour « pilote » la partie ; les autres reçoivent ses actions et rejouent les animations. */
-const FB = Object.assign({ apiKey: "", databaseURL: "", authURL: "https://identitytoolkit.googleapis.com", tokenURL: "https://securetoken.googleapis.com" }, store.get("fbcfg", {}));
+const FB = Object.assign({ apiKey: "AIzaSyB6liR4dRw2G1mhMOD0MJlztVJxHlM00kc", databaseURL: "https://caravane-du-savoir-default-rtdb.europe-west1.firebasedatabase.app", authURL: "https://identitytoolkit.googleapis.com", tokenURL: "https://securetoken.googleapis.com" }, store.get("fbcfg", {}));
 const fbOk = () => !!(FB.apiKey && FB.databaseURL);
 const NET = { on: false, code: null, uid: null, ctrl: false, applying: false, sendQ: Promise.resolve(), es: [], seen: new Set(), queue: [], running: false, evFirst: true, lobby: null };
 async function fbAuth() {
