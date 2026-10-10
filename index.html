@@ -55,6 +55,11 @@ h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.1;text-wrap:balance
 .bb svg,.pw svg{display:block;width:100%;height:100%;overflow:visible}
 .psh{position:absolute;left:0;top:0;border-radius:50%;background:radial-gradient(closest-side,rgba(40,20,0,.55),rgba(40,20,0,0))}
 .probe{position:absolute;left:0;top:0;width:2px;height:2px;margin:-1px}
+/* jeu en ligne */
+.netcode{font:900 46px var(--f-display);letter-spacing:.2em;text-align:center;color:var(--gold);margin:4px 0 14px}
+.pname{flex:1;font-weight:800}.plev{opacity:.7;text-transform:capitalize}
+body.spectate #dock button,body.spectate #card button,body.spectate #cardfx button{pointer-events:none;filter:saturate(.6);opacity:.6}
+body.spectate #dock .dice{opacity:1}
 /* vue 3D à la première personne */
 .w3d{position:fixed;inset:0;z-index:45;opacity:0;pointer-events:none;transition:opacity .45s ease;background:#EFC89A}
 .w3d.on{opacity:1}
@@ -640,7 +645,7 @@ const fx = $("#fx"), ctx = fx.getContext("2d"); let parts = [], fxOn = false;
 function fxSize() { const d = Math.min(2, window.devicePixelRatio || 1); fx.width = innerWidth * d; fx.height = innerHeight * d; ctx.setTransform(d, 0, 0, d, 0, 0); }
 fxSize(); addEventListener("resize", fxSize);
 const FXC = ["#F2B441", "#2E9E5B", "#3D7FD6", "#D24B6A", "#8A5CD0", "#FFFFFF", "#E8862F"];
-function confetti(x, y, n = 70) { for (let i = 0; i < n; i++) { const a = -Math.PI / 2 + (Math.random() - .5) * 2.2, s = 5 + Math.random() * 8; parts.push({ k: "c", x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, g: .25, life: 90 + Math.random() * 40, c: FXC[i % FXC.length], r: Math.random() * 6, w: 5 + Math.random() * 5, h: 3 + Math.random() * 4, vr: (Math.random() - .5) * .3 }); } loop(); }
+function confetti(x, y, n = 70) { netFx("fx", { x: x / innerWidth, y: y / innerHeight, n }); for (let i = 0; i < n; i++) { const a = -Math.PI / 2 + (Math.random() - .5) * 2.2, s = 5 + Math.random() * 8; parts.push({ k: "c", x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, g: .25, life: 90 + Math.random() * 40, c: FXC[i % FXC.length], r: Math.random() * 6, w: 5 + Math.random() * 5, h: 3 + Math.random() * 4, vr: (Math.random() - .5) * .3 }); } loop(); }
 function firework(x, y) { const c = FXC[Math.floor(Math.random() * FXC.length)], n = 60; for (let i = 0; i < n; i++) { const a = i / n * Math.PI * 2, s = 2 + Math.random() * 4.5; parts.push({ k: "f", x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, g: .06, life: 60 + Math.random() * 30, c, tr: [] }); } loop(); }
 function rocket(x) { const y0 = innerHeight + 10, ty = innerHeight * (.15 + Math.random() * .3); parts.push({ k: "r", x, y: y0, vx: (Math.random() - .5) * 1.5, vy: -(Math.sqrt(2 * .15 * (y0 - ty))), g: .15, life: 999, c: "#FFE9B0", ty }); loop(); }
 function show(fn, times, gap) { for (let i = 0; i < times; i++) setTimeout(fn, i * gap); }
@@ -805,8 +810,9 @@ function drawPawns() {
     + order.map(i => `<div class="pw ${i === game.cur ? "cur" : ""}" id="pw${i}" style="width:${w}px;height:${hh}px"><div class="pbody"><svg viewBox="0 0 40 40"><use href="#tok${i % 6}" fill="${PCOL[i]}" stroke="#FFF6E0" stroke-width="2.2" paint-order="stroke"/></svg></div></div>`).join("");
   order.forEach(i => { const pt = geo.pts[game.players[i].pos], [ox, oy] = pawnOffset(i, game.players[i].pos); placePawn(i, pt.x + ox, pt.y + oy); });
 }
-function markDest(list) { w3dMarks(list); const g = $("#marks"); if (!g) return; g.innerHTML = (list || []).map(([i, c]) => { const p = geo.pts[i]; return `<circle class="pulse" cx="${p.x}" cy="${p.y}" r="${geo.r + 5}" fill="none" stroke="${c}" stroke-width="3.5"/>`; }).join(""); }
+function markDest(list) { netFx("mk", { l: list || [] }); w3dMarks(list); const g = $("#marks"); if (!g) return; g.innerHTML = (list || []).map(([i, c]) => { const p = geo.pts[i]; return `<circle class="pulse" cx="${p.x}" cy="${p.y}" r="${geo.r + 5}" fill="none" stroke="${c}" stroke-width="3.5"/>`; }).join(""); }
 async function animateMove(pi, from, to) {
+  netFx("mv", { pi, from, to });
   if (from !== to && await w3dReady()) { try { await w3dWalk(pi, from, to); game.players[pi].pos = to; drawPawns(); chips(); w3dPlaceCamels(); return; } catch (e) { console.warn(e); w3dHide(); } }
   const dir = to > from ? 1 : -1, cam = !reduceMotion;
   if (cam) { const a = geo.pts[from]; camFollow(a.x, a.y); await sleep(CAM.cur && CAM.cur.zoom > CAM.fit * 1.8 ? 120 : 650); }
@@ -1231,10 +1237,205 @@ async function w3dReady() {
   try { await w3dInit(); if (!W3D.ok) return false; await w3dBuild(); return true; } catch (e) { console.warn(e); W3D.ok = false; return false; }
 }
 
+/* ============ jeu en ligne : Firebase Realtime Database, sans librairie (REST + flux SSE) ============ */
+/* Le joueur dont c'est le tour « pilote » la partie ; les autres reçoivent ses actions et rejouent les animations. */
+const FB = Object.assign({ apiKey: "", databaseURL: "", authURL: "https://identitytoolkit.googleapis.com", tokenURL: "https://securetoken.googleapis.com" }, store.get("fbcfg", {}));
+const fbOk = () => !!(FB.apiKey && FB.databaseURL);
+const NET = { on: false, code: null, uid: null, ctrl: false, applying: false, sendQ: Promise.resolve(), es: [], seen: new Set(), queue: [], running: false, evFirst: true, lobby: null };
+async function fbAuth() {
+  const a = store.get("fbauth", null);
+  if (a && a.exp > Date.now() + 120000) { NET.uid = a.uid; return a.idToken; }
+  let j = null;
+  if (a && a.refreshToken) { try { const r = await fetch(`${FB.tokenURL}/v1/token?key=${FB.apiKey}`, { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: "grant_type=refresh_token&refresh_token=" + encodeURIComponent(a.refreshToken) }); if (r.ok) { const k = await r.json(); j = { idToken: k.id_token, refreshToken: k.refresh_token, uid: k.user_id, exp: Date.now() + (+k.expires_in) * 1000 }; } } catch (e) {} }
+  if (!j) { const r = await fetch(`${FB.authURL}/v1/accounts:signUp?key=${FB.apiKey}`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ returnSecureToken: true }) }); if (!r.ok) throw new Error("auth " + r.status); const k = await r.json(); j = { idToken: k.idToken, refreshToken: k.refreshToken, uid: k.localId, exp: Date.now() + (+k.expiresIn) * 1000 }; }
+  store.set("fbauth", j); NET.uid = j.uid; return j.idToken;
+}
+const dbBase = () => FB.databaseURL.replace(/\/$/, "");
+async function db(method, path, body) {
+  const t = await fbAuth(), r = await fetch(`${dbBase()}/${path}.json?auth=${encodeURIComponent(t)}`, { method, body: body === undefined ? undefined : JSON.stringify(body) });
+  if (!r.ok) throw new Error("db " + r.status); return r.json();
+}
+function dbListen(path, cb) {
+  const h = { closed: false, es: null };
+  const open = async () => {
+    if (h.closed) return; let t; try { t = await fbAuth(); } catch (e) { setTimeout(open, 3000); return; }
+    if (h.closed) return; const es = new EventSource(`${dbBase()}/${path}.json?auth=${encodeURIComponent(t)}`); h.es = es;
+    for (const k of ["put", "patch"]) es.addEventListener(k, e => { try { const d = JSON.parse(e.data); if (d) cb(k, d.path || "/", d.data); } catch (x) { console.warn(x); } });
+    es.addEventListener("auth_revoked", () => { es.close(); const a = store.get("fbauth", null); if (a) store.set("fbauth", { ...a, exp: 0 }); open(); });
+    es.addEventListener("cancel", () => { es.close(); setTimeout(open, 2500); });
+    es.onerror = () => { if (es.readyState === 2) setTimeout(open, 2500); };
+  };
+  open(); h.close = () => { h.closed = true; if (h.es) h.es.close(); }; NET.es.push(h); return h;
+}
+function netCloseAll() { NET.es.forEach(h => h.close()); NET.es = []; }
+function setAt(obj, path, data) {
+  const parts = path.split("/").filter(Boolean); if (!parts.length) return data == null ? {} : data;
+  const root = obj && typeof obj === "object" ? obj : {}; let o = root;
+  for (let i = 0; i < parts.length - 1; i++) { if (!o[parts[i]] || typeof o[parts[i]] !== "object") o[parts[i]] = {}; o = o[parts[i]]; }
+  if (data == null) delete o[parts[parts.length - 1]]; else o[parts[parts.length - 1]] = data; return root;
+}
+const mergeAt = (obj, kind, path, data) => kind === "patch" ? Object.keys(data || {}).reduce((o, k) => setAt(o, path.replace(/\/$/, "") + "/" + k, data[k]), obj) : setAt(obj, path, data);
+/* Firebase ne garde pas les tableaux vides ni les null : on les remet */
+const arr = v => v == null ? [] : Array.isArray(v) ? v : Object.keys(v).sort((a, b) => a - b).map(k => v[k]);
+function normGame(g) {
+  g.cells = arr(g.cells); g.players = arr(g.players); g.used = arr(g.used); g.deck = arr(g.deck);
+  if (g.q === undefined) g.q = null; else if (g.q && g.q.choices) g.q.choices = arr(g.q.choices);
+  if (g.winner === undefined) g.winner = null; g.turn = g.turn || 0;
+  g.players.forEach(p => { p.skip = !!p.skip; p.shield = !!p.shield; p.good = p.good || 0; p.streak = p.streak || 0; p.pos = p.pos || 0; });
+  return g;
+}
+const isMine = () => { const p = game && game.players[game.cur]; return !p || !p.uid || p.uid === NET.uid; };
+function netSend(e) {
+  if (!NET.on || !NET.code) return; e.by = NET.uid; const turn = game ? game.turn || 0 : 0, code = NET.code;
+  NET.sendQ = NET.sendQ.then(() => db("POST", `rooms/${code}/ev/${turn}`, e)).catch(err => console.warn(err));
+}
+function netDo(fn) { NET.sendQ = NET.sendQ.then(fn).catch(err => console.warn(err)); }
+function netFx(t, o) { if (NET.on && NET.ctrl && !NET.applying) netSend({ t, ...o }); }
+let stTimer = 0;
+function netState() { if (!(NET.on && NET.ctrl && !NET.applying && game)) return; netSend({ t: "st", g: game }); clearTimeout(stTimer); const code = NET.code; stTimer = setTimeout(() => { if (game) { const g = game; netDo(() => db("PUT", `rooms/${code}/state`, g)); } }, 1200); }
+/* sons : le pilote les fait entendre chez tout le monde */
+{ const SFX0 = { ...SFX }; Object.keys(SFX0).forEach(k => { SFX[k] = (...a) => { if (k !== "step") netFx("sfx", { n: k, a }); return SFX0[k](...a); }; }); }
+/* miroir des panneaux (dé, carte-question, cartes chance, messages, victoire) */
+const MIRROR = [["dock", true], ["sheet", false], ["card", true], ["cardfx", true], ["toast", true], ["win", true]];
+function mirrorStart() {
+  (NET.mo || []).forEach(m => m.disconnect());
+  NET.mo = MIRROR.map(([id, html]) => {
+    const el = $("#" + id); if (!el) return null; let t = 0;
+    el._send = () => { clearTimeout(t); t = 0; if (NET.on && NET.ctrl) netSend({ t: "ui", id, c: el.className, h: html ? el.innerHTML : null }); };
+    const mo = new MutationObserver(recs => { if (!NET.on || !NET.ctrl) return; if (recs.every(r => r.target.id === "bar")) return; if (!t) t = setTimeout(el._send, 140); });
+    mo.observe(el, html ? { attributes: true, attributeFilter: ["class", "style", "disabled"], childList: true, subtree: true, characterData: true } : { attributes: true, attributeFilter: ["class"] });
+    return mo;
+  }).filter(Boolean);
+}
+function netUI() { document.body.classList.toggle("spectate", NET.on && !NET.ctrl); document.body.classList.toggle("online", NET.on); }
+function onEv(kind, path, data) {
+  const parts = path.split("/").filter(Boolean), list = [];
+  if (parts.length === 0) {
+    if (data) for (const t in data) for (const k in (data[t] || {})) list.push([k, data[t][k]]);
+    if (NET.evFirst) { NET.evFirst = false; list.forEach(([k]) => NET.seen.add(k)); return; }
+  } else if (parts.length === 1) { if (data) for (const k in data) list.push([k, data[k]]); }
+  else if (parts.length === 2) { if (data) list.push([parts[1], data]); }
+  list.sort((a, b) => a[0] < b[0] ? -1 : 1);
+  const fresh = []; for (const [k, e] of list) { if (NET.seen.has(k)) continue; NET.seen.add(k); if (e && e.by !== NET.uid) fresh.push(e); }
+  if (fresh.length) { NET.queue.push(...fresh); if (!NET.running) netRun(); }
+}
+async function netRun() {
+  NET.running = true;
+  while (NET.queue.length) { const e = NET.queue.shift(); NET.applying = true; try { await applyEv(e); } catch (x) { console.warn(x); } NET.applying = false; }
+  NET.running = false;
+}
+async function applyEv(e) {
+  if (e.t === "st") return adopt(normGame(e.g));
+  if (e.t === "hello") { if (NET.ctrl && game) { NET.applying = false; netSend({ t: "st", g: game }); MIRROR.forEach(([id]) => { const el = $("#" + id); if (el && el._send) el._send(); }); } return; }
+  if (!game || !$("#dock")) return;
+  if (e.t === "mv") await animateMove(e.pi, e.from, e.to);
+  else if (e.t === "jp") await jumpMove(e.pi, e.to);
+  else if (e.t === "ui") { const el = $("#" + e.id); if (!el) return; el.className = e.c || ""; if (e.h != null) el.innerHTML = e.id === "dock" ? e.h.replace("À toi de jouer", "C'est le tour de") : e.h; if (e.id === "win") { const hm = $("#home"), ag = $("#again"); if (ag) ag.remove(); if (hm) { hm.textContent = "Quitter la partie en ligne"; hm.onclick = netLeave; } } }
+  else if (e.t === "sfx") { if (SFX[e.n]) SFX[e.n](...(e.a || [])); }
+  else if (e.t === "say") speak(e.s);
+  else if (e.t === "fx") confetti(e.x * innerWidth, e.y * innerHeight, e.n);
+  else if (e.t === "mk") markDest(e.l);
+}
+function adopt(g) {
+  const fresh = !game || !$("#dock") || JSON.stringify(game.cells) !== JSON.stringify(g.cells);
+  game = g; store.set("game3", game);
+  if (fresh) { renderGame(); return; }
+  chips(); drawPawns(); w3dPlaceCamels();
+  if (isMine()) { if (!NET.ctrl && game.winner == null) step(); }
+  else { NET.ctrl = false; netUI(); w3dFocus(game.cur); }
+}
+/* ---------- salle d'attente ---------- */
+const genCode = () => Array.from({ length: 5 }, () => "ABCDEFGHJKMNPQRSTUVWXYZ23456789"[Math.floor(Math.random() * 31)]).join("");
+const lobbyPlayers = () => Object.entries((NET.lobby && NET.lobby.players) || {}).sort((a, b) => (a[1].t || 0) - (b[1].t || 0));
+async function netCreate(btn) {
+  btn.disabled = true; btn.textContent = "Création de la partie…";
+  try {
+    await fbAuth(); const code = genCode(), me = setup.players[0];
+    await db("PUT", `rooms/${code}`, { meta: { host: NET.uid, status: "lobby", size: setup.size, timer: !!setup.timer, t: { ".sv": "timestamp" } }, players: { [NET.uid]: { name: me.name, level: me.level, t: { ".sv": "timestamp" } } } });
+    NET.code = code; store.set("net", { code }); openLobby();
+  } catch (e) { console.warn(e); btn.disabled = false; btn.textContent = "Connexion impossible, réessaie"; }
+}
+function openLobby() {
+  netCloseAll(); NET.lobby = { meta: {}, players: {} }; renderLobby();
+  let raf = 0; const upd = () => { if (raf) return; raf = requestAnimationFrame(() => { raf = 0; if (!NET.lobby) return; if (NET.lobby.meta.status === "playing") enterGame(); else renderLobby(); }); };
+  dbListen(`rooms/${NET.code}/meta`, (k, p, d) => { NET.lobby.meta = mergeAt(NET.lobby.meta, k, p, d); upd(); });
+  dbListen(`rooms/${NET.code}/players`, (k, p, d) => { NET.lobby.players = mergeAt(NET.lobby.players, k, p, d); upd(); });
+}
+function renderLobby() {
+  w3dHide(); document.body.classList.remove("ingame");
+  const link = location.origin + location.pathname + "#join=" + NET.code, m = NET.lobby.meta || {}, host = m.host === NET.uid, pl = lobbyPlayers(), msg = "Viens jouer à La Caravane du Savoir avec moi ! " + link;
+  root.innerHTML = `<div class="setup">
+    <div class="hero"><h1>Partie en ligne</h1><p>Envoie le lien à ta famille : chacun joue chez soi, sur son téléphone.</p></div>
+    <section class="panel"><p class="lab2">Code de la partie</p><div class="netcode">${esc(NET.code)}</div>
+      <div class="seg"><button id="share">${navigator.share ? "Partager le lien" : "Copier le lien"}</button><button id="wa">WhatsApp</button></div></section>
+    <section class="panel"><p class="lab2">Joueurs connectés (${pl.length}/6)</p>
+      ${pl.map(([u, p], i) => `<div class="prow">${av(i)}<span class="pname">${esc(p.name)}${u === NET.uid ? " (toi)" : ""}${u === m.host ? " · hôte" : ""}</span><small class="plev">${esc(p.level || "")}</small></div>`).join("") || `<p class="hint">Connexion…</p>`}
+      <p class="hint">${host ? (pl.length < 2 ? "En attente d'au moins un autre joueur…" : "Tout le monde est là ? Lance la partie.") : "En attente que l'hôte lance la partie…"}</p></section>
+    ${host ? `<button class="big w" id="go2" ${pl.length < 2 ? "disabled" : ""}>Lancer la partie</button>` : ""}
+    <button class="ghostbtn" id="leave">Quitter</button></div>`;
+  $("#share").onclick = async () => { try { if (navigator.share) await navigator.share({ title: "La Caravane du Savoir", text: msg, url: link }); else { await navigator.clipboard.writeText(link); $("#share").textContent = "Lien copié ✓"; } } catch (e) {} };
+  $("#wa").onclick = () => window.open("https://wa.me/?text=" + encodeURIComponent(msg), "_blank");
+  $("#leave").onclick = netLeave;
+  const go = $("#go2"); if (go) go.onclick = () => { go.disabled = true; go.textContent = "Lancement…"; netStart().catch(e => { console.warn(e); go.disabled = false; go.textContent = "Réessayer"; }); };
+}
+async function netStart() {
+  const pl = lobbyPlayers(), m = NET.lobby.meta; if (pl.length < 2) return;
+  const g = newGame(m.size || 36, pl.slice(0, 6).map(([, p]) => ({ name: p.name, level: p.level || "normal" })));
+  g.players.forEach((p, i) => p.uid = pl[i][0]); g.timer = !!m.timer; g.turn = 0;
+  await db("PUT", `rooms/${NET.code}/state`, g); await db("PATCH", `rooms/${NET.code}/meta`, { status: "playing" });
+}
+async function enterGame() {
+  if (NET.entering) return; NET.entering = true; netCloseAll(); NET.lobby = null;
+  try {
+    const g = await db("GET", `rooms/${NET.code}/state`); if (!g) throw new Error("no state");
+    NET.on = true; NET.ctrl = false; game = normGame(g); store.set("game3", game); NET.seen = new Set(); NET.evFirst = true; NET.queue = [];
+    dbListen(`rooms/${NET.code}/ev`, onEv); renderGame(); window.scrollTo(0, 0); netSend({ t: "hello" });
+  } catch (e) { console.warn(e); netLeave(); } finally { NET.entering = false; }
+}
+function netLeave() {
+  netCloseAll(); (NET.mo || []).forEach(m => m.disconnect()); NET.mo = [];
+  const wasHostLobby = NET.lobby && NET.lobby.meta && NET.lobby.meta.host === NET.uid && NET.lobby.meta.status === "lobby", code = NET.code;
+  if (wasHostLobby) db("DELETE", `rooms/${code}`).catch(() => {});
+  store.del("net"); NET.on = false; NET.code = null; NET.ctrl = false; NET.lobby = null; NET.queue = []; netUI();
+  game = null; save(); renderSetup();
+}
+function renderJoin(code) {
+  w3dHide(); document.body.classList.remove("ingame");
+  root.innerHTML = `<div class="setup">
+    <div class="hero"><h1>Rejoindre la partie</h1><p>On t'invite à jouer à La Caravane du Savoir. Code <b>${esc(code)}</b></p></div>
+    <section class="panel"><p class="lab2">Ton prénom</p>
+      <div class="prow"><input id="jn" maxlength="16" value="${esc(store.get("myname", ""))}" placeholder="Ton prénom" aria-label="Ton prénom"><select id="jl" aria-label="Niveau"><option value="facile">Facile</option><option value="normal" selected>Normal</option><option value="expert">Expert</option></select></div>
+      <p class="hint">Le niveau règle la difficulté de tes questions.</p></section>
+    <button class="big w" id="jgo">Rejoindre</button><p class="hint" id="jerr" style="text-align:center"></p>
+    <button class="ghostbtn" id="jback">Jouer sur ce téléphone à la place</button></div>`;
+  $("#jback").onclick = () => { history.replaceState(null, "", location.pathname); renderSetup(); };
+  $("#jgo").onclick = async () => {
+    const name = $("#jn").value.trim(), level = $("#jl").value, btn = $("#jgo"), err = $("#jerr"); if (!name) { err.textContent = "Écris ton prénom."; return; }
+    store.set("myname", name); btn.disabled = true; btn.textContent = "Connexion…"; err.textContent = "";
+    try {
+      await fbAuth(); const meta = await db("GET", `rooms/${code}/meta`); if (!meta) throw new Error("Cette partie n'existe pas ou est terminée.");
+      const players = (await db("GET", `rooms/${code}/players`)) || {};
+      if (!players[NET.uid]) { if (meta.status !== "lobby") throw new Error("La partie a déjà commencé."); if (Object.keys(players).length >= 6) throw new Error("La partie est complète (6 joueurs)."); await db("PUT", `rooms/${code}/players/${NET.uid}`, { name, level, t: { ".sv": "timestamp" } }); }
+      NET.code = code; store.set("net", { code }); history.replaceState(null, "", location.pathname);
+      if (meta.status === "playing") enterGame(); else openLobby();
+    } catch (e) { btn.disabled = false; btn.textContent = "Rejoindre"; err.textContent = /^db|^auth|fetch/i.test(e.message) ? "Connexion impossible, vérifie ta connexion internet." : e.message; }
+  };
+}
+async function netResume() {
+  const hash = location.hash.match(/join=([A-Z0-9]{4,8})/i);
+  if (hash) { if (fbOk()) renderJoin(hash[1].toUpperCase()); return true; }
+  const n = store.get("net", null); if (!n || !fbOk()) return false;
+  try {
+    await fbAuth(); const meta = await db("GET", `rooms/${n.code}/meta`), players = (await db("GET", `rooms/${n.code}/players`)) || {};
+    if (!meta || !players[NET.uid]) { store.del("net"); return false; }
+    NET.code = n.code; if (meta.status === "playing") await enterGame(); else openLobby(); return true;
+  } catch (e) { return false; }
+}
+
 /* ============ voix ============ */
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 const canSpeak = "speechSynthesis" in window;
-function speak(text) { if (!canSpeak || muted) return; try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text.replace(/ﷺ/g, "")); u.lang = "fr-FR"; u.rate = .95; speechSynthesis.speak(u); } catch (e) {} }
+function speak(text) { netFx("say", { s: text }); if (!canSpeak || muted) return; try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text.replace(/ﷺ/g, "")); u.lang = "fr-FR"; u.rate = .95; speechSynthesis.speak(u); } catch (e) {} }
 const normT = s => String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[ʿ'’`«»"()?!.,;:\-]/g, " ").replace(/\b(le|la|les|l|un|une|des|de|du|d|al|an|ar|as|at|ad|az|ach|el|ibn|bint|environ|ans|fois|sourate)\b/g, " ").replace(/\s+/g, " ").trim();
 function lev(a, b) { const m = a.length, n = b.length; if (!m) return n; if (!n) return m; const d = Array.from({ length: m + 1 }, (_, i) => [i]); for (let j = 1; j <= n; j++) d[0][j] = j; for (let i = 1; i <= m; i++) for (let j = 1; j <= n; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return d[m][n]; }
 const sim = (a, b) => (!a || !b) ? 0 : 1 - lev(a, b) / Math.max(a.length, b.length);
@@ -1249,7 +1450,7 @@ const MIC = `<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
 /* ============ état ============ */
 let setup = store.get("setup3", { players: [{ name: "Joueur 1", level: "normal" }, { name: "Joueur 2", level: "normal" }], size: 36, timer: false, read: true, view3d: true });
 let game = store.get("game3", null), busy = false;
-function save() { store.set("setup3", setup); if (game) store.set("game3", game); else store.del("game3"); }
+function save() { store.set("setup3", setup); if (game) store.set("game3", game); else store.del("game3"); netState(); }
 const root = $("#root");
 function levelRange(level, final) { if (final) return { facile: [1, 2], normal: [2, 3], expert: [3, 3] }[level]; return { facile: [1, 1], normal: [1, 2], expert: [2, 3] }[level]; }
 function draw(cat, level, final) {
@@ -1263,7 +1464,7 @@ function draw(cat, level, final) {
 
 /* ============ accueil ============ */
 function renderSetup() {
-  w3dHide();
+  w3dHide(); document.body.classList.remove("spectate", "online");
   closeSheet(); document.body.classList.remove("ingame");
   root.innerHTML = `<div class="setup">
     <div class="hero">
@@ -1294,6 +1495,11 @@ function renderSetup() {
       <p class="lab2">Sur le chemin</p>
       <p class="hint" style="opacity:.9">Cartes chance et malchance · raccourcis par les ponts de corde · sables mouvants qui font reculer · oasis (rejoue) · vent (+2) · tempête (−3) · puits (passe un tour). Rien n'est joué avant la question finale : si tu la rates, tu recules de 5 cases.</p>
     </section>
+    <section class="panel">
+      <p class="lab2">Jouer à distance</p>
+      <p class="hint">Chacun chez soi, sur son téléphone : crée une partie, envoie le lien sur WhatsApp, et jouez ensemble. Ton nom est celui de la 1re caravane.</p>
+      <button class="addbtn" id="online">Créer une partie en ligne</button>
+    </section>
     <button class="big w" id="start">Partir à l'aventure</button>
     <p class="hint" style="text-align:center">${Q.length} questions · Coran, vie du Prophète ﷺ, prophètes, piliers, histoire, compagnons, comportement</p>
   </div>`;
@@ -1303,6 +1509,7 @@ function renderSetup() {
   root.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => { read(); setup.players.splice(+b.dataset.rm, 1); save(); renderSetup(); });
   root.querySelectorAll("[data-s]").forEach(b => b.onclick = () => { read(); setup.size = +b.dataset.s; save(); renderSetup(); });
   root.querySelectorAll("[data-o]").forEach(b => b.onclick = () => { read(); setup[b.dataset.o] = !setup[b.dataset.o]; save(); renderSetup(); });
+  $("#online").onclick = () => { read(); save(); if (!fbOk()) { $("#online").textContent = "Le mode en ligne arrive bientôt"; return; } netCreate($("#online")); };
   $("#start").onclick = () => { read(); SFX.bonus(); game = newGame(setup.size, setup.players); save(); renderGame(); window.scrollTo(0, 0); };
 }
 const newGame = (size, pl) => ({ cells: makeCells(size), players: pl.map(p => ({ name: p.name, level: p.level, pos: 0, skip: false, good: 0, streak: 0, shield: false })), deck: [], cur: 0, phase: "roll", used: [], die: 1, q: null, winner: null, timer: setup.timer, read: setup.read });
@@ -1322,8 +1529,8 @@ function renderGame() {
     <div class="toast" id="toast"></div>
     <div class="win" id="win"></div>`;
   $("#snd").onclick = () => { muted = !muted; store.set("muted", muted); if (muted) try { speechSynthesis.cancel(); } catch (e) {} renderGame(); };
-  $("#quit").onclick = () => { if ($("#quit").dataset.sure) { stopRec(); try { speechSynthesis.cancel(); } catch (e) {} game = null; save(); renderSetup(); } else { $("#quit").dataset.sure = "1"; $("#quit").style.background = "var(--ko)"; toast("Touche encore la croix pour quitter", "", "#6B4526", 1600); setTimeout(() => { const q = $("#quit"); if (q) { delete q.dataset.sure; q.style.background = ""; } }, 2500); } };
-  camStart(); drawPawns(); chips(); step();
+  $("#quit").onclick = () => { if ($("#quit").dataset.sure) { stopRec(); try { speechSynthesis.cancel(); } catch (e) {} if (NET.on) return netLeave(); game = null; save(); renderSetup(); } else { $("#quit").dataset.sure = "1"; $("#quit").style.background = "var(--ko)"; toast("Touche encore la croix pour quitter", "", "#6B4526", 1600); setTimeout(() => { const q = $("#quit"); if (q) { delete q.dataset.sure; q.style.background = ""; } }, 2500); } };
+  camStart(); drawPawns(); chips(); if (NET.on) mirrorStart(); step();
   if (w3dOn()) w3dReady().then(ok => { if (ok && game && $("#scene")) w3dBoardOn(); });
 }
 function chips() { const c = $("#chips"); if (!c) return; c.innerHTML = game.players.map((p, i) => `<div class="chip ${i === game.cur ? "cur" : ""}">${av(i)}<span>${esc(p.name)} <small>· ${p.pos}</small>${p.streak >= 2 ? ` <span class="fire">×${p.streak}</span>` : ""}${p.skip ? ` <small>(passe)</small>` : ""}${p.shield ? ` <span class="shield">bouclier</span>` : ""}</span></div>`).join(""); const cur = c.querySelector(".cur"); if (cur) cur.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" }); }
@@ -1331,6 +1538,8 @@ function toast(t, s, bg, ms = 1500) { const el = $("#toast"); if (!el) return; e
 function openSheet(html) { const c = $("#card"); c.innerHTML = html; c.scrollTop = 0; requestAnimationFrame(() => $("#sheet").classList.add("open")); }
 function closeSheet() { const s = $("#sheet"); if (s) s.classList.remove("open"); markDest([]); }
 function step() {
+  NET.ctrl = !NET.on || isMine(); netUI();
+  if (NET.on && !NET.ctrl) { chips(); drawPawns(); w3dFocus(game.cur); return; }
   chips(); drawPawns(); w3dFocus(game.cur);
   if (game.winner != null) return showWin();
   const p = game.players[game.cur], dock = $("#dock");
@@ -1459,6 +1668,7 @@ const pick = a => a[Math.floor(Math.random() * a.length)];
 /* ---------- cases spéciales, raccourcis, cartes ---------- */
 async function moveBy(pi, k) { const p = game.players[pi], n = game.cells.length, to = Math.max(0, Math.min(n - 1, p.pos + k)); if (to !== p.pos) await animateMove(pi, p.pos, to); }
 async function jumpMove(pi, to) {
+  netFx("jp", { pi, to });
   const p0 = game.players[pi];
   if (p0.pos !== to && await w3dReady()) { try { await w3dJump(pi, p0.pos, to); p0.pos = to; drawPawns(); chips(); w3dPlaceCamels(); return; } catch (e) { console.warn(e); w3dHide(); } }
   const p = game.players[pi], a = geo.pts[p.pos], b = geo.pts[to], t0 = performance.now(), D = 900, up = to > p.pos;
@@ -1522,7 +1732,7 @@ async function drawCard(pi) {
   if (r === true) { toast("Tu rejoues !", "", "#2E9E5B", 1200); await sleep(700); }
   return r === true;
 }
-function next() { game.cur = (game.cur + 1) % game.players.length; game.phase = "roll"; save(); step(); }
+function next() { game.cur = (game.cur + 1) % game.players.length; game.phase = "roll"; if (NET.on) { game.turn = (game.turn || 0) + 1; const old = game.turn - 2, code = NET.code; if (old >= 0) netDo(() => db("DELETE", `rooms/${code}/ev/${old}`)); } save(); step(); }
 function showWin() {
   closeSheet(); $("#dock").innerHTML = ""; const w = $("#win"), p = game.players[game.winner];
   const rank = game.players.map((x, i) => ({ ...x, i })).sort((a, b) => (b.i === game.winner) - (a.i === game.winner) || b.pos - a.pos || b.good - a.good);
@@ -1533,14 +1743,15 @@ function showWin() {
   SFX.win(); buzz([80, 60, 80, 60, 200]);
   show(() => rocket(innerWidth * (.15 + Math.random() * .7)), 14, 380);
   setTimeout(() => confetti(innerWidth / 2, innerHeight * .35, 160), 300);
-  $("#again").onclick = () => { game = newGame(game.cells.length, game.players); save(); renderGame(); };
-  $("#home").onclick = () => { game = null; save(); renderSetup(); };
+  $("#again").onclick = () => { const old = game; game = newGame(old.cells.length, old.players); if (NET.on) { game.players.forEach((p, i) => p.uid = old.players[i].uid); game.timer = old.timer; game.turn = (old.turn || 0) + 1; } save(); renderGame(); };
+  $("#home").onclick = () => { if (NET.on) return netLeave(); game = null; save(); renderSetup(); };
 }
 function validGame(g) { try { return g && Array.isArray(g.cells) && g.cells.length >= 10 && Array.isArray(g.players) && g.players.length >= 2 && g.players.every(p => typeof p.pos === "number" && p.pos >= 0 && p.pos < g.cells.length) && g.cur >= 0 && g.cur < g.players.length && Array.isArray(g.used); } catch (e) { return false; } }
 function boot() {
   try {
     if (setup && Array.isArray(setup.players)) setup.players = setup.players.slice(0, 6); else setup = { players: [{ name: "Joueur 1", level: "normal" }, { name: "Joueur 2", level: "normal" }], size: 36, timer: false, read: true, view3d: true };
     if (setup.view3d == null) setup.view3d = true;
+    if (fbOk() && (store.get("net", null) || /join=/i.test(location.hash))) { game = null; renderSetup(); netResume().then(ok => { if (!ok && !NET.code) renderSetup(); }); return; }
     if (game && !validGame(game)) { game = null; save(); }
     if (game) { if (game.phase !== "question" && game.phase !== "pick") { game.phase = "roll"; game.q = null; } if (game.phase === "question" && (!game.q || !Q[game.q.id])) { game.phase = "roll"; game.q = null; } save(); renderGame(); } else renderSetup();
   } catch (e) { console.error(e); game = null; store.del("game3"); renderSetup(); }
