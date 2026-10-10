@@ -1,0 +1,711 @@
+{
+ "cats": {
+  "ch_at": "Eski Ahit",
+  "ch_jesus": "İsa'nın Hayatı",
+  "ch_eglise": "Havariler ve Kilise",
+  "ch_fetes": "Bayramlar ve Gelenekler",
+  "ch_hist": "Hristiyanlık Tarihi"
+ },
+ "q": {
+  "0": [
+   "Kitab-ı Mukaddes'e göre Tufan'dan kurtulmak için bir gemi yapan kimdir?",
+   "Nuh",
+   [
+    "İbrahim",
+    "Musa",
+    "İshak"
+   ],
+   "Not: Gemiye ailesini ve hayvanlardan birer çift aldı (Yaratılış 6-9)."
+  ],
+  "1": [
+   "Kitab-ı Mukaddes'e göre dev Golyat'ı yenen genç çoban kimdir?",
+   "Davut",
+   [
+    "Saul",
+    "Şimşon",
+    "Yeşu"
+   ],
+   "Not: Onu sapanıyla attığı bir taşla yere serdi (1. Samuel 17)."
+  ],
+  "2": [
+   "Yunus Kitabı'na göre peygamber Yunus'u hangi hayvan yuttu?",
+   "Büyük bir balık",
+   [
+    "Bir aslan",
+    "Bir yılan",
+    "Bir timsah"
+   ],
+   "Not: Metin «büyük bir balık»tan söz eder; genellikle balina olarak resmedilir (Yunus 2)."
+  ],
+  "3": [
+   "Kitab-ı Mukaddes'e göre Tanrı Musa'ya kaç emir verdi?",
+   "10",
+   [
+    "7",
+    "12",
+    "40"
+   ],
+   "Not: Bunlara On Emir ya da Dekalog da denir (Mısır'dan Çıkış 20)."
+  ],
+  "4": [
+   "Yaratılış Kitabı'na göre Âdem ile Havva'nın yaşadığı bahçenin adı nedir?",
+   "Aden Bahçesi",
+   [
+    "Getsemani Bahçesi",
+    "Babil Bahçesi",
+    "Kenan Bahçesi"
+   ],
+   "Not: Yeryüzü cenneti olarak da anılır (Yaratılış 2)."
+  ],
+  "5": [
+   "Mısır'dan Çıkış Kitabı'na göre Musa, İbranilerin geçmesi için hangi denizi ikiye ayırdı?",
+   "Kızıldeniz",
+   [
+    "Lut Gölü",
+    "Akdeniz",
+    "Karadeniz"
+   ],
+   "Not: İbraniler Mısır'dan ve Firavun'un ordusundan kaçıyordu (Mısır'dan Çıkış 14)."
+  ],
+  "6": [
+   "Mısır'dan Çıkış Kitabı'na göre Musa, Yasa Levhaları'nı hangi dağda aldı?",
+   "Sina Dağı",
+   [
+    "Ağrı Dağı",
+    "Zeytin Dağı",
+    "Karmel Dağı"
+   ],
+   "Not: Yasa'nın Tekrarı Kitabı bu dağa Horev de der (Mısır'dan Çıkış 19-20)."
+  ],
+  "7": [
+   "Yaratılış Kitabı'na göre Yakup'un hangi oğlu kardeşleri tarafından satıldı, sonra Mısır'da vali oldu?",
+   "Yusuf",
+   [
+    "Bünyamin",
+    "Ruben",
+    "Yahuda"
+   ],
+   "Not: Firavun'unkiler dahil, rüyaları yorumlamasıyla tanınırdı (Yaratılış 37-41)."
+  ],
+  "8": [
+   "Yaratılış Kitabı'na göre Âdem ile Havva'nın hangi oğlu kardeşi Habil'i öldürdü?",
+   "Kabil",
+   [
+    "Şit",
+    "Esav",
+    "Yakup"
+   ],
+   "Not: Kitab-ı Mukaddes'te anlatılan ilk cinayettir (Yaratılış 4)."
+  ],
+  "9": [
+   "Bilgeliğiyle ünlü hangi İsrail kralı Kudüs'teki ilk Tapınak'ı yaptırdı?",
+   "Süleyman",
+   [
+    "Saul",
+    "Yoşiya",
+    "Hizkiya"
+   ],
+   "Not: Bir bebeği paylaşamayan 2 kadın arasında verdiği hüküm çok ünlüdür (1. Krallar 3)."
+  ],
+  "10": [
+   "Daniel Kitabı'na göre peygamber Daniel hangi çukura atıldı?",
+   "Aslan çukuru",
+   [
+    "Yılan çukuru",
+    "Ayı çukuru",
+    "Kurt çukuru"
+   ],
+   "Not: Anlatıya göre bir melek aslanların ağzını kapattı ve Daniel sağ salim çıktı (Daniel 6)."
+  ],
+  "11": [
+   "Kitab-ı Mukaddes'in ilk 5 kitabının tamamına verilen Yunanca ad nedir?",
+   "Pentatök",
+   [
+    "Dekalog",
+    "Septuagint",
+    "Mezmurlar Kitabı"
+   ],
+   "Not: Yaratılış'tan Yasa'nın Tekrarı'na kadar uzanır; Yunanca «penta» 5 demektir."
+  ],
+  "12": [
+   "Yaratılış Kitabı'na göre hangi kişi 969 yıl yaşayarak Kitab-ı Mukaddes'in uzun ömür rekorunu kırdı?",
+   "Metuşelah",
+   [
+    "Hanok",
+    "Âdem",
+    "Lamek"
+   ],
+   "Not: Nuh'un dedesiydi (Yaratılış 5)."
+  ],
+  "13": [
+   "150 bölümle en çok bölüme sahip Kitab-ı Mukaddes kitabı hangisidir?",
+   "Mezmurlar",
+   [
+    "Yeşaya",
+    "Yaratılış",
+    "Yeremya"
+   ],
+   "Not: Çoğu Kral Davut'a atfedilen ilahiler ve dualardır."
+  ],
+  "14": [
+   "İncillere göre İsa hangi şehirde doğdu?",
+   "Beytlehem",
+   [
+    "Nasıra",
+    "Kudüs",
+    "Kefernahum"
+   ],
+   "Not: İsa daha sonra Celile'deki Nasıra'da büyüdü (Matta 2, Luka 2)."
+  ],
+  "15": [
+   "İncillere göre İsa'nın annesinin adı nedir?",
+   "Meryem",
+   [
+    "Elizabet",
+    "Marta",
+    "Hanna"
+   ],
+   "Not: Eşi Yusuf marangoz olarak tanıtılır (Matta 13)."
+  ],
+  "16": [
+   "İncillere göre İsa kaç havari seçti?",
+   "12",
+   [
+    "7",
+    "10",
+    "40"
+   ],
+   "Not: İsimleri özellikle Matta 10 ve Luka 6'da sayılır."
+  ],
+  "17": [
+   "Luka İncili'ne göre Meryem, İsa'yı doğumundan hemen sonra nereye yatırdı?",
+   "Bir yemliğe",
+   [
+    "Bir sepete",
+    "Bir kayığa",
+    "Altın bir beşiğe"
+   ],
+   "Not: Handa onlara yer yoktu (Luka 2)."
+  ],
+  "18": [
+   "İncillere göre İsa hangi nehirde vaftiz edildi?",
+   "Şeria Nehri",
+   [
+    "Nil",
+    "Fırat",
+    "Dicle"
+   ],
+   "Not: Onu Vaftizci Yahya vaftiz etti (Markos 1)."
+  ],
+  "19": [
+   "Matta İncili'ne göre müneccimleri İsa'ya ne yol gösterdi?",
+   "Bir yıldız",
+   [
+    "Bir melek",
+    "Bir güvercin",
+    "Bir çoban"
+   ],
+   "Not: Müneccimler Doğu'dan geldiler ve altın, günnük ve mür sundular (Matta 2)."
+  ],
+  "20": [
+   "Yuhanna İncili'ne göre İsa'nın Kana'daki düğünde yaptığı ilk mucize neydi?",
+   "Suyu şaraba çevirmek",
+   [
+    "Ekmekleri çoğaltmak",
+    "Bir körü iyileştirmek",
+    "Su üstünde yürümek"
+   ],
+   "Not: Yuhanna buna İsa'nın «ilk belirtisi» der (Yuhanna 2)."
+  ],
+  "21": [
+   "Matta İncili'ne göre Yahuda İsa'yı kaç gümüş paraya ele verdi?",
+   "30",
+   [
+    "10",
+    "12",
+    "40"
+   ],
+   "Not: Yaptığına pişman olan Yahuda parayı sonra geri verdi (Matta 26-27)."
+  ],
+  "22": [
+   "İncillere göre hangi havari horoz ötmeden önce İsa'yı 3 kez inkâr etti?",
+   "Petrus",
+   [
+    "Yuhanna",
+    "Andreas",
+    "Yakup"
+   ],
+   "Not: İsa bunu ona son yemekte önceden söylemişti (Matta 26)."
+  ],
+  "23": [
+   "Luka İncili'ne göre Meryem'e İsa'nın annesi olacağını hangi melek müjdeledi?",
+   "Cebrail",
+   [
+    "Mikail",
+    "Rafael",
+    "Uriel"
+   ],
+   "Not: Bu olaya Müjde denir (Luka 1)."
+  ],
+  "24": [
+   "Yuhanna İncili'ne göre İsa'nın hangi dostu Beytanya'da yeniden hayata döndürüldü?",
+   "Lazar",
+   [
+    "Zakkay",
+    "Nikodim",
+    "Bartalmay"
+   ],
+   "Not: Lazar, Marta ile Meryem'in kardeşiydi (Yuhanna 11)."
+  ],
+  "25": [
+   "Matta ve Luka'ya göre İsa doğduğunda Yahudiye'de hangi kral hüküm sürüyordu?",
+   "Hirodes",
+   [
+    "Pontius Pilatus",
+    "Süleyman",
+    "Kayafa"
+   ],
+   "Not: Büyük Hirodes olarak anılır (Matta 2, Luka 1)."
+  ],
+  "26": [
+   "İncillere göre İsa'nın çarmıha gerildiği yerin adı nedir?",
+   "Golgota",
+   [
+    "Tabor Dağı",
+    "Siyon Dağı",
+    "Karmel Dağı"
+   ],
+   "Not: Bu ad «Kafatası yeri» demektir; Latincesi Calvaria'dır (Yuhanna 19)."
+  ],
+  "27": [
+   "Luka İncili'ne göre dirilen İsa, hangi köyün yolunda 2 öğrencisine göründü?",
+   "Emmaus",
+   [
+    "Beytanya",
+    "Eriha",
+    "Nasıra"
+   ],
+   "Not: Onu ancak ekmeği böldüğü anda tanıdılar (Luka 24)."
+  ],
+  "28": [
+   "İncillere göre havari Petrus, İsa'yı izlemeden önce hangi işi yapıyordu?",
+   "Balıkçılık",
+   [
+    "Marangozluk",
+    "Çobanlık",
+    "Çömlekçilik"
+   ],
+   "Not: Celile Denizi olarak da bilinen Taberiye Gölü'nde balık tutardı (Markos 1)."
+  ],
+  "29": [
+   "Roma piskoposu olan Katolik Kilisesi'nin başına ne denir?",
+   "Papa",
+   [
+    "Patrik",
+    "Kardinal",
+    "Pastör"
+   ],
+   "Not: Kelime, «baba» anlamına gelen Yunanca «pappas»tan gelir."
+  ],
+  "30": [
+   "Vatikan devleti hangi şehrin içindedir?",
+   "Roma",
+   [
+    "Paris",
+    "Kudüs",
+    "Floransa"
+   ],
+   "Not: Roma'nın içinde yer alan, dünyanın en küçük devletidir."
+  ],
+  "31": [
+   "Suyla yapılan ve Hristiyan yaşamına girişi simgeleyen kutsal ayin hangisidir?",
+   "Vaftiz",
+   [
+    "Konfirmasyon",
+    "Evlilik",
+    "Hastaların yağlanması"
+   ],
+   "Not: Suya daldırarak ya da başa su dökülerek yapılabilir."
+  ],
+  "32": [
+   "Bir Katolik cemaatinde ayini yöneten adama ne denir?",
+   "Rahip",
+   [
+    "Keşiş",
+    "Zangoç",
+    "Pastör"
+   ],
+   "Not: Bir cemaatten sorumlu olduğunda bölge rahibi olarak da anılır."
+  ],
+  "33": [
+   "Yeni Ahit'te kaç İncil vardır?",
+   "4",
+   [
+    "3",
+    "5",
+    "12"
+   ],
+   "Not: Bunlar Matta, Markos, Luka ve Yuhanna İncilleridir."
+  ],
+  "34": [
+   "İncillere göre Matta havari olmadan önce hangi işi yapıyordu?",
+   "Vergi tahsildarlığı",
+   [
+    "Balıkçılık",
+    "Marangozluk",
+    "Romalı askerlik"
+   ],
+   "Not: Markos ve Luka İncillerinde Levi diye de anılır (Matta 9)."
+  ],
+  "35": [
+   "Elçilerin İşleri'ne göre sonradan Aziz Pavlus olacak Saul, iman ettiğinde hangi şehre gidiyordu?",
+   "Şam",
+   [
+    "Roma",
+    "Atina",
+    "Antakya"
+   ],
+   "Not: Bir ışıkla gözleri kamaşınca 3 gün kör kaldı (Elçilerin İşleri 9)."
+  ],
+  "36": [
+   "Katolik Kilisesi'nde kaç kutsal ayin (sakrament) vardır?",
+   "7",
+   [
+    "3",
+    "5",
+    "10"
+   ],
+   "Not: Vaftiz, konfirmasyon, efkaristiya, günah çıkarma, hastaların yağlanması, rahipliğe atanma ve evlilik."
+  ],
+  "37": [
+   "Papa seçmek için toplanan kardinaller meclisine ne ad verilir?",
+   "Konklav",
+   [
+    "Konsil",
+    "Sinod",
+    "Konsistuar"
+   ],
+   "Not: Papa seçildiğinde Sistina Şapeli'nden beyaz duman yükselir."
+  ],
+  "38": [
+   "Hristiyan Kitab-ı Mukaddes'inin son kitabı hangisidir?",
+   "Vahiy",
+   [
+    "Elçilerin İşleri",
+    "Romalılar'a Mektup",
+    "Yuhanna İncili"
+   ],
+   "Not: Yunanca adı «Apokalipsis»tir ve «açığa çıkarma, vahiy» anlamına gelir."
+  ],
+  "39": [
+   "Elçilerin İşleri'ne göre 12 havari arasında Yahuda'nın yerine hangi öğrenci seçildi?",
+   "Mattias",
+   [
+    "Barnaba",
+    "Timoteos",
+    "Silas"
+   ],
+   "Not: Kura ile belirlendi (Elçilerin İşleri 1)."
+  ],
+  "40": [
+   "Elçilerin İşleri'ne göre ilk Hristiyan şehit kim sayılır?",
+   "İstefanos",
+   [
+    "Yakup",
+    "Filipus",
+    "Markos"
+   ],
+   "Not: Kudüs'te taşlanarak öldürüldü (Elçilerin İşleri 7)."
+  ],
+  "41": [
+   "Petrus'un kardeşi olan hangi havari İskoçya'nın koruyucu azizidir?",
+   "Andreas",
+   [
+    "Tomas",
+    "Filipus",
+    "Bartalmay"
+   ],
+   "Not: İskoç bayrağındaki X biçimli haça Aziz Andreas Haçı denir."
+  ],
+  "42": [
+   "Kiliselerin çoğu Noel'i hangi tarihte kutlar?",
+   "25 Aralık",
+   [
+    "1 Ocak",
+    "15 Ağustos",
+    "31 Aralık"
+   ],
+   "Not: Bazı Ortodoks kiliseler Jülyen takvimini izledikleri için 7 Ocak'ta kutlar."
+  ],
+  "43": [
+   "Hangi Hristiyan bayramı İsa'nın dirilişini kutlar?",
+   "Paskalya",
+   [
+    "Noel",
+    "Mum Yortusu",
+    "Aziz Yahya Günü"
+   ],
+   "Not: Hristiyan takviminin en önemli bayramıdır."
+  ],
+  "44": [
+   "Dua ederken alına, göğse ve 2 omuza dokunulan harekete ne denir?",
+   "Haç çıkarmak",
+   [
+    "Diz çökmek",
+    "Kutsamak",
+    "Yağla meshetmek"
+   ],
+   "Not: Katolikler ve Ortodokslar bunu yapar, ama omuzların sırası farklıdır."
+  ],
+  "45": [
+   "Belçika ve Fransa geleneğinde bahçelere saklanan çikolata yumurtaları Roma'dan kim getirir?",
+   "Çanlar",
+   [
+    "Leylekler",
+    "Melekler",
+    "Güvercinler"
+   ],
+   "Not: Çanlar Kutsal Perşembe'den Paskalya'ya kadar susar; «Roma'ya gittikleri» fikri buradan gelir."
+  ],
+  "46": [
+   "Noel'de geleneksel olarak hangi ağaç süslenir?",
+   "Köknar",
+   [
+    "Meşe",
+    "Zeytin",
+    "Palmiye"
+   ],
+   "Not: Bu gelenek Alsas'tan ve Almanya'dan yayıldı."
+  ],
+  "47": [
+   "1 Kasım'da tüm azizleri onurlandıran bayram hangisidir?",
+   "Azizler Günü",
+   [
+    "Göğe Yükseliş Bayramı",
+    "Mum Yortusu",
+    "Epifani"
+   ],
+   "Not: Fransızca adı «Toussaint», «tüm azizler» anlamına gelir."
+  ],
+  "48": [
+   "Büyük Perhiz geleneksel olarak kaç gün sürer?",
+   "40",
+   [
+    "7",
+    "12",
+    "30"
+   ],
+   "Not: İsa'nın çölde geçirdiği 40 günü hatırlatır (Matta 4)."
+  ],
+  "49": [
+   "Noel'e hazırlık olan yaklaşık 4 haftalık döneme ne ad verilir?",
+   "Advent",
+   [
+    "Oktav",
+    "Kutsal Hafta",
+    "Olağan Zaman"
+   ],
+   "Not: Advent takvimi, çocukların Noel'e kalan günleri saymasını sağlar."
+  ],
+  "50": [
+   "Hangi ocak bayramı müneccimlerin İsa'yı ziyaretini kutlar?",
+   "Epifani",
+   [
+    "Mum Yortusu",
+    "Aziz Martin Günü",
+    "Müjde Bayramı"
+   ],
+   "Not: Belçika ve Fransa'da bu günde «krallar pastası» paylaşılır."
+  ],
+  "51": [
+   "Paskalya'dan 50 gün sonra Kutsal Ruh'un havarilerin üzerine inişini kutlayan bayram hangisidir?",
+   "Pentekost",
+   [
+    "Mum Yortusu",
+    "Müjde Bayramı",
+    "Aziz Yahya Günü"
+   ],
+   "Not: Adı «ellinci» anlamına gelen Yunanca «pentekoste»den gelir (Elçilerin İşleri 2)."
+  ],
+  "52": [
+   "Paskalya'dan önceki, İsa'nın Kudüs'e girişini anan pazar gününe ne denir?",
+   "Palmiye Pazarı",
+   [
+    "Tomas Pazarı",
+    "Teslis Pazarı",
+    "Advent Pazarı"
+   ],
+   "Not: İncillere göre kalabalık onu karşılamak için dallar sallıyordu (Yuhanna 12)."
+  ],
+  "53": [
+   "Katoliklerde Büyük Perhiz'in başladığı güne ne ad verilir?",
+   "Kül Çarşambası",
+   [
+    "Kutsal Cuma",
+    "Kutsal Perşembe",
+    "Karnaval Salısı"
+   ],
+   "Not: Rahip, inananların alnına külle bir haç çizer."
+  ],
+  "54": [
+   "Hangi bayram İsa'nın göğe yükselişini kutlar?",
+   "Göğe Yükseliş Bayramı",
+   [
+    "Müjde Bayramı",
+    "Başkalaşım Bayramı",
+    "Ziyaret Bayramı"
+   ],
+   "Not: Paskalya'dan 40 gün sonra, bir perşembe günü kutlanır (Elçilerin İşleri 1)."
+  ],
+  "55": [
+   "15 Ağustos'taki hangi Katolik bayramı Meryem'in göğe alınışını kutlar?",
+   "Meryem'in Göğe Kabulü",
+   [
+    "Lekesiz Gebelik",
+    "Müjde Bayramı",
+    "Ziyaret Bayramı"
+   ],
+   "Not: Ortodokslar bu günde Meryem'in Uykuya Dalışı'nı (Koimesis) kutlar."
+  ],
+  "56": [
+   "Paris'te Cité Adası'nda bulunan ünlü Gotik katedral hangisidir?",
+   "Notre-Dame de Paris",
+   [
+    "Sacré-Cœur",
+    "Sainte-Chapelle",
+    "Saint-Sulpice"
+   ],
+   "Not: İnşasına 1163'te başlandı."
+  ],
+  "57": [
+   "Bir manastırda dini bir topluluk hâlinde yaşayan erkeklere ne denir?",
+   "Keşişler",
+   [
+    "Piskoposlar",
+    "Şövalyeler",
+    "Havariler"
+   ],
+   "Not: Batı dillerindeki karşılığı, «yalnız» anlamına gelen Yunanca «monakhos»tan gelir."
+  ],
+  "58": [
+   "Noel Baba karakterine ilham veren Myra (bugünkü Demre) piskoposu aziz kimdir?",
+   "Aziz Nikolaos",
+   [
+    "Aziz Martin",
+    "Aziz Valentin",
+    "Aziz Georgios"
+   ],
+   "Not: Yortusu 6 Aralık'tır; özellikle Belçika'da, Fransa'nın kuzeyinde ve Hollanda'da kutlanır."
+  ],
+  "59": [
+   "Yüz Yıl Savaşı'nın, sonradan aziz ilan edilen ve 1431'de Rouen'da yakılan genç kadın kahramanı kimdir?",
+   "Jeanne d'Arc",
+   [
+    "Geneviève",
+    "Bernadette",
+    "Thérèse"
+   ],
+   "Not: Katolik Kilisesi onu 1920'de aziz ilan etti."
+  ],
+  "60": [
+   "Kiliseleri süsleyen renkli cam pencerelere ne denir?",
+   "Vitray",
+   [
+    "Mozaik",
+    "Fresk",
+    "Gül pencere"
+   ],
+   "Not: Orta Çağ'da Kitab-ı Mukaddes'ten sahneleri resimlerle anlatırlardı."
+  ],
+  "61": [
+   "Hayvan sevgisiyle tanınan, Assisi'de doğmuş 13. yüzyıl İtalyan azizi kimdir?",
+   "Aziz Françesko",
+   [
+    "Aziz Benedikt",
+    "Aziz Antonius",
+    "Aziz Dominik"
+   ],
+   "Not: Fransisken tarikatını kurdu ve büyük bir yoksulluk içinde yaşadı."
+  ],
+  "62": [
+   "Hangi Roma imparatoru 313'teki Milano Fermanı ile Hristiyanlara din özgürlüğü tanıdı?",
+   "Konstantin",
+   [
+    "Neron",
+    "Augustus",
+    "Diocletianus"
+   ],
+   "Not: Bu kararı Doğu Roma imparatoru Licinius ile birlikte aldı."
+  ],
+  "63": [
+   "Hangi Alman keşiş 1517'de 95 tezini yayımlayarak Protestan Reformu'nu başlattı?",
+   "Martin Luther",
+   [
+    "Jean Calvin",
+    "Erasmus",
+    "Jan Hus"
+   ],
+   "Not: Kitab-ı Mukaddes'i Almancaya da çevirdi."
+  ],
+  "64": [
+   "Yeni Ahit metinleri aslen hangi dilde yazıldı?",
+   "Yunanca",
+   [
+    "Latince",
+    "İbranice",
+    "Kıptice"
+   ],
+   "Not: Yunanca o dönemde Roma İmparatorluğu'nun doğusunun ortak diliydi."
+  ],
+  "65": [
+   "Vatikan'daki Sistina Şapeli'nin tavanını hangi sanatçı boyadı?",
+   "Michelangelo",
+   [
+    "Leonardo da Vinci",
+    "Raffaello",
+    "Botticelli"
+   ],
+   "Not: 1508'den 1512'ye kadar üzerinde çalıştı; ünlü Âdem'in Yaratılışı burada yer alır."
+  ],
+  "66": [
+   "12. yüzyılda Fransa'da doğan hangi mimari üslup Chartres Katedrali'ni karakterize eder?",
+   "Gotik",
+   [
+    "Romanesk",
+    "Barok",
+    "Bizans"
+   ],
+   "Not: Sivri kemerleri, yüksek tonozları ve büyük pencereleriyle tanınır."
+  ],
+  "67": [
+   "Hristiyanlık tarihinin ilk ekümenik konsili 325'te hangi şehirde toplandı?",
+   "İznik",
+   [
+    "Trento",
+    "Efes",
+    "Kadıköy"
+   ],
+   "Not: Bugün hâlâ okunan bir iman ikrarı olan İnanç Bildirgesi'nin (Credo) ilk hâlini yazdı."
+  ],
+  "68": [
+   "Doğu Kilisesi ile Batı Kilisesi arasındaki büyük ayrılık hangi yıla tarihlenir?",
+   "1054",
+   [
+    "962",
+    "1204",
+    "1453"
+   ],
+   "Not: O zamandan beri Katolik Kilisesi ile Ortodoks Kilisesi ayrıdır."
+  ],
+  "69": [
+   "Kitab-ı Mukaddes'i Vulgata adı verilen çeviride Latinceye çeviren aziz kimdir?",
+   "Aziz Hieronymus",
+   [
+    "Aziz Augustinus",
+    "Aziz Ambrosius",
+    "Aziz Benedikt"
+   ],
+   "Not: 4. yüzyılın sonu ile 5. yüzyılın başında, kısmen Beytlehem'de bu çeviri üzerinde çalıştı."
+  ]
+ }
+}

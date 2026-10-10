@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="La Caravane du Savoir : jeu de plateau et quiz sur l'islam à jouer en famille sur un seul téléphone. Duo, Carré ou Cash, cartes chance, raccourcis, réponse au micro.">
+<meta name="description" content="La Caravane du Savoir : jeu de plateau-quiz en famille. Islam, christianisme, judaïsme, histoire, géographie, sciences, maths, culture générale. Duo, Carré ou Cash, en ligne et en 6 langues.">
 <meta name="theme-color" content="#1B1530">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Caravane">
@@ -128,7 +128,7 @@ button{touch-action:manipulation}
 .sheet.open .card{transform:none}
 .band{display:flex;align-items:center;gap:10px;padding:14px 18px;color:#fff;font-family:var(--f-display);font-size:19px;font-weight:700;position:sticky;top:0;z-index:1}
 .band .sp{flex:1}
-.band .pill{font-family:var(--f-body);font-size:13px;font-weight:800;background:rgba(0,0,0,.2);padding:3px 10px;border-radius:999px}
+.band .pill{font-family:var(--f-body);font-size:13px;font-weight:800;background:rgba(0,0,0,.2);padding:3px 10px;border-radius:999px;white-space:nowrap;flex:none}
 .cbody{padding:16px 18px 22px;display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
 .qfor{font-size:14px;font-weight:700;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .qtext{font-size:clamp(21px,5.4vw,26px);font-weight:700;line-height:1.3}
@@ -200,6 +200,10 @@ button{touch-action:manipulation}
 .rule b{font-family:var(--f-display);font-size:22px}
 .rule span{font-size:12.5px;font-weight:700;line-height:1.25}
 .panel{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:20px;padding:16px;display:grid;gap:12px}
+.themes{display:flex;flex-wrap:wrap;gap:8px}
+.thb{display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(255,255,255,.2);background:transparent;border-radius:999px;padding:8px 14px;font-weight:800;font-size:15px;color:var(--cream)}
+.thb i{width:12px;height:12px;border-radius:50%;border:2px solid var(--tc);flex:none}
+.thb.on{background:var(--tc);border-color:var(--tc);color:#fff}.thb.on i{background:#fff;border-color:#fff}
 .daily .dh{display:flex;align-items:center;gap:8px}.daily .dh .lab2{flex:1}
 .streak{background:rgba(242,180,65,.18);color:var(--gold);border-radius:999px;padding:3px 10px;font-weight:800;font-size:13px}
 .daily .dq{font-weight:800;font-size:19px;margin:0;color:var(--cream)}
@@ -664,6 +668,37 @@ const CATS = {
   adab: { name: "Comportement du musulman", color: "#139C9A" },
 };
 const KEYS = Object.keys(CATS);
+/* ---------- thèmes : l'islam est intégré, les autres sont des « packs » chargés à la demande (packs/<thème>.json + traductions) ---------- */
+const THEMES = {
+  islam: { name: "Islam", color: "#2E9E5B" }, christianisme: { name: "Christianisme", color: "#3D7FD6" }, judaisme: { name: "Judaïsme", color: "#7A4FD0" },
+  histoire: { name: "Histoire", color: "#E8862F" }, geographie: { name: "Géographie", color: "#139C9A" }, sciences: { name: "Sciences et nature", color: "#D24B6A" },
+  maths: { name: "Maths et logique", color: "#E2B72E", ink: "#2A2118" }, culture: { name: "Culture générale", color: "#9C6B3F" },
+};
+const TH_KEYS = Object.keys(THEMES);
+const PBASE = { christianisme: 10000, judaisme: 11000, histoire: 12000, geographie: 13000, sciences: 14000, maths: 15000, culture: 16000 };
+const SUBCOL = [["#2E9E5B"], ["#E8862F"], ["#3D7FD6"], ["#D24B6A"], ["#8A5CD0"], ["#E2B72E", "#2A2118"], ["#139C9A"]];
+KEYS.forEach(k => CATS[k].th = "islam");
+TH_KEYS.forEach(th => { CATS["t:" + th] = { name: THEMES[th].name, color: THEMES[th].color, ink: THEMES[th].ink, th, theme: true }; });
+const PACKS = {};
+const okThemes = a => { const r = (Array.isArray(a) ? a : []).filter(x => THEMES[x]); return r.length ? [...new Set(r)] : ["islam"]; };
+async function loadPack(th) {
+  if (th === "islam" || !PBASE[th]) return true;
+  if (!PACKS[th]) {
+    const r = await fetch(`packs/${th}.json?v=${LV}`); if (!r.ok) throw new Error("pack " + th + " " + r.status);
+    const o = await r.json(), base = PBASE[th]; PACKS[th] = { o, tr: {} };
+    Object.keys(o.cats).forEach((k, i) => { const c = SUBCOL[i % SUBCOL.length]; CATS[k] = { name: o.cats[k], color: c[0], ink: c[1], th }; });
+    o.q.forEach((x, i) => { Q[base + i] = { id: base + i, cat: x[0], d: x[1], q: x[2], a: x[3], w: x[4], note: x[5] || "", th }; });
+  }
+  if (LANG !== "fr" && !PACKS[th].tr[LANG]) { try { const r = await fetch(`packs/${th}.${LANG}.json?v=${LV}`); if (r.ok) PACKS[th].tr[LANG] = await r.json(); } catch (e) { console.warn(e); } }
+  return true;
+}
+async function ensurePacks(list) { const ok = []; for (const th of okThemes(list)) { try { await loadPack(th); ok.push(th); } catch (e) { console.warn(e); } } return ok; }
+const thName = th => t(THEMES[th] ? THEMES[th].name : th);
+function catName(k) { const c = CATS[k]; if (!c) return ""; if (c.theme) return thName(c.th); const tr = c.th !== "islam" && PACKS[c.th] && PACKS[c.th].tr[LANG]; return (tr && tr.cats && tr.cats[k]) || t(c.name); }
+function boardKeys(themes) { themes = okThemes(themes); if (themes.length > 1) return themes.map(th => "t:" + th); const th = themes[0]; if (th === "islam") return KEYS.slice(); return PACKS[th] ? Object.keys(PACKS[th].o.cats) : ["t:" + th]; }
+const gKeys = () => (game && game.cats && game.cats.length) ? game.cats : KEYS;
+const gThemes = () => okThemes(game && game.themes);
+const inCat = (q, cat) => q && (cat.startsWith("t:") ? q.th === cat.slice(2) : q.cat === cat);
 const SPEC = {
   oasis: { name: "Oasis", txt: "Oasis : tu rejoues !", icon: "i-oasis" },
   vent: { name: "Vent", txt: "Vent favorable : +2 cases !", icon: "i-vent" },
@@ -676,14 +711,16 @@ const SPEC = {
 const PCOL = ["#1FA37A", "#E0533F", "#3D7FD6", "#F2B441", "#9B6AE0", "#EE7FB0"];
 const MODES = { duo: { name: "Duo", sub: "2 réponses", color: "var(--duo)" }, carre: { name: "Carré", sub: "4 réponses", color: "var(--carre)", ink: "#2A1A05" }, cash: { name: "Cash", sub: "sans aide", color: "var(--cash)" } };
 const steps = (mode, d) => mode === "cash" ? d + 3 : mode === "carre" ? d : Math.ceil(d / 2);
-const Q = QDATA.map((r, i) => ({ id: i, cat: r[0], d: r[1], q: r[2], a: r[3], w: r[4], note: r[5] || "" }));
+const Q = QDATA.map((r, i) => ({ id: i, cat: r[0], d: r[1], q: r[2], a: r[3], w: r[4], note: r[5] || "", th: "islam" }));
 /* ============ langues : le français est dans le code, les autres dans lang/xx.json (chargées à la demande) ============ */
-const LV = 4;
+const LV = 5;
 const LANGS = { fr: ["Français", "fr-FR"], ar: ["العربية", "ar-SA", 1], en: ["English", "en-US"], nl: ["Nederlands", "nl-NL"], de: ["Deutsch", "de-DE"], tr: ["Türkçe", "tr-TR"] };
 let LANG = "fr", TR = {}, QL = null; const LCACHE = {};
 /* t("texte français", {var}) ; une variable qui commence par « @ » est elle-même un texte à traduire */
 const t = (s, v) => { let r = (LANG !== "fr" && TR[s]) || s; if (v) r = r.replace(/\{(\w+)\}/g, (_, k) => { const x = v[k]; return x == null ? "" : typeof x === "string" && x[0] === "@" ? t(x.slice(1)) : x; }); return r; };
-const QT = id => { const b = Q[id], l = QL && QL[id]; return l ? { ...b, q: l[0], a: l[1], w: l[2], note: l[3] || "" } : b; };
+const QT = id => { const b = Q[id]; if (!b) return { id, cat: "", d: 1, q: "…", a: "…", w: ["…", "…", "…"], note: "", th: "islam" }; let l = null;
+  if (b.th === "islam") l = QL && QL[id]; else { const tr = PACKS[b.th] && PACKS[b.th].tr[LANG]; l = tr && tr.q && tr.q[id - PBASE[b.th]]; }
+  return l ? { ...b, q: l[0], a: l[1], w: l[2], note: l[3] || "" } : b; };
 const voice = () => LANGS[LANG][1];
 function detectLang() { const want = [store.get("lang", null), ...(navigator.languages || [navigator.language || "fr"])].filter(Boolean); for (const w of want) { const k = String(w).slice(0, 2).toLowerCase(); if (LANGS[k]) return k; } return "fr"; }
 async function setLang(l) {
@@ -692,6 +729,7 @@ async function setLang(l) {
   LANG = l; store.set("lang", l); TR = l === "fr" ? {} : LCACHE[l].ui || {}; QL = l === "fr" ? null : LCACHE[l].q || null;
   document.documentElement.lang = l; document.documentElement.dir = LANGS[l][2] ? "rtl" : "ltr"; document.title = t("La Caravane du Savoir");
   if (W3D) W3D.key = "";
+  for (const th of Object.keys(PACKS)) { try { await loadPack(th); } catch (e) {} }
 }
 const langSelect = id => `<label class="langbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><select id="${id}" aria-label="Langue / Language">${Object.entries(LANGS).map(([k, v]) => `<option value="${k}" ${k === LANG ? "selected" : ""}>${v[0]}</option>`).join("")}</select></label>`;
 const bindLang = (id, after) => { const el = $("#" + id); if (el) el.onchange = async () => { el.disabled = true; await setLang(el.value); after(); }; };
@@ -754,7 +792,7 @@ const LAYOUT = {
   mid: { short: [[.12, .27], [.5, .63]], trap: [[.44, .32], [.9, .75]], carte: [.08, .36, .56, .7, .84], oasis: [.2, .6], vent: [.66], sable: [.4, .8], puits: [.52] },
   big: { short: [[.1, .22], [.45, .57], [.68, .78]], trap: [[.4, .3], [.62, .5], [.92, .79]], carte: [.06, .27, .48, .66, .83, .95], oasis: [.17, .55], vent: [.34, .74], sable: [.37, .86], puits: [.52, .89] },
 };
-function makeCells(n) {
+function makeCells(n, keys = KEYS) {
   const L = n <= 26 ? LAYOUT.small : n <= 38 ? LAYOUT.mid : LAYOUT.big, specAt = {}, link = {};
   const free = f => { let i = Math.max(2, Math.min(n - 3, Math.round(f * (n - 1)))), g = 0; while (specAt[i] && g++ < n) { i++; if (i > n - 3) i = 2; } return i; };
   const tgt = f => { let j = Math.max(1, Math.min(n - 2, Math.round(f * (n - 1)))); return j; };
@@ -762,7 +800,7 @@ function makeCells(n) {
   L.trap.forEach(([a, b]) => { const i = free(a); specAt[i] = "trap"; link[i] = Math.min(i - 2, tgt(b)); });
   Object.values(link).forEach(j => { if (!specAt[j]) specAt[j] = "landing"; });
   ["carte", "oasis", "vent", "sable", "puits"].forEach(t => L[t].forEach(f => { specAt[free(f)] = t; }));
-  const seq = []; for (let r = 0; r < 12; r++) seq.push(...shuffle(KEYS)); let k = 0;
+  const seq = []; for (let r = 0; r < 40 && seq.length < n * 2; r++) seq.push(...shuffle(keys)); let k = 0;
   return Array.from({ length: n }, (_, i) => i === 0 ? { t: "start" } : i === n - 1 ? { t: "end" } : specAt[i] && specAt[i] !== "landing" ? { t: specAt[i], to: link[i] } : { t: "cat", cat: seq[k++] });
 }
 function computeGeo(n) {
@@ -1360,6 +1398,7 @@ const mergeAt = (obj, kind, path, data) => kind === "patch" ? Object.keys(data |
 /* Firebase ne garde pas les tableaux vides ni les null : on les remet */
 const arr = v => v == null ? [] : Array.isArray(v) ? v : Object.keys(v).sort((a, b) => a - b).map(k => v[k]);
 function normGame(g) {
+  g.themes = okThemes(arr(g.themes)); g.cats = arr(g.cats); if (!g.cats.length) g.cats = g.themes.length > 1 ? g.themes.map(x => "t:" + x) : KEYS.slice();
   g.cells = arr(g.cells); g.players = arr(g.players); g.used = arr(g.used); g.deck = arr(g.deck);
   if (g.q === undefined) g.q = null; else if (g.q && g.q.choices) g.q.choices = arr(g.q.choices);
   if (g.winner === undefined) g.winner = null; g.turn = g.turn || 0;
@@ -1395,7 +1434,7 @@ async function netRun() {
   NET.running = false;
 }
 async function applyEv(e) {
-  if (e.t === "st") return adopt(normGame(e.g));
+  if (e.t === "st") { const g = normGame(e.g); await ensurePacks(g.themes); return adopt(g); }
   if (e.t === "hello") { if (NET.ctrl && game) netSend({ t: "st", g: game }); return; }
   if (!game || !$("#dock")) return;
   if (e.t === "steal") return stealIn(e);
@@ -1426,7 +1465,7 @@ async function netCreate(btn) {
   btn.disabled = true; btn.textContent = t("Création de la partie…");
   try {
     await fbAuth(); const code = genCode(), me = setup.players[0];
-    await db("PUT", `rooms/${code}`, { meta: { host: NET.uid, status: "lobby", size: setup.size, timer: !!setup.timer, t: { ".sv": "timestamp" } }, players: { [NET.uid]: { name: me.name, level: me.level, t: { ".sv": "timestamp" } } } });
+    await db("PUT", `rooms/${code}`, { meta: { host: NET.uid, status: "lobby", size: setup.size, timer: !!setup.timer, themes: okThemes(setup.themes), t: { ".sv": "timestamp" } }, players: { [NET.uid]: { name: me.name, level: me.level, t: { ".sv": "timestamp" } } } });
     NET.code = code; store.set("net", { code }); openLobby();
   } catch (e) { console.warn(e); btn.disabled = false; btn.textContent = t("Connexion impossible, réessaie"); }
 }
@@ -1442,7 +1481,7 @@ function renderLobby() {
   root.innerHTML = `<div class="setup">
     <div class="hero"><div class="langrow">${langSelect("lang")}</div><h1>${t("Partie en ligne")}</h1><p>${t("Envoie le lien à ta famille : chacun joue chez soi, sur son téléphone, dans sa langue.")}</p></div>
     <section class="panel"><p class="lab2">${t("Code de la partie")}</p><div class="netcode" dir="ltr">${esc(NET.code)}</div>
-      <div class="seg"><button id="share">${navigator.share ? t("Partager le lien") : t("Copier le lien")}</button><button id="wa">WhatsApp</button></div></section>
+      ${arr(m.themes).length ? `<p class="hint">${t("Thèmes : {l}", { l: okThemes(arr(m.themes)).map(thName).join(LANG === "ar" ? "، " : ", ") })}</p>` : ""}<div class="seg"><button id="share">${navigator.share ? t("Partager le lien") : t("Copier le lien")}</button><button id="wa">WhatsApp</button></div></section>
     <section class="panel"><p class="lab2">${t("Joueurs connectés ({n}/6)", { n: pl.length })}</p>
       ${pl.map(([u, p], i) => `<div class="prow">${av(i)}<span class="pname">${esc(p.name)}${u === NET.uid ? " " + t("(toi)") : ""}${u === m.host ? " · " + t("hôte") : ""}</span><small class="plev">${t(p.level === "facile" ? "Facile" : p.level === "expert" ? "Expert" : "Normal")}</small></div>`).join("") || `<p class="hint">${t("Connexion…")}</p>`}
       <p class="hint">${host ? (pl.length < 2 ? t("En attente d'au moins un autre joueur…") : t("Tout le monde est là ? Lance la partie.")) : t("En attente que l'hôte lance la partie…")}</p></section>
@@ -1456,7 +1495,8 @@ function renderLobby() {
 }
 async function netStart() {
   const pl = lobbyPlayers(), m = NET.lobby.meta; if (pl.length < 2) return;
-  const g = newGame(m.size || 36, pl.slice(0, 6).map(([, p]) => ({ name: p.name, level: p.level || "normal" })));
+  const themes = await ensurePacks(arr(m.themes).length ? arr(m.themes) : setup.themes);
+  const g = newGame(m.size || 36, pl.slice(0, 6).map(([, p]) => ({ name: p.name, level: p.level || "normal" })), themes);
   g.players.forEach((p, i) => p.uid = pl[i][0]); g.timer = !!m.timer; g.turn = 0;
   await db("PUT", `rooms/${NET.code}/state`, g); await db("PATCH", `rooms/${NET.code}/meta`, { status: "playing" });
 }
@@ -1464,7 +1504,7 @@ async function enterGame() {
   if (NET.entering) return; NET.entering = true; netCloseAll(); NET.lobby = null;
   try {
     const g = await db("GET", `rooms/${NET.code}/state`); if (!g) throw new Error("no state");
-    NET.on = true; NET.ctrl = false; game = normGame(g); store.set("game3", game); NET.seen = new Set(); NET.evFirst = true; NET.queue = [];
+    NET.on = true; NET.ctrl = false; game = normGame(g); await ensurePacks(game.themes); store.set("game3", game); NET.seen = new Set(); NET.evFirst = true; NET.queue = [];
     dbListen(`rooms/${NET.code}/ev`, onEv); renderGame(); window.scrollTo(0, 0); netSend({ t: "hello" });
   } catch (e) { console.warn(e); netLeave(); } finally { NET.entering = false; }
 }
@@ -1563,8 +1603,9 @@ const root = $("#root");
 function levelRange(level, final) { if (final) return { facile: [1, 2], normal: [2, 3], expert: [3, 3] }[level]; return { facile: [1, 1], normal: [1, 2], expert: [2, 3] }[level]; }
 function draw(cat, level, final) {
   const [lo, hi] = levelRange(level, final); const seen = new Set(store.get("seen", [])), used = new Set(game.used);
-  let pool = Q.filter(q => q.cat === cat && q.d >= lo && q.d <= hi && !used.has(q.id));
-  if (!pool.length) pool = Q.filter(q => q.cat === cat && !used.has(q.id)); if (!pool.length) pool = Q.filter(q => q.cat === cat);
+  let pool = Q.filter(q => inCat(q, cat) && q.d >= lo && q.d <= hi && !used.has(q.id));
+  if (!pool.length) pool = Q.filter(q => inCat(q, cat) && !used.has(q.id)); if (!pool.length) pool = Q.filter(q => inCat(q, cat));
+  if (!pool.length) pool = Q.filter(q => q && q.th === "islam");
   const fresh = pool.filter(q => !seen.has(q.id)); let q;
   if (fresh.length) q = shuffle(fresh)[0];
   else { const order = [...seen]; pool = pool.slice().sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id)); q = shuffle(pool.slice(0, Math.max(1, Math.ceil(pool.length / 3))))[0]; }
@@ -1578,13 +1619,13 @@ const dayKey = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1
 const hashStr = s => { let h = 2166136261; for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
 function seeded(seed) { let a = seed >>> 0; return () => { a = (a + 0x6D2B79F5) >>> 0; let t1 = Math.imul(a ^ (a >>> 15), 1 | a); t1 = (t1 + Math.imul(t1 ^ (t1 >>> 7), 61 | t1)) ^ t1; return ((t1 ^ (t1 >>> 14)) >>> 0) / 4294967296; }; }
 function dailyQ() {
-  const k = dayKey(), pool = Q.filter(q => q.d <= 2), rnd = seeded(hashStr("caravane:" + k));
+  const k = dayKey(), th = okThemes(setup.themes), pool0 = Q.filter(q => q && q.d <= 2 && th.includes(q.th)), pool = pool0.length ? pool0 : Q.filter(q => q && q.d <= 2 && q.th === "islam"), rnd = seeded(hashStr("caravane:" + th.slice().sort().join("+") + ":" + k));
   const q = pool[Math.floor(rnd() * pool.length)], order = [0, 1, 2, 3];
   for (let i = 3; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
   return { k, id: q.id, order };
 }
 function dailyHTML() {
-  const d = dailyQ(), st = store.get("daily", {}), q = QT(d.id), opts = [q.a, ...q.w], done = st.date === d.k ? st.pick : null;
+  const d = dailyQ(), st = store.get("daily", {}), q = QT(d.id), opts = [q.a, ...q.w], done = st.date === d.k && st.id === d.id ? st.pick : null;
   const y = new Date(); y.setDate(y.getDate() - 1);
   const streak = st.last === d.k || st.last === dayKey(y) ? st.streak || 0 : 0;
   return `<section class="panel daily" id="daily"><div class="dh"><p class="lab2">${t("Question du jour")}</p>${streak ? `<span class="streak">🔥 ${t("Série : {n}", { n: streak })}</span>` : ""}</div>
@@ -1595,10 +1636,10 @@ function dailyHTML() {
 function bindDaily() {
   const box = $("#daily"); if (!box) return;
   box.querySelectorAll(".choice").forEach(b => b.onclick = () => {
-    const d = dailyQ(), st = store.get("daily", {}); if (st.date === d.k) return;
+    const d = dailyQ(), st = store.get("daily", {}); if (st.date === d.k && st.id === d.id) return;
     const k = +b.dataset.k, y = new Date(); y.setDate(y.getDate() - 1);
-    const streak = st.last === dayKey(y) ? (st.streak || 0) + 1 : 1;
-    store.set("daily", { date: d.k, pick: k, last: d.k, streak, best: Math.max(st.best || 0, streak), good: (st.good || 0) + (k === 0 ? 1 : 0) });
+    const streak = st.last === d.k ? st.streak || 1 : st.last === dayKey(y) ? (st.streak || 0) + 1 : 1;
+    store.set("daily", { date: d.k, id: d.id, pick: k, last: d.k, streak, best: Math.max(st.best || 0, streak), good: (st.good || 0) + (k === 0 ? 1 : 0) });
     quiet(() => k === 0 ? SFX.good() : SFX.bad()); buzz(k === 0 ? 30 : [60, 40, 60]);
     box.outerHTML = dailyHTML(); bindDaily();
     if (k === 0) { const r = $("#daily").getBoundingClientRect(); confetti(r.left + r.width / 2, r.top + 40, 60); }
@@ -1613,8 +1654,11 @@ function renderSetup() {
       <svg viewBox="0 0 320 120" aria-hidden="true"><path d="M0 110 Q80 80 160 100 T320 95 V120 H0Z" fill="#E4BE7C"/><use href="#palm" x="10" y="30" width="44" height="70"/><use href="#palm" x="270" y="36" width="40" height="64"/><use href="#city" x="190" y="30" width="110" height="64"/>
         <g><use href="#camel" x="60" y="62" width="50" height="40" fill="${PCOL[0]}"/><use href="#camel" x="108" y="66" width="44" height="35" fill="${PCOL[1]}"/><use href="#camel" x="150" y="70" width="38" height="30" fill="${PCOL[2]}"/></g></svg>
       <h1>${t("La Caravane du Savoir")}</h1>
-      <p>${t("Lance le dé, réponds aux questions sur l'islam et fais avancer ta caravane jusqu'à la ville. Plus tu prends de risques, plus tu avances vite.")}</p>
+      <p>${okThemes(setup.themes).join() === "islam" ? t("Lance le dé, réponds aux questions sur l'islam et fais avancer ta caravane jusqu'à la ville. Plus tu prends de risques, plus tu avances vite.") : t("Lance le dé, réponds aux questions et fais avancer ta caravane jusqu'à la ville. Plus tu prends de risques, plus tu avances vite.")}</p>
     </div>
+    <section class="panel"><p class="lab2">${t("Thèmes de la partie")}</p>
+      <div class="themes">${TH_KEYS.map(th => { const on = okThemes(setup.themes).includes(th); return `<button class="thb${on ? " on" : ""}" data-th="${th}" aria-pressed="${on}" style="--tc:${THEMES[th].color}"><i></i>${thName(th)}</button>`; }).join("")}</div>
+      <p class="hint">${t("Choisis un ou plusieurs thèmes : les questions de la partie viendront seulement de ceux-là.")}</p></section>
     ${dailyHTML()}
     <div class="rules">
       <div class="rule" style="background:var(--duo)"><b>${t("Duo")}</b><span>${t("2 réponses")}<br>${t("moitié du dé")}</span></div>
@@ -1644,7 +1688,7 @@ function renderSetup() {
       <button class="addbtn" id="online">${t("Créer une partie en ligne")}</button>
     </section>
     <button class="big w" id="start">${t("Partir à l'aventure")}</button>
-    <p class="hint" style="text-align:center">${t("{n} questions · Coran, vie du Prophète ﷺ, prophètes, piliers, histoire, compagnons, comportement", { n: Q.length })}</p>
+    <p class="hint" style="text-align:center">${t("{n} questions · {l}", { n: Q.filter(q => q && okThemes(setup.themes).includes(q.th)).length, l: okThemes(setup.themes).map(thName).join(LANG === "ar" ? "، " : ", ") })}</p>
   </div>`;
   const read = () => setup.players.forEach((p, i) => { const n = $("#pn" + i), l = $("#pl" + i); if (n) p.name = n.value.trim() || t("Joueur {n}", { n: i + 1 }); if (l) p.level = l.value; });
   root.querySelectorAll("input,select:not(#lang)").forEach(el => el.onchange = () => { read(); save(); });
@@ -1655,9 +1699,11 @@ function renderSetup() {
   root.querySelectorAll("[data-s]").forEach(b => b.onclick = () => { read(); setup.size = +b.dataset.s; save(); renderSetup(); });
   root.querySelectorAll("[data-o]").forEach(b => b.onclick = () => { read(); setup[b.dataset.o] = !setup[b.dataset.o]; save(); renderSetup(); });
   $("#online").onclick = () => { read(); save(); if (!fbOk()) { $("#online").textContent = t("Le mode en ligne arrive bientôt"); return; } netCreate($("#online")); };
-  $("#start").onclick = () => { read(); SFX.bonus(); game = newGame(setup.size, setup.players); save(); renderGame(); window.scrollTo(0, 0); };
+  $("#start").onclick = async () => { read(); const b = $("#start"); b.disabled = true; setup.themes = await ensurePacks(setup.themes); SFX.bonus(); game = newGame(setup.size, setup.players); save(); renderGame(); window.scrollTo(0, 0); };
+  root.querySelectorAll("[data-th]").forEach(b => b.onclick = () => { read(); const th = b.dataset.th, cur = okThemes(setup.themes);
+    setup.themes = cur.includes(th) ? (cur.length > 1 ? cur.filter(x => x !== th) : cur) : [...cur, th]; SFX.tap(); save(); ensurePacks(setup.themes).then(() => { if (!game) renderSetup(); }); renderSetup(); });
 }
-const newGame = (size, pl) => ({ cells: makeCells(size), players: pl.map(p => ({ name: p.name, level: p.level, pos: 0, skip: false, good: 0, streak: 0, shield: false, miss: [] })), deck: [], cur: 0, phase: "roll", used: [], die: 1, q: null, winner: null, timer: setup.timer, read: setup.read });
+const newGame = (size, pl, themes = setup.themes) => ({ themes: okThemes(themes), cats: boardKeys(themes), cells: makeCells(size, boardKeys(themes)), players: pl.map(p => ({ name: p.name, level: p.level, pos: 0, skip: false, good: 0, streak: 0, shield: false, miss: [] })), deck: [], cur: 0, phase: "roll", used: [], die: 1, q: null, winner: null, timer: setup.timer, read: setup.read });
 
 /* ============ partie ============ */
 const PIPS = { 1: [4], 2: [0, 8], 3: [0, 4, 8], 4: [0, 2, 6, 8], 5: [0, 2, 4, 6, 8], 6: [0, 2, 3, 5, 6, 8] };
@@ -1733,7 +1779,7 @@ async function rollImpl() {
   const cube = $("#cube"); if (cube) cube.style.transform = `rotateX(${ROT[v][0] + 360 * spin}deg) rotateY(${ROT[v][1] + 360 * spin}deg) rotateZ(${spin % 2 ? 0 : 0}deg)`;
   await sleep(1050); game.die = v;
   const p = game.players[game.cur], cell = game.cells[p.pos];
-  const cat = cell.t === "cat" ? cell.cat : KEYS[Math.floor(Math.random() * KEYS.length)];
+  const cat = cell.t === "cat" ? cell.cat : gKeys()[Math.floor(Math.random() * gKeys().length)];
   toast("{v}", "", "#2A2118", 700, { v }); await sleep(500);
   game.q = { id: draw(cat, p.level, false), cat, mode: null, final: false }; game.phase = "question"; save();
 }
@@ -1806,7 +1852,7 @@ function renderQuestion() {
   const opts = [q.a, ...q.w];
   const destOf = m => Math.min(n - 1, p.pos + steps(m, game.die));
   const lab = i => { const ty = game.cells[i].t; return ty === "end" ? t("Arrivée !") : ty === "cat" ? t("case {n}", { n: i }) : t(SPEC[ty].name); };
-  const head = `<div class="band" style="background:${c.color};color:${c.ink || "#fff"}"><span>${t(c.name)}</span><span class="sp"></span><span class="pill">${g.final ? t("Finale") : g.bonus ? t("Défi : +4") : t("Dé {n}", { n: game.die })}</span></div>
+  const head = `<div class="band" style="background:${c.color};color:${c.ink || "#fff"}"><span>${esc(catName(g.cat))}${c && c.theme && CATS[q.cat] ? " · " + esc(catName(q.cat)) : ""}</span><span class="sp"></span><span class="pill">${g.final ? t("Finale") : g.bonus ? t("Défi : +4") : t("Dé {n}", { n: game.die })}</span></div>
     <div class="cbody"><p class="qfor"><span style="color:${PCOL[game.cur]}">${esc(p.name)}</span> · ${t(["", "facile", "moyenne", "difficile"][q.d])}${canSpeak && !muted ? `<button class="say" id="say">${t("Relire")}</button>` : ""}<button class="say st" id="rep" title="${t("Signaler une erreur")}" aria-label="${t("Signaler une erreur")}">⚑</button></p><div id="repz"></div><div class="qtext" dir="auto">${esc(q.q)}</div>${game.timer && g.mode ? `<div class="timer"><i id="bar"></i></div>` : ""}<div id="zone"></div></div>`;
   openSheet(head);
   if ($("#say")) $("#say").onclick = () => speak(q.q);
@@ -1907,7 +1953,7 @@ async function resolveImpl(ok) {
     let s = steps(g.mode, game.die), tail = false;
     const lead = Math.max(...game.players.map(x => x.pos)), last = Math.min(...game.players.map(x => x.pos));
     if (game.players.length > 1 && p.pos === last && lead - p.pos >= 6) { s += 2; tail = true; }
-    toast(pick(["Bravo !", "Excellent !", "Mâ châ' Allâh !", "Bien joué !", "Parfait !"]), tail ? "{m} réussi : +{s} (vent arrière +2)" : "{m} réussi : +{s}", "var(--ok)", 1500, null, { m: "@" + MODES[g.mode].name, s });
+    toast(pick(gThemes().includes("islam") ? ["Bravo !", "Excellent !", "Mâ châ' Allâh !", "Bien joué !", "Parfait !"] : ["Bravo !", "Excellent !", "Bien joué !", "Parfait !"]), tail ? "{m} réussi : +{s} (vent arrière +2)" : "{m} réussi : +{s}", "var(--ok)", 1500, null, { m: "@" + MODES[g.mode].name, s });
     const [cx, cy] = center(); confetti(cx, cy, g.mode === "cash" ? 110 : 60);
     await sleep(500);
     await animateMove(pi, p.pos, Math.min(n - 1, p.pos + s));
@@ -1990,7 +2036,7 @@ async function drawCard(pi) {
   if (c.k === "bad" && protect(p)) { await sleep(1000); return false; }
   const r = await c.run(pi, target); save(); chips();
   if (r === "defi") {
-    const cat = KEYS[Math.floor(Math.random() * KEYS.length)];
+    const cat = gKeys()[Math.floor(Math.random() * gKeys().length)];
     game.q = { id: draw(cat, p.level, false), cat, mode: "cash", final: false, bonus: true }; game.phase = "question"; save(); step(); return "q";
   }
   if (r === true) { toast("Tu rejoues !", "", "#2E9E5B", 1200); await sleep(700); }
@@ -2001,7 +2047,7 @@ function learnList() { const me = myIdx(); return game.players.map((p, i) => ({ 
 function showLearn() {
   const w = $("#win"), L = learnList();
   w.innerHTML = `<div class="box"><h2 style="font-size:30px">${t("À retenir")}</h2><p class="note">${t("Les questions ratées, avec la bonne réponse et l'explication.")}</p>
-    <div class="learn">${L.map(({ p, i, ids }) => `${L.length > 1 ? `<h3 style="color:${PCOL[i]}" dir="auto">${esc(p.name)}</h3>` : ""}${ids.length ? ids.map(id => { const q = QT(id); return `<div class="it"><p class="qq" dir="auto">${esc(q.q)}</p><p class="aa" dir="auto">✓ ${esc(q.a)}</p>${q.note ? `<p class="note" dir="auto">${esc(q.note)}</p>` : ""}</div>`; }).join("") : `<p class="note">${t("Aucune question ratée. Mâ châ' Allâh !")}</p>`}`).join("")}</div>
+    <div class="learn">${L.map(({ p, i, ids }) => `${L.length > 1 ? `<h3 style="color:${PCOL[i]}" dir="auto">${esc(p.name)}</h3>` : ""}${ids.length ? ids.map(id => { const q = QT(id); return `<div class="it"><p class="qq" dir="auto">${esc(q.q)}</p><p class="aa" dir="auto">✓ ${esc(q.a)}</p>${q.note ? `<p class="note" dir="auto">${esc(q.note)}</p>` : ""}</div>`; }).join("") : `<p class="note">${t(gThemes().includes("islam") ? "Aucune question ratée. Mâ châ' Allâh !" : "Aucune question ratée. Bravo !")}</p>`}`).join("")}</div>
     <button class="big w" id="share">${t("Partager")}</button><button class="ghostbtn" id="back">${t("Retour")}</button></div>`;
   w.querySelector(".box").scrollTop = 0;
   $("#back").onclick = () => { SFX.tap(); showWin(true); };
@@ -2015,25 +2061,27 @@ function showWin(back) {
   closeSheet(); $("#dock").innerHTML = ""; const w = $("#win"), p = game.players[game.winner];
   const nMiss = learnList().reduce((s, x) => s + x.ids.length, 0);
   const rank = game.players.map((x, i) => ({ ...x, i })).sort((a, b) => (b.i === game.winner) - (a.i === game.winner) || b.pos - a.pos || b.good - a.good);
-  w.innerHTML = `<div class="box"><svg viewBox="0 0 120 70" style="width:150px;margin:0 auto"><use href="#city" width="120" height="70"/></svg><p class="lab" style="color:var(--gold2)">${t("Mâ châ' Allâh !")}</p><h2 style="color:${PCOL[game.winner]}">${esc(t("{n} arrive en premier", { n: p.name }))}</h2>
+  w.innerHTML = `<div class="box"><svg viewBox="0 0 120 70" style="width:150px;margin:0 auto"><use href="#city" width="120" height="70"/></svg><p class="lab" style="color:var(--gold2)">${t(gThemes().includes("islam") ? "Mâ châ' Allâh !" : "Bravo !")}</p><h2 style="color:${PCOL[game.winner]}">${esc(t("{n} arrive en premier", { n: p.name }))}</h2>
     <div class="rank">${rank.map((x, k) => `<div>${av(x.i)}<span>${k + 1}. ${esc(x.name)}</span><span style="margin-inline-start:auto;font-size:14px;color:var(--muted)">${t("{n} bonnes rép.", { n: x.good })}</span></div>`).join("")}</div>
-    ${nMiss ? `<button class="big w" id="learn" style="background:var(--ok);color:#fff">${t("À retenir : revoir les questions ratées ({n})", { n: nMiss })}</button>` : `<p class="note">${t("Aucune question ratée. Mâ châ' Allâh !")}</p>`}
+    ${nMiss ? `<button class="big w" id="learn" style="background:var(--ok);color:#fff">${t("À retenir : revoir les questions ratées ({n})", { n: nMiss })}</button>` : `<p class="note">${t(gThemes().includes("islam") ? "Aucune question ratée. Mâ châ' Allâh !" : "Aucune question ratée. Bravo !")}</p>`}
     ${NET.on && !NET.ctrl ? "" : `<button class="big w" id="again">${t("Rejouer")}</button>`}<button class="ghostbtn" id="home">${NET.on ? t("Quitter la partie en ligne") : t("Changer les joueurs")}</button></div>`;
   requestAnimationFrame(() => w.classList.add("show"));
   if ($("#learn")) $("#learn").onclick = () => { SFX.tap(); showLearn(); };
   if (!back) { quiet(() => SFX.win()); buzz([80, 60, 80, 60, 200]);
   show(() => rocket(innerWidth * (.15 + Math.random() * .7)), 14, 380);
   setTimeout(() => confetti(innerWidth / 2, innerHeight * .35, 160), 300); }
-  if ($("#again")) $("#again").onclick = () => { const old = game; game = newGame(old.cells.length, old.players); if (NET.on) { game.players.forEach((p, i) => p.uid = old.players[i].uid); game.timer = old.timer; game.turn = (old.turn || 0) + 1; } save(); renderGame(); };
+  if ($("#again")) $("#again").onclick = () => { const old = game; game = newGame(old.cells.length, old.players, old.themes); if (NET.on) { game.players.forEach((p, i) => p.uid = old.players[i].uid); game.timer = old.timer; game.turn = (old.turn || 0) + 1; } save(); renderGame(); };
   $("#home").onclick = () => { if (NET.on) return netLeave(); game = null; save(); renderSetup(); };
 }
 function validGame(g) { try { return g && Array.isArray(g.cells) && g.cells.length >= 10 && Array.isArray(g.players) && g.players.length >= 2 && g.players.every(p => typeof p.pos === "number" && p.pos >= 0 && p.pos < g.cells.length) && g.cur >= 0 && g.cur < g.players.length && Array.isArray(g.used); } catch (e) { return false; } }
 async function boot() {
   try { await setLang(detectLang()); } catch (e) { console.warn(e); }
+  try { const g0 = store.get("game3", null); await ensurePacks([...okThemes(setup && setup.themes), ...(g0 && Array.isArray(g0.themes) ? g0.themes : [])]); } catch (e) { console.warn(e); }
   try { if ("serviceWorker" in navigator && (location.protocol === "https:" || /^(localhost|127\.)/.test(location.hostname))) navigator.serviceWorker.register("sw.js").catch(() => {}); } catch (e) {}
   try {
     if (setup && Array.isArray(setup.players)) setup.players = setup.players.slice(0, 6); else setup = { players: [{ name: t("Joueur {n}", { n: 1 }), level: "normal" }, { name: t("Joueur {n}", { n: 2 }), level: "normal" }], size: 36, timer: false, read: true, view3d: true };
     if (setup.view3d == null) setup.view3d = true;
+    setup.themes = okThemes(setup.themes);
     if (fbOk() && (store.get("net", null) || /join=/i.test(location.hash))) { game = null; renderSetup(); netResume().then(ok => { if (!ok && !NET.code) renderSetup(); }); return; }
     if (game && !validGame(game)) { game = null; save(); }
     if (game) { if (game.phase !== "question" && game.phase !== "pick") { game.phase = "roll"; game.q = null; } if (game.phase === "question" && (!game.q || !Q[game.q.id] || (game.q.choices && typeof game.q.choices[0] !== "number"))) { game.phase = "roll"; game.q = null; } save(); renderGame(); } else renderSetup();

@@ -1,0 +1,711 @@
+{
+ "cats": {
+  "hi_anti": "Oudheid",
+  "hi_moyen": "Middeleeuwen",
+  "hi_moderne": "Nieuwe Tijd",
+  "hi_contemp": "19e en 20e eeuw",
+  "hi_inventions": "Grote uitvindingen"
+ },
+ "q": {
+  "0": [
+   "In welk land staan de piramides van Gizeh?",
+   "Egypte",
+   [
+    "Mexico",
+    "Griekenland",
+    "Irak"
+   ],
+   "De Grote Piramide van Cheops is het enige van de zeven wereldwonderen van de oudheid dat nog overeind staat."
+  ],
+  "1": [
+   "Welke titel droegen de koningen van het oude Egypte?",
+   "Farao",
+   [
+    "Tsaar",
+    "Sjah",
+    "Khan"
+   ],
+   "Het woord “farao” komt van het Egyptische “per-aa”, wat “groot huis” betekent, oftewel het paleis."
+  ],
+  "2": [
+   "Op welke plek in Griekenland werden de Olympische Spelen in de oudheid gehouden?",
+   "Olympia",
+   [
+    "Athene",
+    "Sparta",
+    "Delphi"
+   ],
+   "Volgens de overlevering vonden de eerste Olympische Spelen plaats in 776 v.Chr."
+  ],
+  "3": [
+   "In welk land ligt de Chinese Muur?",
+   "China",
+   [
+    "Japan",
+    "India",
+    "Mongolië"
+   ],
+   "De oudste stukken zijn meer dan 2000 jaar oud, maar het meeste wat je vandaag ziet, stamt uit de Ming-dynastie."
+  ],
+  "4": [
+   "Hoe noemde men de vechters die het tegen elkaar opnamen in de Romeinse arena’s?",
+   "Gladiatoren",
+   [
+    "Ridders",
+    "Samoerai",
+    "Musketiers"
+   ],
+   "Het Colosseum in Rome bood plaats aan zo’n 50.000 toeschouwers die naar de gladiatoren kwamen kijken."
+  ],
+  "5": [
+   "Hoe heet het schrift van de oude Egyptenaren dat uit kleine tekeningetjes bestaat?",
+   "Hiërogliefen",
+   [
+    "Spijkerschrift",
+    "Runen",
+    "Ideogrammen"
+   ],
+   "Champollion slaagde erin ze in 1822 te ontcijferen dankzij de Steen van Rosetta."
+  ],
+  "6": [
+   "Welke Carthaagse generaal trok met olifanten over de Alpen om Rome aan te vallen?",
+   "Hannibal",
+   [
+    "Spartacus",
+    "Vercingetorix",
+    "Jugurtha"
+   ],
+   "Hij trok over de Alpen in 218 v.Chr., tijdens de Tweede Punische Oorlog."
+  ],
+  "7": [
+   "Op welke heuvel in Athene staat het Parthenon?",
+   "Akropolis",
+   [
+    "Agora",
+    "Palatijn",
+    "Olympus"
+   ],
+   "Het Parthenon werd gebouwd in de 5e eeuw v.Chr. en was gewijd aan de godin Athena."
+  ],
+  "8": [
+   "Welke koning van Macedonië veroverde het Perzische Rijk tot aan India?",
+   "Alexander de Grote",
+   [
+    "Filips II",
+    "Darius I",
+    "Pericles"
+   ],
+   "Hij was een leerling van de filosoof Aristoteles en stichtte veel steden, waaronder Alexandrië in Egypte."
+  ],
+  "9": [
+   "Welk volk uit Mesopotamië vond het spijkerschrift uit?",
+   "De Soemeriërs",
+   [
+    "De Egyptenaren",
+    "De Feniciërs",
+    "De Hettieten"
+   ],
+   "Deze wigvormige tekens werden meer dan 5000 jaar geleden in kleitabletten gedrukt."
+  ],
+  "10": [
+   "Welke vulkaan bedolf de Romeinse stad Pompeï in het jaar 79?",
+   "De Vesuvius",
+   [
+    "De Etna",
+    "De Stromboli",
+    "De Pinatubo"
+   ],
+   "De as heeft de stad zo goed bewaard dat je er nog straten, fresco’s en bakkerijen kunt zien."
+  ],
+  "11": [
+   "Welke keizer verenigde China in 221 v.Chr. en werd begraven met een leger van terracotta?",
+   "Qin Shi Huang",
+   [
+    "Liu Bang",
+    "Keizer Wu van Han",
+    "Kangxi"
+   ],
+   "Zijn terracottaleger telt duizenden soldaten, elk met een ander gezicht."
+  ],
+  "12": [
+   "Welk zeevarend volk maakte het alfabet waarvan het Griekse en het Latijnse alfabet afstammen?",
+   "De Feniciërs",
+   [
+    "De Etrusken",
+    "De Soemeriërs",
+    "De Hettieten"
+   ],
+   "De Feniciërs kwamen van de kust van het huidige Libanon en dreven handel over de hele Middellandse Zee."
+  ],
+  "13": [
+   "Welke koning van Babylon is beroemd om zijn wetboek dat in een stenen zuil is gegraveerd?",
+   "Hammurabi",
+   [
+    "Nebukadnezar II",
+    "Sargon van Akkad",
+    "Assurbanipal"
+   ],
+   "Deze basalten zuil van zo’n 3750 jaar oud staat nu in het Louvre in Parijs."
+  ],
+  "14": [
+   "Welk Scandinavisch volk voer rond in drakenschepen?",
+   "De Vikingen",
+   [
+    "De Kelten",
+    "De Hunnen",
+    "De Mongolen"
+   ],
+   "De Vikingen zeilden tot in IJsland, Groenland en zelfs Noord-Amerika."
+  ],
+  "15": [
+   "Hoe heet de ommuurde vesting waarin een heer in de middeleeuwen woonde?",
+   "Een burcht",
+   [
+    "Een paleis",
+    "Een landhuis",
+    "Een stadswal"
+   ],
+   "Veel burchten werden beschermd door een slotgracht en een ophaalbrug."
+  ],
+  "16": [
+   "Hoe heetten de adellijke krijgers van het oude Japan, gewapend met een zwaard?",
+   "Samoerai",
+   [
+    "Ridders",
+    "Gladiatoren",
+    "Kozakken"
+   ],
+   "De samoerai volgden een erecode die bushido heette, “de weg van de krijger”."
+  ],
+  "17": [
+   "Welke Venetiaanse koopman reisde naar China, naar het hof van Koeblai Khan?",
+   "Marco Polo",
+   [
+    "Christoffel Columbus",
+    "Vasco da Gama",
+    "Magellaan"
+   ],
+   "Het verslag van zijn reis, “Il Milione”, liet generaties ontdekkingsreizigers dromen."
+  ],
+  "18": [
+   "Welke leider stichtte het Mongoolse Rijk, het grootste aaneengesloten landrijk ooit?",
+   "Dzjengis Khan",
+   [
+    "Attila",
+    "Timoer Lenk",
+    "Koeblai Khan"
+   ],
+   "Zijn echte naam was Temüdzjin; “Dzjengis Khan” is een titel die “universele heerser” betekent."
+  ],
+  "19": [
+   "Welke koning van de Franken werd in het jaar 800 keizer?",
+   "Karel de Grote",
+   [
+    "Clovis",
+    "Pepijn de Korte",
+    "Karel Martel"
+   ],
+   "Zijn rijk besloeg een groot deel van het huidige Frankrijk, België, Nederland, Duitsland en Italië."
+  ],
+  "20": [
+   "Welke heerser van het Malirijk is beroemd om zijn enorme rijkdom aan goud?",
+   "Mansa Musa",
+   [
+    "Sundiata Keita",
+    "Sonni Ali",
+    "Askia Mohammed"
+   ],
+   "Hij staat op de Catalaanse Atlas van 1375 afgebeeld met een goudklomp in de hand."
+  ],
+  "21": [
+   "Welke epidemie doodde halverwege de 14e eeuw een groot deel van de Europeanen?",
+   "De Zwarte Dood",
+   [
+    "Cholera",
+    "Pokken",
+    "De Spaanse griep"
+   ],
+   "Tussen 1347 en 1352 kwam een derde tot de helft van de Europese bevolking om."
+  ],
+  "22": [
+   "Welke stad was de hoofdstad van het Byzantijnse Rijk?",
+   "Constantinopel",
+   [
+    "Rome",
+    "Athene",
+    "Alexandrië"
+   ],
+   "Deze stad aan de Bosporus heet tegenwoordig Istanbul."
+  ],
+  "23": [
+   "Welk Engels document uit 1215 beperkte voor het eerst de macht van de koning?",
+   "De Magna Carta",
+   [
+    "De Bill of Rights",
+    "De Habeas Corpus Act",
+    "De Petition of Right"
+   ],
+   "Koning Jan zonder Land werd door zijn opstandige baronnen gedwongen haar te bezegelen."
+  ],
+  "24": [
+   "Welke beschaving bouwde de stad Chichén Itzá in Mexico?",
+   "De Maya’s",
+   [
+    "De Azteken",
+    "De Inca’s",
+    "De Olmeken"
+   ],
+   "De grote piramide, El Castillo, telt in totaal 365 treden, net zoveel als de dagen van het jaar."
+  ],
+  "25": [
+   "In welk jaar won Willem de Veroveraar de Slag bij Hastings?",
+   "1066",
+   [
+    "1054",
+    "1099",
+    "1215"
+   ],
+   "Deze verovering van Engeland wordt verteld op het beroemde tapijt van Bayeux, bijna 70 meter lang."
+  ],
+  "26": [
+   "Welke Vikingontdekker bereikte rond het jaar 1000 Noord-Amerika?",
+   "Leif Eriksson",
+   [
+    "Erik de Rode",
+    "Ragnar Lodbrok",
+    "Harald Blauwtand"
+   ],
+   "In L’Anse aux Meadows, op Newfoundland (Canada), zijn de resten van een Vikingdorp gevonden."
+  ],
+  "27": [
+   "Welke middeleeuwse stad in zuidelijk Afrika, met grote stenen muren, gaf haar naam aan een land?",
+   "Groot-Zimbabwe",
+   [
+    "Aksum",
+    "Timboektoe",
+    "Meroë"
+   ],
+   "“Zimbabwe” zou in het Shona “stenen huizen” betekenen."
+  ],
+  "28": [
+   "Welke zeevaarder bereikte in 1492 Amerika?",
+   "Christoffel Columbus",
+   [
+    "Magellaan",
+    "Vasco da Gama",
+    "Amerigo Vespucci"
+   ],
+   "Hij dacht dat hij Indië had bereikt; daarom werden de volken van Amerika “indianen” genoemd."
+  ],
+  "29": [
+   "Welke kunstenaar schilderde de Mona Lisa?",
+   "Leonardo da Vinci",
+   [
+    "Michelangelo",
+    "Rafaël",
+    "Botticelli"
+   ],
+   "Leonardo da Vinci was ook ingenieur en tekende vliegmachines."
+  ],
+  "30": [
+   "Welke Franse koning, bijgenaamd de Zonnekoning, liet het paleis van Versailles uitbreiden?",
+   "Lodewijk XIV",
+   [
+    "Lodewijk XIII",
+    "Lodewijk XV",
+    "Lodewijk XVI"
+   ],
+   "Zijn regering van 72 jaar is een van de langste uit de Europese geschiedenis."
+  ],
+  "31": [
+   "Hoe heet de grote kunststroming die in de 15e eeuw in Italië ontstond?",
+   "De renaissance",
+   [
+    "De Verlichting",
+    "De romantiek",
+    "De barok"
+   ],
+   "De naam komt van het idee van een “wedergeboorte” van de kunst en kennis uit de oudheid."
+  ],
+  "32": [
+   "In welk jaar werd de Bastille in Parijs bestormd?",
+   "1789",
+   [
+    "1776",
+    "1799",
+    "1815"
+   ],
+   "14 juli, de dag van de bestorming van de Bastille, werd de Franse nationale feestdag."
+  ],
+  "33": [
+   "Hoe noemde men de Spaanse en Portugese veroveraars van Amerika?",
+   "Conquistadores",
+   [
+    "Musketiers",
+    "Kapers",
+    "Samoerai"
+   ],
+   "“Conquistador” betekent gewoon “veroveraar” in het Spaans."
+  ],
+  "34": [
+   "Welke Portugese zeevaarder opende in 1498 de zeeroute naar India?",
+   "Vasco da Gama",
+   [
+    "Bartolomeu Dias",
+    "Magellaan",
+    "Pedro Álvares Cabral"
+   ],
+   "Hij voer om Afrika heen via Kaap de Goede Hoop en bereikte Calicut in India."
+  ],
+  "35": [
+   "Welke Spaanse conquistador veroverde het Incarijk?",
+   "Francisco Pizarro",
+   [
+    "Hernán Cortés",
+    "Vasco Núñez de Balboa",
+    "Diego de Almagro"
+   ],
+   "Hij nam in 1532 de Inca-keizer Atahualpa gevangen met minder dan 200 man."
+  ],
+  "36": [
+   "Welke zeevaarder leidde de eerste reis rond de wereld, die in 1519 vertrok?",
+   "Ferdinand Magellaan",
+   [
+    "James Cook",
+    "Francis Drake",
+    "Vasco da Gama"
+   ],
+   "Magellaan stierf onderweg op de Filipijnen; Juan Sebastián Elcano bracht het laatste schip in 1522 terug."
+  ],
+  "37": [
+   "In welk jaar riepen de Verenigde Staten hun Onafhankelijkheidsverklaring uit?",
+   "1776",
+   [
+    "1783",
+    "1789",
+    "1765"
+   ],
+   "Ze werd aangenomen op 4 juli, nu de Amerikaanse nationale feestdag."
+  ],
+  "38": [
+   "Welke Poolse sterrenkundige beweerde dat de aarde om de zon draait?",
+   "Nicolaas Copernicus",
+   [
+    "Galileo Galilei",
+    "Johannes Kepler",
+    "Tycho Brahe"
+   ],
+   "Zijn boek over de beweging van de hemellichamen verscheen in 1543, het jaar van zijn dood."
+  ],
+  "39": [
+   "Op de ruïnes van welke Azteekse stad werd Mexico-Stad gebouwd?",
+   "Tenochtitlan",
+   [
+    "Teotihuacan",
+    "Tikal",
+    "Cuzco"
+   ],
+   "Tenochtitlan lag op een eiland midden in een meer en was via dijken met het land verbonden."
+  ],
+  "40": [
+   "Welke familie van shoguns regeerde over Japan van 1603 tot 1867?",
+   "De Tokugawa",
+   [
+    "De Minamoto",
+    "De Ashikaga",
+    "De Oda"
+   ],
+   "In die periode sloot Japan zijn grenzen bijna volledig voor buitenlanders."
+  ],
+  "41": [
+   "Welke tsaar stichtte in 1703 de stad Sint-Petersburg?",
+   "Peter de Grote",
+   [
+    "Ivan de Verschrikkelijke",
+    "Catharina II",
+    "Alexander I"
+   ],
+   "Hij reisde incognito door Europa en werkte zelfs op een scheepswerf in Nederland."
+  ],
+  "42": [
+   "Welke Franse keizer werd in 1815 verslagen bij Waterloo?",
+   "Napoleon I",
+   [
+    "Napoleon III",
+    "Lodewijk XVIII",
+    "Karel X"
+   ],
+   "De slag vond plaats vlak bij Brussel, in België; daarna werd Napoleon verbannen naar het eiland Sint-Helena."
+  ],
+  "43": [
+   "Wie was in 1969 de eerste mens die op de maan liep?",
+   "Neil Armstrong",
+   [
+    "Buzz Aldrin",
+    "Joeri Gagarin",
+    "John Glenn"
+   ],
+   "Hij zei: “Dat is een kleine stap voor een mens, maar een reuzensprong voor de mensheid.”"
+  ],
+  "44": [
+   "Welke stad werd in tweeën gedeeld door een muur die in 1989 viel?",
+   "Berlijn",
+   [
+    "Wenen",
+    "Bonn",
+    "München"
+   ],
+   "De Berlijnse Muur splitste de stad 28 jaar lang, van 1961 tot 1989."
+  ],
+  "45": [
+   "In welk jaar eindigde de Tweede Wereldoorlog?",
+   "1945",
+   [
+    "1944",
+    "1946",
+    "1918"
+   ],
+   "In Europa eindigde de oorlog op 8 mei 1945, in Azië op 2 september 1945."
+  ],
+  "46": [
+   "Welke Indiase leider voerde zonder geweld de strijd voor de onafhankelijkheid van India?",
+   "Gandhi",
+   [
+    "Nehru",
+    "Tagore",
+    "Subhas Chandra Bose"
+   ],
+   "Hij kreeg de bijnaam “Mahatma”, wat “grote ziel” betekent."
+  ],
+  "47": [
+   "Welk passagiersschip zonk in 1912 na een aanvaring met een ijsberg?",
+   "De Titanic",
+   [
+    "De Lusitania",
+    "De Britannic",
+    "De Olympic"
+   ],
+   "Het schip werd onzinkbaar genoemd en ging ten onder tijdens zijn allereerste reis."
+  ],
+  "48": [
+   "In welk jaar begon de Eerste Wereldoorlog?",
+   "1914",
+   [
+    "1912",
+    "1916",
+    "1918"
+   ],
+   "België, een neutraal land, werd al in augustus 1914 binnengevallen."
+  ],
+  "49": [
+   "Welke Zuid-Afrikaanse strijder tegen de apartheid zat 27 jaar in de gevangenis?",
+   "Nelson Mandela",
+   [
+    "Desmond Tutu",
+    "Steve Biko",
+    "Kofi Annan"
+   ],
+   "Hij werd in 1990 vrijgelaten en werd in 1994 de eerste zwarte president van Zuid-Afrika."
+  ],
+  "50": [
+   "Welke Amerikaanse president leidde het Noorden tijdens de Amerikaanse Burgeroorlog?",
+   "Abraham Lincoln",
+   [
+    "George Washington",
+    "Thomas Jefferson",
+    "Ulysses Grant"
+   ],
+   "Hij werd in 1865 vermoord, enkele dagen na het einde van de oorlog."
+  ],
+  "51": [
+   "Wie was in 1961 de eerste mens in de ruimte?",
+   "Joeri Gagarin",
+   [
+    "Aleksej Leonov",
+    "John Glenn",
+    "German Titov"
+   ],
+   "Zijn vlucht rond de aarde aan boord van de Vostok 1 duurde ongeveer 108 minuten."
+  ],
+  "52": [
+   "Welke internationale organisatie werd in 1945 opgericht om de vrede te bewaren?",
+   "De VN",
+   [
+    "De NAVO",
+    "De Volkenbond",
+    "De UNESCO"
+   ],
+   "De Verenigde Naties vervingen de Volkenbond, die na 1918 was opgericht."
+  ],
+  "53": [
+   "Welk tijdperk van snelle modernisering in Japan begon in 1868?",
+   "Het Meiji-tijdperk",
+   [
+    "De Edo-periode",
+    "Het Showa-tijdperk",
+    "Het Taisho-tijdperk"
+   ],
+   "In enkele decennia kreeg Japan spoorwegen, fabrieken en een modern leger."
+  ],
+  "54": [
+   "Welk land gaf als eerste vrouwen stemrecht, in 1893?",
+   "Nieuw-Zeeland",
+   [
+    "Finland",
+    "Australië",
+    "Noorwegen"
+   ],
+   "Activiste Kate Sheppard leidde deze strijd; haar portret staat op het Nieuw-Zeelandse biljet van 10 dollar."
+  ],
+  "55": [
+   "In welk jaar werd het Suezkanaal geopend?",
+   "1869",
+   [
+    "1859",
+    "1882",
+    "1914"
+   ],
+   "Dit kanaal verbindt de Middellandse Zee met de Rode Zee, zodat schepen niet meer om Afrika heen hoeven te varen."
+  ],
+  "56": [
+   "Wie vond rond 1450 in Europa de boekdrukkunst met losse letters uit?",
+   "Gutenberg",
+   [
+    "Galilei",
+    "Newton",
+    "Leonardo da Vinci"
+   ],
+   "Vóór hem werden boeken met de hand overgeschreven, wat maanden kon duren."
+  ],
+  "57": [
+   "In welk land werd papier uitgevonden?",
+   "China",
+   [
+    "Egypte",
+    "India",
+    "Griekenland"
+   ],
+   "De uitvinding wordt toegeschreven aan Cai Lun, rond het jaar 105; de Egyptenaren schreven op papyrus."
+  ],
+  "58": [
+   "Welke broers maakten in 1903 de eerste vlucht met een gemotoriseerd vliegtuig?",
+   "De gebroeders Wright",
+   [
+    "De gebroeders Lumière",
+    "De gebroeders Montgolfier",
+    "De gebroeders Renault"
+   ],
+   "Die eerste vlucht, in de Verenigde Staten, duurde maar 12 seconden."
+  ],
+  "59": [
+   "Wie vroeg in 1876 patent aan op de telefoon?",
+   "Alexander Graham Bell",
+   [
+    "Thomas Edison",
+    "Guglielmo Marconi",
+    "Samuel Morse"
+   ],
+   "Volgens de legende waren zijn eerste woorden door de telefoon: “Mr. Watson, kom hier, ik wil u zien.”"
+  ],
+  "60": [
+   "Welke Amerikaanse uitvinder ontwikkelde in 1879 een gloeilamp die lang meeging?",
+   "Thomas Edison",
+   [
+    "Alexander Graham Bell",
+    "Nikola Tesla",
+    "Alessandro Volta"
+   ],
+   "In dezelfde tijd werkte de Engelsman Joseph Swan ook aan een gloeilamp."
+  ],
+  "61": [
+   "Welk instrument, uitgevonden in China, wijst met een magnetische naald het noorden aan?",
+   "Het kompas",
+   [
+    "De sextant",
+    "Het astrolabium",
+    "De telescoop"
+   ],
+   "Dankzij het kompas konden zeelieden hun weg vinden, zelfs als de lucht bewolkt was."
+  ],
+  "62": [
+   "Welke broers lieten in 1895 de cinematograaf aan het publiek zien?",
+   "De gebroeders Lumière",
+   [
+    "De gebroeders Pathé",
+    "De gebroeders Wright",
+    "De gebroeders Montgolfier"
+   ],
+   "Een van hun eerste films toonde een trein die aankwam in het station van La Ciotat."
+  ],
+  "63": [
+   "Welke wetenschapper ontdekte in 1928 penicilline, het eerste antibioticum?",
+   "Alexander Fleming",
+   [
+    "Louis Pasteur",
+    "Marie Curie",
+    "Robert Koch"
+   ],
+   "Hij ontdekte het bij toeval, dankzij een schimmel die in een van zijn kweekschaaltjes was gegroeid."
+  ],
+  "64": [
+   "Welke Italiaanse wetenschapper vond in 1800 de elektrische batterij uit?",
+   "Alessandro Volta",
+   [
+    "André-Marie Ampère",
+    "Luigi Galvani",
+    "Michael Faraday"
+   ],
+   "De eenheid van elektrische spanning, de volt, is naar hem genoemd."
+  ],
+  "65": [
+   "Welke machine, verbeterd door James Watt, bracht de industriële revolutie op gang?",
+   "De stoommachine",
+   [
+    "Het weefgetouw",
+    "De elektromotor",
+    "De verbrandingsmotor"
+   ],
+   "De eenheid van vermogen, de watt, werd naar hem vernoemd."
+  ],
+  "66": [
+   "Welke wetenschapper voerde in 1885 de eerste inenting tegen hondsdolheid uit?",
+   "Louis Pasteur",
+   [
+    "Edward Jenner",
+    "Robert Koch",
+    "Alexander Fleming"
+   ],
+   "Hij redde een jongen van 9 jaar, Joseph Meister, die door een dolle hond was gebeten."
+  ],
+  "67": [
+   "Wie vond in 1989 bij CERN het World Wide Web uit?",
+   "Tim Berners-Lee",
+   [
+    "Bill Gates",
+    "Steve Jobs",
+    "Vint Cerf"
+   ],
+   "De allereerste website ging in 1991 online bij CERN, vlak bij Genève."
+  ],
+  "68": [
+   "Welke Italiaanse uitvinder, Nobelprijswinnaar in 1909, was een pionier van de radio?",
+   "Guglielmo Marconi",
+   [
+    "Antonio Meucci",
+    "Alessandro Volta",
+    "Luigi Galvani"
+   ],
+   "In 1901 slaagde hij erin een radiosignaal over de Atlantische Oceaan te sturen."
+  ],
+  "69": [
+   "Welke Duitse ingenieur kreeg in 1886 patent op een van de eerste auto’s op benzine?",
+   "Carl Benz",
+   [
+    "Gottlieb Daimler",
+    "Rudolf Diesel",
+    "Ferdinand Porsche"
+   ],
+   "In 1888 maakte zijn vrouw Bertha Benz de eerste lange autorit, zo’n 100 km."
+  ]
+ }
+}

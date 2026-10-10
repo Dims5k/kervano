@@ -1,0 +1,732 @@
+{
+"cats": {
+"cu_arts": "Kunst en schilderkunst",
+"cu_livres": "Boeken en sprookjes",
+"cu_musique": "Muziek",
+"cu_sport": "Sport",
+"cu_cuisine": "Wereldkeuken",
+"cu_langues": "Talen en schriften"
+},
+"q": {
+"0": [
+"Wie schilderde de Mona Lisa?",
+"Leonardo da Vinci",
+[
+"Michelangelo",
+"Rafaël",
+"Rembrandt"
+],
+"De Mona Lisa hangt in het Louvre in Parijs, achter beschermend glas."
+],
+"1": [
+"Welke kleur krijg je als je blauw en geel mengt?",
+"Groen",
+[
+"Paars",
+"Oranje",
+"Bruin"
+],
+"Groen, oranje en paars heten secundaire kleuren, omdat je ze krijgt door twee primaire kleuren te mengen."
+],
+"2": [
+"Welke Nederlandse schilder maakte „De sterrennacht”?",
+"Vincent van Gogh",
+[
+"Rembrandt",
+"Vermeer",
+"Piet Mondriaan"
+],
+"Van Gogh schilderde het in 1889 vanuit zijn kamer in Saint-Rémy-de-Provence, in Zuid-Frankrijk."
+],
+"3": [
+"Hoe heet het houten rek waarop een schilder zijn doek zet?",
+"De ezel",
+[
+"Het palet",
+"De lijst",
+"De lessenaar"
+],
+"De schildersezel heet zo omdat hij, net als een echte ezel, een last draagt."
+],
+"4": [
+"Bij welke kunstvorm maak je een afbeelding met stukjes steen of glas?",
+"Mozaïek",
+[
+"Fresco",
+"Glas-in-lood",
+"Gravure"
+],
+"De Grote Omajjadenmoskee in Damascus is beroemd om haar gouden mozaïeken uit de 8e eeuw."
+],
+"5": [
+"Welke Spaanse schilder is een van de grondleggers van het kubisme?",
+"Pablo Picasso",
+[
+"Salvador Dalí",
+"Francisco Goya",
+"Diego Velázquez"
+],
+"Picasso bedacht het kubisme samen met de Fransman Georges Braque, begin 20e eeuw."
+],
+"6": [
+"Wie schilderde „De schreeuw”?",
+"Edvard Munch",
+[
+"Gustav Klimt",
+"Egon Schiele",
+"Paul Klee"
+],
+"Munch was Noors en maakte verschillende versies van De schreeuw, de eerste in 1893."
+],
+"7": [
+"Hoe noem je een schildering op nog natte muurkalk?",
+"Een fresco",
+[
+"Een aquarel",
+"Een gouache",
+"Een pastel"
+],
+"Michelangelo beschilderde het plafond van de Sixtijnse Kapel in fresco, tussen 1508 en 1512."
+],
+"8": [
+"Welke kunststroming is genoemd naar een schilderij van Claude Monet?",
+"Het impressionisme",
+[
+"Het fauvisme",
+"Het kubisme",
+"Het surrealisme"
+],
+"Het schilderij „Impressie, zonsopgang” bracht een criticus op het spottende woord „impressionisten”."
+],
+"9": [
+"Welke Nederlandse schilder maakte „Meisje met de parel”?",
+"Johannes Vermeer",
+[
+"Rembrandt",
+"Frans Hals",
+"Jan Steen"
+],
+"Het schilderij, gemaakt rond 1665, hangt in het Mauritshuis in Den Haag."
+],
+"10": [
+"Welke Vlaamse schilder maakte in 1434 „Het portret van Giovanni Arnolfini en zijn vrouw”?",
+"Jan van Eyck",
+[
+"Pieter Bruegel",
+"Peter Paul Rubens",
+"Hans Memling"
+],
+"In een klein bol spiegeltje achter in het schilderij zie je nog twee figuren weerspiegeld."
+],
+"11": [
+"Bij welke oude schildertechniek meng je pigment met eigeel?",
+"Tempera",
+[
+"Gouache",
+"Acryl",
+"Encaustiek"
+],
+"Tempera werd veel gebruikt in de middeleeuwen, voordat olieverf de overhand kreeg."
+],
+"12": [
+"In welke verzameling vind je de verhalen van Aladdin en Ali Baba?",
+"Duizend-en-een-nacht",
+[
+"De fabels van Aesopus",
+"De sprookjes van Grimm",
+"Het jungleboek"
+],
+"Daarin vertelt Sheherazade elke nacht een verhaal en stopt ze op het spannendste moment."
+],
+"13": [
+"Welk mannetje komt van asteroïde B 612?",
+"De Kleine Prins",
+[
+"Peter Pan",
+"Pinokkio",
+"Klein Duimpje"
+],
+"Antoine de Saint-Exupéry, die piloot was, bracht „De Kleine Prins” uit in 1943."
+],
+"14": [
+"Van welke houten pop groeit de neus als hij liegt?",
+"Pinokkio",
+[
+"Geppetto",
+"Pierrot",
+"Gulliver"
+],
+"Pinokkio werd in 1881 bedacht door de Italiaanse schrijver Carlo Collodi."
+],
+"15": [
+"Wat verliest Assepoester als ze het bal verlaat?",
+"Een glazen muiltje",
+[
+"Een ring",
+"Een ketting",
+"Een handschoen"
+],
+"De prins laat alle meisjes van het koninkrijk het muiltje passen om Assepoester terug te vinden."
+],
+"16": [
+"Wat voor dier is Baloe in „Het jungleboek”?",
+"Een beer",
+[
+"Een panter",
+"Een tijger",
+"Een wolf"
+],
+"Bagheera is de zwarte panter en Shere Khan de tijger; Rudyard Kipling schreef het boek in 1894."
+],
+"17": [
+"Wie schreef „Don Quichot”?",
+"Miguel de Cervantes",
+[
+"Lope de Vega",
+"Dante Alighieri",
+"William Shakespeare"
+],
+"In deze Spaanse roman uit 1605 ziet de held windmolens aan voor reuzen."
+],
+"18": [
+"Welke zeeman uit Duizend-en-een-nacht maakt 7 wonderlijke reizen?",
+"Sinbad",
+[
+"Aladdin",
+"Ali Baba",
+"Hassan"
+],
+"Tijdens zijn reizen komt Sinbad onder meer een reuzenvogel tegen, de rok."
+],
+"19": [
+"Welke Duitse broers verzamelden de sprookjes van Sneeuwwitje en Hans en Grietje?",
+"De gebroeders Grimm",
+[
+"De gebroeders Lumière",
+"De gebroeders Montgolfier",
+"De gebroeders Goncourt"
+],
+"Jacob en Wilhelm Grimm gaven hun eerste sprookjesbundel uit in 1812."
+],
+"20": [
+"Welke Deense schrijver schreef „De kleine zeemeermin”?",
+"Hans Christian Andersen",
+[
+"Charles Perrault",
+"Selma Lagerlöf",
+"Lewis Carroll"
+],
+"Sinds 1913 zit er een beeld van de kleine zeemeermin in de haven van Kopenhagen."
+],
+"21": [
+"Aan welke koning vertelt Sheherazade haar verhalen?",
+"Sjahriar",
+[
+"Haroen ar-Rasjid",
+"Salomo",
+"Saladin"
+],
+"Door elke avond een verhaal onaf te laten, redt Sheherazade nacht na nacht haar leven."
+],
+"22": [
+"Welke Engelse schrijver bedacht Robinson Crusoe?",
+"Daniel Defoe",
+[
+"Jonathan Swift",
+"Charles Dickens",
+"Robert Louis Stevenson"
+],
+"De roman uit 1719 zou geïnspireerd zijn op het ware verhaal van de Schotse zeeman Alexander Selkirk."
+],
+"23": [
+"Welke Perzische dichter schreef de „Sjahnameh”, het Boek der Koningen?",
+"Ferdowsi",
+[
+"Hafez",
+"Rumi",
+"Omar Khayyam"
+],
+"Dit enorme epos van meer dan 50.000 verzen was rond het jaar 1010 af."
+],
+"24": [
+"Hoeveel snaren heeft een klassieke gitaar?",
+"6",
+[
+"4",
+"5",
+"8"
+],
+"Een elektrische basgitaar heeft meestal 4 snaren."
+],
+"25": [
+"Hoeveel noten telt de toonladder do, re, mi, fa, sol, la, si?",
+"7",
+[
+"5",
+"8",
+"12"
+],
+"Deze notennamen komen van de lettergrepen van een Latijns lied dat de monnik Guido van Arezzo in de 11e eeuw gebruikte."
+],
+"26": [
+"Tot welke instrumentenfamilie hoort de fluit?",
+"De blaasinstrumenten",
+[
+"De snaarinstrumenten",
+"De slaginstrumenten",
+"De toetsinstrumenten"
+],
+"In Duitsland zijn benen fluiten gevonden van meer dan 35.000 jaar oud."
+],
+"27": [
+"Welk strijkinstrument houd je onder je kin?",
+"De viool",
+[
+"De cello",
+"De contrabas",
+"De harp"
+],
+"Violen van de Italiaan Antonio Stradivari behoren tot de kostbaarste instrumenten ter wereld."
+],
+"28": [
+"Hoe heet de persoon die een orkest leidt?",
+"De dirigent",
+[
+"De solist",
+"De componist",
+"De koorzanger"
+],
+"Een dirigent gebruikt vaak een stokje om de muzikanten het ritme aan te geven."
+],
+"29": [
+"Welke Oostenrijkse componist schreef de opera „De Toverfluit”?",
+"Mozart",
+[
+"Beethoven",
+"Haydn",
+"Schubert"
+],
+"Mozart schreef deze opera in 1791, het jaar waarin hij stierf, pas 35 jaar oud."
+],
+"30": [
+"Welke grote componist bleef componeren toen hij doof werd?",
+"Beethoven",
+[
+"Bach",
+"Vivaldi",
+"Chopin"
+],
+"Beethoven was bijna helemaal doof toen hij zijn 9e symfonie schreef."
+],
+"31": [
+"Hoeveel toetsen heeft een gewone moderne piano?",
+"88",
+[
+"76",
+"96",
+"100"
+],
+"Een gewone piano heeft 52 witte en 36 zwarte toetsen."
+],
+"32": [
+"Welk snaarinstrument zonder fretten staat centraal in de Arabische en Turkse muziek?",
+"De oed",
+[
+"De sitar",
+"De balalaika",
+"De banjo"
+],
+"Het woord „luit” komt van het Arabische „al-ʿūd”."
+],
+"33": [
+"Welke Poolse componist, „de dichter van de piano” genoemd, woonde in Parijs?",
+"Frédéric Chopin",
+[
+"Franz Liszt",
+"Robert Schumann",
+"Ignacy Paderewski"
+],
+"Chopin schreef bijna al zijn muziek voor piano solo."
+],
+"34": [
+"Welk Indiaas snaarinstrument werd in het Westen bekend dankzij Ravi Shankar?",
+"De sitar",
+[
+"De koto",
+"De bouzouki",
+"De balalaika"
+],
+"De sitar heeft zogeheten resonantiesnaren, die vanzelf meetrillen als je de andere snaren bespeelt."
+],
+"35": [
+"Welke Duitse componist schreef de „Brandenburgse Concerten”?",
+"Johann Sebastian Bach",
+[
+"Georg Friedrich Händel",
+"Georg Philipp Telemann",
+"Johannes Brahms"
+],
+"Bach droeg deze 6 concerten in 1721 op aan de markgraaf van Brandenburg."
+],
+"36": [
+"Hoeveel spelers heeft een voetbalteam op het veld?",
+"11",
+[
+"9",
+"10",
+"12"
+],
+"De keeper is een van die 11 spelers."
+],
+"37": [
+"Hoeveel ringen telt het symbool van de Olympische Spelen?",
+"5",
+[
+"4",
+"6",
+"7"
+],
+"Pierre de Coubertin ontwierp dit symbool in 1913."
+],
+"38": [
+"Bij welke sport moet je de bal in een mand gooien?",
+"Basketbal",
+[
+"Handbal",
+"Volleybal",
+"Waterpolo"
+],
+"Basketbal werd in 1891 in de Verenigde Staten bedacht door leraar James Naismith."
+],
+"39": [
+"Welke sport speel je met een racket en een shuttle?",
+"Badminton",
+[
+"Tennis",
+"Squash",
+"Tafeltennis"
+],
+"Bij een smash kan de shuttle sneller gaan dan 400 km/u, een van de snelste projectielen in de sport."
+],
+"40": [
+"In welk land ontstonden de Olympische Spelen van de oudheid?",
+"Griekenland",
+[
+"Italië",
+"Egypte",
+"Turkije"
+],
+"De Spelen van de oudheid werden in Olympia gehouden, ter ere van de god Zeus."
+],
+"41": [
+"Welke Japanse sport betekent „de zachte weg”?",
+"Judo",
+[
+"Karate",
+"Sumo",
+"Aikido"
+],
+"Judo werd in 1882 bedacht door de Japanner Jigoro Kano."
+],
+"42": [
+"Hoe lang is een marathon officieel?",
+"42,195 km",
+[
+"40 km",
+"42 km",
+"45 km"
+],
+"Deze vreemde afstand komt van het parcours van de Olympische Spelen van Londen in 1908."
+],
+"43": [
+"Hoeveel spelers heeft een volleybalteam op het veld?",
+"6",
+[
+"5",
+"7",
+"9"
+],
+"Volleybal werd in 1895 in de Verenigde Staten bedacht door William Morgan."
+],
+"44": [
+"In welke stad werden in 1896 de eerste moderne Olympische Spelen gehouden?",
+"Athene",
+[
+"Parijs",
+"Londen",
+"Rome"
+],
+"Griekenland werd gekozen als eerbetoon aan de Olympische Spelen uit de oudheid."
+],
+"45": [
+"Hoeveel punten is een try waard in rugby union?",
+"5",
+[
+"3",
+"4",
+"7"
+],
+"Tot 1992 was een try maar 4 punten waard."
+],
+"46": [
+"Bij welke sport spreekt men van een „birdie” en een „eagle”?",
+"Golf",
+[
+"Tennis",
+"Cricket",
+"Polo"
+],
+"Een birdie is een hole afmaken met 1 slag minder dan par, een eagle met 2 slagen minder."
+],
+"47": [
+"Welke olympische meerkamp voor mannen bevat onder meer polsstokhoogspringen, speerwerpen en de 1500 meter?",
+"De tienkamp",
+[
+"De zevenkamp",
+"De vijfkamp",
+"De triatlon"
+],
+"De tienkamp telt 10 onderdelen; bij de vrouwen is de zevenkamp, met 7 onderdelen, het olympische tegenstuk."
+],
+"48": [
+"Uit welk land komt de pizza?",
+"Italië",
+[
+"Griekenland",
+"Spanje",
+"Frankrijk"
+],
+"De pizza Margherita heeft de kleuren van de Italiaanse vlag: tomaat, mozzarella en basilicum."
+],
+"49": [
+"Sushi is een typisch gerecht uit welk land?",
+"Japan",
+[
+"China",
+"Korea",
+"Thailand"
+],
+"Het woord „sushi” slaat eigenlijk op de rijst met azijn, niet op de vis."
+],
+"50": [
+"Welk Marokkaans gerecht is genoemd naar de aardewerken pot met kegelvormig deksel waarin het gaar wordt?",
+"Tajine",
+[
+"Couscous",
+"Harira",
+"Pastilla"
+],
+"Door het kegelvormige deksel valt de stoom terug op het eten, dat zo mals blijft."
+],
+"51": [
+"Van welke boom komen de bonen waarmee je chocolade maakt?",
+"De cacaoboom",
+[
+"De koffieplant",
+"De vanilleplant",
+"De palmboom"
+],
+"De Maya's en de Azteken dronken meer dan 1.000 jaar geleden al cacao."
+],
+"52": [
+"Welke vrucht is het hoofdingrediënt van guacamole?",
+"Avocado",
+[
+"Limoen",
+"Tomaat",
+"Komkommer"
+],
+"Guacamole komt uit Mexico, waar de Azteken het al maakten."
+],
+"53": [
+"Uit welk land komt de paella?",
+"Spanje",
+[
+"Portugal",
+"Italië",
+"Mexico"
+],
+"Paella komt uit de streek rond Valencia en is genoemd naar de grote pan waarin ze wordt bereid."
+],
+"54": [
+"Welke heel dure specerij komt uit de stampers van een krokusbloem?",
+"Saffraan",
+[
+"Kurkuma",
+"Kaneel",
+"Paprikapoeder"
+],
+"Voor 1 kg saffraan heb je ongeveer 150.000 bloemen nodig."
+],
+"55": [
+"Hoe heet de puree van kikkererwten en tahin uit het Midden-Oosten?",
+"Hummus",
+[
+"Baba ganoush",
+"Tzatziki",
+"Labneh"
+],
+"Tahin is een pasta van gemalen sesamzaad."
+],
+"56": [
+"Uit welk land komt kimchi, gefermenteerde pittige kool?",
+"Korea",
+[
+"Japan",
+"China",
+"Vietnam"
+],
+"Het samen maken van kimchi, kimjang, staat sinds 2013 op de UNESCO-lijst van immaterieel erfgoed."
+],
+"57": [
+"Welk Indiaas brood bak je tegen de wand van een tandoor-oven?",
+"Naan",
+[
+"Pita",
+"Tortilla",
+"Chapati"
+],
+"Een tandoor is een kruikvormige oven van klei die met houtskool wordt gestookt."
+],
+"58": [
+"Met welke peulvrucht maak je de Egyptische falafel, ta'amiya?",
+"Tuinbonen",
+[
+"Kikkererwten",
+"Linzen",
+"Kidneybonen"
+],
+"Elders in het Midden-Oosten wordt falafel meestal met kikkererwten gemaakt."
+],
+"59": [
+"Uit welk land komt pho, een soep met rijstnoedels in geurige bouillon?",
+"Vietnam",
+[
+"Thailand",
+"Laos",
+"Cambodja"
+],
+"Pho ontstond begin 20e eeuw in het noorden van Vietnam, rond Hanoi."
+],
+"60": [
+"In welke richting schrijf je Arabisch?",
+"Van rechts naar links",
+[
+"Van links naar rechts",
+"Van boven naar beneden",
+"Van beneden naar boven"
+],
+"Hebreeuws en Perzisch schrijf je ook van rechts naar links."
+],
+"61": [
+"Hoeveel letters telt het basis-Latijnse alfabet?",
+"26",
+[
+"24",
+"28",
+"30"
+],
+"Veel talen voegen letters of accenten toe aan deze basis, zoals het Turks met ç, ğ en ş."
+],
+"62": [
+"Welke taal heeft de meeste moedertaalsprekers ter wereld?",
+"Mandarijn-Chinees",
+[
+"Engels",
+"Spaans",
+"Hindi"
+],
+"Chinees schrijf je met tekens die woorden of lettergrepen voorstellen, niet met een alfabet."
+],
+"63": [
+"Hoe heet het schrift van voelbare puntjes dat blinden lezen?",
+"Braille",
+[
+"Morse",
+"Steno",
+"Ideogrammen"
+],
+"Louis Braille bedacht dit schrift toen hij pas ongeveer 15 jaar oud was."
+],
+"64": [
+"Wat is de eerste letter van het Arabische alfabet?",
+"Alif",
+[
+"Ba",
+"Mim",
+"Ya"
+],
+"De alif is familie van de Griekse alfa en de Hebreeuwse alef, die ook hun alfabet openen."
+],
+"65": [
+"Uit welke taal komt het woord „algebra”?",
+"Het Arabisch",
+[
+"Het Grieks",
+"Het Latijn",
+"Het Perzisch"
+],
+"Het komt van „al-jabr”, een woord uit de titel van een boek van de geleerde al-Chwarizmi, uit de 9e eeuw."
+],
+"66": [
+"Welk volk uit de oudheid schreef met hiërogliefen?",
+"De Egyptenaren",
+[
+"De Grieken",
+"De Romeinen",
+"De Feniciërs"
+],
+"Jean-François Champollion ontcijferde de hiërogliefen in 1822 dankzij de Steen van Rosetta."
+],
+"67": [
+"Hoeveel letters telt het Arabische alfabet?",
+"28",
+[
+"24",
+"26",
+"32"
+],
+"De meeste Arabische letters veranderen van vorm naargelang hun plaats in het woord."
+],
+"68": [
+"Met welk alfabet schrijf je Russisch?",
+"Het cyrillische alfabet",
+[
+"Het Griekse alfabet",
+"Het Latijnse alfabet",
+"Het Armeense alfabet"
+],
+"Het cyrillische alfabet is genoemd naar de heilige Cyrillus, een missionaris uit de 9e eeuw."
+],
+"69": [
+"Welk schrift uit Mesopotamië, met tekens in de vorm van wiggen, is een van de oudste ter wereld?",
+"Het spijkerschrift",
+[
+"De hiërogliefen",
+"Lineair B",
+"Het runenschrift"
+],
+"De Soemeriërs drukten het meer dan 5.000 jaar geleden in kleitabletten."
+],
+"70": [
+"Welk volk bedacht het alfabet waarvan het Griekse, Latijnse en Arabische alfabet afstammen?",
+"De Feniciërs",
+[
+"De Soemeriërs",
+"De Babyloniërs",
+"De Perzen"
+],
+"Het Fenicische alfabet had maar 22 letters, allemaal medeklinkers."
+],
+"71": [
+"Welk alfabet werd in de 15e eeuw bedacht door de Koreaanse koning Sejong?",
+"Hangul",
+[
+"Kanji",
+"Hiragana",
+"Devanagari"
+],
+"Koning Sejong voerde het hangul in 1446 in, zodat iedereen gemakkelijk kon leren lezen."
+]
+}
+}

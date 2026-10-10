@@ -1,0 +1,711 @@
+{
+ "cats": {
+  "hi_anti": "Antike",
+  "hi_moyen": "Mittelalter",
+  "hi_moderne": "Frühe Neuzeit",
+  "hi_contemp": "19. und 20. Jahrhundert",
+  "hi_inventions": "Große Erfindungen"
+ },
+ "q": {
+  "0": [
+   "In welchem Land stehen die Pyramiden von Gizeh?",
+   "Ägypten",
+   [
+    "Mexiko",
+    "Griechenland",
+    "Irak"
+   ],
+   "Die Cheops-Pyramide ist das einzige der Sieben Weltwunder der Antike, das heute noch steht."
+  ],
+  "1": [
+   "Welchen Titel trugen die Könige im alten Ägypten?",
+   "Pharao",
+   [
+    "Zar",
+    "Schah",
+    "Khan"
+   ],
+   "Das Wort „Pharao“ kommt vom ägyptischen „per-aa“, was „großes Haus“ bedeutet – gemeint ist der Palast."
+  ],
+  "2": [
+   "An welchem Ort in Griechenland fanden die Olympischen Spiele der Antike statt?",
+   "Olympia",
+   [
+    "Athen",
+    "Sparta",
+    "Delphi"
+   ],
+   "Der Überlieferung nach fanden die ersten Olympischen Spiele 776 v. Chr. statt."
+  ],
+  "3": [
+   "In welchem Land steht die Große Mauer?",
+   "China",
+   [
+    "Japan",
+    "Indien",
+    "Mongolei"
+   ],
+   "Ihre ältesten Abschnitte sind über 2000 Jahre alt, doch die meisten heute sichtbaren Teile stammen aus der Ming-Dynastie."
+  ],
+  "4": [
+   "Wie nannte man die Kämpfer, die in den römischen Arenen gegeneinander antraten?",
+   "Gladiatoren",
+   [
+    "Ritter",
+    "Samurai",
+    "Musketiere"
+   ],
+   "Das Kolosseum in Rom bot rund 50.000 Zuschauern Platz, die die Gladiatoren sehen wollten."
+  ],
+  "5": [
+   "Wie heißt die Schrift der alten Ägypter aus kleinen Bildzeichen?",
+   "Hieroglyphen",
+   [
+    "Keilschrift",
+    "Runen",
+    "Ideogramme"
+   ],
+   "Champollion gelang es 1822, sie mithilfe des Steins von Rosette zu entziffern."
+  ],
+  "6": [
+   "Welcher karthagische Feldherr überquerte mit Elefanten die Alpen, um Rom anzugreifen?",
+   "Hannibal",
+   [
+    "Spartacus",
+    "Vercingetorix",
+    "Jugurtha"
+   ],
+   "Er überquerte die Alpen 218 v. Chr. während des Zweiten Punischen Krieges."
+  ],
+  "7": [
+   "Auf welchem Hügel in Athen steht der Parthenon?",
+   "Akropolis",
+   [
+    "Agora",
+    "Palatin",
+    "Olymp"
+   ],
+   "Der Parthenon wurde im 5. Jahrhundert v. Chr. erbaut und war der Göttin Athene geweiht."
+  ],
+  "8": [
+   "Welcher König von Makedonien eroberte das Perserreich bis an die Grenzen Indiens?",
+   "Alexander der Große",
+   [
+    "Philipp II.",
+    "Dareios I.",
+    "Perikles"
+   ],
+   "Er war Schüler des Philosophen Aristoteles und gründete viele Städte, darunter Alexandria in Ägypten."
+  ],
+  "9": [
+   "Welches Volk in Mesopotamien erfand die Keilschrift?",
+   "Die Sumerer",
+   [
+    "Die Ägypter",
+    "Die Phönizier",
+    "Die Hethiter"
+   ],
+   "Diese keilförmigen Zeichen wurden vor über 5000 Jahren in Tontafeln gedrückt."
+  ],
+  "10": [
+   "Welcher Vulkan begrub im Jahr 79 die römische Stadt Pompeji?",
+   "Der Vesuv",
+   [
+    "Der Ätna",
+    "Der Stromboli",
+    "Der Pinatubo"
+   ],
+   "Die Asche hat die Stadt so gut erhalten, dass man dort noch Straßen, Wandmalereien und Bäckereien sehen kann."
+  ],
+  "11": [
+   "Welcher Kaiser einte China 221 v. Chr. und wurde mit einer Armee aus Ton begraben?",
+   "Qin Shi Huang",
+   [
+    "Liu Bang",
+    "Kaiser Wu von Han",
+    "Kangxi"
+   ],
+   "Seine Terrakotta-Armee zählt mehrere Tausend Soldaten, jeder mit einem anderen Gesicht."
+  ],
+  "12": [
+   "Welches Seefahrervolk schuf das Alphabet, von dem das griechische und das lateinische Alphabet abstammen?",
+   "Die Phönizier",
+   [
+    "Die Etrusker",
+    "Die Sumerer",
+    "Die Hethiter"
+   ],
+   "Die Phönizier lebten an der Küste des heutigen Libanon und trieben im ganzen Mittelmeerraum Handel."
+  ],
+  "13": [
+   "Welcher König von Babylon ist für seine in eine Steinsäule gemeißelte Gesetzessammlung berühmt?",
+   "Hammurapi",
+   [
+    "Nebukadnezar II.",
+    "Sargon von Akkad",
+    "Assurbanipal"
+   ],
+   "Diese rund 3750 Jahre alte Basaltstele ist heute im Louvre in Paris ausgestellt."
+  ],
+  "14": [
+   "Welches skandinavische Volk fuhr mit Drachenbooten über die Meere?",
+   "Die Wikinger",
+   [
+    "Die Kelten",
+    "Die Hunnen",
+    "Die Mongolen"
+   ],
+   "Die Wikinger segelten bis nach Island, Grönland und sogar Nordamerika."
+  ],
+  "15": [
+   "Wie nennt man die von Mauern umgebene Festung, in der im Mittelalter ein Adliger lebte?",
+   "Eine Burg",
+   [
+    "Ein Palast",
+    "Ein Herrenhaus",
+    "Ein Schutzwall"
+   ],
+   "Viele Burgen waren durch einen Wassergraben und eine Zugbrücke geschützt."
+  ],
+  "16": [
+   "Wie hießen die adligen Krieger im alten Japan, die ein Schwert trugen?",
+   "Samurai",
+   [
+    "Ritter",
+    "Gladiatoren",
+    "Kosaken"
+   ],
+   "Die Samurai folgten einem Ehrenkodex namens Bushido, „der Weg des Kriegers“."
+  ],
+  "17": [
+   "Welcher venezianische Kaufmann reiste bis nach China an den Hof von Kublai Khan?",
+   "Marco Polo",
+   [
+    "Christoph Kolumbus",
+    "Vasco da Gama",
+    "Magellan"
+   ],
+   "Sein Reisebericht „Il Milione“ ließ Generationen von Entdeckern träumen."
+  ],
+  "18": [
+   "Welcher Herrscher gründete das Mongolische Reich, das größte zusammenhängende Landreich der Geschichte?",
+   "Dschingis Khan",
+   [
+    "Attila",
+    "Timur",
+    "Kublai Khan"
+   ],
+   "Sein eigentlicher Name war Temüdschin; „Dschingis Khan“ ist ein Titel und bedeutet „universaler Herrscher“."
+  ],
+  "19": [
+   "Welcher König der Franken wurde im Jahr 800 Kaiser?",
+   "Karl der Große",
+   [
+    "Chlodwig",
+    "Pippin der Jüngere",
+    "Karl Martell"
+   ],
+   "Sein Reich umfasste große Teile des heutigen Frankreichs, Belgiens, der Niederlande, Deutschlands und Italiens."
+  ],
+  "20": [
+   "Welcher Herrscher des Mali-Reiches ist für seinen riesigen Reichtum an Gold berühmt?",
+   "Mansa Musa",
+   [
+    "Sundiata Keita",
+    "Sonni Ali",
+    "Askia Mohammed"
+   ],
+   "Auf dem Katalanischen Atlas von 1375 ist er mit einem Goldklumpen in der Hand abgebildet."
+  ],
+  "21": [
+   "Welche Seuche tötete Mitte des 14. Jahrhunderts einen großen Teil der Europäer?",
+   "Der Schwarze Tod",
+   [
+    "Die Cholera",
+    "Die Pocken",
+    "Die Spanische Grippe"
+   ],
+   "Zwischen 1347 und 1352 raffte sie ein Drittel bis die Hälfte der Bevölkerung Europas dahin."
+  ],
+  "22": [
+   "Welche Stadt war die Hauptstadt des Byzantinischen Reiches?",
+   "Konstantinopel",
+   [
+    "Rom",
+    "Athen",
+    "Alexandria"
+   ],
+   "Diese Stadt am Bosporus heißt heute Istanbul."
+  ],
+  "23": [
+   "Welche englische Urkunde von 1215 schränkte erstmals die Macht des Königs ein?",
+   "Die Magna Carta",
+   [
+    "Die Bill of Rights",
+    "Die Habeas-Corpus-Akte",
+    "Die Petition of Right"
+   ],
+   "König Johann Ohneland musste sie auf Druck seiner aufständischen Barone besiegeln."
+  ],
+  "24": [
+   "Welche Zivilisation erbaute die Stadt Chichén Itzá in Mexiko?",
+   "Die Maya",
+   [
+    "Die Azteken",
+    "Die Inka",
+    "Die Olmeken"
+   ],
+   "Ihre große Pyramide, El Castillo, hat insgesamt 365 Stufen – so viele wie das Jahr Tage hat."
+  ],
+  "25": [
+   "In welchem Jahr gewann Wilhelm der Eroberer die Schlacht bei Hastings?",
+   "1066",
+   [
+    "1054",
+    "1099",
+    "1215"
+   ],
+   "Diese Eroberung Englands wird auf dem berühmten, fast 70 Meter langen Teppich von Bayeux erzählt."
+  ],
+  "26": [
+   "Welcher Wikinger erreichte um das Jahr 1000 Nordamerika?",
+   "Leif Eriksson",
+   [
+    "Erik der Rote",
+    "Ragnar Lodbrok",
+    "Harald Blauzahn"
+   ],
+   "In L’Anse aux Meadows auf Neufundland (Kanada) wurden die Reste eines Wikingerdorfs gefunden."
+  ],
+  "27": [
+   "Welche mittelalterliche Stadt im südlichen Afrika mit großen Steinmauern gab einem Land seinen Namen?",
+   "Groß-Simbabwe",
+   [
+    "Aksum",
+    "Timbuktu",
+    "Meroe"
+   ],
+   "„Simbabwe“ soll in der Sprache Shona „Häuser aus Stein“ bedeuten."
+  ],
+  "28": [
+   "Welcher Seefahrer erreichte 1492 Amerika?",
+   "Christoph Kolumbus",
+   [
+    "Magellan",
+    "Vasco da Gama",
+    "Amerigo Vespucci"
+   ],
+   "Er glaubte, Indien erreicht zu haben – deshalb nannte man die Völker Amerikas „Indianer“."
+  ],
+  "29": [
+   "Welcher Künstler malte die Mona Lisa?",
+   "Leonardo da Vinci",
+   [
+    "Michelangelo",
+    "Raffael",
+    "Botticelli"
+   ],
+   "Leonardo da Vinci war auch Ingenieur und zeichnete Flugmaschinen."
+  ],
+  "30": [
+   "Welcher französische König, genannt der Sonnenkönig, ließ das Schloss Versailles ausbauen?",
+   "Ludwig XIV.",
+   [
+    "Ludwig XIII.",
+    "Ludwig XV.",
+    "Ludwig XVI."
+   ],
+   "Seine Regierungszeit von 72 Jahren ist eine der längsten der europäischen Geschichte."
+  ],
+  "31": [
+   "Wie heißt die große Kunstepoche, die im 15. Jahrhundert in Italien entstand?",
+   "Die Renaissance",
+   [
+    "Die Aufklärung",
+    "Die Romantik",
+    "Der Barock"
+   ],
+   "Der Name kommt von der Idee einer „Wiedergeburt“ der Kunst und des Wissens der Antike."
+  ],
+  "32": [
+   "In welchem Jahr wurde in Paris die Bastille gestürmt?",
+   "1789",
+   [
+    "1776",
+    "1799",
+    "1815"
+   ],
+   "Der 14. Juli, der Tag des Sturms auf die Bastille, wurde zum französischen Nationalfeiertag."
+  ],
+  "33": [
+   "Wie nannte man die spanischen und portugiesischen Eroberer Amerikas?",
+   "Konquistadoren",
+   [
+    "Musketiere",
+    "Korsaren",
+    "Samurai"
+   ],
+   "„Conquistador“ bedeutet auf Spanisch einfach „Eroberer“."
+  ],
+  "34": [
+   "Welcher portugiesische Seefahrer öffnete 1498 den Seeweg nach Indien?",
+   "Vasco da Gama",
+   [
+    "Bartolomeu Dias",
+    "Magellan",
+    "Pedro Álvares Cabral"
+   ],
+   "Er umsegelte Afrika über das Kap der Guten Hoffnung und erreichte Calicut in Indien."
+  ],
+  "35": [
+   "Welcher spanische Konquistador eroberte das Inkareich?",
+   "Francisco Pizarro",
+   [
+    "Hernán Cortés",
+    "Vasco Núñez de Balboa",
+    "Diego de Almagro"
+   ],
+   "Er nahm 1532 mit weniger als 200 Mann den Inka-Herrscher Atahualpa gefangen."
+  ],
+  "36": [
+   "Welcher Seefahrer leitete die erste Weltumsegelung, die 1519 aufbrach?",
+   "Ferdinand Magellan",
+   [
+    "James Cook",
+    "Francis Drake",
+    "Vasco da Gama"
+   ],
+   "Magellan starb unterwegs auf den Philippinen; Juan Sebastián Elcano brachte 1522 das letzte Schiff zurück."
+  ],
+  "37": [
+   "In welchem Jahr verkündeten die Vereinigten Staaten ihre Unabhängigkeitserklärung?",
+   "1776",
+   [
+    "1783",
+    "1789",
+    "1765"
+   ],
+   "Sie wurde am 4. Juli angenommen, der heute der Nationalfeiertag der USA ist."
+  ],
+  "38": [
+   "Welcher polnische Astronom behauptete, dass sich die Erde um die Sonne dreht?",
+   "Nikolaus Kopernikus",
+   [
+    "Galileo Galilei",
+    "Johannes Kepler",
+    "Tycho Brahe"
+   ],
+   "Sein Buch über die Bewegung der Himmelskörper erschien 1543, in seinem Todesjahr."
+  ],
+  "39": [
+   "Auf den Ruinen welcher Aztekenstadt wurde Mexiko-Stadt erbaut?",
+   "Tenochtitlan",
+   [
+    "Teotihuacan",
+    "Tikal",
+    "Cuzco"
+   ],
+   "Tenochtitlan lag auf einer Insel mitten in einem See und war über Dämme mit dem Festland verbunden."
+  ],
+  "40": [
+   "Welche Shogun-Familie regierte Japan von 1603 bis 1867?",
+   "Die Tokugawa",
+   [
+    "Die Minamoto",
+    "Die Ashikaga",
+    "Die Oda"
+   ],
+   "In dieser Zeit schottete sich Japan fast vollständig gegen Ausländer ab."
+  ],
+  "41": [
+   "Welcher Zar gründete 1703 die Stadt Sankt Petersburg?",
+   "Peter der Große",
+   [
+    "Iwan der Schreckliche",
+    "Katharina II.",
+    "Alexander I."
+   ],
+   "Er reiste inkognito durch Europa und arbeitete sogar auf einer Schiffswerft in den Niederlanden."
+  ],
+  "42": [
+   "Welcher französische Kaiser wurde 1815 bei Waterloo besiegt?",
+   "Napoleon I.",
+   [
+    "Napoleon III.",
+    "Ludwig XVIII.",
+    "Karl X."
+   ],
+   "Die Schlacht fand bei Brüssel in Belgien statt; danach wurde Napoleon auf die Insel St. Helena verbannt."
+  ],
+  "43": [
+   "Wer betrat 1969 als erster Mensch den Mond?",
+   "Neil Armstrong",
+   [
+    "Buzz Aldrin",
+    "Juri Gagarin",
+    "John Glenn"
+   ],
+   "Er sagte: „Das ist ein kleiner Schritt für einen Menschen, aber ein riesiger Sprung für die Menschheit.“"
+  ],
+  "44": [
+   "Welche Stadt war durch eine Mauer geteilt, die 1989 fiel?",
+   "Berlin",
+   [
+    "Wien",
+    "Bonn",
+    "München"
+   ],
+   "Die Berliner Mauer teilte die Stadt 28 Jahre lang, von 1961 bis 1989."
+  ],
+  "45": [
+   "In welchem Jahr endete der Zweite Weltkrieg?",
+   "1945",
+   [
+    "1944",
+    "1946",
+    "1918"
+   ],
+   "In Europa endete der Krieg am 8. Mai 1945, in Asien am 2. September 1945."
+  ],
+  "46": [
+   "Welcher indische Anführer kämpfte gewaltfrei für die Unabhängigkeit Indiens?",
+   "Gandhi",
+   [
+    "Nehru",
+    "Tagore",
+    "Subhas Chandra Bose"
+   ],
+   "Man nannte ihn „Mahatma“, was „große Seele“ bedeutet."
+  ],
+  "47": [
+   "Welcher Ozeandampfer sank 1912 nach dem Zusammenstoß mit einem Eisberg?",
+   "Die Titanic",
+   [
+    "Die Lusitania",
+    "Die Britannic",
+    "Die Olympic"
+   ],
+   "Sie galt als unsinkbar und ging auf ihrer allerersten Fahrt unter."
+  ],
+  "48": [
+   "In welchem Jahr begann der Erste Weltkrieg?",
+   "1914",
+   [
+    "1912",
+    "1916",
+    "1918"
+   ],
+   "Das neutrale Belgien wurde schon im August 1914 überfallen."
+  ],
+  "49": [
+   "Welcher südafrikanische Kämpfer gegen die Apartheid saß 27 Jahre im Gefängnis?",
+   "Nelson Mandela",
+   [
+    "Desmond Tutu",
+    "Steve Biko",
+    "Kofi Annan"
+   ],
+   "Nach seiner Freilassung 1990 wurde er 1994 der erste schwarze Präsident Südafrikas."
+  ],
+  "50": [
+   "Welcher US-Präsident führte den Norden im Amerikanischen Bürgerkrieg?",
+   "Abraham Lincoln",
+   [
+    "George Washington",
+    "Thomas Jefferson",
+    "Ulysses Grant"
+   ],
+   "Er wurde 1865 ermordet, nur wenige Tage nach Kriegsende."
+  ],
+  "51": [
+   "Wer flog 1961 als erster Mensch ins Weltall?",
+   "Juri Gagarin",
+   [
+    "Alexei Leonow",
+    "John Glenn",
+    "German Titow"
+   ],
+   "Sein Flug um die Erde an Bord von Wostok 1 dauerte etwa 108 Minuten."
+  ],
+  "52": [
+   "Welche internationale Organisation wurde 1945 gegründet, um den Frieden zu sichern?",
+   "Die UNO",
+   [
+    "Die NATO",
+    "Der Völkerbund",
+    "Die UNESCO"
+   ],
+   "Die Vereinten Nationen ersetzten den Völkerbund, der nach 1918 gegründet worden war."
+  ],
+  "53": [
+   "Welche Epoche rascher Modernisierung begann 1868 in Japan?",
+   "Die Meiji-Zeit",
+   [
+    "Die Edo-Zeit",
+    "Die Showa-Zeit",
+    "Die Taisho-Zeit"
+   ],
+   "In wenigen Jahrzehnten bekam Japan Eisenbahnen, Fabriken und eine moderne Armee."
+  ],
+  "54": [
+   "Welches Land führte 1893 als erstes das Frauenwahlrecht ein?",
+   "Neuseeland",
+   [
+    "Finnland",
+    "Australien",
+    "Norwegen"
+   ],
+   "Die Aktivistin Kate Sheppard führte diesen Kampf an; ihr Porträt ist auf dem neuseeländischen 10-Dollar-Schein zu sehen."
+  ],
+  "55": [
+   "In welchem Jahr wurde der Suezkanal eröffnet?",
+   "1869",
+   [
+    "1859",
+    "1882",
+    "1914"
+   ],
+   "Der Kanal verbindet das Mittelmeer mit dem Roten Meer, sodass Schiffe nicht mehr um Afrika herumfahren müssen."
+  ],
+  "56": [
+   "Wer erfand um 1450 in Europa den Buchdruck mit beweglichen Lettern?",
+   "Gutenberg",
+   [
+    "Galilei",
+    "Newton",
+    "Leonardo da Vinci"
+   ],
+   "Vor ihm wurden Bücher von Hand abgeschrieben, was Monate dauern konnte."
+  ],
+  "57": [
+   "In welchem Land wurde das Papier erfunden?",
+   "China",
+   [
+    "Ägypten",
+    "Indien",
+    "Griechenland"
+   ],
+   "Die Erfindung wird Cai Lun um das Jahr 105 zugeschrieben; die Ägypter schrieben auf Papyrus."
+  ],
+  "58": [
+   "Welche Brüder schafften 1903 den ersten Motorflug?",
+   "Die Brüder Wright",
+   [
+    "Die Brüder Lumière",
+    "Die Brüder Montgolfier",
+    "Die Brüder Renault"
+   ],
+   "Dieser erste Flug in den USA dauerte nur 12 Sekunden."
+  ],
+  "59": [
+   "Wer meldete 1876 das Patent für das Telefon an?",
+   "Alexander Graham Bell",
+   [
+    "Thomas Edison",
+    "Guglielmo Marconi",
+    "Samuel Morse"
+   ],
+   "Der Legende nach lautete sein erster Satz am Telefon: „Mr. Watson, kommen Sie her, ich möchte Sie sehen.“"
+  ],
+  "60": [
+   "Welcher amerikanische Erfinder entwickelte 1879 eine langlebige Glühbirne?",
+   "Thomas Edison",
+   [
+    "Alexander Graham Bell",
+    "Nikola Tesla",
+    "Alessandro Volta"
+   ],
+   "Zur gleichen Zeit arbeitete auch der Engländer Joseph Swan an einer Glühlampe."
+  ],
+  "61": [
+   "Welches in China erfundene Gerät zeigt mit einer magnetischen Nadel nach Norden?",
+   "Der Kompass",
+   [
+    "Der Sextant",
+    "Das Astrolabium",
+    "Das Fernrohr"
+   ],
+   "Mit dem Kompass konnten Seeleute sich auch bei bewölktem Himmel orientieren."
+  ],
+  "62": [
+   "Welche Brüder führten 1895 den Kinematographen öffentlich vor?",
+   "Die Brüder Lumière",
+   [
+    "Die Brüder Pathé",
+    "Die Brüder Wright",
+    "Die Brüder Montgolfier"
+   ],
+   "Einer ihrer ersten Filme zeigte die Ankunft eines Zuges im Bahnhof von La Ciotat."
+  ],
+  "63": [
+   "Welcher Forscher entdeckte 1928 das Penicillin, das erste Antibiotikum?",
+   "Alexander Fleming",
+   [
+    "Louis Pasteur",
+    "Marie Curie",
+    "Robert Koch"
+   ],
+   "Er entdeckte es zufällig – dank eines Schimmelpilzes, der in einer seiner Kulturschalen gewachsen war."
+  ],
+  "64": [
+   "Welcher italienische Forscher erfand 1800 die elektrische Batterie?",
+   "Alessandro Volta",
+   [
+    "André-Marie Ampère",
+    "Luigi Galvani",
+    "Michael Faraday"
+   ],
+   "Die Einheit der elektrischen Spannung, das Volt, ist nach ihm benannt."
+  ],
+  "65": [
+   "Welche Maschine, von James Watt verbessert, löste die Industrielle Revolution aus?",
+   "Die Dampfmaschine",
+   [
+    "Der Webstuhl",
+    "Der Elektromotor",
+    "Der Verbrennungsmotor"
+   ],
+   "Die Einheit der Leistung, das Watt, wurde ihm zu Ehren benannt."
+  ],
+  "66": [
+   "Welcher Forscher führte 1885 die erste Impfung gegen Tollwut durch?",
+   "Louis Pasteur",
+   [
+    "Edward Jenner",
+    "Robert Koch",
+    "Alexander Fleming"
+   ],
+   "Er rettete den 9-jährigen Joseph Meister, der von einem tollwütigen Hund gebissen worden war."
+  ],
+  "67": [
+   "Wer erfand 1989 am CERN das World Wide Web?",
+   "Tim Berners-Lee",
+   [
+    "Bill Gates",
+    "Steve Jobs",
+    "Vint Cerf"
+   ],
+   "Die erste Website der Geschichte ging 1991 am CERN bei Genf online."
+  ],
+  "68": [
+   "Welcher italienische Erfinder und Nobelpreisträger von 1909 war ein Pionier des Funks?",
+   "Guglielmo Marconi",
+   [
+    "Antonio Meucci",
+    "Alessandro Volta",
+    "Luigi Galvani"
+   ],
+   "1901 gelang es ihm, ein Funksignal über den Atlantik zu senden."
+  ],
+  "69": [
+   "Welcher deutsche Ingenieur meldete 1886 eines der ersten Automobile mit Benzinmotor zum Patent an?",
+   "Carl Benz",
+   [
+    "Gottlieb Daimler",
+    "Rudolf Diesel",
+    "Ferdinand Porsche"
+   ],
+   "1888 unternahm seine Frau Bertha Benz die erste Fernfahrt mit einem Automobil, rund 100 km."
+  ]
+ }
+}

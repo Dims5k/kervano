@@ -1,6 +1,8 @@
 # La Caravane du Savoir
 
-Jeu de plateau et quiz sur l'islam à jouer en famille sur un seul téléphone : Duo, Carré ou Cash, cases spéciales, réponse au micro.
+Jeu de plateau-quiz à jouer en famille (sur un téléphone ou en ligne), en 6 langues. Thèmes au choix à l'accueil : Islam, Christianisme, Judaïsme, Histoire, Géographie, Sciences et nature, Maths et logique, Culture générale.
+
+Les thèmes autres que l'islam sont dans `packs/<thème>.json` (français) et `packs/<thème>.<langue>.json` (traductions). Vérifier un pack : `node packs/check.js packs/histoire.json packs/histoire.en.json`.
 
 Jouer : https://dims5k.github.io/Quizz-islam/
 

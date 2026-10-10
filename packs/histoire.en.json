@@ -1,0 +1,711 @@
+{
+ "cats": {
+  "hi_anti": "Antiquity",
+  "hi_moyen": "Middle Ages",
+  "hi_moderne": "Early Modern Era",
+  "hi_contemp": "19th and 20th centuries",
+  "hi_inventions": "Great inventions"
+ },
+ "q": {
+  "0": [
+   "In which country are the pyramids of Giza?",
+   "Egypt",
+   [
+    "Mexico",
+    "Greece",
+    "Iraq"
+   ],
+   "The Great Pyramid of Khufu is the only one of the Seven Wonders of the Ancient World still standing."
+  ],
+  "1": [
+   "What title did the kings of ancient Egypt hold?",
+   "Pharaoh",
+   [
+    "Tsar",
+    "Shah",
+    "Khan"
+   ],
+   "The word “pharaoh” comes from the Egyptian “per-aa”, meaning “great house”, in other words the palace."
+  ],
+  "2": [
+   "Where in Greece were the ancient Olympic Games held?",
+   "Olympia",
+   [
+    "Athens",
+    "Sparta",
+    "Delphi"
+   ],
+   "According to tradition, the first Olympic Games took place in 776 BC."
+  ],
+  "3": [
+   "In which country is the Great Wall?",
+   "China",
+   [
+    "Japan",
+    "India",
+    "Mongolia"
+   ],
+   "Its earliest sections are more than 2,000 years old, but most of what you can see today dates from the Ming dynasty."
+  ],
+  "4": [
+   "What were the fighters who battled in Roman arenas called?",
+   "Gladiators",
+   [
+    "Knights",
+    "Samurai",
+    "Musketeers"
+   ],
+   "The Colosseum in Rome could hold about 50,000 spectators who came to watch the gladiators."
+  ],
+  "5": [
+   "What is the ancient Egyptian writing made of little pictures called?",
+   "Hieroglyphs",
+   [
+    "Cuneiform",
+    "Runes",
+    "Ideograms"
+   ],
+   "Champollion managed to decipher them in 1822 thanks to the Rosetta Stone."
+  ],
+  "6": [
+   "Which Carthaginian general crossed the Alps with elephants to attack Rome?",
+   "Hannibal",
+   [
+    "Spartacus",
+    "Vercingetorix",
+    "Jugurtha"
+   ],
+   "He crossed the Alps in 218 BC during the Second Punic War."
+  ],
+  "7": [
+   "On which hill in Athens does the Parthenon stand?",
+   "Acropolis",
+   [
+    "Agora",
+    "Palatine",
+    "Olympus"
+   ],
+   "The Parthenon, built in the 5th century BC, was dedicated to the goddess Athena."
+  ],
+  "8": [
+   "Which king of Macedon conquered the Persian Empire all the way to India?",
+   "Alexander the Great",
+   [
+    "Philip II",
+    "Darius I",
+    "Pericles"
+   ],
+   "A pupil of the philosopher Aristotle, he founded many cities, including Alexandria in Egypt."
+  ],
+  "9": [
+   "Which people of Mesopotamia invented cuneiform writing?",
+   "The Sumerians",
+   [
+    "The Egyptians",
+    "The Phoenicians",
+    "The Hittites"
+   ],
+   "These wedge-shaped signs were pressed into clay tablets more than 5,000 years ago."
+  ],
+  "10": [
+   "Which volcano buried the Roman city of Pompeii in 79 AD?",
+   "Vesuvius",
+   [
+    "Etna",
+    "Stromboli",
+    "Pinatubo"
+   ],
+   "The ash preserved the city so well that you can still see its streets, frescoes and bakeries."
+  ],
+  "11": [
+   "Which emperor unified China in 221 BC and was buried with an army made of clay?",
+   "Qin Shi Huang",
+   [
+    "Liu Bang",
+    "Emperor Wu of Han",
+    "Kangxi"
+   ],
+   "His Terracotta Army has several thousand soldiers, each with a different face."
+  ],
+  "12": [
+   "Which seafaring people created the alphabet that the Greek and Latin alphabets come from?",
+   "The Phoenicians",
+   [
+    "The Etruscans",
+    "The Sumerians",
+    "The Hittites"
+   ],
+   "The Phoenicians came from the coast of what is now Lebanon and traded all over the Mediterranean."
+  ],
+  "13": [
+   "Which king of Babylon is famous for his code of laws carved on a stone slab?",
+   "Hammurabi",
+   [
+    "Nebuchadnezzar II",
+    "Sargon of Akkad",
+    "Ashurbanipal"
+   ],
+   "This basalt stele, about 3,750 years old, is now on display at the Louvre in Paris."
+  ],
+  "14": [
+   "Which Scandinavian people sailed in longships?",
+   "The Vikings",
+   [
+    "The Celts",
+    "The Huns",
+    "The Mongols"
+   ],
+   "The Vikings sailed as far as Iceland, Greenland and even North America."
+  ],
+  "15": [
+   "What do we call the walled fortress where a medieval lord lived?",
+   "A castle",
+   [
+    "A palace",
+    "A manor house",
+    "A rampart"
+   ],
+   "Many castles were protected by a moat and a drawbridge."
+  ],
+  "16": [
+   "What were the noble sword-carrying warriors of old Japan called?",
+   "Samurai",
+   [
+    "Knights",
+    "Gladiators",
+    "Cossacks"
+   ],
+   "The samurai followed a code of honour called bushido, “the way of the warrior”."
+  ],
+  "17": [
+   "Which Venetian merchant travelled to China, to the court of Kublai Khan?",
+   "Marco Polo",
+   [
+    "Christopher Columbus",
+    "Vasco da Gama",
+    "Magellan"
+   ],
+   "The account of his journey, “The Travels of Marco Polo”, inspired generations of explorers."
+  ],
+  "18": [
+   "Which leader founded the Mongol Empire, the largest connected land empire ever?",
+   "Genghis Khan",
+   [
+    "Attila",
+    "Tamerlane",
+    "Kublai Khan"
+   ],
+   "His real name was Temüjin; “Genghis Khan” is a title meaning “universal ruler”."
+  ],
+  "19": [
+   "Which king of the Franks became emperor in the year 800?",
+   "Charlemagne",
+   [
+    "Clovis",
+    "Pepin the Short",
+    "Charles Martel"
+   ],
+   "His empire covered much of today’s France, Belgium, the Netherlands, Germany and Italy."
+  ],
+  "20": [
+   "Which ruler of the Mali Empire is famous for his enormous wealth in gold?",
+   "Mansa Musa",
+   [
+    "Sundiata Keita",
+    "Sonni Ali",
+    "Askia Muhammad"
+   ],
+   "He appears on the Catalan Atlas of 1375 holding a gold nugget."
+  ],
+  "21": [
+   "Which epidemic killed a huge part of Europe’s population in the mid-14th century?",
+   "The Black Death",
+   [
+    "Cholera",
+    "Smallpox",
+    "Spanish flu"
+   ],
+   "Between 1347 and 1352, it killed between a third and a half of Europe’s population."
+  ],
+  "22": [
+   "Which city was the capital of the Byzantine Empire?",
+   "Constantinople",
+   [
+    "Rome",
+    "Athens",
+    "Alexandria"
+   ],
+   "This city on the Bosphorus is now called Istanbul."
+  ],
+  "23": [
+   "Which English charter of 1215 limited the king’s powers for the first time?",
+   "Magna Carta",
+   [
+    "The Bill of Rights",
+    "The Habeas Corpus Act",
+    "The Petition of Right"
+   ],
+   "King John was forced to seal it by his rebellious barons."
+  ],
+  "24": [
+   "Which civilisation built the city of Chichén Itzá in Mexico?",
+   "The Maya",
+   [
+    "The Aztecs",
+    "The Incas",
+    "The Olmecs"
+   ],
+   "Its great pyramid, El Castillo, has 365 steps in total, one for each day of the year."
+  ],
+  "25": [
+   "In what year did William the Conqueror win the Battle of Hastings?",
+   "1066",
+   [
+    "1054",
+    "1099",
+    "1215"
+   ],
+   "This conquest of England is told on the famous Bayeux Tapestry, nearly 70 metres long."
+  ],
+  "26": [
+   "Which Viking explorer reached North America around the year 1000?",
+   "Leif Erikson",
+   [
+    "Erik the Red",
+    "Ragnar Lodbrok",
+    "Harald Bluetooth"
+   ],
+   "The remains of a Viking village were found at L’Anse aux Meadows in Newfoundland, Canada."
+  ],
+  "27": [
+   "Which medieval city in southern Africa, with great stone walls, gave its name to a country?",
+   "Great Zimbabwe",
+   [
+    "Aksum",
+    "Timbuktu",
+    "Meroë"
+   ],
+   "“Zimbabwe” is thought to mean “houses of stone” in the Shona language."
+  ],
+  "28": [
+   "Which explorer reached the Americas in 1492?",
+   "Christopher Columbus",
+   [
+    "Magellan",
+    "Vasco da Gama",
+    "Amerigo Vespucci"
+   ],
+   "He thought he had reached the Indies, which is why the peoples of the Americas were called “Indians”."
+  ],
+  "29": [
+   "Which artist painted the Mona Lisa?",
+   "Leonardo da Vinci",
+   [
+    "Michelangelo",
+    "Raphael",
+    "Botticelli"
+   ],
+   "Leonardo da Vinci was also an engineer and drew designs for flying machines."
+  ],
+  "30": [
+   "Which French king, known as the Sun King, enlarged the Palace of Versailles?",
+   "Louis XIV",
+   [
+    "Louis XIII",
+    "Louis XV",
+    "Louis XVI"
+   ],
+   "His 72-year reign is one of the longest in European history."
+  ],
+  "31": [
+   "What is the great artistic movement that began in Italy in the 15th century called?",
+   "The Renaissance",
+   [
+    "The Enlightenment",
+    "Romanticism",
+    "The Baroque"
+   ],
+   "The name comes from the idea of a “rebirth” of the art and learning of the ancient world."
+  ],
+  "32": [
+   "In what year was the Bastille stormed in Paris?",
+   "1789",
+   [
+    "1776",
+    "1799",
+    "1815"
+   ],
+   "14 July, the day the Bastille was stormed, became France’s national day."
+  ],
+  "33": [
+   "What were the Spanish and Portuguese conquerors of the Americas called?",
+   "Conquistadors",
+   [
+    "Musketeers",
+    "Privateers",
+    "Samurai"
+   ],
+   "“Conquistador” simply means “conqueror” in Spanish."
+  ],
+  "34": [
+   "Which Portuguese navigator opened the sea route to India in 1498?",
+   "Vasco da Gama",
+   [
+    "Bartolomeu Dias",
+    "Magellan",
+    "Pedro Álvares Cabral"
+   ],
+   "He sailed around Africa via the Cape of Good Hope to reach Calicut in India."
+  ],
+  "35": [
+   "Which Spanish conquistador conquered the Inca Empire?",
+   "Francisco Pizarro",
+   [
+    "Hernán Cortés",
+    "Vasco Núñez de Balboa",
+    "Diego de Almagro"
+   ],
+   "He captured the Inca emperor Atahualpa in 1532 with fewer than 200 men."
+  ],
+  "36": [
+   "Which navigator led the first expedition around the world, setting off in 1519?",
+   "Ferdinand Magellan",
+   [
+    "James Cook",
+    "Francis Drake",
+    "Vasco da Gama"
+   ],
+   "Magellan died on the way, in the Philippines; Juan Sebastián Elcano brought the last ship home in 1522."
+  ],
+  "37": [
+   "In what year did the United States proclaim its Declaration of Independence?",
+   "1776",
+   [
+    "1783",
+    "1789",
+    "1765"
+   ],
+   "It was adopted on 4 July, now the American national holiday."
+  ],
+  "38": [
+   "Which Polish astronomer claimed that the Earth goes around the Sun?",
+   "Nicolaus Copernicus",
+   [
+    "Galileo",
+    "Johannes Kepler",
+    "Tycho Brahe"
+   ],
+   "His book on the movement of the heavenly bodies was published in 1543, the year he died."
+  ],
+  "39": [
+   "Mexico City was built on the ruins of which Aztec city?",
+   "Tenochtitlan",
+   [
+    "Teotihuacan",
+    "Tikal",
+    "Cusco"
+   ],
+   "Tenochtitlan was built on an island in the middle of a lake, linked to land by causeways."
+  ],
+  "40": [
+   "Which family of shoguns ruled Japan from 1603 to 1867?",
+   "The Tokugawa",
+   [
+    "The Minamoto",
+    "The Ashikaga",
+    "The Oda"
+   ],
+   "During this period, Japan closed its borders to foreigners almost completely."
+  ],
+  "41": [
+   "Which tsar founded the city of Saint Petersburg in 1703?",
+   "Peter the Great",
+   [
+    "Ivan the Terrible",
+    "Catherine II",
+    "Alexander I"
+   ],
+   "He travelled around Europe in disguise and even worked in a shipyard in the Netherlands."
+  ],
+  "42": [
+   "Which French emperor was defeated at Waterloo in 1815?",
+   "Napoleon I",
+   [
+    "Napoleon III",
+    "Louis XVIII",
+    "Charles X"
+   ],
+   "The battle took place near Brussels, in Belgium; Napoleon was then exiled to the island of Saint Helena."
+  ],
+  "43": [
+   "Who was the first man to walk on the Moon, in 1969?",
+   "Neil Armstrong",
+   [
+    "Buzz Aldrin",
+    "Yuri Gagarin",
+    "John Glenn"
+   ],
+   "He said: “That’s one small step for man, one giant leap for mankind.”"
+  ],
+  "44": [
+   "Which city was split in two by a wall that fell in 1989?",
+   "Berlin",
+   [
+    "Vienna",
+    "Bonn",
+    "Munich"
+   ],
+   "The Berlin Wall divided the city for 28 years, from 1961 to 1989."
+  ],
+  "45": [
+   "In what year did the Second World War end?",
+   "1945",
+   [
+    "1944",
+    "1946",
+    "1918"
+   ],
+   "In Europe the war ended on 8 May 1945, and in Asia on 2 September 1945."
+  ],
+  "46": [
+   "Which Indian leader led the fight for India’s independence through non-violence?",
+   "Gandhi",
+   [
+    "Nehru",
+    "Tagore",
+    "Subhas Chandra Bose"
+   ],
+   "He was nicknamed “Mahatma”, which means “great soul”."
+  ],
+  "47": [
+   "Which ocean liner sank in 1912 after hitting an iceberg?",
+   "The Titanic",
+   [
+    "The Lusitania",
+    "The Britannic",
+    "The Olympic"
+   ],
+   "It was said to be unsinkable; it went down on its very first voyage."
+  ],
+  "48": [
+   "In what year did the First World War begin?",
+   "1914",
+   [
+    "1912",
+    "1916",
+    "1918"
+   ],
+   "Belgium, a neutral country, was invaded as early as August 1914."
+  ],
+  "49": [
+   "Which South African anti-apartheid activist spent 27 years in prison?",
+   "Nelson Mandela",
+   [
+    "Desmond Tutu",
+    "Steve Biko",
+    "Kofi Annan"
+   ],
+   "Released in 1990, he became South Africa’s first Black president in 1994."
+  ],
+  "50": [
+   "Which US president led the North during the American Civil War?",
+   "Abraham Lincoln",
+   [
+    "George Washington",
+    "Thomas Jefferson",
+    "Ulysses Grant"
+   ],
+   "He was assassinated in 1865, just days after the end of the war."
+  ],
+  "51": [
+   "Who was the first person to travel into space, in 1961?",
+   "Yuri Gagarin",
+   [
+    "Alexei Leonov",
+    "John Glenn",
+    "Gherman Titov"
+   ],
+   "His flight around the Earth aboard Vostok 1 lasted about 108 minutes."
+  ],
+  "52": [
+   "Which international organisation was created in 1945 to keep the peace?",
+   "The UN",
+   [
+    "NATO",
+    "The League of Nations",
+    "UNESCO"
+   ],
+   "The United Nations replaced the League of Nations, created after 1918."
+  ],
+  "53": [
+   "Which era of rapid modernisation in Japan began in 1868?",
+   "The Meiji era",
+   [
+    "The Edo period",
+    "The Showa era",
+    "The Taisho era"
+   ],
+   "Within a few decades, Japan had railways, factories and a modern army."
+  ],
+  "54": [
+   "Which country was the first to give women the right to vote, in 1893?",
+   "New Zealand",
+   [
+    "Finland",
+    "Australia",
+    "Norway"
+   ],
+   "Campaigner Kate Sheppard led this fight; her portrait is on the New Zealand 10-dollar note."
+  ],
+  "55": [
+   "In what year was the Suez Canal opened?",
+   "1869",
+   [
+    "1859",
+    "1882",
+    "1914"
+   ],
+   "This canal links the Mediterranean Sea to the Red Sea, so ships no longer need to sail around Africa."
+  ],
+  "56": [
+   "Who invented movable-type printing in Europe around 1450?",
+   "Gutenberg",
+   [
+    "Galileo",
+    "Newton",
+    "Leonardo da Vinci"
+   ],
+   "Before him, books were copied by hand, which could take months."
+  ],
+  "57": [
+   "In which country was paper invented?",
+   "China",
+   [
+    "Egypt",
+    "India",
+    "Greece"
+   ],
+   "Its invention is credited to Cai Lun around the year 105; the Egyptians wrote on papyrus."
+  ],
+  "58": [
+   "Which brothers made the first powered aeroplane flight in 1903?",
+   "The Wright brothers",
+   [
+    "The Lumière brothers",
+    "The Montgolfier brothers",
+    "The Renault brothers"
+   ],
+   "This first flight, in the United States, lasted only 12 seconds."
+  ],
+  "59": [
+   "Who patented the telephone in 1876?",
+   "Alexander Graham Bell",
+   [
+    "Thomas Edison",
+    "Guglielmo Marconi",
+    "Samuel Morse"
+   ],
+   "According to legend, his first words on the telephone were: “Mr Watson, come here, I want to see you.”"
+  ],
+  "60": [
+   "Which American inventor developed a long-lasting electric light bulb in 1879?",
+   "Thomas Edison",
+   [
+    "Alexander Graham Bell",
+    "Nikola Tesla",
+    "Alessandro Volta"
+   ],
+   "At the same time, the Englishman Joseph Swan was also working on an incandescent bulb."
+  ],
+  "61": [
+   "Which instrument invented in China uses a magnetised needle to point north?",
+   "The compass",
+   [
+    "The sextant",
+    "The astrolabe",
+    "The telescope"
+   ],
+   "The compass let sailors find their way even when the sky was cloudy."
+  ],
+  "62": [
+   "Which brothers showed the cinematograph to the public in 1895?",
+   "The Lumière brothers",
+   [
+    "The Pathé brothers",
+    "The Wright brothers",
+    "The Montgolfier brothers"
+   ],
+   "One of their first films showed a train arriving at La Ciotat station."
+  ],
+  "63": [
+   "Which scientist discovered penicillin, the first antibiotic, in 1928?",
+   "Alexander Fleming",
+   [
+    "Louis Pasteur",
+    "Marie Curie",
+    "Robert Koch"
+   ],
+   "He discovered it by chance, thanks to a mould that had grown in one of his culture dishes."
+  ],
+  "64": [
+   "Which Italian scientist invented the electric battery in 1800?",
+   "Alessandro Volta",
+   [
+    "André-Marie Ampère",
+    "Luigi Galvani",
+    "Michael Faraday"
+   ],
+   "The unit of electrical voltage, the volt, is named after him."
+  ],
+  "65": [
+   "Which machine, improved by James Watt, launched the Industrial Revolution?",
+   "The steam engine",
+   [
+    "The power loom",
+    "The electric motor",
+    "The petrol engine"
+   ],
+   "The unit of power, the watt, was named in his honour."
+  ],
+  "66": [
+   "Which scientist carried out the first vaccination against rabies in 1885?",
+   "Louis Pasteur",
+   [
+    "Edward Jenner",
+    "Robert Koch",
+    "Alexander Fleming"
+   ],
+   "He saved a 9-year-old boy, Joseph Meister, who had been bitten by a rabid dog."
+  ],
+  "67": [
+   "Who invented the World Wide Web at CERN in 1989?",
+   "Tim Berners-Lee",
+   [
+    "Bill Gates",
+    "Steve Jobs",
+    "Vint Cerf"
+   ],
+   "The first website in history went online at CERN, near Geneva, in 1991."
+  ],
+  "68": [
+   "Which Italian inventor, winner of the 1909 Nobel Prize, was a pioneer of radio?",
+   "Guglielmo Marconi",
+   [
+    "Antonio Meucci",
+    "Alessandro Volta",
+    "Luigi Galvani"
+   ],
+   "In 1901, he managed to send a radio signal across the Atlantic Ocean."
+  ],
+  "69": [
+   "Which German engineer patented one of the first petrol-powered cars in 1886?",
+   "Carl Benz",
+   [
+    "Gottlieb Daimler",
+    "Rudolf Diesel",
+    "Ferdinand Porsche"
+   ],
+   "In 1888, his wife Bertha Benz made the first long-distance car journey, about 100 km."
+  ]
+ }
+}
