@@ -202,6 +202,12 @@ button{touch-action:manipulation}
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <defs>
+    <symbol id="tok0" viewBox="0 0 40 40"><path d="M27 5A16 16 0 1 0 27 35A12.5 12.5 0 1 1 27 5Z"/></symbol>
+    <symbol id="tok1" viewBox="0 0 40 40"><path d="M18 2h4v3h-4zM13 6h14l3 5H10zM12 12h16v15l-3 4H15l-3-4zM14 32h12v4H14z"/><path d="M16 14h8v12h-8z" fill="#FFE6A8" opacity=".85"/></symbol>
+    <symbol id="tok2" viewBox="0 0 40 40"><path d="M20 1l4.5 8h-9zM17 9h6v6h-6zM13 15h14v3H13zM16 18h8v16h-8zM11 34h18v4H11z"/></symbol>
+    <symbol id="tok3" viewBox="0 0 40 40"><path d="M10 4h19a3 3 0 0 1 3 3v27a2 2 0 0 1-2 2H11a3 3 0 0 1-3-3V6a2 2 0 0 1 2-2z"/><path d="M12 31h17" stroke="#FFF6E0" stroke-width="1.6" fill="none"/><path d="M20 12l2.2 4.4 4.8.7-3.5 3.4.8 4.8-4.3-2.3-4.3 2.3.8-4.8-3.5-3.4 4.8-.7z" fill="#FFF6E0" opacity=".85"/></symbol>
+    <symbol id="tok4" viewBox="0 0 40 40"><circle cx="20.0" cy="5.0" r="2.7"/><circle cx="24.8" cy="6.1" r="2.7"/><circle cx="28.6" cy="9.1" r="2.7"/><circle cx="30.7" cy="13.6" r="2.7"/><circle cx="30.7" cy="18.4" r="2.7"/><circle cx="28.6" cy="22.9" r="2.7"/><circle cx="24.8" cy="25.9" r="2.7"/><circle cx="20.0" cy="27.0" r="2.7"/><circle cx="15.2" cy="25.9" r="2.7"/><circle cx="11.4" cy="22.9" r="2.7"/><circle cx="9.3" cy="18.4" r="2.7"/><circle cx="9.3" cy="13.6" r="2.7"/><circle cx="11.4" cy="9.1" r="2.7"/><circle cx="15.2" cy="6.1" r="2.7"/><circle cx="20" cy="29" r="3.4"/><path d="M18.5 31h3l1.5 7h-6z"/></symbol>
+    <symbol id="tok5" viewBox="0 0 40 40"><polygon points="20.0,4.0 24.7,8.6 31.3,8.7 31.4,15.3 36.0,20.0 31.4,24.7 31.3,31.3 24.7,31.4 20.0,36.0 15.3,31.4 8.7,31.3 8.6,24.7 4.0,20.0 8.6,15.3 8.7,8.7 15.3,8.6"/></symbol>
     <symbol id="camel" viewBox="0 0 40 32"><path d="M3 30.5 5.5 20c-2.2-3.6-.8-8.6 4-8.8h2.2c1.2-5.4 6.4-7.4 9.4-3.3 2.2-4.1 7.2-3.4 8.2 1.6l2.6 2.2c.8-3.6 3-6.4 5.4-5.6l1.4 2.6c-1.8.2-2.8 1.6-3 4.4l-.8 5.4.8 12h-3l-1-9.4-3.6.8-.6 8.6h-3l-.4-8.6H14.6l-.8 8.6h-3l-.4-9.6-2.2 1.4-.8 8.2Z"/></symbol>
     <symbol id="palm" viewBox="0 0 40 60"><path d="M21 58c-1-14 0-26 3-36" stroke="#6B4526" stroke-width="3.2" fill="none" stroke-linecap="round"/><g fill="#3E8C4A"><path d="M24 22c-6-8-14-9-20-6 7 0 13 2 20 6Z"/><path d="M24 22c-2-9 3-16 11-18-5 5-8 11-11 18Z"/><path d="M24 22c6-6 12-6 16-3-6 0-11 1-16 3Z"/><path d="M24 22c-8-3-15 0-18 6 6-4 12-5 18-6Z"/><path d="M24 22c4 3 8 9 8 15-3-6-5-10-8-15Z"/></g><circle cx="23" cy="23" r="2.2" fill="#8A5A2B"/></symbol>
     <symbol id="tent" viewBox="0 0 60 40"><path d="M2 38 30 4l28 34Z" fill="#E9D7B4" stroke="#6B4526" stroke-width="2"/><path d="M30 4 22 38h16Z" fill="#C0392B"/><path d="M12 26h36M8 31h44" stroke="#C98A1B" stroke-width="2"/></symbol>
@@ -291,7 +297,7 @@ const QDATA = [
 ["sira",2,"Quel traité a été conclu avec les Quraych en l'an 6 de l'Hégire ?","Le traité de Hudaybiyya",["Le traité de Médine","Le pacte de ʿAqaba","Le traité de Taïf"]],
 ["sira",2,"En quelle année de l'Hégire La Mecque a-t-elle été conquise ?","L'an 8",["L'an 2","L'an 5","L'an 10"]],
 ["sira",2,"Quel oncle du Prophète ﷺ est surnommé « le lion d'Allah » ?","Hamza",["al-ʿAbbâs","Abû Tâlib","Abû Lahab"]],
-["sira",2,"Où est enterré le Prophète ﷺ ?","À Médine, dans sa mosquée",["À La Mecque","À Jérusalem","À Taïf"]],
+["sira",2,"Où est enterré le Prophète ﷺ ?","À Médine, dans la chambre de ʿÂ'icha",["À La Mecque","À Jérusalem","À Taïf"],"Les prophètes sont enterrés là où ils meurent. Cette chambre a été intégrée plus tard à l'agrandissement de la mosquée."],
 ["sira",2,"Dans quel pays des musulmans ont-ils trouvé refuge avant l'Hégire ?","L'Abyssinie (Éthiopie)",["L'Égypte","Le Yémen","La Perse"],"Ils y furent protégés par le roi chrétien, an-Najâchî."],
 ["sira",2,"Quelle fut la première mosquée construite par le Prophète ﷺ ?","La mosquée de Qubâ'",["La mosquée d'Al-Aqsâ","La mosquée du Prophète","La mosquée de ʿArafa"]],
 ["sira",2,"Comment s'appelle l'année où le Prophète ﷺ a perdu Khadîja et Abû Tâlib ?","L'année de la tristesse",["L'année de l'Éléphant","L'année de la victoire","L'année des délégations"]],
@@ -475,7 +481,7 @@ const QDATA = [
 ["adab",2,"Quelqu'un te fait du mal. Que conseille le Coran (41:34) ?","Repousser le mal par ce qui est meilleur",["Rendre la pareille", "Se venger en secret", "Couper définitivement les ponts"]],
 ["adab",2,"Tu es en voyage. Quel allègement est permis pour les prières de 4 rakʿa ?","Les raccourcir à 2 rakʿa",["Ne plus les prier", "Les prier sans ablutions", "Les remplacer par une aumône"],"Le Maghrib (3 rakʿa) et le Fajr (2 rakʿa) ne se raccourcissent pas."],
 ["adab",2,"Tu t'es endormi et tu as raté la prière du Fajr. Que fais-tu ?","Je la prie dès que je me réveille",["Je la laisse tomber", "Je la prie le lendemain avec l'autre Fajr", "Je prie deux fois le Dhuhr"]],
-["adab",2,"Avec quel pied entre-t-on dans les toilettes, selon la sunna ?","Le pied gauche",["Le pied droit", "Les deux pieds joints", "Peu importe"]],
+["adab",2,"Avec quel pied les savants recommandent-ils d'entrer dans les toilettes ?","Le pied gauche",["Le pied droit", "Les deux pieds joints", "Peu importe"],"Le droit est réservé à ce qui est noble (mosquée, chaussures…), le gauche à l'inverse. On dit en entrant : « Allâhumma innî aʿûdhu bika mina l-khubuthi wa l-khabâ'ith » (Bukhârî, Muslim)."],
 ["adab",2,"Quelqu'un te fait un cadeau. Que faisait le Prophète ﷺ ?","Il acceptait les cadeaux et offrait en retour",["Il refusait par politesse", "Il les donnait aussitôt à quelqu'un d'autre", "Il n'acceptait que la nourriture"]],
 ["adab",2,"Tu es invité au repas de mariage (walîma) d'un ami. Que recommande la sunna ?","Répondre à l'invitation",["Refuser pour ne pas déranger", "Venir seulement si c'est la famille", "Envoyer de l'argent à la place"]],
 ["adab",2,"« Aucun de vous ne croit vraiment tant qu'il n'aime pas pour son frère… »","… ce qu'il aime pour lui-même",["… plus de richesse que pour lui", "… la meilleure place à la mosquée", "… autant qu'il aime ses parents"]],
@@ -485,7 +491,7 @@ const QDATA = [
 ["adab",2,"Selon un hadith, quel verset récité avant de dormir protège jusqu'au matin ?","Âyat al-Kursî",["Le premier verset de Al-Fâtiha", "Le dernier verset de Al-Baqara seulement", "Le premier verset de Yâ-Sîn"]],
 ["adab",2,"Tu entres dans une mosquée en dehors de la prière en commun. Que recommande la sunna avant de t'asseoir ?","Prier 2 rakʿa (tahiyyat al-masjid)",["Faire le tawâf de la mosquée", "Réciter l'adhân", "Rien, on s'assoit directement"]],
 ["adab",2,"Que faut-il éviter quand quelqu'un est en train de prier ?","Passer juste devant lui",["Prier à côté de lui", "Lire le Coran dans la même pièce", "Faire ses ablutions"]],
-["adab",2,"Pendant le sermon (khutba) du vendredi, que doit-on faire ?","Écouter en silence",["Discuter à voix basse", "Lire ses messages", "Prier des rakʿa surérogatoires"]],
+["adab",2,"Pendant le sermon (khutba) du vendredi, que doit-on faire ?","Écouter en silence",["Discuter à voix basse", "Lire ses messages", "Dire « chut ! » à ceux qui parlent"],"Selon le hadith, même dire « tais-toi » à son voisin pendant la khutba est une parole vaine (Bukhârî, Muslim)."],
 ["adab",2,"« Le fort n'est pas celui qui terrasse les autres, mais celui qui… »","… se maîtrise quand il est en colère",["… prie toute la nuit", "… a le plus d'amis", "… gagne toutes les disputes"]],
 ["adab",2,"Que dit le Coran (7:31) à propos de la nourriture ?","Mangez et buvez, mais ne gaspillez pas",["Ne mangez qu'une fois par jour", "Jeûnez un jour sur deux", "Mangez autant que vous voulez"]],
 ["adab",2,"Selon le hadith, « n'est pas des nôtres » celui qui…","… n'a pas de pitié pour nos petits et ne respecte pas nos aînés",["… n'a pas fait le pèlerinage", "… ne parle pas arabe", "… n'habite pas près d'une mosquée"]],
@@ -551,8 +557,33 @@ const QDATA = [
 ["culture",1,"Que signifie « halâl » ?","Permis, licite",["Interdit", "Recommandé", "Sacré"]],
 ["culture",1,"Quelle viande est interdite aux musulmans ?","Le porc",["Le bœuf", "Le poulet", "Le mouton"]],
 ["culture",1,"Combien y a-t-il de grandes fêtes (ʿîd) dans l'année ?","2",["1", "3", "5"]],
-["culture",1,"Selon le hadith, combien de noms Allah a-t-Il ?","99",["33", "40", "100"]],
+["culture",1,"Selon le hadith, combien de noms d'Allah ouvrent le Paradis à celui qui les retient ?","99",["33", "40", "100"],"Allah a d'autres noms qu'Il garde dans Sa science : le hadith ne les limite pas à 99."],
 ["culture",2,"Que signifie « Ar-Rahmân » ?","Le Tout Miséricordieux",["Le Tout Puissant", "L'Unique", "Le Créateur"]],
+["adab",1,"Sur quel côté le Prophète ﷺ recommandait-il de se coucher pour dormir ?","Le côté droit",["Le côté gauche","Sur le ventre","Sur le dos"],"Avec l'invocation « Bismika Llâhumma amûtu wa ahyâ » (Bukhârî)."],
+["adab",1,"Avec quoi le Prophète ﷺ rompait-il son jeûne de préférence ?","Des dattes, sinon de l'eau",["Du lait","Du pain","Du miel"],"Il prenait des dattes fraîches, sinon sèches, sinon quelques gorgées d'eau (Abû Dâwûd, Tirmidhî)."],
+["adab",1,"Quel bâtonnet le Prophète ﷺ utilisait-il pour se nettoyer les dents ?","Le siwâk",["Le khôl","Le misbaha","Le henné"],"« Si je ne craignais pas de surcharger ma communauté, je leur aurais ordonné le siwâk à chaque prière » (Bukhârî, Muslim)."],
+["adab",1,"Par quel côté le Prophète ﷺ aimait-il commencer pour se chausser, se peigner et se purifier ?","Par la droite",["Par la gauche","Peu importe","Par le côté le plus proche"],"Rapporté par ʿÂ'icha (Bukhârî, Muslim)."],
+["adab",1,"Selon le hadith, la pudeur (al-hayâ') fait partie…","… de la foi",["… de la faiblesse","… de la timidité, à corriger","… des coutumes arabes"],"Bukhârî et Muslim."],
+["adab",1,"Que faire quand on entend l'appel à la prière (adhân) ?","Répéter les paroles du muezzin",["Continuer à parler","Monter le son de la musique","Rien de particulier"],"À « hayya ʿalâ s-salâh » et « hayya ʿalâ l-falâh », on dit « lâ hawla wa lâ quwwata illâ billâh » (Bukhârî, Muslim)."],
+["adab",2,"Comment le Prophète ﷺ buvait-il ?","En trois fois, en respirant hors du récipient",["D'une seule traite","En soufflant dans le verre pour le refroidir","De la main gauche"],"Il a interdit de souffler ou de respirer dans le récipient (Bukhârî, Muslim)."],
+["adab",2,"Quelle invocation dit-on en entrant dans la mosquée ?","« Allâhumma ftah lî abwâba rahmatik »",["« Allâhumma innî as'aluka min fadlik »","« Subhâna rabbiya l-aʿlâ »","« Rabbanâ âtinâ fî d-dunyâ hasana »"],"En sortant, on dit « Allâhumma innî as'aluka min fadlik » (Muslim)."],
+["adab",2,"Après chaque prière, que dit-on 33 fois chacun selon la sunna ?","Subhânallâh, Alhamdulillâh, Allâhu akbar",["Bismillâh, Inchâ'Allâh, Mâ châ' Allâh","Astaghfirullâh, Âmîn, Bismillâh","Allâhu akbar seulement, 99 fois"],"On complète la centaine par « Lâ ilâha illâ Llâhu wahdahu lâ charîka lah… » (Muslim)."],
+["adab",2,"Selon le hadith, quel est le meilleur rappel d'Allah (dhikr) ?","« Lâ ilâha illâ Llâh »",["« Subhânallâh »","« Mâ châ' Allâh »","« Bismillâh »"],"« Le meilleur dhikr est lâ ilâha illâ Llâh, et la meilleure invocation est alhamdulillâh » (Tirmidhî)."],
+["adab",2,"Comment le Prophète ﷺ mangeait-il ?","Avec trois doigts de la main droite, puis il se léchait les doigts",["Avec la main gauche","Debout en marchant","Très vite, sans parler à personne"],"Il a dit : « vous ne savez pas dans quelle partie de votre nourriture se trouve la baraka » (Muslim)."],
+["adab",2,"Selon la sunna, qui doit saluer en premier ?","Le plus jeune salue le plus âgé, celui qui marche salue celui qui est assis",["Toujours le plus âgé","Celui qui a le plus de savoir","Celui qui est le plus riche"],"Et le petit groupe salue le grand groupe (Bukhârî)."],
+["adab",2,"Tu fais un mauvais rêve. Que recommande la sunna ?","Demander la protection d'Allah et ne le raconter à personne",["Le raconter à tout le monde","Le noter pour le faire interpréter","Ne plus dormir de la nuit"],"On souffle légèrement trois fois à sa gauche et on change de côté (Muslim)."],
+["adab",2,"Selon le hadith, la purification (at-tuhûr), c'est…","… la moitié de la foi",["… un simple détail","… réservée au vendredi","… le quart de la prière"],"Muslim."],
+["adab",2,"Il se met à pleuvoir. Que disait le Prophète ﷺ ?","« Allâhumma sayyiban nâfiʿâ » (une pluie bénéfique)",["« Innâ lillâhi wa innâ ilayhi râjiʿûn »","« Astaghfirullâh »","Rien, il rentrait vite"],"Bukhârî."],
+["adab",3,"Quelle prière surérogatoire le Prophète ﷺ ne délaissait jamais, même en voyage ?","Les 2 rakʿa avant le Fajr",["Les 4 rakʿa avant le ʿAsr","La prière du duhâ","Les 2 rakʿa après le Maghrib"],"« Elles valent mieux que ce bas monde et ce qu'il contient » (Muslim). Il ne délaissait pas non plus le witr."],
+["adab",3,"Selon le hadith, quelles trois choses profitent encore au défunt après sa mort ?","Une aumône continue, un savoir utile, un enfant pieux qui invoque pour lui",["Sa maison, son argent, sa voiture","Sa réputation, ses amis, sa tombe","Ses photos, ses habits, ses livres"],"Muslim."],
+["piliers",2,"Quels jours de la semaine le Prophète ﷺ jeûnait-il souvent ?","Le lundi et le jeudi",["Le vendredi et le samedi","Le mardi et le mercredi","Le dimanche seulement"],"« Les actes sont présentés à Allah ces jours-là » (Tirmidhî). Jeûner le vendredi seul est déconseillé."],
+["piliers",2,"Combien de jours de Chawwâl est-il recommandé de jeûner après le Ramadan ?","6 jours",["3 jours","10 jours","Tout le mois"],"« Comme s'il avait jeûné toute l'année » (Muslim)."],
+["piliers",3,"Quel jeûne volontaire efface les péchés de l'année passée et de l'année suivante ?","Le jeûne du jour de ʿArafa",["Le jeûne de ʿÂchûrâ'","Le jeûne du 27 Ramadan","Le jeûne du vendredi"],"Le jeûne de ʿÂchûrâ' efface ceux de l'année passée (Muslim). Il n'est pas recommandé pour le pèlerin à ʿArafa."],
+["sira",1,"Que faisait le Prophète ﷺ chez lui ?","Il aidait sa famille dans les tâches de la maison",["Il ne faisait rien","Il donnait seulement des ordres","Il ne rentrait que pour dormir"],"ʿÂ'icha : il raccommodait ses habits, réparait ses sandales et servait sa famille (Bukhârî, Ahmad)."],
+["sira",1,"Comment le Prophète ﷺ se comportait-il avec les enfants ?","Il les saluait et jouait avec eux avec douceur",["Il les ignorait","Il était toujours sévère","Il ne leur parlait jamais"],"Anas raconte qu'il saluait les enfants en passant (Bukhârî, Muslim)."],
+["sira",2,"Le Prophète ﷺ a-t-il déjà frappé une femme ou un serviteur ?","Jamais",["Une seule fois","Quand il était en colère","Seulement les serviteurs"],"ʿÂ'icha : il n'a jamais frappé de sa main ni femme ni serviteur (Muslim)."],
+["sira",2,"Anas a servi le Prophète ﷺ dix ans. Que dit-il de son comportement ?","Il ne lui a jamais dit « ouf ! » ni reproché quoi que ce soit",["Il le grondait souvent","Il ne lui parlait presque pas","Il le punissait en cas d'erreur"],"Bukhârî et Muslim."],
+
 ];
 
 (() => {
@@ -583,7 +614,9 @@ const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { c
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 const store = { get(k, d) { try { const v = localStorage.getItem("caravane:" + k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem("caravane:" + k, JSON.stringify(v)); } catch (e) {} }, del(k) { try { localStorage.removeItem("caravane:" + k); } catch (e) {} } };
 const camel = (c, w = 20) => `<svg viewBox="0 0 40 32" style="width:${w}px;height:${w * .8}px"><use href="#camel" fill="${c}"/></svg>`;
-const av = i => `<span class="av" style="background:${PCOL[i]}33">${camel(PCOL[i])}</span>`;
+const TOKN = ["Croissant", "Lanterne", "Minaret", "Livre", "Chapelet", "Étoile"];
+const tok = (i, w = 20) => `<svg viewBox="0 0 40 40" style="width:${w}px;height:${w}px" role="img" aria-label="${TOKN[i % 6]}"><use href="#tok${i % 6}" fill="${PCOL[i]}"/></svg>`;
+const av = i => `<span class="av" style="background:${PCOL[i]}33">${tok(i)}</span>`;
 
 /* ============ sons (synthétisés, aucun fichier) ============ */
 let actx = null, muted = store.get("muted", false);
@@ -757,7 +790,7 @@ function pawnOffset(i, pos) {
   const same = game.players.map((p, j) => [p, j]).filter(([p]) => p.pos === pos).map(([, j]) => j), k = same.indexOf(i), m = same.length;
   if (m <= 1) return [0, 0]; const a = (k / m) * Math.PI * 2; return [Math.cos(a) * geo.r * .55, Math.sin(a) * geo.r * .45];
 }
-function pawnDim() { const s = geo.r * 2.3; return [s, s * .8]; }
+function pawnDim() { const s = geo.r * 1.75; return [s, s]; }
 const PFLIP = {};
 function placePawn(i, x, y, h = 0, rot = 0, face) {
   const el = $("#pw" + i), sh = $("#ps" + i), [w, hh] = pawnDim();
@@ -769,7 +802,7 @@ function drawPawns() {
   const g = $("#pawns"); if (!g) return;
   const order = game.players.map((_, i) => i).filter(i => i !== game.cur).concat(game.cur), [w, hh] = pawnDim();
   g.innerHTML = order.map(i => `<div class="psh" id="ps${i}" style="width:${w * .92}px;height:${w * .26}px"></div>`).join("")
-    + order.map(i => `<div class="pw ${i === game.cur ? "cur" : ""}" id="pw${i}" style="width:${w}px;height:${hh}px"><div class="pbody"><svg viewBox="0 0 40 32" style="${PFLIP[i] ? "transform:scaleX(-1)" : ""}"><use href="#camel" fill="${PCOL[i]}" stroke="#FFF6E0" stroke-width="1.6" paint-order="stroke"/></svg></div></div>`).join("");
+    + order.map(i => `<div class="pw ${i === game.cur ? "cur" : ""}" id="pw${i}" style="width:${w}px;height:${hh}px"><div class="pbody"><svg viewBox="0 0 40 40"><use href="#tok${i % 6}" fill="${PCOL[i]}" stroke="#FFF6E0" stroke-width="2.2" paint-order="stroke"/></svg></div></div>`).join("");
   order.forEach(i => { const pt = geo.pts[game.players[i].pos], [ox, oy] = pawnOffset(i, game.players[i].pos); placePawn(i, pt.x + ox, pt.y + oy); });
 }
 function markDest(list) { w3dMarks(list); const g = $("#marks"); if (!g) return; g.innerHTML = (list || []).map(([i, c]) => { const p = geo.pts[i]; return `<circle class="pulse" cx="${p.x}" cy="${p.y}" r="${geo.r + 5}" fill="none" stroke="${c}" stroke-width="3.5"/>`; }).join(""); }
@@ -970,10 +1003,10 @@ async function w3dBuild() {
     const mm = new T.Mesh(gg, new T.MeshStandardMaterial({ map: dash, transparent: true, alphaTest: .4, roughness: .8, polygonOffset: true, polygonOffsetFactor: -3 })); mm.receiveShadow = true; scene.add(mm); });
   { const [ex, ez] = tileX(n - 1), [px2, pz2] = tileX(Math.max(0, n - 3)), dx = ex - px2, dz = ez - pz2, l = Math.hypot(dx, dz) || 1; W3D.cityX = ex + dx / l * 30; W3D.cityZ = ez + dz / l * 30; W3D.cityYaw = Math.atan2(-dx, -dz); }
   /* palmiers 3D (tronc + palmes), tous fusionnés en 2 objets */
-  const palmSpots = DECO.filter(d => d[0] === "palm").map(([, x, y, w]) => [(x + w / 2 - W / 2) * K3, (y + w * 1.45 - H / 2) * K3, .8 + w / 40]).filter(([x, z]) => dPath(x, z) > RW + 5);
+  const palmSpots = DECO.filter(d => d[0] === "palm").map(([, x, y, w]) => [(x + w / 2 - W / 2) * K3, (y + w * 1.45 - H / 2) * K3, .8 + w / 40]).filter(([x, z]) => dPath(x, z) > RW + 5 && z < BZ - 8);
   for (let k = 0, tries = 0; k < 40 && tries < 900; tries++) { const ang = h2(tries, 31) * 6.283, rad = 3 + h2(tries, 32) * 46, cl = Math.floor(h2(tries, 33) * 7), ca = cl / 7 * 6.283 + .4, cr = 26 + (cl % 3) * 9;
     const inner = k < 9, x = inner ? (h2(tries, 34) - .5) * 2 * (BX + 2) : Math.cos(ca) * cr + Math.cos(ang) * 6, z = inner ? (h2(tries, 35) - .5) * 2 * (BZ + 2) : Math.sin(ca) * cr * 1.3 + Math.sin(ang) * 6;
-    if (dPath(x, z) < RW + (inner ? 5.5 : 3.4) || Math.hypot(x - W3D.cityX, z - W3D.cityZ) < 42 || palmSpots.some(p => Math.hypot(p[0] - x, p[1] - z) < 3)) continue; palmSpots.push([x, z, .75 + h2(tries, 36) * .6]); k++; }
+    if (dPath(x, z) < RW + (inner ? 5.5 : 3.4) || (z > BZ - 6 && Math.abs(x) < BX + 8) || (z > 0 && dPath(x, z) < 9 && Math.abs(x) > BX - 4) || Math.hypot(x - W3D.cityX, z - W3D.cityZ) < 42 || palmSpots.some(p => Math.hypot(p[0] - x, p[1] - z) < 3)) continue; palmSpots.push([x, z, .75 + h2(tries, 36) * .6]); k++; }
   const trunkParts = [], frondParts = [], up = new T.Vector3(0, 1, 0);
   palmSpots.forEach(([px, pz, s], pi) => {
     const Ht = (6.5 + h2(pi, 41) * 4) * s, la = h2(pi, 42) * 6.283, lean = (.6 + h2(pi, 43) * 1.4) * s, base = hAt(px, pz) - .1, SEGS = 12; let prev = null, top = null;
@@ -1003,7 +1036,7 @@ async function w3dBuild() {
   /* tentes du départ */
   const stripe = ctex(cvs(256, 64, (g2, w2) => { for (let x = 0; x < w2; x += 32) { g2.fillStyle = (x / 32) % 2 ? "#E9D7B4" : "#B8382B"; g2.fillRect(x, 0, 32, 64); } }), 2, 1);
   const [sx, sz] = tileX(0);
-  [[-2.6, -3.4, 1.3], [1.6, -4.6, 1], [-6, -1.5, .85]].forEach(([dx, dz, s]) => { const t = new T.Mesh(new T.ConeGeometry(2.4 * s, 2.8 * s, 6, 1, true), new T.MeshStandardMaterial({ map: stripe, side: T.DoubleSide, roughness: .9 })); const x = sx + dx, z = sz + dz; t.position.set(x, hAt(x, z) + 1.4 * s, z); t.castShadow = t.receiveShadow = true; scene.add(t); });
+  [[-3.2, -5.2, 1.2], [1.4, -6.2, .95], [-7, -3.6, .85]].forEach(([dx, dz, s]) => { const t = new T.Mesh(new T.ConeGeometry(2.4 * s, 2.8 * s, 6, 1, true), new T.MeshStandardMaterial({ map: stripe, side: T.DoubleSide, roughness: .9 })); const x = sx + dx, z = sz + dz; t.position.set(x, hAt(x, z) + 1.4 * s, z); t.castShadow = t.receiveShadow = true; scene.add(t); });
   /* la ville d'arrivée : remparts, mosquée au dôme doré, minarets */
   const city = new T.Group(); city.position.set(W3D.cityX, 0, W3D.cityZ); city.rotation.y = W3D.cityYaw; city.scale.setScalar(1.45); scene.add(city);
   const wallT = ctex(stoneCanvas("#D9B98A", 10), 6, 1), wallM = new T.MeshStandardMaterial({ map: wallT, roughness: .9 }), goldM = new T.MeshStandardMaterial({ color: "#E9B949", metalness: .85, roughness: .28 }), whiteM = new T.MeshStandardMaterial({ color: "#F1E4CC", roughness: .7 });
@@ -1020,15 +1053,41 @@ async function w3dBuild() {
   for (let k = 0; k < 9; k++) { const x = -18 + h2(k, 51) * 36, z = -2 - h2(k, 52) * 16; if (Math.abs(x) < 9) continue; add(new T.BoxGeometry(4 + h2(k, 53) * 3, 3 + h2(k, 54) * 5, 4 + h2(k, 55) * 3), new T.MeshStandardMaterial({ color: new T.Color("#E6CFA6").offsetHSL(0, 0, (h2(k, 56) - .5) * .1), roughness: .9 }), x, 2.5, z); }
   /* les autres caravanes : figurines de chameaux */
   W3D.camels = [];
-  for (let i = 0; i < game.players.length; i++) { const im = await symImg("camel", 400, 320, PCOL[i]);
-    const sp = new T.Sprite(new T.SpriteMaterial({ map: im ? ctex(cvs(400, 320, g2 => g2.drawImage(im, 0, 0))) : null, alphaTest: .05, transparent: true })); sp.scale.set(2.6, 2.08, 1); sp.center.set(.5, .02);
-    const sh = new T.Mesh(new T.CircleGeometry(.95, 20), new T.MeshBasicMaterial({ color: "#3A2208", transparent: true, opacity: .35, depthWrite: false })); sh.rotation.x = -Math.PI / 2;
-    scene.add(sp, sh); W3D.camels.push([sp, sh]); }
+  for (let i = 0; i < game.players.length; i++) { const tk = buildToken(i);
+    const sh = new T.Mesh(new T.CircleGeometry(.55, 24), new T.MeshBasicMaterial({ color: "#3A2208", transparent: true, opacity: .35, depthWrite: false })); sh.rotation.x = -Math.PI / 2;
+    scene.add(tk, sh); W3D.camels.push([tk, sh]); }
   /* poussière qui flotte dans la lumière */
   const DN = 420, dp = new Float32Array(DN * 3); for (let k = 0; k < DN; k++) { dp[k * 3] = (h2(k, 61) - .5) * 30; dp[k * 3 + 1] = h2(k, 62) * 5; dp[k * 3 + 2] = (h2(k, 63) - .5) * 30; }
   const dg = new T.BufferGeometry(); dg.setAttribute("position", new T.BufferAttribute(dp, 3));
   const dust = new T.Points(dg, new T.PointsMaterial({ color: "#FFE6B8", size: .045, transparent: true, opacity: .7, depthWrite: false })); scene.add(dust); W3D.dust = dust;
   console.info("Monde 3D prêt en " + Math.round(performance.now() - tb) + " ms");
+}
+/* ---------- pions façon Monopoly : croissant, lanterne, minaret, livre, chapelet, étoile ---------- */
+function buildToken(i) {
+  const T = W3D.T, col = new T.Color(PCOL[i]), g = new T.Group(), mats = [];
+  const M = o => { const m = new T.MeshStandardMaterial(o); mats.push(m); return m; };
+  const metal = M({ color: col, metalness: .55, roughness: .3 }), dark = M({ color: col.clone().multiplyScalar(.45), metalness: .5, roughness: .45 });
+  const add = (geom, mat, x = 0, y = 0, z = 0) => { const m = new T.Mesh(geom, mat); m.position.set(x, y, z); m.castShadow = true; m.receiveShadow = true; g.add(m); return m; };
+  const ext = (shape, depth, y) => { const eg = new T.ExtrudeGeometry(shape, { depth, bevelEnabled: true, bevelThickness: .025, bevelSize: .022, bevelSegments: 2, curveSegments: 28 }); eg.center(); return add(eg, metal, 0, y, 0); };
+  add(new T.CylinderGeometry(.36, .4, .08, 32), dark, 0, .04, 0); add(new T.CylinderGeometry(.24, .3, .06, 32), metal, 0, .11, 0);
+  const k = i % 6;
+  if (k === 0) { const R = .34, r = .28, d = .15, x0 = (R * R - r * r + d * d) / (2 * d), y0 = Math.sqrt(R * R - x0 * x0), a = Math.atan2(y0, x0), c = Math.atan2(y0, x0 - d), sh = new T.Shape();
+    sh.absarc(0, 0, R, a, Math.PI * 2 - a, false); sh.absarc(d, 0, r, Math.PI * 2 - c, c, true); ext(sh, .1, .52).rotation.z = .45; }
+  else if (k === 1) { add(new T.CylinderGeometry(.21, .21, .05, 6), metal, 0, .165, 0);
+    add(new T.CylinderGeometry(.18, .18, .38, 6), M({ color: "#FFD58A", emissive: "#FFA640", emissiveIntensity: .9, roughness: .35 }), 0, .38, 0);
+    for (let j = 0; j < 6; j++) { const an = j / 6 * Math.PI * 2; add(new T.CylinderGeometry(.018, .018, .4, 6), metal, Math.cos(an) * .18, .38, Math.sin(an) * .18); }
+    add(new T.ConeGeometry(.23, .2, 6), metal, 0, .67, 0); add(new T.TorusGeometry(.055, .016, 8, 16), metal, 0, .82, 0); }
+  else if (k === 2) { add(new T.CylinderGeometry(.11, .14, .52, 16), metal, 0, .4, 0); add(new T.CylinderGeometry(.18, .15, .05, 16), metal, 0, .6, 0);
+    add(new T.CylinderGeometry(.085, .095, .13, 16), metal, 0, .69, 0); add(new T.ConeGeometry(.11, .19, 16), metal, 0, .845, 0); add(new T.SphereGeometry(.03, 10, 8), metal, 0, .95, 0); }
+  else if (k === 3) { add(new T.BoxGeometry(.42, .54, .13), metal, 0, .41, 0); add(new T.BoxGeometry(.38, .5, .135), M({ color: "#F4E8CC", roughness: .85 }), .03, .41, 0);
+    const st = new T.Shape(); for (let j = 0; j < 10; j++) { const rr = j % 2 ? .035 : .08, an = j * Math.PI / 5 + Math.PI / 2; j ? st.lineTo(Math.cos(an) * rr, Math.sin(an) * rr) : st.moveTo(Math.cos(an) * rr, Math.sin(an) * rr); }
+    add(new T.ShapeGeometry(st), M({ color: "#FFF1C9", metalness: .7, roughness: .25, side: T.DoubleSide }), -.02, .45, .067); }
+  else if (k === 4) { for (let j = 0; j < 15; j++) { const an = j / 15 * Math.PI * 2; add(new T.SphereGeometry(.05, 12, 10), metal, Math.cos(an) * .24, .5 + Math.sin(an) * .24, 0); }
+    add(new T.SphereGeometry(.07, 14, 12), dark, 0, .22, 0); }
+  else { const st = new T.Shape(), R = .34, r = R * Math.cos(Math.PI / 4) / Math.cos(Math.PI / 8);
+    for (let j = 0; j < 16; j++) { const rr = j % 2 ? r : R, an = j * Math.PI / 8 + Math.PI / 2; j ? st.lineTo(Math.cos(an) * rr, Math.sin(an) * rr) : st.moveTo(Math.cos(an) * rr, Math.sin(an) * rr); }
+    ext(st, .1, .52); }
+  g.userData.mats = mats; return g;
 }
 /* ---------- caméra ---------- */
 function pathPos(l) { /* l en mètres le long de la piste */
@@ -1041,7 +1100,7 @@ const tileXZ = i => [(geo.pts[i].x - W / 2) * K3, (geo.pts[i].y - H / 2) * K3];
 function camelXZ(i, pos) { const q = geo.pts[pos], [ox, oy] = pawnOffset(i, pos); return [(q.x + ox * 1.6 - W / 2) * K3, (q.y + oy * 1.6 - H / 2) * K3]; }
 function setCamel(i, x, z, h = 0, vis = true, op = 1) {
   const pair = W3D.camels[i]; if (!pair) return; const [sp, sh] = pair, k = Math.max(.4, 1 - h / 6);
-  sp.visible = sh.visible = vis && op > .02; sp.material.opacity = op; sp.position.set(x, .2 + h, z); sh.position.set(x, .21, z); sh.userData.k = k; sh.material.opacity = .35 * k * op; W3D.dirty = true;
+  sp.visible = sh.visible = vis && op > .02; sp.userData.mats.forEach(m => { m.transparent = op < .99; m.opacity = op; }); sp.position.set(x, .18 + h, z); sh.position.set(x, .21, z); sh.userData.k = k; sh.material.opacity = .35 * k * op; W3D.dirty = true;
 }
 function w3dPlaceCamels() { if (!W3D.scene || !game) return; game.players.forEach((p, i) => { const [x, z] = camelXZ(i, p.pos); setCamel(i, x, z, 0, i !== W3D.fp); }); }
 function w3dResize() { const r = W3D.r, c = r.domElement, w = c.clientWidth, h = c.clientHeight; if (!w || !h) return false; if (c.width !== Math.round(w * r.getPixelRatio()) || c.height !== Math.round(h * r.getPixelRatio())) { r.setSize(w, h, false); const a = w / h; W3D.cam.aspect = a; W3D.cam.fov = a < 1 ? Math.min(92, 2 * Math.atan(Math.tan(27 * Math.PI / 180) / a) * 180 / Math.PI) : 62; W3D.cam.updateProjectionMatrix(); return true; } return false; }
@@ -1050,7 +1109,7 @@ const VK = ["x", "y", "z", "lx", "ly", "lz"];
 function w3dSetView(x, y, z, lx, ly, lz) { Object.assign(W3V, { x, y, z, lx, ly, lz }); }
 const curView = () => VK.map(k => W3V[k]);
 /* vue drone : au-dessus et un peu derrière la caravane, tournée vers la ville */
-const dronePoseAt = (x, z) => [x, 25, z + 11, x, 0, z - 2.5];
+const dronePoseAt = (x, z) => [x, 14.5, z + 9.5, x, 0, z - 1.5];
 function dronePose(i) { if (!game || !game.players[i]) return curView(); const [x, z] = camelXZ(i, game.players[i].pos); return dronePoseAt(x, z); }
 function w3dFrame(now) {
   if (!W3D.vis) { W3D.raf = 0; return; }
@@ -1064,7 +1123,7 @@ function w3dFrame(now) {
     const sun = W3D.sun, SD = W3D.SD, fx = (W3V.x + W3V.lx) / 2, fz = (W3V.z + W3V.lz) / 2; sun.target.position.set(fx, 0, fz); sun.position.set(fx + SD.x * 90, SD.y * 90, fz + SD.z * 90); W3D.sky.position.copy(cam.position);
     const d = W3D.dust; d.position.set(W3V.x, 0, W3V.z); d.rotation.y = now * .00002; d.position.y = Math.sin(now * .0004) * .3 + W3D.hAt(W3V.x, W3V.z); d.visible = W3V.y < 6;
     const pu = 1 + Math.sin(now / 180) * .12; W3D.marks.forEach(m => m.scale.set(pu, pu, 1));
-    const cs = 1 + Math.max(0, W3V.y - 4) / 13; W3D.camels.forEach(([sp, sh]) => { sp.scale.set(2.6 * cs, 2.08 * cs, 1); sh.scale.setScalar(cs * (sh.userData.k || 1)); });
+    const cs = 1 + Math.max(0, W3V.y - 4) / 30; W3D.camels.forEach(([sp, sh]) => { sp.scale.setScalar(cs); sp.rotation.y = Math.atan2(W3V.x - sp.position.x, W3V.z - sp.position.z); sh.scale.setScalar(cs * (sh.userData.k || 1)); });
     W3D.r.render(W3D.scene, cam);
   }
   W3D.raf = requestAnimationFrame(w3dFrame);
