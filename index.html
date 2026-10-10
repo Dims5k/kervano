@@ -7,6 +7,11 @@
 <meta name="theme-color" content="#1B1530">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Caravane">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>body{margin:0}[hidden]{display:none!important}</style>
 <title>La Caravane du Savoir</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -75,6 +80,7 @@ body.spectate #card input{pointer-events:none;opacity:.6}
 .pname{flex:1;font-weight:800}.plev{opacity:.7;text-transform:capitalize}
 body.spectate #dock button,body.spectate #card button,body.spectate #cardfx button{pointer-events:none;filter:saturate(.6);opacity:.6}
 body.spectate #dock .dice{opacity:1}
+body.spectate #card button.st{pointer-events:auto;filter:none;opacity:1}
 /* vue 3D à la première personne */
 .w3d{position:fixed;inset:0;z-index:45;opacity:0;pointer-events:none;transition:opacity .45s ease;background:#EFC89A}
 .w3d.on{opacity:1}
@@ -194,6 +200,13 @@ button{touch-action:manipulation}
 .rule b{font-family:var(--f-display);font-size:22px}
 .rule span{font-size:12.5px;font-weight:700;line-height:1.25}
 .panel{background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:20px;padding:16px;display:grid;gap:12px}
+.daily .dh{display:flex;align-items:center;gap:8px}.daily .dh .lab2{flex:1}
+.streak{background:rgba(242,180,65,.18);color:var(--gold);border-radius:999px;padding:3px 10px;font-weight:800;font-size:13px}
+.daily .dq{font-weight:800;font-size:19px;margin:0;color:var(--cream)}
+.daily .choices{display:grid;gap:8px}.daily .choice{padding:11px 14px;font-size:16px}
+.daily .note{color:rgba(246,233,207,.75)}
+.repbox{display:grid;gap:8px;margin:4px 0 8px}.repbox textarea{font:inherit;font-size:15px;border:1.5px solid #E0CDA6;border-radius:12px;padding:8px 10px;min-height:64px;background:#fff;color:var(--ink);resize:vertical}
+body.spectate #card .repbox textarea{pointer-events:auto}
 .lab2{font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;margin:0;color:var(--gold)}
 .prow{display:grid;grid-template-columns:auto minmax(0,1fr) auto auto;gap:8px;align-items:center}
 .prow .av{width:34px;height:34px;border-radius:50%;display:grid;place-items:center}
@@ -212,6 +225,12 @@ button{touch-action:manipulation}
 .win .box{background:var(--card);color:var(--ink);border-radius:26px;padding:24px 20px;width:min(100%,440px);display:grid;gap:12px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.6)}
 .win h2{font-size:clamp(30px,8vw,42px)}
 .rank{display:grid;gap:6px;text-align:start}
+.win .box{max-height:calc(100dvh - 40px);overflow:auto}
+.learn{display:grid;gap:10px;text-align:start}
+.learn h3{margin:6px 0 0;font-size:18px}
+.learn .it{background:#FBF4E4;border-radius:14px;padding:10px 12px;border-inline-start:4px solid var(--ok);display:grid;gap:4px}
+.learn .it p{margin:0}.learn .qq{font-weight:700}.learn .aa{color:var(--ok);font-weight:800}
+.stealmsg{background:#FFF3D6;border:2px dashed #E7A52C;border-radius:14px;padding:10px 12px;font-weight:700;font-size:15px;margin:10px 0 0;color:#5A3A06}
 .rank div{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:#F4E8CF;font-weight:700}
 .rank .av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none}
 .rank .av svg{width:22px;height:18px}
@@ -604,6 +623,36 @@ const QDATA = [
 ["sira",2,"Le Prophète ﷺ a-t-il déjà frappé une femme ou un serviteur ?","Jamais",["Une seule fois","Quand il était en colère","Seulement les serviteurs"],"ʿÂ'icha : il n'a jamais frappé de sa main ni femme ni serviteur (Muslim)."],
 ["sira",2,"Anas a servi le Prophète ﷺ dix ans. Que dit-il de son comportement ?","Il ne lui a jamais dit « ouf ! » ni reproché quoi que ce soit",["Il le grondait souvent","Il ne lui parlait presque pas","Il le punissait en cas d'erreur"],"Bukhârî et Muslim."],
 
+["histoire", 1, "Quelle ville est appelée « la ville illuminée » (Al-Madîna al-Munawwara) ?", "Médine", ["La Mecque", "Jérusalem", "Damas"], "Avant l'Hégire, elle s'appelait Yathrib."],
+["histoire", 1, "Combien y a-t-il eu de califes « bien guidés » ?", "4", ["3", "5", "12"], "Abû Bakr, ʿUmar, ʿUthmân et ʿAlî."],
+["histoire", 1, "Lors de la conquête de La Mecque, qu'a fait le Prophète ﷺ des idoles autour de la Kaʿba ?", "Il les a détruites", ["Il les a gardées", "Il les a vendues", "Il les a enterrées sous la Kaʿba"], "Il récitait : « La vérité est venue et le faux a disparu » (17:81) (Bukhârî, Muslim)."],
+["histoire", 1, "Lors de la conquête de La Mecque, comment le Prophète ﷺ a-t-il traité les Quraych qui l'avaient combattu ?", "Il leur a pardonné", ["Il les a tous punis", "Il les a chassés de La Mecque", "Il a pris tous leurs biens"], "Selon les livres de sîra, il leur dit : « Allez, vous êtes libres. »"],
+["histoire", 1, "Combien d'années environ le Prophète ﷺ a-t-il vécu à Médine après l'Hégire ?", "10 ans", ["3 ans", "20 ans", "40 ans"], "De 622 jusqu'à son décès en 632."],
+["histoire", 1, "Dans quelle ville se trouve le Dôme du Rocher ?", "Jérusalem", ["La Mecque", "Médine", "Le Caire"], "Il a été construit vers 691, sur l'esplanade d'Al-Aqsâ."],
+["histoire", 1, "Depuis quelle ville gouvernaient Abû Bakr, ʿUmar et ʿUthmân ?", "Médine", ["La Mecque", "Damas", "Bagdad"], "ʿAlî s'installa ensuite à Koufa, en Irak."],
+["histoire", 1, "Quel pays d'Europe a été en grande partie musulman pendant près de 800 ans ?", "L'Espagne", ["L'Angleterre", "La Suède", "La Pologne"], "On l'appelait Al-Andalus (711-1492)."],
+["prophetes", 1, "Quel prophète a parlé alors qu'il était encore bébé, dans son berceau ?", "ʿÎsâ (Jésus)", ["Mûsâ (Moïse)", "Yahyâ (Jean)", "Sulaymân (Salomon)"], "Le Coran le raconte dans la sourate Maryam (19:29-30)."],
+["prophetes", 1, "Combien de fils le prophète Yaʿqûb avait-il ?", "12", ["3", "7", "10"], "Yûsuf et son frère Binyâmîn faisaient partie des douze."],
+["prophetes", 1, "Quel prophète avait un bâton qui se transformait en serpent ?", "Mûsâ (Moïse)", ["Ibrâhîm", "Nûh (Noé)", "Hûd"], "Sourate Tâ-Hâ (20:17-21)."],
+["prophetes", 1, "Selon le Coran, quel prophète n'a été ni tué ni crucifié, mais élevé par Allah vers Lui ?", "ʿÎsâ (Jésus)", ["Yahyâ (Jean)", "Mûsâ (Moïse)", "Yûnus (Jonas)"], "Sourate An-Nisâ' (4:157-158)."],
+["prophetes", 1, "Quel prophète était le fils de Zakariyyâ ?", "Yahyâ (Jean)", ["ʿÎsâ (Jésus)", "Yûsuf (Joseph)", "Ismâʿîl"], "Allah l'a annoncé à Zakariyyâ alors qu'il était âgé (19:7-9)."],
+["prophetes", 1, "Quel fils d'Ibrâhîm est l'ancêtre du Prophète Muhammad ﷺ ?", "Ismâʿîl", ["Ishâq (Isaac)", "Yaʿqûb (Jacob)", "Lût (Loth)"], "Sa mère s'appelait Hâjar ; la source de Zamzam a jailli pour eux à La Mecque."],
+["culture", 1, "Comment s'appelle la grande mosquée qui entoure la Kaʿba ?", "Al-Masjid al-Harâm", ["Al-Masjid an-Nabawî", "Al-Aqsâ", "La mosquée de Qubâ'"], "Une prière y vaut cent mille prières ailleurs (Ahmad, Ibn Mâja)."],
+["culture", 1, "Que signifie « Mâ châ' Allâh » ?", "Ce qu'Allah a voulu", ["Si Allah le veut", "Merci Allah", "Allah est grand"], "On le dit quand on voit quelque chose de beau ou de réussi (voir sourate Al-Kahf, 18:39)."],
+["culture", 1, "Que signifie « Astaghfirullâh » ?", "Je demande pardon à Allah", ["Je remercie Allah", "Allah est le plus grand", "Gloire à Allah"], "Le Prophète ﷺ demandait pardon à Allah plus de soixante-dix fois par jour (Bukhârî)."],
+["culture", 1, "Comment s'appelle la pierre noire encastrée dans un angle de la Kaʿba ?", "Al-Hajar al-Aswad", ["Maqâm Ibrâhîm", "Zamzam", "Al-Hijr"], "Les pèlerins commencent chaque tour du tawâf à son niveau."],
+["culture", 1, "Comment appelle-t-on celui qui dirige la prière en commun ?", "L'imam", ["Le muezzin", "Le calife", "Le cadi"], "L'imam se place devant ; les fidèles le suivent sans le devancer."],
+["coran", 1, "Quelle sourate commence par « Qul aʿûdhu bi-rabbi l-falaq » ?", "Al-Falaq", ["An-Nâs", "Al-Ikhlâs", "Al-Kâfirûn"], "Avec An-Nâs, on les appelle « al-muʿawwidhatân », les deux sourates de protection."],
+["coran", 1, "Quel verset récite-t-on avant de dormir pour être protégé jusqu'au matin ?", "Âyat al-Kursî", ["Le premier verset d'Al-Baqara", "Le dernier verset d'An-Nâs", "Le premier verset de Yâ-Sîn"], "Hadith d'Abû Hurayra rapporté par Bukhârî."],
+["coran", 1, "Le Coran est la parole de…", "Allah", ["Jibrîl", "Muhammad ﷺ", "Des savants"], "Jibrîl l'a transmis et le Prophète ﷺ l'a communiqué, mais c'est la parole d'Allah."],
+["coran", 1, "Comment s'appelle la récitation du Coran avec ses règles de prononciation ?", "Le tajwîd", ["Le tafsîr", "Le hadith", "Le fiqh"], "Le tafsîr, lui, est l'explication du sens du Coran."],
+["sira", 1, "Quel métier le Prophète ﷺ a-t-il exercé dans sa jeunesse, autour de La Mecque ?", "Berger", ["Forgeron", "Pêcheur", "Charpentier"], "Il gardait des moutons pour les gens de La Mecque ; tous les prophètes ont été bergers (Bukhârî)."],
+["sira", 1, "Pendant combien d'années le Prophète ﷺ a-t-il appelé à l'islam à La Mecque avant l'Hégire ?", "13 ans", ["3 ans", "23 ans", "40 ans"], "Puis 10 ans à Médine : 23 ans de révélation au total."],
+["sira", 1, "Sur quelle monture le Prophète ﷺ a-t-il fait le voyage nocturne vers Jérusalem ?", "Al-Burâq", ["Al-Qaswâ'", "Un aigle géant", "Un chameau blanc"], "Une monture blanche, plus grande qu'un âne et plus petite qu'une mule (Muslim)."],
+["sira", 1, "Combien de filles le Prophète ﷺ a-t-il eues ?", "4", ["1", "2", "7"], "Zaynab, Ruqayya, Umm Kulthûm et Fâtima, toutes filles de Khadîja."],
+["piliers", 1, "Que dit-on pour terminer la prière, en tournant la tête à droite puis à gauche ?", "« As-salâmu ʿalaykum wa rahmatullâh »", ["« Allâhu akbar »", "« Âmîn »", "« Subhânallâh »"], "C'est le taslîm (Abû Dâwûd, Tirmidhî)."],
+["piliers", 1, "Que dit-on après la récitation d'Al-Fâtiha ?", "« Âmîn »", ["« Allâhu akbar »", "« Bismillâh »", "« Alhamdulillâh »"], "« Âmîn » signifie « Ô Allah, exauce ». Celui dont le âmîn coïncide avec celui des anges est pardonné (Bukhârî, Muslim)."],
+["piliers", 1, "Par quoi commence-t-on les ablutions, après l'intention et « Bismillâh » ?", "Se laver les mains", ["Se laver les pieds", "Se passer les mains mouillées sur la tête", "Se laver les oreilles"], "Puis on se rince la bouche et le nez, et on se lave le visage."]
 ];
 
 (() => {
@@ -629,7 +678,7 @@ const MODES = { duo: { name: "Duo", sub: "2 réponses", color: "var(--duo)" }, c
 const steps = (mode, d) => mode === "cash" ? d + 3 : mode === "carre" ? d : Math.ceil(d / 2);
 const Q = QDATA.map((r, i) => ({ id: i, cat: r[0], d: r[1], q: r[2], a: r[3], w: r[4], note: r[5] || "" }));
 /* ============ langues : le français est dans le code, les autres dans lang/xx.json (chargées à la demande) ============ */
-const LV = 1;
+const LV = 4;
 const LANGS = { fr: ["Français", "fr-FR"], ar: ["العربية", "ar-SA", 1], en: ["English", "en-US"], nl: ["Nederlands", "nl-NL"], de: ["Deutsch", "de-DE"], tr: ["Türkçe", "tr-TR"] };
 let LANG = "fr", TR = {}, QL = null; const LCACHE = {};
 /* t("texte français", {var}) ; une variable qui commence par « @ » est elle-même un texte à traduire */
@@ -1314,7 +1363,7 @@ function normGame(g) {
   g.cells = arr(g.cells); g.players = arr(g.players); g.used = arr(g.used); g.deck = arr(g.deck);
   if (g.q === undefined) g.q = null; else if (g.q && g.q.choices) g.q.choices = arr(g.q.choices);
   if (g.winner === undefined) g.winner = null; g.turn = g.turn || 0;
-  g.players.forEach(p => { p.skip = !!p.skip; p.shield = !!p.shield; p.good = p.good || 0; p.streak = p.streak || 0; p.pos = p.pos || 0; });
+  g.players.forEach(p => { p.skip = !!p.skip; p.shield = !!p.shield; p.good = p.good || 0; p.streak = p.streak || 0; p.pos = p.pos || 0; p.miss = arr(p.miss); });
   return g;
 }
 const isMine = () => { const p = game && game.players[game.cur]; return !p || !p.uid || p.uid === NET.uid; };
@@ -1349,6 +1398,8 @@ async function applyEv(e) {
   if (e.t === "st") return adopt(normGame(e.g));
   if (e.t === "hello") { if (NET.ctrl && game) netSend({ t: "st", g: game }); return; }
   if (!game || !$("#dock")) return;
+  if (e.t === "steal") return stealIn(e);
+  if (e.t === "stealx") { if (STEAL.guest && STEAL.guest.key === e.key) STEAL.guest.end(e.w < 0 ? null : e.w); return; }
   if (e.t === "mv") await animateMove(e.pi, e.from, e.to);
   else if (e.t === "jp") await jumpMove(e.pi, e.to);
   else if (e.t === "toast") toastLocal(e.a, e.b, e.bg, e.ms, e.va, e.vb);
@@ -1464,7 +1515,21 @@ async function netResume() {
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 const canSpeak = "speechSynthesis" in window;
 function sayAnswer(q) { if (game && game.read) speak(t("Bonne réponse : {a}.", { a: q.a.replace(/[«»…]/g, "") }) + " " + (q.note || "")); }
-function speak(text) { if (!canSpeak || muted) return; try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text.replace(/ﷺ/g, "")); u.lang = voice(); u.rate = .95; speechSynthesis.speak(u); } catch (e) {} }
+let VOICES = [];
+function loadVoices() { try { VOICES = speechSynthesis.getVoices() || []; } catch (e) { VOICES = []; } }
+if (canSpeak) { loadVoices(); try { speechSynthesis.addEventListener("voiceschanged", loadVoices); } catch (e) {} }
+/* on préfère les voix « naturelles » (Premium / Enhanced / Neural / Google) et on écarte les voix gadget ou robotiques */
+function bestVoice() {
+  const tag = voice().toLowerCase(), base = tag.slice(0, 2);
+  const cand = VOICES.filter(v => (v.lang || "").replace("_", "-").toLowerCase().startsWith(base)); if (!cand.length) return null;
+  const sc = v => { const n = (v.name || "").toLowerCase(), l = (v.lang || "").replace("_", "-").toLowerCase(); let s = 0;
+    if (/premium|natural|neural|naturel/.test(n)) s += 12; else if (/enhanced|améliorée|siri|wavenet|online/.test(n)) s += 9;
+    if (/google/.test(n)) s += 6; if (l === tag) s += 3; if (v.localService === false) s += 1; if (v.default) s += 1;
+    if (/compact|espeak|eloquence|eddy|flo|grandma|grandpa|reed|rocko|sandy|shelley|albert|bad news|bahh|bells|boing|bubbles|cellos|jester|organ|superstar|trinoids|whisper|wobble|zarvox|good news|junior|ralph|fred|kathy/.test(n)) s -= 20;
+    return s; };
+  return cand.slice().sort((a, b) => sc(b) - sc(a))[0];
+}
+function speak(text) { if (!canSpeak || muted) return; try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text.replace(/ﷺ/g, "")); u.lang = voice(); const bv = bestVoice(); if (bv) u.voice = bv; u.rate = .95; speechSynthesis.speak(u); } catch (e) {} }
 const normT = s => String(s).replace(/(\d)[\s\u202f\u00a0](?=\d{3}\b)/g, "$1").toLowerCase().replace(/ı/g, "i").replace(/ß/g, "ss").normalize("NFD").replace(/[\u0300-\u036f\u064b-\u0655\u0670\u0640]/g, "").replace(/[ٱ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي").replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d)).replace(/[ʿʾ'’`«»"()?!.,;:\-،؟]/g, " ").replace(/(^|\s)(ال|وال)(?=\S{2,})/g, "$1").replace(/\b(le|la|les|l|un|une|des|de|du|d|al|an|ar|as|at|ad|az|ach|el|ibn|bint|environ|ans|fois|sourate|the|a|of|about|years|times|surah|sura|het|een|van|ongeveer|jaar|keer|der|die|das|den|dem|des|ein|eine|einen|von|etwa|jahre|mal|yaklasik|yil|kez|sure|suresi)\b/g, " ").replace(/\s+/g, " ").trim();
 function lev(a, b) { const m = a.length, n = b.length; if (!m) return n; if (!n) return m; const d = Array.from({ length: m + 1 }, (_, i) => [i]); for (let j = 1; j <= n; j++) d[0][j] = j; for (let i = 1; i <= m; i++) for (let j = 1; j <= n; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return d[m][n]; }
 const sim = (a, b) => (!a || !b) ? 0 : 1 - lev(a, b) / Math.max(a.length, b.length);
@@ -1500,12 +1565,45 @@ function draw(cat, level, final) {
   const [lo, hi] = levelRange(level, final); const seen = new Set(store.get("seen", [])), used = new Set(game.used);
   let pool = Q.filter(q => q.cat === cat && q.d >= lo && q.d <= hi && !used.has(q.id));
   if (!pool.length) pool = Q.filter(q => q.cat === cat && !used.has(q.id)); if (!pool.length) pool = Q.filter(q => q.cat === cat);
-  const fresh = pool.filter(q => !seen.has(q.id)); const q = shuffle(fresh.length ? fresh : pool)[0];
-  game.used.push(q.id); seen.add(q.id); let arr = [...seen]; if (Q.filter(x => x.cat === cat).every(x => seen.has(x.id))) arr = arr.filter(id => Q[id].cat !== cat);
-  store.set("seen", arr); return q.id;
+  const fresh = pool.filter(q => !seen.has(q.id)); let q;
+  if (fresh.length) q = shuffle(fresh)[0];
+  else { const order = [...seen]; pool = pool.slice().sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id)); q = shuffle(pool.slice(0, Math.max(1, Math.ceil(pool.length / 3))))[0]; }
+  game.used.push(q.id); seen.delete(q.id); seen.add(q.id); /* l'ordre de « seen » = de la plus ancienne à la plus récente */
+  store.set("seen", [...seen]); return q.id;
 }
 
 /* ============ accueil ============ */
+/* ============ question du jour : la même pour toute la famille, une seule tentative ============ */
+const dayKey = (d = new Date()) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+const hashStr = s => { let h = 2166136261; for (const c of s) { h ^= c.charCodeAt(0); h = Math.imul(h, 16777619); } return h >>> 0; };
+function seeded(seed) { let a = seed >>> 0; return () => { a = (a + 0x6D2B79F5) >>> 0; let t1 = Math.imul(a ^ (a >>> 15), 1 | a); t1 = (t1 + Math.imul(t1 ^ (t1 >>> 7), 61 | t1)) ^ t1; return ((t1 ^ (t1 >>> 14)) >>> 0) / 4294967296; }; }
+function dailyQ() {
+  const k = dayKey(), pool = Q.filter(q => q.d <= 2), rnd = seeded(hashStr("caravane:" + k));
+  const q = pool[Math.floor(rnd() * pool.length)], order = [0, 1, 2, 3];
+  for (let i = 3; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [order[i], order[j]] = [order[j], order[i]]; }
+  return { k, id: q.id, order };
+}
+function dailyHTML() {
+  const d = dailyQ(), st = store.get("daily", {}), q = QT(d.id), opts = [q.a, ...q.w], done = st.date === d.k ? st.pick : null;
+  const y = new Date(); y.setDate(y.getDate() - 1);
+  const streak = st.last === d.k || st.last === dayKey(y) ? st.streak || 0 : 0;
+  return `<section class="panel daily" id="daily"><div class="dh"><p class="lab2">${t("Question du jour")}</p>${streak ? `<span class="streak">🔥 ${t("Série : {n}", { n: streak })}</span>` : ""}</div>
+    <p class="dq" dir="auto">${esc(q.q)}</p>
+    <div class="choices">${d.order.map(k => `<button class="choice${done != null ? (k === 0 ? " right" : k === done ? " wrong" : "") : ""}" data-k="${k}" dir="auto" ${done != null ? "disabled" : ""}>${esc(opts[k])}</button>`).join("")}</div>
+    ${done != null ? `<p class="note" dir="auto"><b>${done === 0 ? t("Bravo ! Reviens demain pour la prochaine question.") : t("Pas cette fois. Reviens demain pour la prochaine question.")}</b>${q.note ? " " + esc(q.note) : ""}</p>` : `<p class="hint">${t("La même question pour toute la famille aujourd'hui : comparez vos réponses !")}</p>`}</section>`;
+}
+function bindDaily() {
+  const box = $("#daily"); if (!box) return;
+  box.querySelectorAll(".choice").forEach(b => b.onclick = () => {
+    const d = dailyQ(), st = store.get("daily", {}); if (st.date === d.k) return;
+    const k = +b.dataset.k, y = new Date(); y.setDate(y.getDate() - 1);
+    const streak = st.last === dayKey(y) ? (st.streak || 0) + 1 : 1;
+    store.set("daily", { date: d.k, pick: k, last: d.k, streak, best: Math.max(st.best || 0, streak), good: (st.good || 0) + (k === 0 ? 1 : 0) });
+    quiet(() => k === 0 ? SFX.good() : SFX.bad()); buzz(k === 0 ? 30 : [60, 40, 60]);
+    box.outerHTML = dailyHTML(); bindDaily();
+    if (k === 0) { const r = $("#daily").getBoundingClientRect(); confetti(r.left + r.width / 2, r.top + 40, 60); }
+  });
+}
 function renderSetup() {
   w3dHide(); document.body.classList.remove("spectate", "online");
   closeSheet(); document.body.classList.remove("ingame");
@@ -1517,6 +1615,7 @@ function renderSetup() {
       <h1>${t("La Caravane du Savoir")}</h1>
       <p>${t("Lance le dé, réponds aux questions sur l'islam et fais avancer ta caravane jusqu'à la ville. Plus tu prends de risques, plus tu avances vite.")}</p>
     </div>
+    ${dailyHTML()}
     <div class="rules">
       <div class="rule" style="background:var(--duo)"><b>${t("Duo")}</b><span>${t("2 réponses")}<br>${t("moitié du dé")}</span></div>
       <div class="rule" style="background:var(--carre);color:#2A1A05"><b>${t("Carré")}</b><span>${t("4 réponses")}<br>${t("valeur du dé")}</span></div>
@@ -1550,6 +1649,7 @@ function renderSetup() {
   const read = () => setup.players.forEach((p, i) => { const n = $("#pn" + i), l = $("#pl" + i); if (n) p.name = n.value.trim() || t("Joueur {n}", { n: i + 1 }); if (l) p.level = l.value; });
   root.querySelectorAll("input,select:not(#lang)").forEach(el => el.onchange = () => { read(); save(); });
   bindLang("lang", () => { read(); renderSetup(); });
+  bindDaily();
   const add = $("#add"); if (add) add.onclick = () => { read(); setup.players.push({ name: t("Joueur {n}", { n: setup.players.length + 1 }), level: "normal" }); save(); renderSetup(); };
   root.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => { read(); setup.players.splice(+b.dataset.rm, 1); save(); renderSetup(); });
   root.querySelectorAll("[data-s]").forEach(b => b.onclick = () => { read(); setup.size = +b.dataset.s; save(); renderSetup(); });
@@ -1557,7 +1657,7 @@ function renderSetup() {
   $("#online").onclick = () => { read(); save(); if (!fbOk()) { $("#online").textContent = t("Le mode en ligne arrive bientôt"); return; } netCreate($("#online")); };
   $("#start").onclick = () => { read(); SFX.bonus(); game = newGame(setup.size, setup.players); save(); renderGame(); window.scrollTo(0, 0); };
 }
-const newGame = (size, pl) => ({ cells: makeCells(size), players: pl.map(p => ({ name: p.name, level: p.level, pos: 0, skip: false, good: 0, streak: 0, shield: false })), deck: [], cur: 0, phase: "roll", used: [], die: 1, q: null, winner: null, timer: setup.timer, read: setup.read });
+const newGame = (size, pl) => ({ cells: makeCells(size), players: pl.map(p => ({ name: p.name, level: p.level, pos: 0, skip: false, good: 0, streak: 0, shield: false, miss: [] })), deck: [], cur: 0, phase: "roll", used: [], die: 1, q: null, winner: null, timer: setup.timer, read: setup.read });
 
 /* ============ partie ============ */
 const PIPS = { 1: [4], 2: [0, 8], 3: [0, 4, 8], 4: [0, 2, 6, 8], 5: [0, 2, 4, 6, 8], 6: [0, 2, 3, 5, 6, 8] };
@@ -1640,6 +1740,64 @@ async function rollImpl() {
 let tmr = null, lastSpoken = null;
 const QUI = { k: null };
 const qKey = () => { const g = game && game.q; return g ? [game.turn || 0, g.id, g.mode || "", (g.choices || []).join("."), g.final ? 1 : 0, g.bonus ? 1 : 0].join("|") : null; };
+/* ---------- en ligne : quand le joueur se trompe (Carré ou Cash), les autres tentent leur chance sur leur téléphone ---------- */
+const STEAL = { key: null, got: {}, thief: null, fin: null, iv: 0, guest: null };
+const myIdx = () => NET.on && game ? game.players.findIndex(p => p.uid && p.uid === NET.uid) : -1;
+const stealers = () => game.players.map((p, i) => i).filter(i => i !== game.cur && game.players[i].uid);
+const canSteal = (g, ok) => NET.on && !ok && !g.final && !g.bonus && (g.mode === "carre" || g.mode === "cash") && stealers().length > 0;
+/* chez le joueur dont c'est le tour : on attend les autres (12 s max, ou dès que quelqu'un trouve) */
+function stealHost(zone, addCont) {
+  const key = qKey(); clearInterval(STEAL.iv); let s = 12;
+  zone.insertAdjacentHTML("beforeend", `<p class="stealmsg" id="stw" dir="auto"></p>`);
+  const el = $("#stw"), tick = () => { if (el) el.textContent = t("Les autres tentent leur chance… {s}", { s }); };
+  Object.assign(STEAL, { key, got: {}, thief: null });
+  STEAL.fin = () => {
+    if (STEAL.key !== key) return; clearInterval(STEAL.iv); STEAL.key = null; const w = STEAL.thief;
+    if (game.q) game.q.thief = w; netSend({ t: "stealx", key, w: w == null ? -1 : w });
+    if (el) el.textContent = w != null ? t("{n} a trouvé en premier : +2 cases !", { n: game.players[w].name }) : t("Personne n'a trouvé.");
+    addCont();
+  };
+  tick(); STEAL.iv = setInterval(() => { s--; if (s <= 0) STEAL.fin(); else tick(); }, 1000);
+}
+function stealIn(e) {
+  if (!NET.ctrl || STEAL.key !== e.key) return;
+  const pi = game.players.findIndex(p => p.uid === e.by); if (pi < 0 || pi === game.cur || STEAL.got[pi] != null) return;
+  STEAL.got[pi] = e.k; if (e.k === 0 && STEAL.thief == null) STEAL.thief = pi;
+  if (STEAL.thief != null || stealers().every(i => STEAL.got[i] != null)) STEAL.fin();
+}
+/* chez les autres : ils choisissent parmi les propositions restantes (une seule tentative) */
+function stealGuest(zone, q, excl) {
+  const me = myIdx(); if (me < 0 || me === game.cur) return false;
+  const key = qKey(), opts = [q.a, ...q.w], p = game.players[game.cur];
+  const ks = shuffle([0, 1, 2, 3].filter(k => !excl.includes(k)));
+  if (!excl.length) zone.innerHTML = ""; else { const old = zone.querySelector(".choices"); if (old) old.remove(); }
+  zone.insertAdjacentHTML("beforeend", `<p class="stealmsg" id="stg" dir="auto">${esc(t("{n} s'est trompé. À toi de tenter ta chance : +2 cases si tu trouves en premier !", { n: p.name }))}</p>
+    <div class="choices" id="stc">${ks.map(k => `<button class="choice st" data-k="${k}" dir="auto">${esc(opts[k])}</button>`).join("")}</div>`);
+  const msg = $("#stg"), btns = [...zone.querySelectorAll("#stc .choice")];
+  let done = false;
+  btns.forEach(b => b.onclick = () => {
+    if (done) return; done = true; const k = +b.dataset.k; btns.forEach(x => x.disabled = true);
+    b.classList.add(k === 0 ? "right" : "wrong"); quiet(() => k === 0 ? SFX.good() : SFX.bad()); buzz(k === 0 ? 30 : [60, 40, 60]);
+    msg.textContent = k === 0 ? t("Réponse envoyée ! Si tu es le premier à trouver, tu gagnes +2 cases.") : t("Raté !");
+    netSend({ t: "steal", key, k });
+  });
+  STEAL.guest = { key, end(w) {
+    STEAL.guest = null; done = true; btns.forEach(x => { x.disabled = true; if (+x.dataset.k === 0) x.classList.add("right"); });
+    msg.textContent = w != null && game.players[w] ? t("{n} a trouvé en premier : +2 cases !", { n: game.players[w].name }) : t("Personne n'a trouvé.");
+    if (!zone.querySelector(".answer")) zone.insertAdjacentHTML("beforeend", `<div class="answer" style="margin-top:10px"><p class="lab" style="color:var(--ok)">${t("Bonne réponse")}</p><b dir="auto">${esc(q.a)}</b>${q.note ? `<p class="note" dir="auto" style="margin-top:6px">${esc(q.note)}</p>` : ""}</div>`);
+    sayAnswer(q);
+  } };
+  return true;
+}
+function reportBox(z, id) {
+  if (!z) return; if (z.innerHTML) { z.innerHTML = ""; return; }
+  z.innerHTML = `<div class="repbox"><textarea id="rept" maxlength="300" dir="auto" placeholder="${t("Qu'est-ce qui ne va pas ? (facultatif)")}"></textarea><button class="ghostbtn st" id="reps">${t("Envoyer")}</button></div>`;
+  $("#reps").onclick = async () => {
+    const b = $("#reps"), txt = ($("#rept").value || "").trim().slice(0, 300); b.disabled = true;
+    try { if (!fbOk()) throw new Error("fb"); await db("POST", "reports", { id, lang: LANG, txt, at: Date.now() }); z.innerHTML = `<p class="tiny">${t("Merci ! Le signalement est envoyé.")}</p>`; }
+    catch (e) { console.warn(e); b.disabled = false; z.insertAdjacentHTML("beforeend", `<p class="tiny">${t("Envoi impossible pour l'instant. Réessaie plus tard.")}</p>`); }
+  };
+}
 function renderQuestion() {
   clearInterval(tmr);
   const p = game.players[game.cur], g = game.q, q = QT(g.id), c = CATS[g.cat], n = game.cells.length, live = NET.ctrl;
@@ -1649,9 +1807,10 @@ function renderQuestion() {
   const destOf = m => Math.min(n - 1, p.pos + steps(m, game.die));
   const lab = i => { const ty = game.cells[i].t; return ty === "end" ? t("Arrivée !") : ty === "cat" ? t("case {n}", { n: i }) : t(SPEC[ty].name); };
   const head = `<div class="band" style="background:${c.color};color:${c.ink || "#fff"}"><span>${t(c.name)}</span><span class="sp"></span><span class="pill">${g.final ? t("Finale") : g.bonus ? t("Défi : +4") : t("Dé {n}", { n: game.die })}</span></div>
-    <div class="cbody"><p class="qfor"><span style="color:${PCOL[game.cur]}">${esc(p.name)}</span> · ${t(["", "facile", "moyenne", "difficile"][q.d])}${canSpeak && !muted ? `<button class="say" id="say">${t("Relire")}</button>` : ""}</p><div class="qtext" dir="auto">${esc(q.q)}</div>${game.timer && g.mode ? `<div class="timer"><i id="bar"></i></div>` : ""}<div id="zone"></div></div>`;
+    <div class="cbody"><p class="qfor"><span style="color:${PCOL[game.cur]}">${esc(p.name)}</span> · ${t(["", "facile", "moyenne", "difficile"][q.d])}${canSpeak && !muted ? `<button class="say" id="say">${t("Relire")}</button>` : ""}<button class="say st" id="rep" title="${t("Signaler une erreur")}" aria-label="${t("Signaler une erreur")}">⚑</button></p><div id="repz"></div><div class="qtext" dir="auto">${esc(q.q)}</div>${game.timer && g.mode ? `<div class="timer"><i id="bar"></i></div>` : ""}<div id="zone"></div></div>`;
   openSheet(head);
   if ($("#say")) $("#say").onclick = () => speak(q.q);
+  $("#rep").onclick = () => reportBox($("#repz"), g.id);
   const zone = $("#zone");
   const sk = (game.turn || 0) + "|" + g.id;
   if (game.read && lastSpoken !== sk) { speak(q.q); lastSpoken = sk; }
@@ -1666,13 +1825,17 @@ function renderQuestion() {
     zone.innerHTML = `<div class="choices ${g.mode === "duo" ? "two" : ""}">${g.choices.map((k, i) => `<button class="choice" data-i="${i}" dir="auto">${esc(opts[k])}</button>`).join("")}</div>${SR ? `<div class="row"><button class="mic" id="mic">${MIC} ${t("Répondre au micro")}</button></div><p class="tiny" id="mi" hidden></p>` : ""}`;
     const choose = i => {
       if (busy) return; busy = true; clearInterval(tmr); stopRec(); netFx("qr", { k: "c", i });
-      const ok = g.choices[i] === 0;
-      zone.querySelectorAll(".choice").forEach(x => { x.disabled = true; if (g.choices[+x.dataset.i] === 0) x.classList.add("right"); });
+      const ok = g.choices[i] === 0, st = canSteal(g, ok);
+      zone.querySelectorAll(".choice").forEach(x => x.disabled = true);
       if (!ok) zone.querySelector(`.choice[data-i="${i}"]`).classList.add("wrong");
       quiet(() => ok ? SFX.good() : SFX.bad()); buzz(ok ? 30 : [60, 40, 60]);
-      const m = $("#mic"); if (m) m.parentElement.remove(); sayAnswer(q);
-      zone.insertAdjacentHTML("beforeend", `${q.note ? `<p class="note" dir="auto">${esc(q.note)}</p>` : ""}<button class="big w" id="cont">${ok ? t("Avancer !") : t("Continuer")}</button>`);
-      busy = false; $("#cont").onclick = () => resolve(ok);
+      const m = $("#mic"); if (m) m.parentElement.remove(); busy = false;
+      if (st && !live && stealGuest(zone, q, [g.choices[i]])) return;
+      zone.querySelectorAll(".choice").forEach(x => { if (g.choices[+x.dataset.i] === 0) x.classList.add("right"); });
+      sayAnswer(q);
+      if (q.note) zone.insertAdjacentHTML("beforeend", `<p class="note" dir="auto">${esc(q.note)}</p>`);
+      const addCont = () => { zone.insertAdjacentHTML("beforeend", `<button class="big w" id="cont">${ok ? t("Avancer !") : t("Continuer")}</button>`); $("#cont").onclick = () => resolve(ok); };
+      if (st && live) stealHost(zone, addCont); else addCont();
     };
     const timeout = () => { if (zone.querySelector(".right")) return; netFx("qr", { k: "to" }); quiet(() => SFX.bad()); zone.querySelectorAll(".choice").forEach(x => { x.disabled = true; if (g.choices[+x.dataset.i] === 0) x.classList.add("right"); }); zone.insertAdjacentHTML("beforeend", `<p class="note" dir="auto"><b>${t("Temps écoulé !")}</b>${q.note ? " " + esc(q.note) : ""}</p><button class="big w" id="cont">${t("Continuer")}</button>`); sayAnswer(q); $("#cont").onclick = () => resolve(false); };
     Object.assign(QUI, { choose, timeout, reveal: null });
@@ -1687,13 +1850,18 @@ function renderQuestion() {
     const answerBox = `<div class="answer"><p class="lab" style="color:var(--ok)">${t("Bonne réponse")}</p><b dir="auto">${esc(q.a)}</b>${q.note ? `<p class="note" dir="auto" style="margin-top:6px">${esc(q.note)}</p>` : ""}</div>`;
     /* v = true : reconnue juste · false : reconnue fausse · null : au groupe de juger */
     const reveal = (tx, v, typed) => {
-      clearInterval(tmr); stopRec(); try { document.activeElement && document.activeElement.blur(); } catch (e) {} netFx("qr", { k: "x", tx: tx || "", v: v === true || v === false ? v : null, ty: !!typed }); sayAnswer(q);
+      clearInterval(tmr); stopRec(); try { document.activeElement && document.activeElement.blur(); } catch (e) {} netFx("qr", { k: "x", tx: tx || "", v: v === true || v === false ? v : null, ty: !!typed });
       if (v !== true && v !== false) v = null;
+      const st = v === false && canSteal(g, false);
+      if (st && !live) { quiet(() => SFX.bad()); if (stealGuest(zone, q, [])) return; }
+      sayAnswer(q);
       const heard = tx ? `<div class="heard"><span class="lab" style="color:var(--muted)">${typed ? t("Ta réponse") : t("Réponse entendue")}</span><q dir="auto">${esc(tx)}</q><b style="color:${v === true ? "var(--ok)" : v === false ? "var(--ko)" : "var(--muted)"}">${v === true ? (typed ? t("Bonne réponse !") : t("Bonne réponse reconnue !")) : v === false ? t("Ce n'est pas la bonne réponse.") : t("Presque ! Au groupe de juger.")}</b></div>` : "";
       if (v === true || v === false) {
         quiet(() => v ? SFX.good() : SFX.bad()); buzz(v ? 30 : [60, 40, 60]);
-        zone.innerHTML = `${heard}${answerBox}<button class="big w" id="cont">${v ? t("Avancer !") : t("Continuer")}</button><button class="ghostbtn" id="flip" style="width:100%;margin-top:8px">${v ? t("Erreur ? Compter comme faux") : typed ? t("Erreur ? Compter comme juste") : t("Erreur de micro ? Compter comme juste")}</button>`;
-        $("#cont").onclick = () => resolve(v); $("#flip").onclick = () => { SFX.tap(); resolve(!v); };
+        zone.innerHTML = `${heard}${answerBox}`;
+        const addCont = () => { zone.insertAdjacentHTML("beforeend", `<button class="big w" id="cont">${v ? t("Avancer !") : t("Continuer")}</button><button class="ghostbtn" id="flip" style="width:100%;margin-top:8px">${v ? t("Erreur ? Compter comme faux") : typed ? t("Erreur ? Compter comme juste") : t("Erreur de micro ? Compter comme juste")}</button>`);
+          $("#cont").onclick = () => resolve(v); $("#flip").onclick = () => { SFX.tap(); resolve(!v); }; };
+        if (st && live) stealHost(zone, addCont); else addCont();
         return;
       }
       zone.innerHTML = `${heard}${answerBox}<p class="tiny">${t("Le groupe valide :")}</p><div class="judge"><button class="yes" id="y">${t("Juste")}</button><button class="no" id="n">${t("Faux")}</button></div>`;
@@ -1722,6 +1890,8 @@ async function resolve(ok) {
 async function resolveImpl(ok) {
   try { speechSynthesis.cancel(); } catch (e) {}
   const pi = game.cur, p = game.players[pi], g = game.q, n = game.cells.length;
+  clearInterval(STEAL.iv); STEAL.key = null;
+  if (!ok) { p.miss = arr(p.miss); if (!p.miss.includes(g.id)) p.miss.push(g.id); }
   closeSheet(); game.phase = "anim"; save(); await sleep(420);
   const center = () => ptScreen(p.pos);
   let again = false;
@@ -1746,6 +1916,7 @@ async function resolveImpl(ok) {
     if (p.pos >= n - 1) { SFX.bonus(); toast("Aux portes de la ville !", "Question finale au prochain tour", "#8A5A0C", 1900); const [x, y] = center(); confetti(x, y, 80); await sleep(1100); }
   } else {
     p.streak = 0; toast(pick(["Raté…", "Dommage !", "Presque !"]), "La caravane reste sur place", "var(--ko)", 1400); await sleep(1100);
+    const th = g.thief; if (th != null && th !== pi && game.players[th]) { SFX.bonus(); toast("{n} vole la réponse !", "+2 cases", PCOL[th], 1500, { n: game.players[th].name }); await sleep(700); await moveBy(th, 2); await sleep(300); }
   }
   game.q = null; save(); await sleep(250); busy = false;
   if (again) { game.phase = "roll"; save(); step(); } else next();
@@ -1826,22 +1997,40 @@ async function drawCard(pi) {
   return r === true;
 }
 function next() { game.cur = (game.cur + 1) % game.players.length; game.phase = "roll"; if (NET.on) { game.turn = (game.turn || 0) + 1; const old = game.turn - 2, code = NET.code; if (old >= 0) netDo(() => db("DELETE", `rooms/${code}/ev/${old}`)); } save(); step(); }
-function showWin() {
+function learnList() { const me = myIdx(); return game.players.map((p, i) => ({ p, i, ids: arr(p.miss) })).filter(x => !NET.on || me < 0 || x.i === me); }
+function showLearn() {
+  const w = $("#win"), L = learnList();
+  w.innerHTML = `<div class="box"><h2 style="font-size:30px">${t("À retenir")}</h2><p class="note">${t("Les questions ratées, avec la bonne réponse et l'explication.")}</p>
+    <div class="learn">${L.map(({ p, i, ids }) => `${L.length > 1 ? `<h3 style="color:${PCOL[i]}" dir="auto">${esc(p.name)}</h3>` : ""}${ids.length ? ids.map(id => { const q = QT(id); return `<div class="it"><p class="qq" dir="auto">${esc(q.q)}</p><p class="aa" dir="auto">✓ ${esc(q.a)}</p>${q.note ? `<p class="note" dir="auto">${esc(q.note)}</p>` : ""}</div>`; }).join("") : `<p class="note">${t("Aucune question ratée. Mâ châ' Allâh !")}</p>`}`).join("")}</div>
+    <button class="big w" id="share">${t("Partager")}</button><button class="ghostbtn" id="back">${t("Retour")}</button></div>`;
+  w.querySelector(".box").scrollTop = 0;
+  $("#back").onclick = () => { SFX.tap(); showWin(true); };
+  $("#share").onclick = async () => {
+    const text = t("La Caravane du Savoir") + " — " + t("À retenir") + "\n\n" + L.map(({ p, ids }) => (L.length > 1 ? p.name + "\n" : "") + ids.map(id => { const q = QT(id); return "❓ " + q.q + "\n✅ " + q.a + (q.note ? "\n" + q.note : ""); }).join("\n\n")).join("\n\n");
+    try { if (navigator.share) { await navigator.share({ title: t("À retenir"), text }); return; } } catch (e) { if (e && e.name === "AbortError") return; }
+    try { await navigator.clipboard.writeText(text); $("#share").textContent = t("Copié ✓"); } catch (e) {}
+  };
+}
+function showWin(back) {
   closeSheet(); $("#dock").innerHTML = ""; const w = $("#win"), p = game.players[game.winner];
+  const nMiss = learnList().reduce((s, x) => s + x.ids.length, 0);
   const rank = game.players.map((x, i) => ({ ...x, i })).sort((a, b) => (b.i === game.winner) - (a.i === game.winner) || b.pos - a.pos || b.good - a.good);
   w.innerHTML = `<div class="box"><svg viewBox="0 0 120 70" style="width:150px;margin:0 auto"><use href="#city" width="120" height="70"/></svg><p class="lab" style="color:var(--gold2)">${t("Mâ châ' Allâh !")}</p><h2 style="color:${PCOL[game.winner]}">${esc(t("{n} arrive en premier", { n: p.name }))}</h2>
     <div class="rank">${rank.map((x, k) => `<div>${av(x.i)}<span>${k + 1}. ${esc(x.name)}</span><span style="margin-inline-start:auto;font-size:14px;color:var(--muted)">${t("{n} bonnes rép.", { n: x.good })}</span></div>`).join("")}</div>
+    ${nMiss ? `<button class="big w" id="learn" style="background:var(--ok);color:#fff">${t("À retenir : revoir les questions ratées ({n})", { n: nMiss })}</button>` : `<p class="note">${t("Aucune question ratée. Mâ châ' Allâh !")}</p>`}
     ${NET.on && !NET.ctrl ? "" : `<button class="big w" id="again">${t("Rejouer")}</button>`}<button class="ghostbtn" id="home">${NET.on ? t("Quitter la partie en ligne") : t("Changer les joueurs")}</button></div>`;
   requestAnimationFrame(() => w.classList.add("show"));
-  quiet(() => SFX.win()); buzz([80, 60, 80, 60, 200]);
+  if ($("#learn")) $("#learn").onclick = () => { SFX.tap(); showLearn(); };
+  if (!back) { quiet(() => SFX.win()); buzz([80, 60, 80, 60, 200]);
   show(() => rocket(innerWidth * (.15 + Math.random() * .7)), 14, 380);
-  setTimeout(() => confetti(innerWidth / 2, innerHeight * .35, 160), 300);
+  setTimeout(() => confetti(innerWidth / 2, innerHeight * .35, 160), 300); }
   if ($("#again")) $("#again").onclick = () => { const old = game; game = newGame(old.cells.length, old.players); if (NET.on) { game.players.forEach((p, i) => p.uid = old.players[i].uid); game.timer = old.timer; game.turn = (old.turn || 0) + 1; } save(); renderGame(); };
   $("#home").onclick = () => { if (NET.on) return netLeave(); game = null; save(); renderSetup(); };
 }
 function validGame(g) { try { return g && Array.isArray(g.cells) && g.cells.length >= 10 && Array.isArray(g.players) && g.players.length >= 2 && g.players.every(p => typeof p.pos === "number" && p.pos >= 0 && p.pos < g.cells.length) && g.cur >= 0 && g.cur < g.players.length && Array.isArray(g.used); } catch (e) { return false; } }
 async function boot() {
   try { await setLang(detectLang()); } catch (e) { console.warn(e); }
+  try { if ("serviceWorker" in navigator && (location.protocol === "https:" || /^(localhost|127\.)/.test(location.hostname))) navigator.serviceWorker.register("sw.js").catch(() => {}); } catch (e) {}
   try {
     if (setup && Array.isArray(setup.players)) setup.players = setup.players.slice(0, 6); else setup = { players: [{ name: t("Joueur {n}", { n: 1 }), level: "normal" }, { name: t("Joueur {n}", { n: 2 }), level: "normal" }], size: 36, timer: false, read: true, view3d: true };
     if (setup.view3d == null) setup.view3d = true;
