@@ -11,7 +11,7 @@
 <title>La Caravane du Savoir</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Figtree:wght@400;600;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Figtree:wght@400;600;800&family=Noto+Sans+Arabic:wght@400;600;800&display=swap">
 <style>
 /* Layout : un plateau de jeu illustré posé sur une table sombre ; le dé et le joueur courant en bas ; la carte-question monte depuis le bas comme une carte qu'on tire. Univers unique (nuit + sable), assumé dans les deux thèmes. */
 :root{
@@ -19,7 +19,7 @@
   --table:#1B1530; --table2:#261D42; --card:#FFF8EA; --ink:#2A2118; --muted:#7A6A55; --cream:#F6E9CF; --gold:#F2B441; --gold2:#C98A1B;
   --ok:#2E9E5B; --ko:#D2493A; --duo:#3D7FD6; --carre:#E7A52C; --cash:#D2493A;
   --c-coran:#2E9E5B; --c-sira:#E8862F; --c-prophetes:#3D7FD6; --c-piliers:#D24B6A; --c-histoire:#8A5CD0; --c-culture:#E2B72E; --c-adab:#139C9A;
-  --f-display:"Reem Kufi", "Trebuchet MS", sans-serif; --f-body:"Figtree", "Segoe UI", system-ui, sans-serif;
+  --f-display:"Reem Kufi", "Noto Sans Arabic", "Trebuchet MS", sans-serif; --f-body:"Figtree", "Noto Sans Arabic", "Segoe UI", system-ui, sans-serif;
 }
 *{box-sizing:border-box}
 html,body{height:100%}
@@ -55,6 +55,15 @@ h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.1;text-wrap:balance
 .bb svg,.pw svg{display:block;width:100%;height:100%;overflow:visible}
 .psh{position:absolute;left:0;top:0;border-radius:50%;background:radial-gradient(closest-side,rgba(40,20,0,.55),rgba(40,20,0,0))}
 .probe{position:absolute;left:0;top:0;width:2px;height:2px;margin:-1px}
+/* langues */
+.langrow{display:flex;justify-content:flex-end;margin-bottom:4px}
+.langbox{display:inline-flex;align-items:center;gap:6px;padding:4px 6px 4px 10px;border-radius:999px;background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.18);color:var(--cream)}
+.langbox svg,.hero .langbox svg{width:18px;height:18px;flex:none}
+.langbox select{appearance:none;-webkit-appearance:none;background:transparent;border:0;color:inherit;font:700 15px var(--f-body);padding:4px 6px;outline:none}
+.langbox select option{color:#2A2118}
+[dir=rtl] .chip{padding:4px 4px 4px 10px}
+[dir=rtl] .x{margin-left:0}
+body.spectate #card input{pointer-events:none;opacity:.6}
 /* réponse écrite */
 .typed{display:flex;gap:8px;margin:12px 0 4px}
 .typed input{flex:1;min-width:0;font:600 17px var(--f-body);padding:12px 14px;border-radius:14px;border:2px solid #E3D3B3;background:#fff;color:var(--ink);outline:none}
@@ -100,7 +109,7 @@ button{touch-action:manipulation}
 .big:disabled{filter:grayscale(.6);opacity:.6}
 .big.w{width:100%}
 /* dé 3D */
-.dice{width:62px;height:62px;perspective:400px;flex:none}
+.dice{width:62px;height:62px;perspective:400px;flex:none;pointer-events:none;direction:ltr}
 .cube{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform 1s cubic-bezier(.2,.9,.3,1.15)}
 .face{position:absolute;inset:0;background:#FFFDF6;border-radius:12px;border:2px solid #E4D2AE;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);padding:9px;gap:2px;box-shadow:inset 0 -4px 0 rgba(0,0,0,.08)}
 .face i{border-radius:50%;background:#2A2118;visibility:hidden;margin:1px}
@@ -126,7 +135,7 @@ button{touch-action:manipulation}
 .mode small{font-size:11px;font-weight:800;background:rgba(0,0,0,.2);border-radius:999px;padding:1px 8px}
 .choices{display:grid;gap:10px}
 .choices.two{grid-template-columns:1fr 1fr}
-.choice{text-align:left;border:2.5px solid #E6D6B6;background:#FFFDF6;border-radius:16px;padding:14px 16px;font-size:18px;font-weight:700;color:var(--ink);transition:transform .15s}
+.choice{text-align:start;border:2.5px solid #E6D6B6;background:#FFFDF6;border-radius:16px;padding:14px 16px;font-size:18px;font-weight:700;color:var(--ink);transition:transform .15s}
 .choice:active{transform:scale(.98)}
 .choice.right{border-color:var(--ok);background:#E3F5EA;animation:pop .4s}
 .choice.wrong{border-color:var(--ko);background:#FBE5E2;animation:shake .4s}
@@ -202,7 +211,7 @@ button{touch-action:manipulation}
 .win.show{opacity:1;pointer-events:auto}
 .win .box{background:var(--card);color:var(--ink);border-radius:26px;padding:24px 20px;width:min(100%,440px);display:grid;gap:12px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.6)}
 .win h2{font-size:clamp(30px,8vw,42px)}
-.rank{display:grid;gap:6px;text-align:left}
+.rank{display:grid;gap:6px;text-align:start}
 .rank div{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:12px;background:#F4E8CF;font-weight:700}
 .rank .av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none}
 .rank .av svg{width:22px;height:18px}
@@ -619,6 +628,24 @@ const PCOL = ["#1FA37A", "#E0533F", "#3D7FD6", "#F2B441", "#9B6AE0", "#EE7FB0"];
 const MODES = { duo: { name: "Duo", sub: "2 réponses", color: "var(--duo)" }, carre: { name: "Carré", sub: "4 réponses", color: "var(--carre)", ink: "#2A1A05" }, cash: { name: "Cash", sub: "sans aide", color: "var(--cash)" } };
 const steps = (mode, d) => mode === "cash" ? d + 3 : mode === "carre" ? d : Math.ceil(d / 2);
 const Q = QDATA.map((r, i) => ({ id: i, cat: r[0], d: r[1], q: r[2], a: r[3], w: r[4], note: r[5] || "" }));
+/* ============ langues : le français est dans le code, les autres dans lang/xx.json (chargées à la demande) ============ */
+const LV = 1;
+const LANGS = { fr: ["Français", "fr-FR"], ar: ["العربية", "ar-SA", 1], en: ["English", "en-US"], nl: ["Nederlands", "nl-NL"], de: ["Deutsch", "de-DE"], tr: ["Türkçe", "tr-TR"] };
+let LANG = "fr", TR = {}, QL = null; const LCACHE = {};
+/* t("texte français", {var}) ; une variable qui commence par « @ » est elle-même un texte à traduire */
+const t = (s, v) => { let r = (LANG !== "fr" && TR[s]) || s; if (v) r = r.replace(/\{(\w+)\}/g, (_, k) => { const x = v[k]; return x == null ? "" : typeof x === "string" && x[0] === "@" ? t(x.slice(1)) : x; }); return r; };
+const QT = id => { const b = Q[id], l = QL && QL[id]; return l ? { ...b, q: l[0], a: l[1], w: l[2], note: l[3] || "" } : b; };
+const voice = () => LANGS[LANG][1];
+function detectLang() { const want = [store.get("lang", null), ...(navigator.languages || [navigator.language || "fr"])].filter(Boolean); for (const w of want) { const k = String(w).slice(0, 2).toLowerCase(); if (LANGS[k]) return k; } return "fr"; }
+async function setLang(l) {
+  if (!LANGS[l]) l = "fr";
+  if (l !== "fr" && !LCACHE[l]) { try { const r = await fetch(`lang/${l}.json?v=${LV}`); if (!r.ok) throw new Error(r.status); LCACHE[l] = await r.json(); } catch (e) { console.warn("Langue indisponible :", l, e); l = "fr"; } }
+  LANG = l; store.set("lang", l); TR = l === "fr" ? {} : LCACHE[l].ui || {}; QL = l === "fr" ? null : LCACHE[l].q || null;
+  document.documentElement.lang = l; document.documentElement.dir = LANGS[l][2] ? "rtl" : "ltr"; document.title = t("La Caravane du Savoir");
+  if (W3D) W3D.key = "";
+}
+const langSelect = id => `<label class="langbox"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18" fill="none" stroke="currentColor" stroke-width="1.6"/></svg><select id="${id}" aria-label="Langue / Language">${Object.entries(LANGS).map(([k, v]) => `<option value="${k}" ${k === LANG ? "selected" : ""}>${v[0]}</option>`).join("")}</select></label>`;
+const bindLang = (id, after) => { const el = $("#" + id); if (el) el.onchange = async () => { el.disabled = true; await setLang(el.value); after(); }; };
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const shuffle = a => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -715,15 +742,15 @@ function boardSVG() {
       let nx = -dy / len, ny = dx / len; if ((mx + nx * 10 - W / 2) ** 2 > (mx - W / 2) ** 2) { nx = -nx; ny = -ny; }
       const bend = Math.min(60, len * .35), cx = mx + nx * bend, cy = my + ny * bend, d = `M${a.x} ${a.y} Q${cx} ${cy} ${b.x} ${b.y}`; const lx = (a.x + 2 * cx + b.x) / 4, ly = (a.y + 2 * cy + b.y) / 4;
       links += c.t === "short"
-        ? `<path d="${d}" fill="none" stroke="#6B4526" stroke-width="7" stroke-linecap="round" opacity=".85"/><path d="${d}" fill="none" stroke="#E9D7B4" stroke-width="4.5" stroke-dasharray="2.5 3" /><path d="${d}" fill="none" stroke="#2E9E5B" stroke-width="2" stroke-dasharray="0.1 999" marker-end="url(#ah-g)"/><text x="${lx}" y="${ly - 6}" text-anchor="middle" style="font:800 8.5px var(--f-body);fill:#1E5E38;paint-order:stroke;stroke:#FFF3D6;stroke-width:3px">Raccourci</text>`
-        : `<path d="${d}" fill="none" stroke="#C0622B" stroke-width="4" stroke-dasharray="7 5" stroke-linecap="round" opacity=".8" marker-end="url(#ah-o)"/><text x="${lx}" y="${ly - 6}" text-anchor="middle" style="font:800 8.5px var(--f-body);fill:#8A3A12;paint-order:stroke;stroke:#FFF3D6;stroke-width:3px">Sables mouvants</text>`;
+        ? `<path d="${d}" fill="none" stroke="#6B4526" stroke-width="7" stroke-linecap="round" opacity=".85"/><path d="${d}" fill="none" stroke="#E9D7B4" stroke-width="4.5" stroke-dasharray="2.5 3" /><path d="${d}" fill="none" stroke="#2E9E5B" stroke-width="2" stroke-dasharray="0.1 999" marker-end="url(#ah-g)"/><text x="${lx}" y="${ly - 6}" text-anchor="middle" style="font:800 8.5px var(--f-body);fill:#1E5E38;paint-order:stroke;stroke:#FFF3D6;stroke-width:3px">${t("Raccourci")}</text>`
+        : `<path d="${d}" fill="none" stroke="#C0622B" stroke-width="4" stroke-dasharray="7 5" stroke-linecap="round" opacity=".8" marker-end="url(#ah-o)"/><text x="${lx}" y="${ly - 6}" text-anchor="middle" style="font:800 8.5px var(--f-body);fill:#8A3A12;paint-order:stroke;stroke:#FFF3D6;stroke-width:3px">${t("Sables mouvants")}</text>`;
     }
     if (c.t === "start" || c.t === "end") return;
     if (c.t === "cat") sq += `<g>${disc(p.x, p.y, r, CATS[c.cat].color, CATS[c.cat].color)}<circle cx="${p.x}" cy="${p.y}" r="${r}" fill="none" stroke="#FFF6E0" stroke-width="2.2"/><ellipse cx="${p.x - r * .3}" cy="${p.y - r * .35}" rx="${r * .45}" ry="${r * .22}" fill="rgba(255,255,255,.3)"/><text class="sq-num" x="${p.x}" y="${p.y + 3}" text-anchor="middle">${i}</text></g>`;
     else { const top = c.t === "carte" ? "#FFE3A0" : c.t === "short" ? "#DFF3E4" : c.t === "trap" ? "#F8DCC6" : "#FFF3D6"; sq += `<g>${disc(p.x, p.y, r + 1.5, top, "#B88E52", 9)}<circle cx="${p.x}" cy="${p.y}" r="${r + 1.5}" fill="none" stroke="#8A5A2B" stroke-width="1.8"/><use href="#${SPEC[c.t].icon}" x="${p.x - r * .78}" y="${p.y - r * .78}" width="${r * 1.56}" height="${r * 1.56}"/></g>`; }
   });
   const s0 = pts[0], sE = pts[n - 1];
-  return `<svg id="board" viewBox="0 0 ${W} ${H}" role="img" aria-label="Plateau de jeu">
+  return `<svg id="board" viewBox="0 0 ${W} ${H}" role="img" aria-label="${t("Plateau de jeu")}">
     <rect width="${W}" height="${H}" fill="url(#sand)"/>
     <rect width="${W}" height="70" fill="url(#sky)"/><path d="M0 70 Q90 56 180 66 T360 62 V74 H0Z" fill="#E4BE7C"/>${stars}
     <circle cx="40" cy="26" r="11" fill="#FFF3C4"/><circle cx="45" cy="22" r="10" fill="#3A2F63"/>
@@ -736,9 +763,9 @@ function boardSVG() {
     <path d="${PATH}" fill="none" stroke="#FFF1D2" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round" opacity=".9"/>
     ${deco.map(([id, x, y, w]) => `<ellipse cx="${x + w * .65}" cy="${y + (id === "palm" ? w * 1.47 : w * .86)}" rx="${w * .5}" ry="${w * .13}" fill="rgba(60,30,5,.4)" filter="url(#blur3)"/>`).join("")}
     <ellipse cx="${s0.x - 20}" cy="${s0.y - 22}" rx="34" ry="7" fill="rgba(60,30,5,.35)" filter="url(#blur3)"/>
-    <g filter="url(#sh)">${disc(s0.x, s0.y, r + 6, "#1B1530", "#0E0A1C", 9)}<circle cx="${s0.x}" cy="${s0.y}" r="${r + 6}" fill="#1B1530" stroke="#F2B441" stroke-width="3"/><text x="${s0.x}" y="${s0.y + 4}" text-anchor="middle" style="font:800 10px var(--f-body);fill:#F2B441">DÉPART</text></g>
+    <g filter="url(#sh)">${disc(s0.x, s0.y, r + 6, "#1B1530", "#0E0A1C", 9)}<circle cx="${s0.x}" cy="${s0.y}" r="${r + 6}" fill="#1B1530" stroke="#F2B441" stroke-width="3"/><text x="${s0.x}" y="${s0.y + 4}" text-anchor="middle" style="font:800 10px var(--f-body);fill:#F2B441">${esc(t("DÉPART"))}</text></g>
     <ellipse cx="${sE.x - 10}" cy="${sE.y - 12}" rx="58" ry="9" fill="rgba(30,20,50,.35)" filter="url(#blur3)"/>
-    <g filter="url(#sh)">${disc(sE.x, sE.y, r + 7, "#F2B441", "#A8721A", 9)}<circle cx="${sE.x}" cy="${sE.y}" r="${r + 7}" fill="#F2B441" stroke="#FFF3C4" stroke-width="3"/><text x="${sE.x}" y="${sE.y + 4}" text-anchor="middle" style="font:800 9.5px var(--f-body);fill:#2A1A05">ARRIVÉE</text></g>
+    <g filter="url(#sh)">${disc(sE.x, sE.y, r + 7, "#F2B441", "#A8721A", 9)}<circle cx="${sE.x}" cy="${sE.y}" r="${r + 7}" fill="#F2B441" stroke="#FFF3C4" stroke-width="3"/><text x="${sE.x}" y="${sE.y + 4}" text-anchor="middle" style="font:800 9.5px var(--f-body);fill:#2A1A05">${esc(t("ARRIVÉE"))}</text></g>
     ${links}${sq}
     <g id="marks"></g>
   </svg>`;
@@ -926,14 +953,14 @@ function tileCanvas(i, c, icon) {
     const gr = g.createRadialGradient(R * .7, R * .6, 10, R, R, R); gr.addColorStop(0, "rgba(255,255,255,.35)"); gr.addColorStop(.6, "rgba(255,255,255,.05)"); gr.addColorStop(1, "rgba(0,0,0,.25)"); g.fillStyle = gr; g.beginPath(); g.arc(R, R, R, 0, 7); g.fill();
     g.strokeStyle = c.t === "start" ? "#F2B441" : c.t === "cat" ? "#FFF6E0" : "#8A5A2B"; g.lineWidth = 14; g.beginPath(); g.arc(R, R, R - 9, 0, 7); g.stroke();
     g.textAlign = "center"; g.textBaseline = "middle";
-    if (c.t === "start" || c.t === "end") { g.fillStyle = c.t === "start" ? "#F2B441" : "#2A1A05"; g.font = "900 52px Figtree, sans-serif"; g.fillText(c.t === "start" ? "DÉPART" : "ARRIVÉE", R, R); }
+    if (c.t === "start" || c.t === "end") { g.fillStyle = c.t === "start" ? "#F2B441" : "#2A1A05"; g.font = "900 52px Figtree, sans-serif"; { const lb = t(c.t === "start" ? "DÉPART" : "ARRIVÉE"); g.font = `900 ${Math.min(52, Math.floor(1300 / Math.max(6, lb.length * 5)))}px Figtree, sans-serif`; g.fillText(lb, R, R); } }
     else if (icon) g.drawImage(icon, R - 70, R - 70, 140, 140);
     else { g.font = "900 120px Figtree, sans-serif"; g.lineWidth = 12; g.strokeStyle = "rgba(0,0,0,.35)"; g.strokeText(i, R, R + 6); g.fillStyle = "#fff"; g.fillText(i, R, R + 6); }
   });
 }
 /* ---------- construction du monde ---------- */
 async function w3dBuild() {
-  const T = W3D.T, n = game.cells.length, key = game.cells.map(c => c.t + (c.cat || "") + (c.to ?? "")).join(",");
+  const T = W3D.T, n = game.cells.length, key = LANG + ":" + game.cells.map(c => c.t + (c.cat || "") + (c.to ?? "")).join(",");
   if (W3D.key === key && W3D.scene) return; W3D.key = key; const tb = performance.now();
   if (W3D.scene) W3D.scene.traverse(o => { if (o.geometry) o.geometry.dispose(); if (o.material) [].concat(o.material).forEach(m => { for (const k in m) if (m[k] && m[k].isTexture) m[k].dispose(); m.dispose(); }); });
   const scene = new T.Scene(); W3D.scene = scene; W3D.marks = []; W3D.lnow = null;
@@ -1142,7 +1169,7 @@ function w3dFrame(now) {
 }
 function runAnim(D, f) { if (W3D.animRes) W3D.animRes(); return new Promise(res => { const t0 = performance.now(); W3D.animRes = res; W3D.anim = now => { const t = Math.min(1, (now - t0) / D); f(t); if (t >= 1) { W3D.anim = null; W3D.animRes = null; res(); } }; }); }
 function flyTo(pose, D, onT) { const s = curView(); return runAnim(D, t => { const e = ease(t), g = typeof pose === "function" ? pose() : pose; w3dSetView(...s.map((v, j) => v + (g[j] - v) * e)); if (onT) onT(t, e); }); }
-function w3dHud(pi, i) { const h = W3D.box.querySelector(".w3hud"); h.querySelector("i").style.background = PCOL[pi]; h.querySelector("b").textContent = game.players[pi].name; h.querySelector("small").textContent = i === 0 ? "Départ" : i === game.cells.length - 1 ? "Arrivée" : "Case " + i; }
+function w3dHud(pi, i) { const h = W3D.box.querySelector(".w3hud"); h.querySelector("i").style.background = PCOL[pi]; h.querySelector("b").textContent = game.players[pi].name; h.querySelector("small").textContent = i === 0 ? t("Départ") : i === game.cells.length - 1 ? t("Arrivée") : t("Case {n}", { n: i }); }
 /* ---------- le plateau 3D permanent ---------- */
 function w3dBoardOn() {
   if (!W3D.ok || !W3D.scene || !game) return;
@@ -1300,19 +1327,7 @@ function netFx(t, o) { if (NET.on && NET.ctrl && !NET.applying) netSend({ t, ...
 let stTimer = 0;
 function netState() { if (!(NET.on && NET.ctrl && !NET.applying && game)) return; netSend({ t: "st", g: game }); clearTimeout(stTimer); const code = NET.code; stTimer = setTimeout(() => { if (game) { const g = game; netDo(() => db("PUT", `rooms/${code}/state`, g)); } }, 1200); }
 /* sons : le pilote les fait entendre chez tout le monde */
-{ const SFX0 = { ...SFX }; Object.keys(SFX0).forEach(k => { SFX[k] = (...a) => { if (k !== "step") netFx("sfx", { n: k, a }); return SFX0[k](...a); }; }); }
-/* miroir des panneaux (dé, carte-question, cartes chance, messages, victoire) */
-const MIRROR = [["dock", true], ["sheet", false], ["card", true], ["cardfx", true], ["toast", true], ["win", true]];
-function mirrorStart() {
-  (NET.mo || []).forEach(m => m.disconnect());
-  NET.mo = MIRROR.map(([id, html]) => {
-    const el = $("#" + id); if (!el) return null; let t = 0;
-    el._send = () => { clearTimeout(t); t = 0; if (NET.on && NET.ctrl) netSend({ t: "ui", id, c: el.className, h: html ? el.innerHTML : null }); };
-    const mo = new MutationObserver(recs => { if (!NET.on || !NET.ctrl) return; if (recs.every(r => r.target.id === "bar")) return; if (!t) t = setTimeout(el._send, 140); });
-    mo.observe(el, html ? { attributes: true, attributeFilter: ["class", "style", "disabled"], childList: true, subtree: true, characterData: true } : { attributes: true, attributeFilter: ["class"] });
-    return mo;
-  }).filter(Boolean);
-}
+{ const SFX0 = { ...SFX }; Object.keys(SFX0).forEach(k => { SFX[k] = (...a) => { if (k !== "step" && !NET.mute) netFx("sfx", { n: k, a }); return SFX0[k](...a); }; }); }
 function netUI() { document.body.classList.toggle("spectate", NET.on && !NET.ctrl); document.body.classList.toggle("online", NET.on); }
 function onEv(kind, path, data) {
   const parts = path.split("/").filter(Boolean), list = [];
@@ -1332,34 +1347,37 @@ async function netRun() {
 }
 async function applyEv(e) {
   if (e.t === "st") return adopt(normGame(e.g));
-  if (e.t === "hello") { if (NET.ctrl && game) { NET.applying = false; netSend({ t: "st", g: game }); MIRROR.forEach(([id]) => { const el = $("#" + id); if (el && el._send) el._send(); }); } return; }
+  if (e.t === "hello") { if (NET.ctrl && game) netSend({ t: "st", g: game }); return; }
   if (!game || !$("#dock")) return;
   if (e.t === "mv") await animateMove(e.pi, e.from, e.to);
   else if (e.t === "jp") await jumpMove(e.pi, e.to);
-  else if (e.t === "ui") { const el = $("#" + e.id); if (!el) return; el.className = e.c || ""; if (e.h != null) el.innerHTML = e.id === "dock" ? e.h.replace("À toi de jouer", "C'est le tour de") : e.h; if (e.id === "win") { const hm = $("#home"), ag = $("#again"); if (ag) ag.remove(); if (hm) { hm.textContent = "Quitter la partie en ligne"; hm.onclick = netLeave; } } }
-  else if (e.t === "sfx") { if (SFX[e.n]) SFX[e.n](...(e.a || [])); }
-  else if (e.t === "say") speak(e.s);
+  else if (e.t === "toast") toastLocal(e.a, e.b, e.bg, e.ms, e.va, e.vb);
+  else if (e.t === "sfx") { if (SFX[e.n]) SFX[e.n](...arr(e.a)); }
   else if (e.t === "fx") confetti(e.x * innerWidth, e.y * innerHeight, e.n);
-  else if (e.t === "mk") markDest(e.l);
+  else if (e.t === "mk") markDest(arr(e.l).map(arr));
+  else if (e.t === "roll") specRoll(e.v);
+  else if (e.t === "qr") { specRender(); if (QUI.k === qKey()) { if (e.k === "c" && QUI.choose) QUI.choose(e.i); else if (e.k === "x" && QUI.reveal) QUI.reveal(e.tx || "", e.v, e.ty); else if (e.k === "to" && QUI.timeout) QUI.timeout(); } }
+  else if (e.t === "card") await cardShow(e.id, e.pi, false);
+  else if (e.t === "cardx") cardHide();
 }
 function adopt(g) {
   const fresh = !game || !$("#dock") || JSON.stringify(game.cells) !== JSON.stringify(g.cells);
   game = g; store.set("game3", game);
-  if (fresh) { renderGame(); return; }
-  chips(); drawPawns(); w3dPlaceCamels();
-  if (isMine()) { if (!NET.ctrl && game.winner == null) step(); }
-  else { NET.ctrl = false; netUI(); w3dFocus(game.cur); }
+  if (fresh) { QUI.k = null; renderGame(); return; }
+  w3dPlaceCamels();
+  if (isMine()) { if (!NET.ctrl) step(); }
+  else { NET.ctrl = false; netUI(); specRender(); }
 }
 /* ---------- salle d'attente ---------- */
 const genCode = () => Array.from({ length: 5 }, () => "ABCDEFGHJKMNPQRSTUVWXYZ23456789"[Math.floor(Math.random() * 31)]).join("");
 const lobbyPlayers = () => Object.entries((NET.lobby && NET.lobby.players) || {}).sort((a, b) => (a[1].t || 0) - (b[1].t || 0));
 async function netCreate(btn) {
-  btn.disabled = true; btn.textContent = "Création de la partie…";
+  btn.disabled = true; btn.textContent = t("Création de la partie…");
   try {
     await fbAuth(); const code = genCode(), me = setup.players[0];
     await db("PUT", `rooms/${code}`, { meta: { host: NET.uid, status: "lobby", size: setup.size, timer: !!setup.timer, t: { ".sv": "timestamp" } }, players: { [NET.uid]: { name: me.name, level: me.level, t: { ".sv": "timestamp" } } } });
     NET.code = code; store.set("net", { code }); openLobby();
-  } catch (e) { console.warn(e); btn.disabled = false; btn.textContent = "Connexion impossible, réessaie"; }
+  } catch (e) { console.warn(e); btn.disabled = false; btn.textContent = t("Connexion impossible, réessaie"); }
 }
 function openLobby() {
   netCloseAll(); NET.lobby = { meta: {}, players: {} }; renderLobby();
@@ -1369,20 +1387,21 @@ function openLobby() {
 }
 function renderLobby() {
   w3dHide(); document.body.classList.remove("ingame");
-  const link = location.origin + location.pathname + "#join=" + NET.code, m = NET.lobby.meta || {}, host = m.host === NET.uid, pl = lobbyPlayers(), msg = "Viens jouer à La Caravane du Savoir avec moi ! " + link;
+  const link = location.origin + location.pathname + "#join=" + NET.code, m = NET.lobby.meta || {}, host = m.host === NET.uid, pl = lobbyPlayers(), msg = t("Viens jouer à La Caravane du Savoir avec moi !") + " " + link;
   root.innerHTML = `<div class="setup">
-    <div class="hero"><h1>Partie en ligne</h1><p>Envoie le lien à ta famille : chacun joue chez soi, sur son téléphone.</p></div>
-    <section class="panel"><p class="lab2">Code de la partie</p><div class="netcode">${esc(NET.code)}</div>
-      <div class="seg"><button id="share">${navigator.share ? "Partager le lien" : "Copier le lien"}</button><button id="wa">WhatsApp</button></div></section>
-    <section class="panel"><p class="lab2">Joueurs connectés (${pl.length}/6)</p>
-      ${pl.map(([u, p], i) => `<div class="prow">${av(i)}<span class="pname">${esc(p.name)}${u === NET.uid ? " (toi)" : ""}${u === m.host ? " · hôte" : ""}</span><small class="plev">${esc(p.level || "")}</small></div>`).join("") || `<p class="hint">Connexion…</p>`}
-      <p class="hint">${host ? (pl.length < 2 ? "En attente d'au moins un autre joueur…" : "Tout le monde est là ? Lance la partie.") : "En attente que l'hôte lance la partie…"}</p></section>
-    ${host ? `<button class="big w" id="go2" ${pl.length < 2 ? "disabled" : ""}>Lancer la partie</button>` : ""}
-    <button class="ghostbtn" id="leave">Quitter</button></div>`;
-  $("#share").onclick = async () => { try { if (navigator.share) await navigator.share({ title: "La Caravane du Savoir", text: msg, url: link }); else { await navigator.clipboard.writeText(link); $("#share").textContent = "Lien copié ✓"; } } catch (e) {} };
+    <div class="hero"><div class="langrow">${langSelect("lang")}</div><h1>${t("Partie en ligne")}</h1><p>${t("Envoie le lien à ta famille : chacun joue chez soi, sur son téléphone, dans sa langue.")}</p></div>
+    <section class="panel"><p class="lab2">${t("Code de la partie")}</p><div class="netcode" dir="ltr">${esc(NET.code)}</div>
+      <div class="seg"><button id="share">${navigator.share ? t("Partager le lien") : t("Copier le lien")}</button><button id="wa">WhatsApp</button></div></section>
+    <section class="panel"><p class="lab2">${t("Joueurs connectés ({n}/6)", { n: pl.length })}</p>
+      ${pl.map(([u, p], i) => `<div class="prow">${av(i)}<span class="pname">${esc(p.name)}${u === NET.uid ? " " + t("(toi)") : ""}${u === m.host ? " · " + t("hôte") : ""}</span><small class="plev">${t(p.level === "facile" ? "Facile" : p.level === "expert" ? "Expert" : "Normal")}</small></div>`).join("") || `<p class="hint">${t("Connexion…")}</p>`}
+      <p class="hint">${host ? (pl.length < 2 ? t("En attente d'au moins un autre joueur…") : t("Tout le monde est là ? Lance la partie.")) : t("En attente que l'hôte lance la partie…")}</p></section>
+    ${host ? `<button class="big w" id="go2" ${pl.length < 2 ? "disabled" : ""}>${t("Lancer la partie")}</button>` : ""}
+    <button class="ghostbtn" id="leave">${t("Quitter")}</button></div>`;
+  bindLang("lang", renderLobby);
+  $("#share").onclick = async () => { try { if (navigator.share) await navigator.share({ title: t("La Caravane du Savoir"), text: msg, url: link }); else { await navigator.clipboard.writeText(link); $("#share").textContent = t("Lien copié ✓"); } } catch (e) {} };
   $("#wa").onclick = () => window.open("https://wa.me/?text=" + encodeURIComponent(msg), "_blank");
   $("#leave").onclick = netLeave;
-  const go = $("#go2"); if (go) go.onclick = () => { go.disabled = true; go.textContent = "Lancement…"; netStart().catch(e => { console.warn(e); go.disabled = false; go.textContent = "Réessayer"; }); };
+  const go = $("#go2"); if (go) go.onclick = () => { go.disabled = true; go.textContent = t("Lancement…"); netStart().catch(e => { console.warn(e); go.disabled = false; go.textContent = t("Réessayer"); }); };
 }
 async function netStart() {
   const pl = lobbyPlayers(), m = NET.lobby.meta; if (pl.length < 2) return;
@@ -1407,24 +1426,27 @@ function netLeave() {
 }
 function renderJoin(code) {
   w3dHide(); document.body.classList.remove("ingame");
+  const prev = { n: ($("#jn") || {}).value, l: ($("#jl") || {}).value };
   root.innerHTML = `<div class="setup">
-    <div class="hero"><h1>Rejoindre la partie</h1><p>On t'invite à jouer à La Caravane du Savoir. Code <b>${esc(code)}</b></p></div>
-    <section class="panel"><p class="lab2">Ton prénom</p>
-      <div class="prow"><input id="jn" maxlength="16" value="${esc(store.get("myname", ""))}" placeholder="Ton prénom" aria-label="Ton prénom"><select id="jl" aria-label="Niveau"><option value="facile">Facile</option><option value="normal" selected>Normal</option><option value="expert">Expert</option></select></div>
-      <p class="hint">Le niveau règle la difficulté de tes questions.</p></section>
-    <button class="big w" id="jgo">Rejoindre</button><p class="hint" id="jerr" style="text-align:center"></p>
-    <button class="ghostbtn" id="jback">Jouer sur ce téléphone à la place</button></div>`;
+    <div class="hero"><div class="langrow">${langSelect("lang")}</div><h1>${t("Rejoindre la partie")}</h1><p>${t("On t'invite à jouer à La Caravane du Savoir.")} <span dir="ltr">${t("Code")} <b>${esc(code)}</b></span></p></div>
+    <section class="panel"><p class="lab2">${t("Ton prénom")}</p>
+      <div class="prow"><input id="jn" maxlength="16" value="${esc(prev.n || store.get("myname", ""))}" placeholder="${t("Ton prénom")}" aria-label="${t("Ton prénom")}"><select id="jl" aria-label="${t("Niveau")}"><option value="facile">${t("Facile")}</option><option value="normal" selected>${t("Normal")}</option><option value="expert">${t("Expert")}</option></select></div>
+      <p class="hint">${t("Le niveau règle la difficulté de tes questions.")}</p></section>
+    <button class="big w" id="jgo">${t("Rejoindre")}</button><p class="hint" id="jerr" style="text-align:center"></p>
+    <button class="ghostbtn" id="jback">${t("Jouer sur ce téléphone à la place")}</button></div>`;
+  if (prev.l) $("#jl").value = prev.l;
+  bindLang("lang", () => renderJoin(code));
   $("#jback").onclick = () => { history.replaceState(null, "", location.pathname); renderSetup(); };
   $("#jgo").onclick = async () => {
-    const name = $("#jn").value.trim(), level = $("#jl").value, btn = $("#jgo"), err = $("#jerr"); if (!name) { err.textContent = "Écris ton prénom."; return; }
-    store.set("myname", name); btn.disabled = true; btn.textContent = "Connexion…"; err.textContent = "";
+    const name = $("#jn").value.trim(), level = $("#jl").value, btn = $("#jgo"), err = $("#jerr"); if (!name) { err.textContent = t("Écris ton prénom."); return; }
+    store.set("myname", name); btn.disabled = true; btn.textContent = t("Connexion…"); err.textContent = "";
     try {
-      await fbAuth(); const meta = await db("GET", `rooms/${code}/meta`); if (!meta) throw new Error("Cette partie n'existe pas ou est terminée.");
+      await fbAuth(); const meta = await db("GET", `rooms/${code}/meta`); if (!meta) throw new Error(t("Cette partie n'existe pas ou est terminée."));
       const players = (await db("GET", `rooms/${code}/players`)) || {};
-      if (!players[NET.uid]) { if (meta.status !== "lobby") throw new Error("La partie a déjà commencé."); if (Object.keys(players).length >= 6) throw new Error("La partie est complète (6 joueurs)."); await db("PUT", `rooms/${code}/players/${NET.uid}`, { name, level, t: { ".sv": "timestamp" } }); }
+      if (!players[NET.uid]) { if (meta.status !== "lobby") throw new Error(t("La partie a déjà commencé.")); if (Object.keys(players).length >= 6) throw new Error(t("La partie est complète (6 joueurs).")); await db("PUT", `rooms/${code}/players/${NET.uid}`, { name, level, t: { ".sv": "timestamp" } }); }
       NET.code = code; store.set("net", { code }); history.replaceState(null, "", location.pathname);
       if (meta.status === "playing") enterGame(); else openLobby();
-    } catch (e) { btn.disabled = false; btn.textContent = "Rejoindre"; err.textContent = /^db|^auth|fetch/i.test(e.message) ? "Connexion impossible, vérifie ta connexion internet." : e.message; }
+    } catch (e) { btn.disabled = false; btn.textContent = t("Rejoindre"); err.textContent = /^db|^auth|fetch/i.test(e.message) ? t("Connexion impossible, vérifie ta connexion internet.") : e.message; }
   };
 }
 async function netResume() {
@@ -1441,9 +1463,9 @@ async function netResume() {
 /* ============ voix ============ */
 const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
 const canSpeak = "speechSynthesis" in window;
-function sayAnswer(q) { if (game && game.read) speak("Bonne réponse : " + q.a.replace(/[«»…]/g, "") + ". " + (q.note || "")); }
-function speak(text) { netFx("say", { s: text }); if (!canSpeak || muted) return; try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text.replace(/ﷺ/g, "")); u.lang = "fr-FR"; u.rate = .95; speechSynthesis.speak(u); } catch (e) {} }
-const normT = s => String(s).replace(/(\d)[\s\u202f\u00a0](?=\d{3}\b)/g, "$1").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[ʿ'’`«»"()?!.,;:\-]/g, " ").replace(/\b(le|la|les|l|un|une|des|de|du|d|al|an|ar|as|at|ad|az|ach|el|ibn|bint|environ|ans|fois|sourate)\b/g, " ").replace(/\s+/g, " ").trim();
+function sayAnswer(q) { if (game && game.read) speak(t("Bonne réponse : {a}.", { a: q.a.replace(/[«»…]/g, "") }) + " " + (q.note || "")); }
+function speak(text) { if (!canSpeak || muted) return; try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text.replace(/ﷺ/g, "")); u.lang = voice(); u.rate = .95; speechSynthesis.speak(u); } catch (e) {} }
+const normT = s => String(s).replace(/(\d)[\s\u202f\u00a0](?=\d{3}\b)/g, "$1").toLowerCase().replace(/ı/g, "i").replace(/ß/g, "ss").normalize("NFD").replace(/[\u0300-\u036f\u064b-\u0655\u0670\u0640]/g, "").replace(/[ٱ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي").replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d)).replace(/[ʿʾ'’`«»"()?!.,;:\-،؟]/g, " ").replace(/(^|\s)(ال|وال)(?=\S{2,})/g, "$1").replace(/\b(le|la|les|l|un|une|des|de|du|d|al|an|ar|as|at|ad|az|ach|el|ibn|bint|environ|ans|fois|sourate|the|a|of|about|years|times|surah|sura|het|een|van|ongeveer|jaar|keer|der|die|das|den|dem|des|ein|eine|einen|von|etwa|jahre|mal|yaklasik|yil|kez|sure|suresi)\b/g, " ").replace(/\s+/g, " ").trim();
 function lev(a, b) { const m = a.length, n = b.length; if (!m) return n; if (!n) return m; const d = Array.from({ length: m + 1 }, (_, i) => [i]); for (let j = 1; j <= n; j++) d[0][j] = j; for (let i = 1; i <= m; i++) for (let j = 1; j <= n; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return d[m][n]; }
 const sim = (a, b) => (!a || !b) ? 0 : 1 - lev(a, b) / Math.max(a.length, b.length);
 const NUMW = { zero: 0, deux: 2, trois: 3, quatre: 4, cinq: 5, six: 6, sept: 7, huit: 8, neuf: 9, dix: 10, onze: 11, douze: 12, treize: 13, quatorze: 14, quinze: 15, seize: 16, vingt: 20, trente: 30, quarante: 40, cinquante: 50, soixante: 60, cent: 100, mille: 1000 };
@@ -1463,9 +1485,9 @@ const digits = s => (phon(s).match(/\d+/g) || []).sort().join(",");
 const score = (heard, ans) => { const sc = Math.max(score1(heard, ans, normT), score1(heard, ans, phon)), da = digits(ans), dh = digits(heard); return da && dh && da !== dh ? Math.min(sc, .3) : da && !dh ? Math.min(sc, .6) : sc; };
 function score1(heard, ans, norm) { const h = norm(heard); let best = 0; if (!h) return 0; for (const v of variants(ans, norm)) { if (h === v || h.includes(v)) return 1; best = Math.max(best, sim(h, v)); const toks = v.split(" ").filter(t => t.length >= 3 || /\d/.test(t)), ht = h.split(" "); if (toks.length) best = Math.max(best, toks.filter(t => ht.some(x => x === t || sim(x, t) >= .72)).length / toks.length * .95); } return best; }
 let rec = null;
-function listen(onText, onErr) { if (!SR) { onErr("unsupported"); return; } try { const r = new SR(); r.lang = "fr-FR"; r.interimResults = true; let fin = ""; r.onresult = e => { let t = ""; for (const x of e.results) t += x[0].transcript; fin = t; onText(t, false); }; r.onerror = e => onErr(e.error || "error"); r.onend = () => onText(fin, true); r.start(); rec = r; } catch (e) { onErr("error"); } }
+function listen(onText, onErr) { if (!SR) { onErr("unsupported"); return; } try { const r = new SR(); r.lang = voice(); r.interimResults = true; let fin = ""; r.onresult = e => { let t = ""; for (const x of e.results) t += x[0].transcript; fin = t; onText(t, false); }; r.onerror = e => onErr(e.error || "error"); r.onend = () => onText(fin, true); r.start(); rec = r; } catch (e) { onErr("error"); } }
 function stopRec() { try { rec && rec.abort(); } catch (e) {} rec = null; }
-const micMsg = c => ({ unsupported: "La réponse vocale n'est pas disponible ici. Elle marche sur le site en ligne avec Safari ou Chrome.", "not-allowed": "Micro bloqué. Autorise le micro pour ce site dans les réglages du navigateur. (Dans Claude, le micro n'est pas disponible : utilise le site en ligne.)", "no-speech": "Je n'ai rien entendu. Réessaie en parlant près du téléphone.", network: "La reconnaissance vocale a besoin d'Internet.", "service-not-allowed": "Reconnaissance vocale indisponible ici : utilise le site en ligne." }[c] || "La reconnaissance vocale n'a pas marché. Réponds à voix haute au groupe.");
+const micMsg = c => t({ unsupported: "La réponse vocale n'est pas disponible ici. Elle marche sur le site en ligne avec Safari ou Chrome.", "not-allowed": "Micro bloqué. Autorise le micro pour ce site dans les réglages du navigateur.", "no-speech": "Je n'ai rien entendu. Réessaie en parlant près du téléphone.", network: "La reconnaissance vocale a besoin d'Internet.", "service-not-allowed": "Reconnaissance vocale indisponible ici : utilise le site en ligne." }[c] || "La reconnaissance vocale n'a pas marché. Réponds à voix haute au groupe.");
 const MIC = `<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3" stroke="currentColor" stroke-width="2" fill="none"/></svg>`;
 
 /* ============ état ============ */
@@ -1489,48 +1511,50 @@ function renderSetup() {
   closeSheet(); document.body.classList.remove("ingame");
   root.innerHTML = `<div class="setup">
     <div class="hero">
+      <div class="langrow">${langSelect("lang")}</div>
       <svg viewBox="0 0 320 120" aria-hidden="true"><path d="M0 110 Q80 80 160 100 T320 95 V120 H0Z" fill="#E4BE7C"/><use href="#palm" x="10" y="30" width="44" height="70"/><use href="#palm" x="270" y="36" width="40" height="64"/><use href="#city" x="190" y="30" width="110" height="64"/>
         <g><use href="#camel" x="60" y="62" width="50" height="40" fill="${PCOL[0]}"/><use href="#camel" x="108" y="66" width="44" height="35" fill="${PCOL[1]}"/><use href="#camel" x="150" y="70" width="38" height="30" fill="${PCOL[2]}"/></g></svg>
-      <h1>La Caravane du Savoir</h1>
-      <p>Lance le dé, réponds aux questions sur l'islam et fais avancer ta caravane jusqu'à la ville. Plus tu prends de risques, plus tu avances vite.</p>
+      <h1>${t("La Caravane du Savoir")}</h1>
+      <p>${t("Lance le dé, réponds aux questions sur l'islam et fais avancer ta caravane jusqu'à la ville. Plus tu prends de risques, plus tu avances vite.")}</p>
     </div>
     <div class="rules">
-      <div class="rule" style="background:var(--duo)"><b>Duo</b><span>2 réponses<br>moitié du dé</span></div>
-      <div class="rule" style="background:var(--carre);color:#2A1A05"><b>Carré</b><span>4 réponses<br>valeur du dé</span></div>
-      <div class="rule" style="background:var(--cash)"><b>Cash</b><span>sans aide<br>dé + 3 cases</span></div>
+      <div class="rule" style="background:var(--duo)"><b>${t("Duo")}</b><span>${t("2 réponses")}<br>${t("moitié du dé")}</span></div>
+      <div class="rule" style="background:var(--carre);color:#2A1A05"><b>${t("Carré")}</b><span>${t("4 réponses")}<br>${t("valeur du dé")}</span></div>
+      <div class="rule" style="background:var(--cash)"><b>${t("Cash")}</b><span>${t("sans aide")}<br>${t("dé + 3 cases")}</span></div>
     </div>
     <section class="panel">
-      <p class="lab2">Les caravanes (2 à 6 joueurs ou équipes)</p>
-      ${setup.players.map((p, i) => `<div class="prow">${av(i).replace('class="av"', 'class="av"')}<input id="pn${i}" value="${esc(p.name)}" maxlength="16" aria-label="Nom ${i + 1}"><select id="pl${i}" aria-label="Niveau"><option value="facile" ${p.level === "facile" ? "selected" : ""}>Facile</option><option value="normal" ${p.level === "normal" ? "selected" : ""}>Normal</option><option value="expert" ${p.level === "expert" ? "selected" : ""}>Expert</option></select>${setup.players.length > 2 ? `<button class="x" data-rm="${i}" aria-label="Retirer">×</button>` : "<span></span>"}</div>`).join("")}
-      ${setup.players.length < 6 ? `<button class="addbtn" id="add">+ Ajouter une caravane</button>` : ""}
-      <p class="hint">Le niveau règle la difficulté des questions de chaque joueur : facile pour les enfants, expert pour les plus calés.</p>
+      <p class="lab2">${t("Les caravanes (2 à 6 joueurs ou équipes)")}</p>
+      ${setup.players.map((p, i) => `<div class="prow">${av(i)}<input id="pn${i}" value="${esc(p.name)}" maxlength="16" aria-label="${t("Nom {n}", { n: i + 1 })}"><select id="pl${i}" aria-label="${t("Niveau")}"><option value="facile" ${p.level === "facile" ? "selected" : ""}>${t("Facile")}</option><option value="normal" ${p.level === "normal" ? "selected" : ""}>${t("Normal")}</option><option value="expert" ${p.level === "expert" ? "selected" : ""}>${t("Expert")}</option></select>${setup.players.length > 2 ? `<button class="x" data-rm="${i}" aria-label="${t("Retirer")}">×</button>` : "<span></span>"}</div>`).join("")}
+      ${setup.players.length < 6 ? `<button class="addbtn" id="add">${t("+ Ajouter une caravane")}</button>` : ""}
+      <p class="hint">${t("Le niveau règle la difficulté des questions de chaque joueur : facile pour les enfants, expert pour les plus calés.")}</p>
     </section>
     <section class="panel">
-      <p class="lab2">Longueur du voyage</p>
-      <div class="seg"><button data-s="24" aria-pressed="${setup.size === 24}">Court · 24</button><button data-s="36" aria-pressed="${setup.size === 36}">Moyen · 36</button><button data-s="48" aria-pressed="${setup.size === 48}">Long · 48</button></div>
-      <p class="lab2">Options</p>
-      <div class="seg"><button data-o="read" aria-pressed="${setup.read}">Lecture des questions</button><button data-o="timer" aria-pressed="${setup.timer}">Chrono 30 s</button><button data-o="view3d" aria-pressed="${setup.view3d !== false}">Vue 3D</button></div>
-      <p class="hint">Réponse au micro : ${SR ? "disponible sur ce navigateur." : "indisponible ici ; elle marche sur le site en ligne (Safari ou Chrome)."} Série de 3 bonnes réponses : +2 cases. Le dernier, s'il est loin derrière, reçoit un vent arrière (+2).</p>
+      <p class="lab2">${t("Longueur du voyage")}</p>
+      <div class="seg"><button data-s="24" aria-pressed="${setup.size === 24}">${t("Court · 24")}</button><button data-s="36" aria-pressed="${setup.size === 36}">${t("Moyen · 36")}</button><button data-s="48" aria-pressed="${setup.size === 48}">${t("Long · 48")}</button></div>
+      <p class="lab2">${t("Options")}</p>
+      <div class="seg"><button data-o="read" aria-pressed="${setup.read}">${t("Lecture des questions")}</button><button data-o="timer" aria-pressed="${setup.timer}">${t("Chrono 30 s")}</button><button data-o="view3d" aria-pressed="${setup.view3d !== false}">${t("Vue 3D")}</button></div>
+      <p class="hint">${SR ? t("Réponse au micro : disponible sur ce navigateur.") : t("Réponse au micro : indisponible ici ; elle marche sur le site en ligne (Safari ou Chrome).")} ${t("Série de 3 bonnes réponses : +2 cases. Le dernier, s'il est loin derrière, reçoit un vent arrière (+2).")}</p>
     </section>
     <section class="panel">
-      <p class="lab2">Sur le chemin</p>
-      <p class="hint" style="opacity:.9">Cartes chance et malchance · raccourcis par les ponts de corde · sables mouvants qui font reculer · oasis (rejoue) · vent (+2) · tempête (−3) · puits (passe un tour). Rien n'est joué avant la question finale : si tu la rates, tu recules de 5 cases.</p>
+      <p class="lab2">${t("Sur le chemin")}</p>
+      <p class="hint" style="opacity:.9">${t("Cartes chance et malchance · raccourcis par les ponts de corde · sables mouvants qui font reculer · oasis (rejoue) · vent (+2) · tempête (−3) · puits (passe un tour). Rien n'est joué avant la question finale : si tu la rates, tu recules de 5 cases.")}</p>
     </section>
     <section class="panel">
-      <p class="lab2">Jouer à distance</p>
-      <p class="hint">Chacun chez soi, sur son téléphone : crée une partie, envoie le lien sur WhatsApp, et jouez ensemble. Ton nom est celui de la 1re caravane.</p>
-      <button class="addbtn" id="online">Créer une partie en ligne</button>
+      <p class="lab2">${t("Jouer à distance")}</p>
+      <p class="hint">${t("Chacun chez soi, sur son téléphone : crée une partie, envoie le lien sur WhatsApp, et jouez ensemble. Ton nom est celui de la 1re caravane.")}</p>
+      <button class="addbtn" id="online">${t("Créer une partie en ligne")}</button>
     </section>
-    <button class="big w" id="start">Partir à l'aventure</button>
-    <p class="hint" style="text-align:center">${Q.length} questions · Coran, vie du Prophète ﷺ, prophètes, piliers, histoire, compagnons, comportement</p>
+    <button class="big w" id="start">${t("Partir à l'aventure")}</button>
+    <p class="hint" style="text-align:center">${t("{n} questions · Coran, vie du Prophète ﷺ, prophètes, piliers, histoire, compagnons, comportement", { n: Q.length })}</p>
   </div>`;
-  const read = () => setup.players.forEach((p, i) => { const n = $("#pn" + i), l = $("#pl" + i); if (n) p.name = n.value.trim() || "Joueur " + (i + 1); if (l) p.level = l.value; });
-  root.querySelectorAll("input,select").forEach(el => el.onchange = () => { read(); save(); });
-  const add = $("#add"); if (add) add.onclick = () => { read(); setup.players.push({ name: "Joueur " + (setup.players.length + 1), level: "normal" }); save(); renderSetup(); };
+  const read = () => setup.players.forEach((p, i) => { const n = $("#pn" + i), l = $("#pl" + i); if (n) p.name = n.value.trim() || t("Joueur {n}", { n: i + 1 }); if (l) p.level = l.value; });
+  root.querySelectorAll("input,select:not(#lang)").forEach(el => el.onchange = () => { read(); save(); });
+  bindLang("lang", () => { read(); renderSetup(); });
+  const add = $("#add"); if (add) add.onclick = () => { read(); setup.players.push({ name: t("Joueur {n}", { n: setup.players.length + 1 }), level: "normal" }); save(); renderSetup(); };
   root.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => { read(); setup.players.splice(+b.dataset.rm, 1); save(); renderSetup(); });
   root.querySelectorAll("[data-s]").forEach(b => b.onclick = () => { read(); setup.size = +b.dataset.s; save(); renderSetup(); });
   root.querySelectorAll("[data-o]").forEach(b => b.onclick = () => { read(); setup[b.dataset.o] = !setup[b.dataset.o]; save(); renderSetup(); });
-  $("#online").onclick = () => { read(); save(); if (!fbOk()) { $("#online").textContent = "Le mode en ligne arrive bientôt"; return; } netCreate($("#online")); };
+  $("#online").onclick = () => { read(); save(); if (!fbOk()) { $("#online").textContent = t("Le mode en ligne arrive bientôt"); return; } netCreate($("#online")); };
   $("#start").onclick = () => { read(); SFX.bonus(); game = newGame(setup.size, setup.players); save(); renderGame(); window.scrollTo(0, 0); };
 }
 const newGame = (size, pl) => ({ cells: makeCells(size), players: pl.map(p => ({ name: p.name, level: p.level, pos: 0, skip: false, good: 0, streak: 0, shield: false })), deck: [], cur: 0, phase: "roll", used: [], die: 1, q: null, winner: null, timer: setup.timer, read: setup.read });
@@ -1542,125 +1566,153 @@ const ROT = { 1: [0, 0], 2: [0, -90], 3: [-90, 0], 4: [90, 0], 5: [0, 90], 6: [0
 let spin = 0;
 function renderGame() {
   root.innerHTML = `<div class="top"><div class="chips" id="chips"></div>
-      <button class="icon-btn" id="snd" aria-label="${muted ? "Activer" : "Couper"} le son">${muted ? `<svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6" stroke="currentColor" stroke-width="2"/></svg>` : `<svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5a9 9 0 0 1 0 14" stroke="currentColor" stroke-width="2" fill="none"/></svg>`}</button>
-      <button class="icon-btn" id="quit" aria-label="Quitter la partie"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4"/></svg></button></div>
+      <button class="icon-btn" id="snd" aria-label="${muted ? t("Activer le son") : t("Couper le son")}">${muted ? `<svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6" stroke="currentColor" stroke-width="2"/></svg>` : `<svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5a9 9 0 0 1 0 14" stroke="currentColor" stroke-width="2" fill="none"/></svg>`}</button>
+      <button class="icon-btn" id="quit" aria-label="${t("Quitter la partie")}"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4"/></svg></button></div>
     <div class="stage">${boardHTML()}</div><div class="cardfx" id="cardfx"></div>
     <div class="dock"><div class="dock-in" id="dock"></div></div>
     <div class="sheet" id="sheet"><div class="card" id="card"></div></div>
     <div class="toast" id="toast"></div>
     <div class="win" id="win"></div>`;
   $("#snd").onclick = () => { muted = !muted; store.set("muted", muted); if (muted) try { speechSynthesis.cancel(); } catch (e) {} renderGame(); };
-  $("#quit").onclick = () => { if ($("#quit").dataset.sure) { stopRec(); try { speechSynthesis.cancel(); } catch (e) {} if (NET.on) return netLeave(); game = null; save(); renderSetup(); } else { $("#quit").dataset.sure = "1"; $("#quit").style.background = "var(--ko)"; toast("Touche encore la croix pour quitter", "", "#6B4526", 1600); setTimeout(() => { const q = $("#quit"); if (q) { delete q.dataset.sure; q.style.background = ""; } }, 2500); } };
-  camStart(); drawPawns(); chips(); if (NET.on) mirrorStart(); step();
+  $("#quit").onclick = () => { if ($("#quit").dataset.sure) { stopRec(); try { speechSynthesis.cancel(); } catch (e) {} if (NET.on) return netLeave(); game = null; save(); renderSetup(); } else { $("#quit").dataset.sure = "1"; $("#quit").style.background = "var(--ko)"; toastLocal("Touche encore la croix pour quitter", "", "#6B4526", 1600); setTimeout(() => { const q = $("#quit"); if (q) { delete q.dataset.sure; q.style.background = ""; } }, 2500); } };
+  QUI.k = null; camStart(); drawPawns(); chips(); step();
   if (w3dOn()) w3dReady().then(ok => { if (ok && game && $("#scene")) w3dBoardOn(); });
 }
-function chips() { const c = $("#chips"); if (!c) return; c.innerHTML = game.players.map((p, i) => `<div class="chip ${i === game.cur ? "cur" : ""}">${av(i)}<span>${esc(p.name)} <small>· ${p.pos}</small>${p.streak >= 2 ? ` <span class="fire">×${p.streak}</span>` : ""}${p.skip ? ` <small>(passe)</small>` : ""}${p.shield ? ` <span class="shield">bouclier</span>` : ""}</span></div>`).join(""); const cur = c.querySelector(".cur"); if (cur) cur.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" }); }
-function toast(t, s, bg, ms = 1500) { const el = $("#toast"); if (!el) return; el.innerHTML = `<span class="t" style="background:${bg}">${t}</span>${s ? `<span class="s">${s}</span>` : ""}`; el.classList.add("show"); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove("show"), ms); }
+function chips() { const c = $("#chips"); if (!c) return; c.innerHTML = game.players.map((p, i) => `<div class="chip ${i === game.cur ? "cur" : ""}">${av(i)}<span>${esc(p.name)} <small>· ${p.pos}</small>${p.streak >= 2 ? ` <span class="fire">×${p.streak}</span>` : ""}${p.skip ? ` <small>${t("(passe)")}</small>` : ""}${p.shield ? ` <span class="shield">${t("bouclier")}</span>` : ""}</span></div>`).join(""); const cur = c.querySelector(".cur"); if (cur) cur.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" }); }
+/* messages : le pilote les envoie en « clés » françaises, chaque téléphone les affiche dans sa langue */
+function toastLocal(a, b, bg, ms = 1500, va, vb) { const el = $("#toast"); if (!el) return; el.innerHTML = `<span class="t" style="background:${bg}">${esc(t(a, va))}</span>${b ? `<span class="s">${esc(t(b, vb))}</span>` : ""}`; el.classList.add("show"); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove("show"), ms); }
+function toast(a, b, bg, ms = 1500, va, vb) { netFx("toast", { a, b: b || "", bg, ms, va: va || null, vb: vb || null }); toastLocal(a, b, bg, ms, va, vb); }
+/* sons joués de chaque côté : on évite de les envoyer en double */
+const quiet = f => { NET.mute = true; try { return f(); } finally { NET.mute = false; } };
 function openSheet(html) { const c = $("#card"); c.innerHTML = html; c.scrollTop = 0; requestAnimationFrame(() => $("#sheet").classList.add("open")); }
 function closeSheet() { const s = $("#sheet"); if (s) s.classList.remove("open"); markDest([]); }
+function renderPick(p, live) {
+  openSheet(`<div class="band" style="background:linear-gradient(90deg,#8A5A0C,#F2B441)"><span>${t("Question finale")}</span></div><div class="cbody"><p class="qfor">${esc(t("Pour {n} · les autres choisissent la catégorie", { n: p.name }))}</p><div class="pickcat">${KEYS.map(k => `<button data-k="${k}" style="background:${CATS[k].color};color:${CATS[k].ink || "#fff"}">${t(CATS[k].name)}</button>`).join("")}</div><p class="tiny">${t("La question finale se joue en Cash. Si elle est ratée, la caravane recule de 5 cases.")}</p></div>`);
+  if (live) $("#card").querySelectorAll("[data-k]").forEach(b => b.onclick = () => { SFX.tap(); const k = b.dataset.k; game.q = { id: draw(k, p.level, true), cat: k, mode: "cash", final: true }; game.phase = "question"; save(); step(); });
+}
 function step() {
   NET.ctrl = !NET.on || isMine(); netUI();
-  if (NET.on && !NET.ctrl) { chips(); drawPawns(); w3dFocus(game.cur); return; }
+  if (NET.on && !NET.ctrl) return specRender();
   chips(); drawPawns(); w3dFocus(game.cur);
   if (game.winner != null) return showWin();
-  const p = game.players[game.cur], dock = $("#dock");
+  const p = game.players[game.cur], dock = $("#dock"); dock.dataset.spec = "";
   if (game.phase === "roll") {
-    closeSheet();
+    closeSheet(); QUI.k = null;
     if (p.skip) {
-      dock.innerHTML = `<div class="who"><small>Au fond du puits…</small><b style="color:${PCOL[game.cur]}">${esc(p.name)}</b></div><button class="big" id="go">Passer le tour</button>`;
+      dock.innerHTML = `<div class="who"><small>${t("Au fond du puits…")}</small><b style="color:${PCOL[game.cur]}">${esc(p.name)}</b></div><button class="big" id="go">${t("Passer le tour")}</button>`;
       $("#go").onclick = () => { SFX.tap(); p.skip = false; next(); }; return;
     }
     const atEnd = p.pos >= game.cells.length - 1;
-    dock.innerHTML = atEnd ? `<div class="who"><small>Aux portes de la ville !</small><b style="color:${PCOL[game.cur]}">${esc(p.name)}</b></div><button class="big" id="go">Question finale</button>`
-      : `<div class="dice" aria-hidden="true"><div class="cube" id="cube" style="transform:rotateX(${ROT[game.die][0]}deg) rotateY(${ROT[game.die][1]}deg)">${face(1, "f1")}${face(2, "f2")}${face(3, "f3")}${face(4, "f4")}${face(5, "f5")}${face(6, "f6")}</div></div><div class="who"><small>À toi de jouer</small><b style="color:${PCOL[game.cur]}">${esc(p.name)}</b></div><button class="big" id="go">Lancer</button>`;
+    dock.innerHTML = atEnd ? `<div class="who"><small>${t("Aux portes de la ville !")}</small><b style="color:${PCOL[game.cur]}">${esc(p.name)}</b></div><button class="big" id="go">${t("Question finale")}</button>`
+      : `${diceHTML()}<div class="who"><small>${t("À toi de jouer")}</small><b style="color:${PCOL[game.cur]}">${esc(p.name)}</b></div><button class="big" id="go">${t("Lancer")}</button>`;
     $("#go").onclick = atEnd ? () => { SFX.tap(); game.phase = "pick"; save(); step(); } : roll;
-  } else if (game.phase === "pick") {
-    dock.innerHTML = "";
-    openSheet(`<div class="band" style="background:linear-gradient(90deg,#8A5A0C,#F2B441)"><span>Question finale</span></div><div class="cbody"><p class="qfor">Pour ${esc(p.name)} · les autres choisissent la catégorie</p><div class="pickcat">${KEYS.map(k => `<button data-k="${k}" style="background:${CATS[k].color};color:${CATS[k].ink || "#fff"}">${CATS[k].name}</button>`).join("")}</div><p class="tiny">La question finale se joue en Cash. Si elle est ratée, la caravane recule de 3 cases.</p></div>`);
-    $("#card").querySelectorAll("[data-k]").forEach(b => b.onclick = () => { SFX.tap(); const k = b.dataset.k; game.q = { id: draw(k, p.level, true), cat: k, mode: "cash", final: true }; game.phase = "question"; save(); step(); });
-  } else if (game.phase === "question") { dock.innerHTML = ""; renderQuestion(); }
+  } else if (game.phase === "pick") { dock.innerHTML = ""; renderPick(p, true); }
+  else if (game.phase === "question") { dock.innerHTML = ""; renderQuestion(); }
 }
+const diceHTML = () => `<div class="dice" aria-hidden="true"><div class="cube" id="cube" style="transform:rotateX(${ROT[game.die][0]}deg) rotateY(${ROT[game.die][1]}deg)">${face(1, "f1")}${face(2, "f2")}${face(3, "f3")}${face(4, "f4")}${face(5, "f5")}${face(6, "f6")}</div></div>`;
+/* vue de ceux qui regardent le tour d'un autre joueur (en ligne) */
+function specRender() {
+  if (!game || !$("#dock")) return;
+  chips(); drawPawns(); w3dFocus(game.cur);
+  const p = game.players[game.cur], dock = $("#dock"), sk = [game.cur, game.die, game.phase, LANG].join("|");
+  if (dock.dataset.spec !== sk) { dock.dataset.spec = sk; dock.innerHTML = game.phase === "roll" ? `${diceHTML()}<div class="who"><small>${t("C'est le tour de")}</small><b style="color:${PCOL[game.cur]}">${esc(p.name)}</b></div>` : `<div class="who"><small>${t("C'est le tour de")}</small><b style="color:${PCOL[game.cur]}">${esc(p.name)}</b></div>`; }
+  if (game.winner != null) { if (!$("#win").classList.contains("show")) showWin(); return; }
+  if (game.phase === "question" && game.q) { if (QUI.k !== qKey()) renderQuestion(); }
+  else if (game.phase === "pick") renderPick(p, false);
+  else if (game.phase === "roll") { QUI.k = null; closeSheet(); }
+}
+function specRoll(v) { spin += 2; quiet(() => SFX.dice()); const cube = $("#cube"); if (cube) cube.style.transform = `rotateX(${ROT[v][0] + 360 * spin}deg) rotateY(${ROT[v][1] + 360 * spin}deg)`; }
 async function roll() {
   if (busy) return; busy = true;
   try { await rollImpl(); } catch (e) { console.error(e); game.phase = "roll"; game.q = null; save(); } finally { busy = false; }
   step();
 }
 async function rollImpl() {
-  const go = $("#go"); if (go) go.disabled = true; SFX.dice(); buzz([20, 40, 20]);
-  const v = 1 + Math.floor(Math.random() * 6); spin += 2;
+  const go = $("#go"); if (go) go.disabled = true; quiet(() => SFX.dice()); buzz([20, 40, 20]);
+  const v = 1 + Math.floor(Math.random() * 6); spin += 2; netFx("roll", { v });
   const cube = $("#cube"); if (cube) cube.style.transform = `rotateX(${ROT[v][0] + 360 * spin}deg) rotateY(${ROT[v][1] + 360 * spin}deg) rotateZ(${spin % 2 ? 0 : 0}deg)`;
   await sleep(1050); game.die = v;
   const p = game.players[game.cur], cell = game.cells[p.pos];
   const cat = cell.t === "cat" ? cell.cat : KEYS[Math.floor(Math.random() * KEYS.length)];
-  toast(`${v}`, "", "#2A2118", 700); await sleep(500);
+  toast("{v}", "", "#2A2118", 700, { v }); await sleep(500);
   game.q = { id: draw(cat, p.level, false), cat, mode: null, final: false }; game.phase = "question"; save();
 }
-let tmr = null;
+let tmr = null, lastSpoken = null;
+const QUI = { k: null };
+const qKey = () => { const g = game && game.q; return g ? [game.turn || 0, g.id, g.mode || "", (g.choices || []).join("."), g.final ? 1 : 0, g.bonus ? 1 : 0].join("|") : null; };
 function renderQuestion() {
   clearInterval(tmr);
-  const p = game.players[game.cur], g = game.q, q = Q[g.id], c = CATS[g.cat], n = game.cells.length;
+  const p = game.players[game.cur], g = game.q, q = QT(g.id), c = CATS[g.cat], n = game.cells.length, live = NET.ctrl;
+  if (g.choices && typeof g.choices[0] !== "number") { g.choices = null; g.mode = g.final || g.bonus ? "cash" : null; }
+  QUI.k = qKey();
+  const opts = [q.a, ...q.w];
   const destOf = m => Math.min(n - 1, p.pos + steps(m, game.die));
-  const lab = i => { const t = game.cells[i].t; return t === "end" ? "Arrivée !" : t === "cat" ? "case " + i : SPEC[t].name; };
-  const head = `<div class="band" style="background:${c.color};color:${c.ink || "#fff"}"><span>${c.name}</span><span class="sp"></span><span class="pill">${g.final ? "Finale" : g.bonus ? "Défi : +4" : "Dé " + game.die}</span></div>
-    <div class="cbody"><p class="qfor"><span style="color:${PCOL[game.cur]}">${esc(p.name)}</span> · ${["", "facile", "moyenne", "difficile"][q.d]}${canSpeak && !muted ? `<button class="say" id="say">Relire</button>` : ""}</p><div class="qtext">${esc(q.q)}</div>${game.timer && g.mode ? `<div class="timer"><i id="bar"></i></div>` : ""}<div id="zone"></div></div>`;
+  const lab = i => { const ty = game.cells[i].t; return ty === "end" ? t("Arrivée !") : ty === "cat" ? t("case {n}", { n: i }) : t(SPEC[ty].name); };
+  const head = `<div class="band" style="background:${c.color};color:${c.ink || "#fff"}"><span>${t(c.name)}</span><span class="sp"></span><span class="pill">${g.final ? t("Finale") : g.bonus ? t("Défi : +4") : t("Dé {n}", { n: game.die })}</span></div>
+    <div class="cbody"><p class="qfor"><span style="color:${PCOL[game.cur]}">${esc(p.name)}</span> · ${t(["", "facile", "moyenne", "difficile"][q.d])}${canSpeak && !muted ? `<button class="say" id="say">${t("Relire")}</button>` : ""}</p><div class="qtext" dir="auto">${esc(q.q)}</div>${game.timer && g.mode ? `<div class="timer"><i id="bar"></i></div>` : ""}<div id="zone"></div></div>`;
   openSheet(head);
   if ($("#say")) $("#say").onclick = () => speak(q.q);
   const zone = $("#zone");
+  const sk = (game.turn || 0) + "|" + g.id;
+  if (game.read && lastSpoken !== sk) { speak(q.q); lastSpoken = sk; }
   if (!g.mode) {
-    if (game.read && !g.spoken) { speak(q.q); g.spoken = true; save(); }
     markDest([[destOf("duo"), "#3D7FD6"], [destOf("carre"), "#E7A52C"], [destOf("cash"), "#D2493A"]]);
-    zone.innerHTML = `<div class="modes">${["duo", "carre", "cash"].map(m => `<button class="mode" data-m="${m}" style="background:${MODES[m].color};color:${MODES[m].ink || "#fff"}"><b>${MODES[m].name}</b><span>${MODES[m].sub}</span><em>+${steps(m, game.die)}</em><small>${lab(destOf(m))}</small></button>`).join("")}</div>`;
-    zone.querySelectorAll("[data-m]").forEach(b => b.onclick = () => { SFX.tap(); g.mode = b.dataset.m; if (g.mode !== "cash") g.choices = g.mode === "carre" ? shuffle([q.a, ...q.w]) : shuffle([q.a, shuffle(q.w)[0]]); save(); renderQuestion(); });
+    zone.innerHTML = `<div class="modes">${["duo", "carre", "cash"].map(m => `<button class="mode" data-m="${m}" style="background:${MODES[m].color};color:${MODES[m].ink || "#fff"}"><b>${t(MODES[m].name)}</b><span>${t(MODES[m].sub)}</span><em>+${steps(m, game.die)}</em><small>${lab(destOf(m))}</small></button>`).join("")}</div>`;
+    zone.querySelectorAll("[data-m]").forEach(b => b.onclick = () => { SFX.tap(); g.mode = b.dataset.m; if (g.mode !== "cash") g.choices = g.mode === "carre" ? shuffle([0, 1, 2, 3]) : shuffle([0, 1 + Math.floor(Math.random() * 3)]); save(); renderQuestion(); });
     return;
   }
   if (!g.final && !g.bonus) markDest([[destOf(g.mode), g.mode === "duo" ? "#3D7FD6" : g.mode === "carre" ? "#E7A52C" : "#D2493A"]]);
   if (g.mode !== "cash") {
-    zone.innerHTML = `<div class="choices ${g.mode === "duo" ? "two" : ""}">${g.choices.map((ch, i) => `<button class="choice" data-i="${i}">${esc(ch)}</button>`).join("")}</div>${SR ? `<div class="row"><button class="mic" id="mic">${MIC} Répondre au micro</button></div><p class="tiny" id="mi" hidden></p>` : ""}`;
+    zone.innerHTML = `<div class="choices ${g.mode === "duo" ? "two" : ""}">${g.choices.map((k, i) => `<button class="choice" data-i="${i}" dir="auto">${esc(opts[k])}</button>`).join("")}</div>${SR ? `<div class="row"><button class="mic" id="mic">${MIC} ${t("Répondre au micro")}</button></div><p class="tiny" id="mi" hidden></p>` : ""}`;
     const choose = i => {
-      if (busy) return; busy = true; clearInterval(tmr); stopRec();
-      const ok = g.choices[i] === q.a;
-      zone.querySelectorAll(".choice").forEach(x => { x.disabled = true; if (g.choices[+x.dataset.i] === q.a) x.classList.add("right"); });
+      if (busy) return; busy = true; clearInterval(tmr); stopRec(); netFx("qr", { k: "c", i });
+      const ok = g.choices[i] === 0;
+      zone.querySelectorAll(".choice").forEach(x => { x.disabled = true; if (g.choices[+x.dataset.i] === 0) x.classList.add("right"); });
       if (!ok) zone.querySelector(`.choice[data-i="${i}"]`).classList.add("wrong");
-      ok ? SFX.good() : SFX.bad(); buzz(ok ? 30 : [60, 40, 60]);
+      quiet(() => ok ? SFX.good() : SFX.bad()); buzz(ok ? 30 : [60, 40, 60]);
       const m = $("#mic"); if (m) m.parentElement.remove(); sayAnswer(q);
-      zone.insertAdjacentHTML("beforeend", `${q.note ? `<p class="note">${esc(q.note)}</p>` : ""}<button class="big w" id="cont">${ok ? "Avancer !" : "Continuer"}</button>`);
+      zone.insertAdjacentHTML("beforeend", `${q.note ? `<p class="note" dir="auto">${esc(q.note)}</p>` : ""}<button class="big w" id="cont">${ok ? t("Avancer !") : t("Continuer")}</button>`);
       busy = false; $("#cont").onclick = () => resolve(ok);
     };
+    const timeout = () => { if (zone.querySelector(".right")) return; netFx("qr", { k: "to" }); quiet(() => SFX.bad()); zone.querySelectorAll(".choice").forEach(x => { x.disabled = true; if (g.choices[+x.dataset.i] === 0) x.classList.add("right"); }); zone.insertAdjacentHTML("beforeend", `<p class="note" dir="auto"><b>${t("Temps écoulé !")}</b>${q.note ? " " + esc(q.note) : ""}</p><button class="big w" id="cont">${t("Continuer")}</button>`); sayAnswer(q); $("#cont").onclick = () => resolve(false); };
+    Object.assign(QUI, { choose, timeout, reveal: null });
     zone.querySelectorAll(".choice").forEach(b => b.onclick = () => choose(+b.dataset.i));
     const mic = $("#mic");
-    if (mic) mic.onclick = () => { const info = $("#mi"); info.hidden = false; info.textContent = "J'écoute…"; mic.classList.add("rec");
-      listen((t, done) => { if (t) info.textContent = `J'entends : « ${t} »`; if (done) { mic.classList.remove("rec"); if (!t) return; const sc = g.choices.map(ch => score(t, ch)), bi = sc.indexOf(Math.max(...sc)); if (sc[bi] >= .5) choose(bi); else info.textContent = `« ${t} » ne correspond à aucune proposition. Réessaie ou touche ta réponse.`; } },
+    if (mic) mic.onclick = () => { const info = $("#mi"); info.hidden = false; info.textContent = t("J'écoute…"); mic.classList.add("rec");
+      listen((tx, done) => { if (tx) info.textContent = t("J'entends : « {t} »", { t: tx }); if (done) { mic.classList.remove("rec"); if (!tx) return; const sc = g.choices.map(k => score(tx, opts[k])), bi = sc.indexOf(Math.max(...sc)); if (sc[bi] >= .5) choose(bi); else info.textContent = t("« {t} » ne correspond à aucune proposition. Réessaie ou touche ta réponse.", { t: tx }); } },
         err => { info.textContent = micMsg(err); mic.classList.remove("rec"); }); };
   } else {
-    zone.innerHTML = `<form class="typed" id="tf" autocomplete="off"><input id="ti" type="text" placeholder="Écris ta réponse…" aria-label="Écris ta réponse" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" maxlength="80"><button class="big" type="submit">Valider</button></form>
-      <div class="row">${SR ? `<button class="mic" id="mic">${MIC} Répondre au micro</button>` : ""}<button class="ghostbtn" id="show">J'ai répondu à voix haute</button></div><div id="heard"></div>`;
-    const answerBox = `<div class="answer"><p class="lab" style="color:var(--ok)">Bonne réponse</p><b>${esc(q.a)}</b>${q.note ? `<p class="note" style="margin-top:6px">${esc(q.note)}</p>` : ""}</div>`;
+    zone.innerHTML = `<form class="typed" id="tf" autocomplete="off"><input id="ti" type="text" dir="auto" placeholder="${t("Écris ta réponse…")}" aria-label="${t("Écris ta réponse…")}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" maxlength="80"><button class="big" type="submit">${t("Valider")}</button></form>
+      <div class="row">${SR ? `<button class="mic" id="mic">${MIC} ${t("Répondre au micro")}</button>` : ""}<button class="ghostbtn" id="show">${t("J'ai répondu à voix haute")}</button></div><div id="heard"></div>`;
+    const answerBox = `<div class="answer"><p class="lab" style="color:var(--ok)">${t("Bonne réponse")}</p><b dir="auto">${esc(q.a)}</b>${q.note ? `<p class="note" dir="auto" style="margin-top:6px">${esc(q.note)}</p>` : ""}</div>`;
     /* v = true : reconnue juste · false : reconnue fausse · null : au groupe de juger */
-    const reveal = (t, v, typed) => {
-      clearInterval(tmr); stopRec(); try { document.activeElement && document.activeElement.blur(); } catch (e) {} sayAnswer(q);
-      const heard = t ? `<div class="heard"><span class="lab" style="color:var(--muted)">${typed ? "Ta réponse" : "Réponse entendue"}</span><q>${esc(t)}</q><b style="color:${v === true ? "var(--ok)" : v === false ? "var(--ko)" : "var(--muted)"}">${v === true ? (typed ? "Bonne réponse !" : "Bonne réponse reconnue !") : v === false ? "Ce n'est pas la bonne réponse." : "Presque ! Au groupe de juger."}</b></div>` : "";
+    const reveal = (tx, v, typed) => {
+      clearInterval(tmr); stopRec(); try { document.activeElement && document.activeElement.blur(); } catch (e) {} netFx("qr", { k: "x", tx: tx || "", v: v === true || v === false ? v : null, ty: !!typed }); sayAnswer(q);
+      if (v !== true && v !== false) v = null;
+      const heard = tx ? `<div class="heard"><span class="lab" style="color:var(--muted)">${typed ? t("Ta réponse") : t("Réponse entendue")}</span><q dir="auto">${esc(tx)}</q><b style="color:${v === true ? "var(--ok)" : v === false ? "var(--ko)" : "var(--muted)"}">${v === true ? (typed ? t("Bonne réponse !") : t("Bonne réponse reconnue !")) : v === false ? t("Ce n'est pas la bonne réponse.") : t("Presque ! Au groupe de juger.")}</b></div>` : "";
       if (v === true || v === false) {
-        v ? SFX.good() : SFX.bad(); buzz(v ? 30 : [60, 40, 60]);
-        zone.innerHTML = `${heard}${answerBox}<button class="big w" id="cont">${v ? "Avancer !" : "Continuer"}</button><button class="ghostbtn" id="flip" style="width:100%;margin-top:8px">${v ? "Erreur ? Compter comme faux" : typed ? "Erreur ? Compter comme juste" : "Erreur de micro ? Compter comme juste"}</button>`;
+        quiet(() => v ? SFX.good() : SFX.bad()); buzz(v ? 30 : [60, 40, 60]);
+        zone.innerHTML = `${heard}${answerBox}<button class="big w" id="cont">${v ? t("Avancer !") : t("Continuer")}</button><button class="ghostbtn" id="flip" style="width:100%;margin-top:8px">${v ? t("Erreur ? Compter comme faux") : typed ? t("Erreur ? Compter comme juste") : t("Erreur de micro ? Compter comme juste")}</button>`;
         $("#cont").onclick = () => resolve(v); $("#flip").onclick = () => { SFX.tap(); resolve(!v); };
         return;
       }
-      zone.innerHTML = `${heard}${answerBox}<p class="tiny">Le groupe valide :</p><div class="judge"><button class="yes" id="y">Juste</button><button class="no" id="n">Faux</button></div>`;
+      zone.innerHTML = `${heard}${answerBox}<p class="tiny">${t("Le groupe valide :")}</p><div class="judge"><button class="yes" id="y">${t("Juste")}</button><button class="no" id="n">${t("Faux")}</button></div>`;
       $("#y").onclick = () => { SFX.good(); buzz(30); resolve(true); }; $("#n").onclick = () => { SFX.bad(); buzz([60, 40, 60]); resolve(false); };
     };
+    Object.assign(QUI, { reveal, choose: null, timeout: () => reveal("", null) });
     $("#show").onclick = () => { SFX.tap(); reveal("", null); };
     /* réponse écrite : une seule tentative, fautes de frappe et d'orthographe tolérées */
-    $("#tf").onsubmit = e => { e.preventDefault(); const t = $("#ti").value.trim(); if (!t) { $("#ti").focus(); return; } const sc = score(t, q.a); reveal(t, sc >= .72 ? true : sc < .45 ? false : null, true); };
+    $("#tf").onsubmit = e => { e.preventDefault(); const tx = $("#ti").value.trim(); if (!tx) { $("#ti").focus(); return; } const sc = score(tx, q.a); reveal(tx, sc >= .72 ? true : sc < .45 ? false : null, true); };
     const mic = $("#mic"); let tries = 0;
-    if (mic) mic.onclick = () => { mic.classList.add("rec"); $("#heard").innerHTML = `<p class="tiny">J'écoute… parle maintenant.</p>`;
-      listen((t, done) => { if (t) $("#heard").innerHTML = `<p class="tiny">J'entends : « ${esc(t)} »</p>`; if (!done) return; mic.classList.remove("rec"); if (!t) return;
-        const sc = score(t, q.a); tries++;
-        if (sc >= .72) return reveal(t, true);
-        if (tries < 2) { $("#heard").innerHTML = `<p class="tiny">J'ai entendu « ${esc(t)} », ce n'est pas reconnu. Réessaie en articulant, ou touche « J'ai répondu à voix haute ».</p>`; mic.innerHTML = `${MIC} Réessayer`; return; }
-        reveal(t, sc < .45 ? false : null); },
+    if (mic) mic.onclick = () => { mic.classList.add("rec"); $("#heard").innerHTML = `<p class="tiny">${t("J'écoute… parle maintenant.")}</p>`;
+      listen((tx, done) => { if (tx) $("#heard").innerHTML = `<p class="tiny">${esc(t("J'entends : « {t} »", { t: tx }))}</p>`; if (!done) return; mic.classList.remove("rec"); if (!tx) return;
+        const sc = score(tx, q.a); tries++;
+        if (sc >= .72) return reveal(tx, true);
+        if (tries < 2) { $("#heard").innerHTML = `<p class="tiny">${esc(t("J'ai entendu « {t} », ce n'est pas reconnu. Réessaie en articulant, ou touche « J'ai répondu à voix haute ».", { t: tx }))}</p>`; mic.innerHTML = `${MIC} ${t("Réessayer")}`; return; }
+        reveal(tx, sc < .45 ? false : null); },
         err => { $("#heard").innerHTML = `<p class="tiny">${micMsg(err)}</p>`; mic.classList.remove("rec"); }); };
   }
-  if (game.timer) { const t0 = Date.now(), D = 30000; tmr = setInterval(() => { const f = Math.max(0, 1 - (Date.now() - t0) / D), bar = $("#bar"); if (bar) bar.style.transform = `scaleX(${f})`; if (f <= 0) { clearInterval(tmr); stopRec(); if (g.mode === "cash") { const s = $("#show"); if (s) s.click(); } else if (!zone.querySelector(".right")) { SFX.bad(); zone.querySelectorAll(".choice").forEach(x => { x.disabled = true; if (g.choices[+x.dataset.i] === q.a) x.classList.add("right"); }); zone.insertAdjacentHTML("beforeend", `<p class="note"><b>Temps écoulé !</b>${q.note ? " " + esc(q.note) : ""}</p><button class="big w" id="cont">Continuer</button>`); sayAnswer(q); $("#cont").onclick = () => resolve(false); } } }, 200); }
+  if (game.timer) { const t0 = Date.now(), D = 30000; tmr = setInterval(() => { const f = Math.max(0, 1 - (Date.now() - t0) / D), bar = $("#bar"); if (bar) bar.style.transform = `scaleX(${f})`; if (f <= 0) { clearInterval(tmr); if (!live) return; stopRec(); QUI.timeout && QUI.timeout(); } }, 200); }
 }
 async function resolve(ok) {
   if (busy) return; busy = true;
@@ -1685,11 +1737,11 @@ async function resolveImpl(ok) {
     let s = steps(g.mode, game.die), tail = false;
     const lead = Math.max(...game.players.map(x => x.pos)), last = Math.min(...game.players.map(x => x.pos));
     if (game.players.length > 1 && p.pos === last && lead - p.pos >= 6) { s += 2; tail = true; }
-    toast(pick(["Bravo !", "Excellent !", "Mâ châ' Allâh !", "Bien joué !", "Parfait !"]), `${MODES[g.mode].name} réussi : +${s}${tail ? " (vent arrière +2)" : ""}`, "var(--ok)", 1500);
+    toast(pick(["Bravo !", "Excellent !", "Mâ châ' Allâh !", "Bien joué !", "Parfait !"]), tail ? "{m} réussi : +{s} (vent arrière +2)" : "{m} réussi : +{s}", "var(--ok)", 1500, null, { m: "@" + MODES[g.mode].name, s });
     const [cx, cy] = center(); confetti(cx, cy, g.mode === "cash" ? 110 : 60);
     await sleep(500);
     await animateMove(pi, p.pos, Math.min(n - 1, p.pos + s));
-    if (p.streak > 0 && p.streak % 3 === 0 && p.pos < n - 1) { SFX.bonus(); toast(`Série de ${p.streak} !`, "+2 cases bonus", "#8A5A0C", 1400); await sleep(700); await animateMove(pi, p.pos, Math.min(n - 1, p.pos + 2)); }
+    if (p.streak > 0 && p.streak % 3 === 0 && p.pos < n - 1) { SFX.bonus(); toast("Série de {n} !", "+2 cases bonus", "#8A5A0C", 1400, { n: p.streak }); await sleep(700); await animateMove(pi, p.pos, Math.min(n - 1, p.pos + 2)); }
     const r = await land(pi); if (r === "q") { busy = false; return; } again = r === true;
     if (p.pos >= n - 1) { SFX.bonus(); toast("Aux portes de la ville !", "Question finale au prochain tour", "#8A5A0C", 1900); const [x, y] = center(); confetti(x, y, 80); await sleep(1100); }
   } else {
@@ -1719,8 +1771,8 @@ async function land(pi) {
   if (cell.t === "vent") { SFX.whoosh(); toast("Vent favorable", "+2 cases", "#3D7FD6", 1400); await sleep(800); await moveBy(pi, 2); return false; }
   if (cell.t === "sable") { if (protect(p)) { await sleep(1000); return false; } SFX.whoosh(); toast("Tempête de sable", "−3 cases", "#B5651D", 1500); await sleep(900); await moveBy(pi, -3); return false; }
   if (cell.t === "puits") { if (protect(p)) { await sleep(1000); return false; } SFX.bad(); toast("Le puits !", "Tu passes ton prochain tour", "#5B4A33", 1700); p.skip = true; await sleep(900); return false; }
-  if (cell.t === "short") { toast("Raccourci !", `Ta caravane file jusqu'à la case ${cell.to}`, "#2E9E5B", 1500); await sleep(700); await jumpMove(pi, cell.to); const [x, y] = ptScreen(p.pos); confetti(x, y, 50); return false; }
-  if (cell.t === "trap") { if (protect(p)) { await sleep(1000); return false; } toast("Sables mouvants !", `Tu glisses jusqu'à la case ${cell.to}`, "#C0622B", 1600); await sleep(800); await jumpMove(pi, cell.to); return false; }
+  if (cell.t === "short") { toast("Raccourci !", "Ta caravane file jusqu'à la case {n}", "#2E9E5B", 1500, null, { n: cell.to }); await sleep(700); await jumpMove(pi, cell.to); const [x, y] = ptScreen(p.pos); confetti(x, y, 50); return false; }
+  if (cell.t === "trap") { if (protect(p)) { await sleep(1000); return false; } toast("Sables mouvants !", "Tu glisses jusqu'à la case {n}", "#C0622B", 1600, null, { n: cell.to }); await sleep(800); await jumpMove(pi, cell.to); return false; }
   if (cell.t === "carte") return await drawCard(pi);
   return false;
 }
@@ -1746,17 +1798,24 @@ const CARDS = {
   chamboule: { k: "all", t: "Grand chamboulement", d: "Le premier et le dernier échangent leur place !", run: async () => { const L = leaderIdx(), D = lastIdx(); if (L === D || game.players[L].pos === game.players[D].pos) return; const pl = game.players[L].pos, pd = game.players[D].pos; await jumpMove(L, pd); await jumpMove(D, pl); } },
 };
 const DECK = ["av3", "av3", "av2", "tresor", "rejoue", "bouclier", "echange", "sabotage", "defi", "defi", "re2", "re2", "re3", "re1", "tetu", "chef", "chef", "solid", "tempete", "chamboule"];
+function cardHide() { const box = $("#cardfx"); if (box) { box.classList.remove("turned"); box.classList.remove("show"); } }
+async function cardShow(id, pi, live) {
+  const c = CARDS[id], box = $("#cardfx"); if (!box || !c) return null;
+  const head = c.k === "good" ? ["Chance", "#2E9E5B"] : c.k === "bad" ? ["Malchance", "#D2493A"] : ["Coup du destin", "#8A5CD0"];
+  quiet(() => SFX.whoosh());
+  const others = game.players.map((x, i) => [x, i]).filter(([, i]) => i !== pi);
+  box.innerHTML = `<div class="flip"><div class="cside cback"><span>?</span></div><div class="cside cfront"><div class="ch" style="background:${head[1]}">${t(head[0])}</div><div class="cb"><h3>${t(c.t)}</h3><p>${t(c.d)}</p></div><div class="cf">${c.pick ? others.map(([x, i]) => `<button class="pk" data-t="${i}" style="background:${PCOL[i]}">${esc(t("{n} recule", { n: x.name }))}</button>`).join("") : `<button class="big w" id="cok">${t("OK")}</button>`}</div></div></div>`;
+  box.classList.add("show"); await sleep(350); box.classList.add("turned");
+  await sleep(500); quiet(() => c.k === "good" ? SFX.good() : c.k === "bad" ? SFX.bad() : SFX.bonus());
+  if (!live) return null;
+  const target = await new Promise(res => { if (c.pick) box.querySelectorAll("[data-t]").forEach(b => b.onclick = () => res(+b.dataset.t)); else $("#cok").onclick = () => res(null); });
+  cardHide(); await sleep(350); return target;
+}
 async function drawCard(pi) {
   if (!game.deck || !game.deck.length) game.deck = shuffle(DECK);
   const id = game.deck.pop(), c = CARDS[id], p = game.players[pi]; save();
-  const head = c.k === "good" ? ["Chance", "#2E9E5B"] : c.k === "bad" ? ["Malchance", "#D2493A"] : ["Coup du destin", "#8A5CD0"];
-  const box = $("#cardfx"); SFX.whoosh();
-  const others = game.players.map((x, i) => [x, i]).filter(([, i]) => i !== pi);
-  box.innerHTML = `<div class="flip"><div class="cside cback"><span>?</span></div><div class="cside cfront"><div class="ch" style="background:${head[1]}">${head[0]}</div><div class="cb"><h3>${c.t}</h3><p>${c.d}</p></div><div class="cf">${c.pick ? others.map(([x, i]) => `<button class="pk" data-t="${i}" style="background:${PCOL[i]}">${esc(x.name)} recule</button>`).join("") : `<button class="big w" id="cok">OK</button>`}</div></div></div>`;
-  box.classList.add("show"); await sleep(350); box.classList.add("turned");
-  await sleep(500); c.k === "good" ? SFX.good() : c.k === "bad" ? SFX.bad() : SFX.bonus();
-  const target = await new Promise(res => { if (c.pick) box.querySelectorAll("[data-t]").forEach(b => b.onclick = () => res(+b.dataset.t)); else $("#cok").onclick = () => res(null); });
-  box.classList.remove("turned"); box.classList.remove("show"); await sleep(350);
+  netFx("card", { id, pi });
+  const target = await cardShow(id, pi, true); netFx("cardx", {});
   if (c.k === "bad" && protect(p)) { await sleep(1000); return false; }
   const r = await c.run(pi, target); save(); chips();
   if (r === "defi") {
@@ -1770,24 +1829,25 @@ function next() { game.cur = (game.cur + 1) % game.players.length; game.phase = 
 function showWin() {
   closeSheet(); $("#dock").innerHTML = ""; const w = $("#win"), p = game.players[game.winner];
   const rank = game.players.map((x, i) => ({ ...x, i })).sort((a, b) => (b.i === game.winner) - (a.i === game.winner) || b.pos - a.pos || b.good - a.good);
-  w.innerHTML = `<div class="box"><svg viewBox="0 0 120 70" style="width:150px;margin:0 auto"><use href="#city" width="120" height="70"/></svg><p class="lab" style="color:var(--gold2)">Mâ châ' Allâh !</p><h2 style="color:${PCOL[game.winner]}">${esc(p.name)} arrive en premier</h2>
-    <div class="rank">${rank.map((x, k) => `<div>${av(x.i)}<span>${k + 1}. ${esc(x.name)}</span><span style="margin-left:auto;font-size:14px;color:var(--muted)">${x.good} bonnes rép.</span></div>`).join("")}</div>
-    <button class="big w" id="again">Rejouer</button><button class="ghostbtn" id="home">Changer les joueurs</button></div>`;
+  w.innerHTML = `<div class="box"><svg viewBox="0 0 120 70" style="width:150px;margin:0 auto"><use href="#city" width="120" height="70"/></svg><p class="lab" style="color:var(--gold2)">${t("Mâ châ' Allâh !")}</p><h2 style="color:${PCOL[game.winner]}">${esc(t("{n} arrive en premier", { n: p.name }))}</h2>
+    <div class="rank">${rank.map((x, k) => `<div>${av(x.i)}<span>${k + 1}. ${esc(x.name)}</span><span style="margin-inline-start:auto;font-size:14px;color:var(--muted)">${t("{n} bonnes rép.", { n: x.good })}</span></div>`).join("")}</div>
+    ${NET.on && !NET.ctrl ? "" : `<button class="big w" id="again">${t("Rejouer")}</button>`}<button class="ghostbtn" id="home">${NET.on ? t("Quitter la partie en ligne") : t("Changer les joueurs")}</button></div>`;
   requestAnimationFrame(() => w.classList.add("show"));
-  SFX.win(); buzz([80, 60, 80, 60, 200]);
+  quiet(() => SFX.win()); buzz([80, 60, 80, 60, 200]);
   show(() => rocket(innerWidth * (.15 + Math.random() * .7)), 14, 380);
   setTimeout(() => confetti(innerWidth / 2, innerHeight * .35, 160), 300);
-  $("#again").onclick = () => { const old = game; game = newGame(old.cells.length, old.players); if (NET.on) { game.players.forEach((p, i) => p.uid = old.players[i].uid); game.timer = old.timer; game.turn = (old.turn || 0) + 1; } save(); renderGame(); };
+  if ($("#again")) $("#again").onclick = () => { const old = game; game = newGame(old.cells.length, old.players); if (NET.on) { game.players.forEach((p, i) => p.uid = old.players[i].uid); game.timer = old.timer; game.turn = (old.turn || 0) + 1; } save(); renderGame(); };
   $("#home").onclick = () => { if (NET.on) return netLeave(); game = null; save(); renderSetup(); };
 }
 function validGame(g) { try { return g && Array.isArray(g.cells) && g.cells.length >= 10 && Array.isArray(g.players) && g.players.length >= 2 && g.players.every(p => typeof p.pos === "number" && p.pos >= 0 && p.pos < g.cells.length) && g.cur >= 0 && g.cur < g.players.length && Array.isArray(g.used); } catch (e) { return false; } }
-function boot() {
+async function boot() {
+  try { await setLang(detectLang()); } catch (e) { console.warn(e); }
   try {
-    if (setup && Array.isArray(setup.players)) setup.players = setup.players.slice(0, 6); else setup = { players: [{ name: "Joueur 1", level: "normal" }, { name: "Joueur 2", level: "normal" }], size: 36, timer: false, read: true, view3d: true };
+    if (setup && Array.isArray(setup.players)) setup.players = setup.players.slice(0, 6); else setup = { players: [{ name: t("Joueur {n}", { n: 1 }), level: "normal" }, { name: t("Joueur {n}", { n: 2 }), level: "normal" }], size: 36, timer: false, read: true, view3d: true };
     if (setup.view3d == null) setup.view3d = true;
     if (fbOk() && (store.get("net", null) || /join=/i.test(location.hash))) { game = null; renderSetup(); netResume().then(ok => { if (!ok && !NET.code) renderSetup(); }); return; }
     if (game && !validGame(game)) { game = null; save(); }
-    if (game) { if (game.phase !== "question" && game.phase !== "pick") { game.phase = "roll"; game.q = null; } if (game.phase === "question" && (!game.q || !Q[game.q.id])) { game.phase = "roll"; game.q = null; } save(); renderGame(); } else renderSetup();
+    if (game) { if (game.phase !== "question" && game.phase !== "pick") { game.phase = "roll"; game.q = null; } if (game.phase === "question" && (!game.q || !Q[game.q.id] || (game.q.choices && typeof game.q.choices[0] !== "number"))) { game.phase = "roll"; game.q = null; } save(); renderGame(); } else renderSetup();
   } catch (e) { console.error(e); game = null; store.del("game3"); renderSetup(); }
 }
 boot();
