@@ -43,18 +43,29 @@ h1,h2,h3{font-family:var(--f-display);margin:0;line-height:1.1;text-wrap:balance
 .icon-btn svg{width:20px;height:20px}
 /* plateau */
 .stage{padding-top:4px}
-.boardwrap{position:relative;border-radius:22px;padding:8px;background:linear-gradient(145deg,#7A5030,#3E2614);box-shadow:0 14px 0 #2A180A,0 30px 50px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.2);transform:none}
+/* plateau 3D : la scène est une caméra, le plateau (.plane) est posé en perspective ; pions et décor sont des figurines debout */
+.scene{position:relative;width:100%;aspect-ratio:360/580;perspective:1100px;perspective-origin:50% 8%;overflow:hidden;border-radius:18px;touch-action:pan-y}
+.plane{position:absolute;left:0;top:0;width:360px;height:640px;transform-origin:0 0;transform-style:preserve-3d;--tilt:34deg}
+.plane .lay{position:absolute;inset:0;transform-style:preserve-3d;pointer-events:none}
+.frame{position:absolute;inset:-10px;border-radius:22px;background:linear-gradient(145deg,#8A5A34,#3E2614);box-shadow:0 0 0 1px rgba(255,255,255,.12) inset,0 0 60px 10px rgba(0,0,0,.6);transform:translateZ(-1px)}
+.edge{position:absolute;left:2px;right:2px;top:calc(100% + 10px);height:18px;border-radius:0 0 14px 14px;background:linear-gradient(#3E2614,#1E1008);transform-origin:50% 0;transform:rotateX(-90deg)}
+.edge.l{left:-10px;right:auto;top:6px;bottom:6px;width:18px;height:auto;border-radius:14px 0 0 14px;background:linear-gradient(90deg,#1E1008,#3E2614);transform-origin:0 50%;transform:rotateY(90deg)}
+.edge.r{left:auto;right:-10px;top:6px;bottom:6px;width:18px;height:auto;border-radius:0 14px 14px 0;background:linear-gradient(90deg,#3E2614,#1E1008);transform-origin:100% 50%;transform:rotateY(-90deg)}
+.bb,.pw{position:absolute;left:0;top:0;transform-origin:50% 100%}
+.bb svg,.pw svg{display:block;width:100%;height:100%;overflow:visible}
+.psh{position:absolute;left:0;top:0;border-radius:50%;background:radial-gradient(closest-side,rgba(40,20,0,.55),rgba(40,20,0,0))}
+.probe{position:absolute;left:0;top:0;width:2px;height:2px;margin:-1px}
 button{touch-action:manipulation}
 .dock{z-index:50}.sheet{z-index:60}.cardfx{z-index:70}.win{z-index:80}.toast{z-index:75}#fx{z-index:90}
 .shield{color:#7FD1FF;font-weight:800}
-#board{display:block;width:100%;height:auto;border-radius:16px}
+#board{position:absolute;left:0;top:0;display:block;width:360px;height:640px;border-radius:16px}
 .sq-num{font:800 9px var(--f-body);fill:#fff;pointer-events:none;paint-order:stroke;stroke:rgba(0,0,0,.35);stroke-width:2px}
 .pulse{animation:pulse 1.2s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
 @keyframes pulse{50%{transform:scale(1.25);opacity:.4}}
-.pawn{transition:none}
-.pawn.cur .pbody{animation:bounce 1s ease-in-out infinite;transform-box:fill-box;transform-origin:bottom center}
+.pw .pbody{width:100%;height:100%}
+.pw.cur .pbody{animation:bounce 1s ease-in-out infinite;transform-box:fill-box;transform-origin:bottom center}
 @keyframes bounce{50%{transform:translateY(-3px)}}
-@media (prefers-reduced-motion:reduce){.pawn.cur .pbody,.pulse{animation:none}}
+@media (prefers-reduced-motion:reduce){.pw.cur .pbody,.pulse{animation:none}}
 /* dock */
 .dock{position:fixed;left:0;right:0;bottom:0;z-index:10;padding:12px 16px calc(14px + env(safe-area-inset-bottom,0px));background:linear-gradient(transparent,rgba(12,9,24,.92) 30%);display:flex;justify-content:center}
 .dock-in{width:100%;max-width:560px;display:flex;align-items:center;gap:14px}
@@ -630,10 +641,7 @@ function computeGeo(n) {
 }
 function boardSVG() {
   const n = game.cells.length; geo = computeGeo(n); const { pts, r } = geo;
-  const deco = [
-    ["palm", 20, 440, 34], ["palm", 300, 360, 40], ["palm", 16, 230, 30], ["palm", 318, 150, 34], ["palm", 150, 250, 26], ["palm", 210, 520, 30],
-    ["well", 250, 390, 26], ["well", 90, 110, 22],
-  ];
+  const deco = DECO;
   const dune = (d, o = 1) => `<path d="${d}" fill="url(#dune)" opacity="${o}"/><path d="${d}" fill="url(#duneS)" opacity="${o}"/>`;
   const dunes = [
     "M0 140 Q40 112 95 126 Q150 140 190 118 Q250 92 300 116 Q335 130 360 122 V340 H0Z",
@@ -670,32 +678,97 @@ function boardSVG() {
     <path d="${PATH}" fill="none" stroke="#D2A766" stroke-width="${r * 2 + 12}" stroke-linecap="round"/>
     <path d="${PATH}" transform="translate(-1 -1.5)" fill="none" stroke="#F1D49C" stroke-width="${r * 2 + 4}" stroke-linecap="round" opacity=".55"/>
     <path d="${PATH}" fill="none" stroke="#FFF1D2" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round" opacity=".9"/>
-    ${deco.map(([id, x, y, w]) => `<ellipse cx="${x + w * .65}" cy="${y + (id === "palm" ? w * 1.47 : w * .86)}" rx="${w * .5}" ry="${w * .13}" fill="rgba(60,30,5,.4)" filter="url(#blur3)"/><use href="#${id}" x="${x}" y="${y}" width="${w}" height="${id === "palm" ? w * 1.5 : w}"/>`).join("")}
-    <use href="#tent" x="${s0.x - 52}" y="${s0.y - 58}" width="54" height="36"/><use href="#tent" x="${s0.x - 18}" y="${s0.y - 64}" width="40" height="27"/>
+    ${deco.map(([id, x, y, w]) => `<ellipse cx="${x + w * .65}" cy="${y + (id === "palm" ? w * 1.47 : w * .86)}" rx="${w * .5}" ry="${w * .13}" fill="rgba(60,30,5,.4)" filter="url(#blur3)"/>`).join("")}
+    <ellipse cx="${s0.x - 20}" cy="${s0.y - 22}" rx="34" ry="7" fill="rgba(60,30,5,.35)" filter="url(#blur3)"/>
     <g filter="url(#sh)">${disc(s0.x, s0.y, r + 6, "#1B1530", "#0E0A1C", 9)}<circle cx="${s0.x}" cy="${s0.y}" r="${r + 6}" fill="#1B1530" stroke="#F2B441" stroke-width="3"/><text x="${s0.x}" y="${s0.y + 4}" text-anchor="middle" style="font:800 10px var(--f-body);fill:#F2B441">DÉPART</text></g>
-    <use href="#city" x="${sE.x - 70}" y="${sE.y - 82}" width="120" height="70"/>
+    <ellipse cx="${sE.x - 10}" cy="${sE.y - 12}" rx="58" ry="9" fill="rgba(30,20,50,.35)" filter="url(#blur3)"/>
     <g filter="url(#sh)">${disc(sE.x, sE.y, r + 7, "#F2B441", "#A8721A", 9)}<circle cx="${sE.x}" cy="${sE.y}" r="${r + 7}" fill="#F2B441" stroke="#FFF3C4" stroke-width="3"/><text x="${sE.x}" y="${sE.y + 4}" text-anchor="middle" style="font:800 9.5px var(--f-body);fill:#2A1A05">ARRIVÉE</text></g>
     ${links}${sq}
-    <g id="marks"></g><g id="pawns"></g>
+    <g id="marks"></g>
   </svg>`;
 }
+const DECO = [
+  ["palm", 20, 440, 34], ["palm", 300, 360, 40], ["palm", 16, 230, 30], ["palm", 318, 150, 34], ["palm", 150, 250, 26], ["palm", 210, 520, 30],
+  ["well", 250, 390, 26], ["well", 90, 110, 22],
+];
+const tiltOut = "rotateX(calc(var(--tilt) * -1))";
+function bb(id, bx, by, w, h) { return `<div class="bb" style="width:${w}px;height:${h}px;transform:translate3d(${bx - w / 2}px,${by - h}px,0) ${tiltOut}"><svg viewBox="0 0 ${w} ${h}"><use href="#${id}" width="${w}" height="${h}"/></svg></div>`; }
+function boardHTML() {
+  const svg = boardSVG(), n = geo.pts.length, s0 = geo.pts[0], sE = geo.pts[n - 1];
+  const items = DECO.map(([id, x, y, w]) => { const h = id === "palm" ? w * 1.5 : w; return [id, x + w / 2, y + h, w, h]; })
+    .concat([["tent", s0.x - 25, s0.y - 22, 54, 36], ["tent", s0.x + 2, s0.y - 37, 40, 27], ["city", sE.x - 10, sE.y - 12, 120, 70]]);
+  return `<div class="scene" id="scene"><div class="plane" id="plane"><div class="frame"></div><div class="edge"></div><div class="edge l"></div><div class="edge r"></div>${svg}<div class="lay">${items.map(a => bb(...a)).join("")}</div><div class="lay" id="pawns"></div><div class="probe" id="probe"></div></div></div>`;
+}
+/* ---------- caméra : vue d'ensemble en relief, puis plongée derrière le pion qui avance ---------- */
+const reduceMotion = (() => { try { return matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) { return false; } })();
+const POY = .08, VIEW0 = { tilt: 34, persp: 1100 }, VIEW1 = { tilt: 62, persp: 560, zoom: 2.5, ay: .64 };
+const CAM = { cur: null, follow: null, until: 0, raf: 0, last: 0, sw: 0, sh: 0, fit: 1, ay0: .5 };
+function proj(x, y, c, sw, sh) {
+  const t = c.tilt * Math.PI / 180, X = (x - c.cx) * c.zoom, Y = (y - c.cy) * c.zoom, z = Y * Math.sin(t);
+  const px = sw / 2 + X, py = sh * c.ay + Y * Math.cos(t), ox = sw / 2, oy = sh * POY, f = c.persp / (c.persp - z);
+  return [ox + (px - ox) * f, oy + (py - oy) * f];
+}
+function camFit() {
+  const { sw, sh } = CAM, c = { cx: W / 2, cy: H / 2, tilt: VIEW0.tilt, persp: VIEW0.persp, ay: .5, zoom: 1 };
+  const corners = [[-10, -10], [W + 10, -10], [-10, H + 28], [W + 10, H + 28]];
+  const box = () => { const ps = corners.map(([x, y]) => proj(x, y, c, sw, sh)); return [Math.min(...ps.map(p => p[0])), Math.max(...ps.map(p => p[0])), Math.min(...ps.map(p => p[1])), Math.max(...ps.map(p => p[1]))]; };
+  for (let it = 0; it < 4; it++) {
+    let lo = .1, hi = 4; for (let k = 0; k < 30; k++) { c.zoom = (lo + hi) / 2; const [x0, x1, y0, y1] = box(); (x1 - x0 <= sw * .98 && y1 - y0 <= sh * .97) ? lo = c.zoom : hi = c.zoom; }
+    c.zoom = lo; const [, , y0, y1] = box(); c.ay += (sh / 2 - (y0 + y1) / 2) / sh;
+  }
+  CAM.fit = c.zoom; CAM.ay0 = c.ay;
+}
+function camTarget() {
+  const fol = CAM.follow && !reduceMotion && performance.now() < CAM.until;
+  return fol ? { cx: CAM.follow[0], cy: CAM.follow[1], tilt: VIEW1.tilt, persp: VIEW1.persp, zoom: CAM.fit * VIEW1.zoom, ay: VIEW1.ay, fol }
+    : { cx: W / 2, cy: H / 2, tilt: VIEW0.tilt, persp: VIEW0.persp, zoom: CAM.fit, ay: CAM.ay0, fol };
+}
+function applyCam() {
+  const pl = $("#plane"), sc = $("#scene"), c = CAM.cur; if (!pl || !c) return;
+  sc.style.perspective = c.persp + "px";
+  pl.style.setProperty("--tilt", c.tilt + "deg");
+  pl.style.transform = `translate3d(${CAM.sw / 2}px,${CAM.sh * c.ay}px,0) rotateX(${c.tilt}deg) scale3d(${c.zoom},${c.zoom},${c.zoom}) translate3d(${-c.cx}px,${-c.cy}px,0)`;
+}
+function camLoop(now) {
+  const sc = $("#scene"); if (!sc) { CAM.raf = 0; CAM.cur = null; return; }
+  const dt = Math.min(.05, Math.max(0, (now - (CAM.last || now)) / 1000)); CAM.last = now;
+  let dirty = false; if (sc.clientWidth !== CAM.sw || sc.clientHeight !== CAM.sh) { CAM.sw = sc.clientWidth; CAM.sh = sc.clientHeight; camFit(); dirty = true; }
+  const t = camTarget(); if (!CAM.cur) { CAM.cur = { ...t }; dirty = true; }
+  const a = 1 - Math.exp(-dt * (t.fol ? 6 : 2.6));
+  for (const k of ["cx", "cy", "tilt", "persp", "zoom", "ay"]) { const d = t[k] - CAM.cur[k]; if (Math.abs(d) > 1e-4 * (k === "persp" ? 100 : 1)) { CAM.cur[k] += d * a; dirty = true; } }
+  if (dirty) applyCam();
+  CAM.raf = requestAnimationFrame(camLoop);
+}
+function camStart() { CAM.cur = null; CAM.sw = 0; CAM.follow = null; if (!CAM.raf) CAM.raf = requestAnimationFrame(camLoop); }
+function camFollow(x, y, hold = 1200) { CAM.follow = [x, y]; CAM.until = performance.now() + hold; }
 function pawnOffset(i, pos) {
   const same = game.players.map((p, j) => [p, j]).filter(([p]) => p.pos === pos).map(([, j]) => j), k = same.indexOf(i), m = same.length;
   if (m <= 1) return [0, 0]; const a = (k / m) * Math.PI * 2; return [Math.cos(a) * geo.r * .55, Math.sin(a) * geo.r * .45];
 }
+function pawnDim() { const s = geo.r * 2.3; return [s, s * .8]; }
+const PFLIP = {};
+function placePawn(i, x, y, h = 0, rot = 0, face) {
+  const el = $("#pw" + i), sh = $("#ps" + i), [w, hh] = pawnDim();
+  if (face != null && face !== PFLIP[i]) { PFLIP[i] = face; const sv = el && el.querySelector("svg"); if (sv) sv.style.transform = face ? "scaleX(-1)" : ""; }
+  if (el) el.style.transform = `translate3d(${x - w / 2}px,${y - hh * .98}px,${h}px) ${tiltOut}${rot ? ` rotate(${rot}deg)` : ""}`;
+  if (sh) { const k = Math.max(.45, 1 - h / 70); sh.style.transform = `translate3d(${x - w * .46 + 2}px,${y - w * .13 + 2}px,.4px) scale(${k})`; sh.style.opacity = k; }
+}
 function drawPawns() {
   const g = $("#pawns"); if (!g) return;
-  const order = game.players.map((_, i) => i).filter(i => i !== game.cur).concat(game.cur);
-  g.innerHTML = order.map(i => { const p = game.players[i], pt = geo.pts[p.pos], [ox, oy] = pawnOffset(i, p.pos), s = geo.r * 2.1;
-    return `<g class="pawn ${i === game.cur ? "cur" : ""}" id="pw${i}" transform="translate(${pt.x + ox} ${pt.y + oy})"><g class="pbody"><ellipse cx="2.5" cy="4" rx="${s * .46}" ry="${s * .15}" fill="rgba(40,20,0,.5)" filter="url(#blur3)"/><use href="#camel" x="${-s / 2}" y="${-s * .78}" width="${s}" height="${s * .8}" fill="${PCOL[i]}" stroke="#FFF6E0" stroke-width="1.6" paint-order="stroke"/></g></g>`; }).join("");
+  const order = game.players.map((_, i) => i).filter(i => i !== game.cur).concat(game.cur), [w, hh] = pawnDim();
+  g.innerHTML = order.map(i => `<div class="psh" id="ps${i}" style="width:${w * .92}px;height:${w * .26}px"></div>`).join("")
+    + order.map(i => `<div class="pw ${i === game.cur ? "cur" : ""}" id="pw${i}" style="width:${w}px;height:${hh}px"><div class="pbody"><svg viewBox="0 0 40 32" style="${PFLIP[i] ? "transform:scaleX(-1)" : ""}"><use href="#camel" fill="${PCOL[i]}" stroke="#FFF6E0" stroke-width="1.6" paint-order="stroke"/></svg></div></div>`).join("");
+  order.forEach(i => { const pt = geo.pts[game.players[i].pos], [ox, oy] = pawnOffset(i, game.players[i].pos); placePawn(i, pt.x + ox, pt.y + oy); });
 }
 function markDest(list) { const g = $("#marks"); if (!g) return; g.innerHTML = (list || []).map(([i, c]) => { const p = geo.pts[i]; return `<circle class="pulse" cx="${p.x}" cy="${p.y}" r="${geo.r + 5}" fill="none" stroke="${c}" stroke-width="3.5"/>`; }).join(""); }
 async function animateMove(pi, from, to) {
-  const dir = to > from ? 1 : -1; const el = () => $("#pw" + pi);
+  const dir = to > from ? 1 : -1, cam = !reduceMotion;
+  if (cam) { const a = geo.pts[from]; camFollow(a.x, a.y); await sleep(CAM.cur && CAM.cur.zoom > CAM.fit * 1.8 ? 120 : 650); }
   for (let s = from; s !== to; s += dir) {
-    const a = geo.pts[s], b = geo.pts[s + dir]; const t0 = performance.now(), D = 260;
+    const a = geo.pts[s], b = geo.pts[s + dir]; const t0 = performance.now(), D = cam ? 340 : 260;
     SFX.step(Math.abs(s - from)); buzz(8);
-    await new Promise(res => { const f = now => { const t = Math.min(1, (now - t0) / D), e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; const x = a.x + (b.x - a.x) * e, y = a.y + (b.y - a.y) * e - Math.sin(Math.PI * t) * 14; const node = el(); if (node) node.setAttribute("transform", `translate(${x} ${y})`); t < 1 ? requestAnimationFrame(f) : res(); }; requestAnimationFrame(f); });
+    await new Promise(res => { const f = now => { const t = Math.min(1, (now - t0) / D), e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; const x = a.x + (b.x - a.x) * e, y = a.y + (b.y - a.y) * e; placePawn(pi, x, y, Math.sin(Math.PI * t) * 16, 0, b.x < a.x - .5 ? true : b.x > a.x + .5 ? false : null); camFollow(x, y); t < 1 ? requestAnimationFrame(f) : res(); }; requestAnimationFrame(f); });
+    if (cam) await sleep(40);
   }
   game.players[pi].pos = to; drawPawns();
 }
@@ -784,14 +857,14 @@ function renderGame() {
   root.innerHTML = `<div class="top"><div class="chips" id="chips"></div>
       <button class="icon-btn" id="snd" aria-label="${muted ? "Activer" : "Couper"} le son">${muted ? `<svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6" stroke="currentColor" stroke-width="2"/></svg>` : `<svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5a9 9 0 0 1 0 14" stroke="currentColor" stroke-width="2" fill="none"/></svg>`}</button>
       <button class="icon-btn" id="quit" aria-label="Quitter la partie"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4"/></svg></button></div>
-    <div class="stage"><div class="boardwrap">${boardSVG()}</div></div><div class="cardfx" id="cardfx"></div>
+    <div class="stage">${boardHTML()}</div><div class="cardfx" id="cardfx"></div>
     <div class="dock"><div class="dock-in" id="dock"></div></div>
     <div class="sheet" id="sheet"><div class="card" id="card"></div></div>
     <div class="toast" id="toast"></div>
     <div class="win" id="win"></div>`;
   $("#snd").onclick = () => { muted = !muted; store.set("muted", muted); if (muted) try { speechSynthesis.cancel(); } catch (e) {} renderGame(); };
   $("#quit").onclick = () => { if ($("#quit").dataset.sure) { stopRec(); try { speechSynthesis.cancel(); } catch (e) {} game = null; save(); renderSetup(); } else { $("#quit").dataset.sure = "1"; $("#quit").style.background = "var(--ko)"; toast("Touche encore la croix pour quitter", "", "#6B4526", 1600); setTimeout(() => { const q = $("#quit"); if (q) { delete q.dataset.sure; q.style.background = ""; } }, 2500); } };
-  drawPawns(); chips(); step();
+  camStart(); drawPawns(); chips(); step();
 }
 function chips() { const c = $("#chips"); if (!c) return; c.innerHTML = game.players.map((p, i) => `<div class="chip ${i === game.cur ? "cur" : ""}">${av(i)}<span>${esc(p.name)} <small>· ${p.pos}</small>${p.streak >= 2 ? ` <span class="fire">×${p.streak}</span>` : ""}${p.skip ? ` <small>(passe)</small>` : ""}${p.shield ? ` <span class="shield">bouclier</span>` : ""}</span></div>`).join(""); const cur = c.querySelector(".cur"); if (cur) cur.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" }); }
 function toast(t, s, bg, ms = 1500) { const el = $("#toast"); if (!el) return; el.innerHTML = `<span class="t" style="background:${bg}">${t}</span>${s ? `<span class="s">${s}</span>` : ""}`; el.classList.add("show"); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove("show"), ms); }
@@ -895,7 +968,7 @@ async function resolveImpl(ok) {
   try { speechSynthesis.cancel(); } catch (e) {}
   const pi = game.cur, p = game.players[pi], g = game.q, n = game.cells.length;
   closeSheet(); game.phase = "anim"; save(); await sleep(420);
-  const center = () => { const b = $("#board").getBoundingClientRect(), pt = geo.pts[p.pos]; return [b.left + pt.x / W * b.width, b.top + pt.y / H * b.height]; };
+  const center = () => ptScreen(p.pos);
   let again = false;
   if (g.final) {
     if (ok) { p.good++; game.winner = pi; save(); busy = false; step(); return; }
@@ -928,7 +1001,8 @@ async function moveBy(pi, k) { const p = game.players[pi], n = game.cells.length
 async function jumpMove(pi, to) {
   const p = game.players[pi], a = geo.pts[p.pos], b = geo.pts[to], t0 = performance.now(), D = 900, up = to > p.pos;
   up ? SFX.bonus() : SFX.whoosh(); buzz(up ? [20, 30, 20] : 80);
-  await new Promise(res => { const f = now => { const t = Math.min(1, (now - t0) / D), e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; const x = a.x + (b.x - a.x) * e, y = a.y + (b.y - a.y) * e - Math.sin(Math.PI * t) * (up ? 70 : 25); const el = $("#pw" + pi); if (el) el.setAttribute("transform", `translate(${x} ${y}) rotate(${up ? 0 : Math.sin(t * 20) * 12})`); t < 1 ? requestAnimationFrame(f) : res(); }; requestAnimationFrame(f); });
+  if (!reduceMotion) { camFollow(a.x, a.y); await sleep(CAM.cur && CAM.cur.zoom > CAM.fit * 1.8 ? 100 : 550); }
+  await new Promise(res => { const f = now => { const t = Math.min(1, (now - t0) / D), e = t < .5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2; const x = a.x + (b.x - a.x) * e, y = a.y + (b.y - a.y) * e; placePawn(pi, x, y, Math.sin(Math.PI * t) * (up ? 70 : 25), up ? 0 : Math.sin(t * 20) * 12); camFollow(x, y); t < 1 ? requestAnimationFrame(f) : res(); }; requestAnimationFrame(f); });
   p.pos = to; drawPawns(); chips();
 }
 function protect(p) { if (!p.shield) return false; p.shield = false; SFX.bonus(); toast("Talisman !", "Le malheur est évité", "#3D7FD6", 1500); return true; }
@@ -944,7 +1018,7 @@ async function land(pi) {
   if (cell.t === "carte") return await drawCard(pi);
   return false;
 }
-function ptScreen(i) { const b = $("#board").getBoundingClientRect(), pt = geo.pts[i]; return [b.left + pt.x / W * b.width, b.top + pt.y / H * b.height]; }
+function ptScreen(i) { const pr = $("#probe"), pt = geo.pts[i]; if (!pr) return [innerWidth / 2, innerHeight / 2]; pr.style.transform = `translate3d(${pt.x}px,${pt.y}px,0)`; const b = pr.getBoundingClientRect(); return [b.left + b.width / 2, b.top + b.height / 2]; }
 const leaderIdx = () => { let m = -1, k = 0; game.players.forEach((x, i) => { if (x.pos > m) { m = x.pos; k = i; } }); return k; };
 const lastIdx = () => { let m = 1e9, k = 0; game.players.forEach((x, i) => { if (x.pos < m) { m = x.pos; k = i; } }); return k; };
 const CARDS = {
