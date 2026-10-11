@@ -1,4 +1,4 @@
-# La Caravane du Savoir
+# Kervano
 
 Jeu de plateau-quiz à jouer en famille (sur un téléphone ou en ligne), en 6 langues. Thèmes au choix à l'accueil : Islam, Christianisme, Judaïsme, Histoire, Géographie, Sciences et nature, Maths et logique, Culture générale.
 

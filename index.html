@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="La Caravane du Savoir : jeu de plateau-quiz en famille. Islam, christianisme, judaïsme, histoire, géographie, sciences, maths, culture générale. Duo, Carré ou Cash, en ligne et en 6 langues.">
-<meta name="theme-color" content="#1B1530">
+<meta name="description" content="Kervano : jeu de plateau-quiz en famille. Islam, christianisme, judaïsme, histoire, géographie, sciences, maths, culture générale. Duo, Carré ou Cash, en ligne et en 6 langues.">
+<meta name="theme-color" content="#1E2A6B">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Caravane">
+<meta name="apple-mobile-web-app-title" content="Kervano">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="icon-180.png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>body{margin:0}[hidden]{display:none!important}</style>
-<title>La Caravane du Savoir</title>
+<title>Kervano</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Figtree:wght@400;600;800&family=Noto+Sans+Arabic:wght@400;600;800&display=swap">
@@ -197,6 +197,8 @@ button{touch-action:manipulation}
 .hero{display:grid;gap:10px;text-align:center;justify-items:center;padding-top:10px}
 .hero h1{font-size:clamp(36px,10vw,56px);color:var(--gold);text-shadow:0 3px 0 #6B3F08}
 .hero p{margin:0;opacity:.85;max-width:44ch}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.hero .logo{display:block;margin:6px auto 12px;width:min(230px,62vw);height:auto;aspect-ratio:1;border-radius:34px;box-shadow:0 10px 30px rgba(0,0,0,.45)}
 .hero svg{width:min(80vw,320px);height:auto}
 .rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .rule{border-radius:16px;padding:10px 8px;color:#fff;text-align:center;display:grid;gap:2px}
@@ -728,7 +730,7 @@ const MODES = { duo: { name: "Duo", sub: "2 réponses", color: "var(--duo)" }, c
 const steps = (mode, d) => mode === "cash" ? d + 3 : mode === "carre" ? d : Math.ceil(d / 2);
 const Q = QDATA.map((r, i) => ({ id: i, cat: r[0], d: r[1], q: r[2], a: r[3], w: r[4], note: r[5] || "", th: "islam" }));
 /* ============ langues : le français est dans le code, les autres dans lang/xx.json (chargées à la demande) ============ */
-const LV = 8;
+const LV = 11;
 const LANGS = { fr: ["Français", "fr-FR"], ar: ["العربية", "ar-SA", 1], en: ["English", "en-US"], nl: ["Nederlands", "nl-NL"], de: ["Deutsch", "de-DE"], tr: ["Türkçe", "tr-TR"] };
 let LANG = "fr", TR = {}, QL = null; const LCACHE = {};
 /* t("texte français", {var}) ; une variable qui commence par « @ » est elle-même un texte à traduire */
@@ -742,7 +744,7 @@ async function setLang(l) {
   if (!LANGS[l]) l = "fr";
   if (l !== "fr" && !LCACHE[l]) { try { const r = await fetch(`lang/${l}.json?v=${LV}`); if (!r.ok) throw new Error(r.status); LCACHE[l] = await r.json(); } catch (e) { console.warn("Langue indisponible :", l, e); l = "fr"; } }
   LANG = l; store.set("lang", l); TR = l === "fr" ? {} : LCACHE[l].ui || {}; QL = l === "fr" ? null : LCACHE[l].q || null;
-  document.documentElement.lang = l; document.documentElement.dir = LANGS[l][2] ? "rtl" : "ltr"; document.title = t("La Caravane du Savoir");
+  document.documentElement.lang = l; document.documentElement.dir = LANGS[l][2] ? "rtl" : "ltr"; document.title = "Kervano";
   if (W3D) W3D.key = "";
   for (const th of Object.keys(PACKS)) { try { await loadPack(th); } catch (e) {} }
 }
@@ -1493,7 +1495,7 @@ function openLobby() {
 }
 function renderLobby() {
   w3dHide(); document.body.classList.remove("ingame");
-  const link = location.origin + location.pathname + "#join=" + NET.code, m = NET.lobby.meta || {}, host = m.host === NET.uid, pl = lobbyPlayers(), msg = t("Viens jouer à La Caravane du Savoir avec moi !") + " " + link;
+  const link = location.origin + location.pathname + "#join=" + NET.code, m = NET.lobby.meta || {}, host = m.host === NET.uid, pl = lobbyPlayers(), msg = t("Viens jouer à Kervano avec moi !") + " " + link;
   root.innerHTML = `<div class="setup">
     <div class="hero"><div class="langrow">${langSelect("lang")}</div><h1>${t("Partie en ligne")}</h1><p>${t("Envoie le lien à ta famille : chacun joue chez soi, sur son téléphone, dans sa langue.")}</p></div>
     <section class="panel"><p class="lab2">${t("Code de la partie")}</p><div class="netcode" dir="ltr">${esc(NET.code)}</div><p class="hint" style="text-align:center;margin:-6px 0 12px">${t("Pas de WhatsApp ? Donne simplement ce code : sur l'accueil du jeu, « Rejoindre avec un code ».")}</p>
@@ -1504,7 +1506,7 @@ function renderLobby() {
     ${host ? `<button class="big w" id="go2" ${pl.length < 2 ? "disabled" : ""}>${t("Lancer la partie")}</button>` : ""}
     <button class="ghostbtn" id="leave">${t("Quitter")}</button></div>`;
   bindLang("lang", renderLobby);
-  $("#share").onclick = async () => { try { if (navigator.share) await navigator.share({ title: t("La Caravane du Savoir"), text: msg, url: link }); else { await navigator.clipboard.writeText(link); $("#share").textContent = t("Lien copié ✓"); } } catch (e) {} };
+  $("#share").onclick = async () => { try { if (navigator.share) await navigator.share({ title: "Kervano", text: msg, url: link }); else { await navigator.clipboard.writeText(link); $("#share").textContent = t("Lien copié ✓"); } } catch (e) {} };
   $("#wa").onclick = () => window.open("https://wa.me/?text=" + encodeURIComponent(msg), "_blank");
   $("#leave").onclick = netLeave;
   const go = $("#go2"); if (go) go.onclick = () => { go.disabled = true; go.textContent = t("Lancement…"); netStart().catch(e => { console.warn(e); go.disabled = false; go.textContent = t("Réessayer"); }); };
@@ -1536,7 +1538,7 @@ function renderJoin(code) {
   w3dHide(); document.body.classList.remove("ingame");
   const prev = { n: ($("#jn") || {}).value, l: ($("#jl") || {}).value };
   root.innerHTML = `<div class="setup">
-    <div class="hero"><div class="langrow">${langSelect("lang")}</div><h1>${t("Rejoindre la partie")}</h1><p>${t("On t'invite à jouer à La Caravane du Savoir.")} <span dir="ltr">${t("Code")} <b>${esc(code)}</b></span></p></div>
+    <div class="hero"><div class="langrow">${langSelect("lang")}</div><h1>${t("Rejoindre la partie")}</h1><p>${t("On t'invite à jouer à Kervano.")} <span dir="ltr">${t("Code")} <b>${esc(code)}</b></span></p></div>
     <section class="panel"><p class="lab2">${t("Ton prénom")}</p>
       <div class="prow"><input id="jn" maxlength="16" value="${esc(prev.n || store.get("myname", ""))}" placeholder="${t("Ton prénom")}" aria-label="${t("Ton prénom")}"><select id="jl" aria-label="${t("Niveau")}"><option value="facile">${t("Facile")}</option><option value="normal" selected>${t("Normal")}</option><option value="expert">${t("Expert")}</option></select></div>
       <p class="hint">${t("Le niveau règle la difficulté de tes questions.")}</p></section>
@@ -1671,9 +1673,8 @@ function renderSetup() {
   root.innerHTML = `<div class="setup">
     <div class="hero">
       <div class="langrow">${langSelect("lang")}</div>
-      <svg viewBox="0 0 320 120" aria-hidden="true"><path d="M0 110 Q80 80 160 100 T320 95 V120 H0Z" fill="#E4BE7C"/><use href="#palm" x="10" y="30" width="44" height="70"/><use href="#palm" x="270" y="36" width="40" height="64"/><use href="#city" x="190" y="30" width="110" height="64"/>
-        <g><use href="#camel" x="60" y="62" width="50" height="40" fill="${PCOL[0]}"/><use href="#camel" x="108" y="66" width="44" height="35" fill="${PCOL[1]}"/><use href="#camel" x="150" y="70" width="38" height="30" fill="${PCOL[2]}"/></g></svg>
-      <h1>${t("La Caravane du Savoir")}</h1>
+      <img class="logo" src="icon-512.png" alt="Kervano" width="230" height="230">
+      <h1 class="sr">Kervano</h1>
       <p>${okThemes(setup.themes).join() === "islam" ? t("Lance le dé, réponds aux questions sur l'islam et fais avancer ta caravane jusqu'à la ville. Plus tu prends de risques, plus tu avances vite.") : t("Lance le dé, réponds aux questions et fais avancer ta caravane jusqu'à la ville. Plus tu prends de risques, plus tu avances vite.")}</p>
     </div>
     <section class="panel"><p class="lab2">${t("Thèmes de la partie")}</p>
@@ -2117,7 +2118,7 @@ function showLearn() {
   w.querySelector(".box").scrollTop = 0;
   $("#back").onclick = () => { SFX.tap(); showWin(true); };
   $("#share").onclick = async () => {
-    const text = t("La Caravane du Savoir") + " — " + t("À retenir") + "\n\n" + L.map(({ p, ids }) => (L.length > 1 ? p.name + "\n" : "") + ids.map(id => { const q = QT(id); return "❓ " + q.q + "\n✅ " + q.a + (q.note ? "\n" + q.note : ""); }).join("\n\n")).join("\n\n");
+    const text = "Kervano — " + t("À retenir") + "\n\n" + L.map(({ p, ids }) => (L.length > 1 ? p.name + "\n" : "") + ids.map(id => { const q = QT(id); return "❓ " + q.q + "\n✅ " + q.a + (q.note ? "\n" + q.note : ""); }).join("\n\n")).join("\n\n");
     try { if (navigator.share) { await navigator.share({ title: t("À retenir"), text }); return; } } catch (e) { if (e && e.name === "AbortError") return; }
     try { await navigator.clipboard.writeText(text); $("#share").textContent = t("Copié ✓"); } catch (e) {}
   };
