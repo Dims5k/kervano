@@ -4,7 +4,7 @@ Jeu de plateau-quiz à jouer en famille (sur un téléphone ou en ligne), en 6 l
 
 Les thèmes autres que l'islam sont dans `packs/<thème>.json` (français) et `packs/<thème>.<langue>.json` (traductions). Vérifier un pack : `node packs/check.js packs/histoire.json packs/histoire.en.json`.
 
-Jouer : https://dims5k.github.io/Quizz-islam/
+Jouer : https://dims5k.github.io/kervano/
 
 ## Firebase (mode en ligne et signalements)
 
