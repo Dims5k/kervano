@@ -2141,12 +2141,14 @@ function renderQuestion() {
         err => { info.textContent = micMsg(err); mic.classList.remove("rec"); }); };
   } else {
     zone.innerHTML = `<form class="typed" id="tf" autocomplete="off"><input id="ti" type="text" dir="auto" placeholder="${t("Écris ta réponse…")}" aria-label="${t("Écris ta réponse…")}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" maxlength="80"><button class="big" type="submit">${t("Valider")}</button></form>
-      <div class="row">${SR ? `<button class="mic" id="mic">${MIC} ${t("Répondre au micro")}</button>` : ""}<button class="ghostbtn" id="show">${t("J'ai répondu à voix haute")}</button></div><div id="heard"></div>`;
+      <div class="row">${SR ? `<button class="mic" id="mic">${MIC} ${t("Répondre au micro")}</button>` : ""}${NET.on ? "" : `<button class="ghostbtn" id="show">${t("J'ai répondu à voix haute")}</button>`}</div><div id="heard"></div>`;
     const answerBox = `<div class="answer"><p class="lab" style="color:var(--ok)">${t("Bonne réponse")}</p><b dir="auto">${esc(q.a)}</b>${q.note ? `<p class="note" dir="auto" style="margin-top:6px">${esc(q.note)}</p>` : ""}</div>`;
     /* v = true : reconnue juste · false : reconnue fausse · null : au groupe de juger */
     const reveal = (tx, v, typed) => {
       clearInterval(tmr); stopRec(); try { document.activeElement && document.activeElement.blur(); } catch (e) {} netFx("qr", { k: "x", tx: tx || "", v: v === true || v === false ? v : null, ty: !!typed });
       if (v !== true && v !== false) v = null;
+      /* en ligne, personne ne peut valider pour soi : sans réponse reconnue, c'est faux */
+      if (NET.on && v === null) v = false;
       const st = v === false && canSteal(g, false);
       if (st && !live) { quiet(() => SFX.bad()); if (stealGuest(zone, q, [])) return; }
       sayAnswer(q);
@@ -2154,8 +2156,8 @@ function renderQuestion() {
       if (v === true || v === false) {
         quiet(() => v ? SFX.good() : SFX.bad()); buzz(v ? 30 : [60, 40, 60]);
         zone.innerHTML = `${heard}${answerBox}`;
-        const addCont = () => { zone.insertAdjacentHTML("beforeend", `<button class="big w" id="cont">${v ? t("Avancer !") : t("Continuer")}</button><button class="ghostbtn" id="flip" style="width:100%;margin-top:8px">${v ? t("Erreur ? Compter comme faux") : typed ? t("Erreur ? Compter comme juste") : t("Erreur de micro ? Compter comme juste")}</button>`);
-          $("#cont").onclick = () => resolve(v); $("#flip").onclick = () => { SFX.tap(); resolve(!v); }; };
+        const addCont = () => { zone.insertAdjacentHTML("beforeend", `<button class="big w" id="cont">${v ? t("Avancer !") : t("Continuer")}</button>${NET.on && !v ? "" : `<button class="ghostbtn" id="flip" style="width:100%;margin-top:8px">${v ? t("Erreur ? Compter comme faux") : typed ? t("Erreur ? Compter comme juste") : t("Erreur de micro ? Compter comme juste")}</button>`}`);
+          $("#cont").onclick = () => resolve(v); if ($("#flip")) $("#flip").onclick = () => { SFX.tap(); resolve(!v); }; };
         if (st && live) stealHost(zone, addCont); else addCont();
         return;
       }
@@ -2163,16 +2165,16 @@ function renderQuestion() {
       $("#y").onclick = () => { SFX.good(); buzz(30); resolve(true); }; $("#n").onclick = () => { SFX.bad(); buzz([60, 40, 60]); resolve(false); };
     };
     Object.assign(QUI, { reveal, choose: null, timeout: () => reveal("", null) });
-    $("#show").onclick = () => { SFX.tap(); reveal("", null); };
+    if ($("#show")) $("#show").onclick = () => { SFX.tap(); reveal("", null); };
     /* réponse écrite : une seule tentative, fautes de frappe et d'orthographe tolérées */
-    $("#tf").onsubmit = e => { e.preventDefault(); const tx = $("#ti").value.trim(); if (!tx) { $("#ti").focus(); return; } const sc = score(tx, q.a); reveal(tx, sc >= .72 ? true : sc < .45 ? false : null, true); };
+    $("#tf").onsubmit = e => { e.preventDefault(); const tx = $("#ti").value.trim(); if (!tx) { $("#ti").focus(); return; } const sc = score(tx, q.a); reveal(tx, sc >= .72 ? true : NET.on ? sc >= .6 : sc < .45 ? false : null, true); };
     const mic = $("#mic"); let tries = 0;
     if (mic) mic.onclick = () => { mic.classList.add("rec"); $("#heard").innerHTML = `<p class="tiny">${t("J'écoute… parle maintenant.")}</p>`;
       listen((tx, done) => { if (tx) $("#heard").innerHTML = `<p class="tiny">${esc(t("J'entends : « {t} »", { t: tx }))}</p>`; if (!done) return; mic.classList.remove("rec"); if (!tx) return;
         const sc = score(tx, q.a); tries++;
         if (sc >= .72) return reveal(tx, true);
         if (tries < 2) { $("#heard").innerHTML = `<p class="tiny">${esc(t("J'ai entendu « {t} », ce n'est pas reconnu. Réessaie en articulant, ou touche « J'ai répondu à voix haute ».", { t: tx }))}</p>`; mic.innerHTML = `${MIC} ${t("Réessayer")}`; return; }
-        reveal(tx, sc < .45 ? false : null); },
+        reveal(tx, NET.on ? sc >= .6 : sc < .45 ? false : null); },
         err => { $("#heard").innerHTML = `<p class="tiny">${micMsg(err)}</p>`; mic.classList.remove("rec"); }); };
   }
   if (game.timer) { const t0 = Date.now(), D = 30000; tmr = setInterval(() => { const f = Math.max(0, 1 - (Date.now() - t0) / D), bar = $("#bar"); if (bar) bar.style.transform = `scaleX(${f})`; if (f <= 0) { clearInterval(tmr); if (!live) return; stopRec(); QUI.timeout && QUI.timeout(); } }, 200); }
