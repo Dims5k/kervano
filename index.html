@@ -159,6 +159,7 @@ button{touch-action:manipulation}
 .judge .sugg{outline:4px solid var(--ink);outline-offset:2px}
 .row{display:flex;gap:10px;flex-wrap:wrap}
 .ghostbtn{border:2px solid #E0CDA6;background:transparent;border-radius:14px;padding:10px 14px;font-weight:800;color:var(--ink);min-height:48px;flex:1}
+.setup .ghostbtn{color:var(--cream);border-color:rgba(255,255,255,.3)}
 .mic{border:0;border-radius:14px;padding:10px 14px;font-weight:800;background:var(--ink);color:var(--card);min-height:48px;flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px}
 .mic.rec{background:var(--ko);animation:pulseb 1s infinite}
 @keyframes pulseb{50%{box-shadow:0 0 0 8px rgba(210,73,58,.25)}}
@@ -204,6 +205,14 @@ button{touch-action:manipulation}
 .thb{display:inline-flex;align-items:center;gap:8px;border:1.5px solid rgba(255,255,255,.2);background:transparent;border-radius:999px;padding:8px 14px;font-weight:800;font-size:15px;color:var(--cream)}
 .thb i{width:12px;height:12px;border-radius:50%;border:2px solid var(--tc);flex:none}
 .thb.on{background:var(--tc);border-color:var(--tc);color:#fff}.thb.on i{background:#fff;border-color:#fff}
+.finrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-weight:800;font-size:15px}
+.finrow select{flex:1;min-width:0;border:1.5px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);color:var(--cream);border-radius:12px;padding:10px 12px;font-weight:700}
+.finrow select option{color:#2A2118}
+.jrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+.jrow input{font:900 22px var(--f-display);letter-spacing:.18em;text-transform:uppercase;text-align:center;border:1.5px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:var(--gold);border-radius:12px;padding:8px 10px;min-width:0}
+.jrow input::placeholder{letter-spacing:.05em;font:700 15px var(--f-body);color:rgba(246,233,207,.5)}
+.jrow input.bad{border-color:var(--ko)}
+.jrow button{border:0;background:var(--gold);color:#2A1A05;border-radius:12px;padding:10px 16px;font-weight:800}
 .daily .dh{display:flex;align-items:center;gap:8px}.daily .dh .lab2{flex:1}
 .streak{background:rgba(242,180,65,.18);color:var(--gold);border-radius:999px;padding:3px 10px;font-weight:800;font-size:13px}
 .daily .dq{font-weight:800;font-size:19px;margin:0;color:var(--cream)}
@@ -698,6 +707,10 @@ function catName(k) { const c = CATS[k]; if (!c) return ""; if (c.theme) return 
 function boardKeys(themes) { themes = okThemes(themes); if (themes.length > 1) return themes.map(th => "t:" + th); const th = themes[0]; if (th === "islam") return KEYS.slice(); return PACKS[th] ? Object.keys(PACKS[th].o.cats) : ["t:" + th]; }
 const gKeys = () => (game && game.cats && game.cats.length) ? game.cats : KEYS;
 const gThemes = () => okThemes(game && game.themes);
+const okFinal = f => THEMES[f] ? f : "";
+/* catégories proposées pour la question finale : celles du thème choisi à l'accueil, sinon celles de la partie */
+function finalKeys() { const f = okFinal(game && game.finalTh); if (!f) return gKeys(); if (f === "islam") return KEYS.slice(); return PACKS[f] ? Object.keys(PACKS[f].o.cats) : ["t:" + f]; }
+const gameThemesAll = g => [...okThemes(g && g.themes), ...(okFinal(g && g.finalTh) ? [g.finalTh] : [])];
 const inCat = (q, cat) => q && (cat.startsWith("t:") ? q.th === cat.slice(2) : q.cat === cat);
 const SPEC = {
   oasis: { name: "Oasis", txt: "Oasis : tu rejoues !", icon: "i-oasis" },
@@ -713,7 +726,7 @@ const MODES = { duo: { name: "Duo", sub: "2 réponses", color: "var(--duo)" }, c
 const steps = (mode, d) => mode === "cash" ? d + 3 : mode === "carre" ? d : Math.ceil(d / 2);
 const Q = QDATA.map((r, i) => ({ id: i, cat: r[0], d: r[1], q: r[2], a: r[3], w: r[4], note: r[5] || "", th: "islam" }));
 /* ============ langues : le français est dans le code, les autres dans lang/xx.json (chargées à la demande) ============ */
-const LV = 6;
+const LV = 7;
 const LANGS = { fr: ["Français", "fr-FR"], ar: ["العربية", "ar-SA", 1], en: ["English", "en-US"], nl: ["Nederlands", "nl-NL"], de: ["Deutsch", "de-DE"], tr: ["Türkçe", "tr-TR"] };
 let LANG = "fr", TR = {}, QL = null; const LCACHE = {};
 /* t("texte français", {var}) ; une variable qui commence par « @ » est elle-même un texte à traduire */
@@ -1398,7 +1411,7 @@ const mergeAt = (obj, kind, path, data) => kind === "patch" ? Object.keys(data |
 /* Firebase ne garde pas les tableaux vides ni les null : on les remet */
 const arr = v => v == null ? [] : Array.isArray(v) ? v : Object.keys(v).sort((a, b) => a - b).map(k => v[k]);
 function normGame(g) {
-  g.themes = okThemes(arr(g.themes)); g.cats = arr(g.cats); if (!g.cats.length) g.cats = g.themes.length > 1 ? g.themes.map(x => "t:" + x) : KEYS.slice();
+  g.themes = okThemes(arr(g.themes)); g.finalTh = okFinal(g.finalTh); g.cats = arr(g.cats); if (!g.cats.length) g.cats = g.themes.length > 1 ? g.themes.map(x => "t:" + x) : KEYS.slice();
   g.cells = arr(g.cells); g.players = arr(g.players); g.used = arr(g.used); g.deck = arr(g.deck);
   if (g.q === undefined) g.q = null; else if (g.q && g.q.choices) g.q.choices = arr(g.q.choices);
   if (g.winner === undefined) g.winner = null; g.turn = g.turn || 0;
@@ -1434,7 +1447,7 @@ async function netRun() {
   NET.running = false;
 }
 async function applyEv(e) {
-  if (e.t === "st") { const g = normGame(e.g); await ensurePacks(g.themes); return adopt(g); }
+  if (e.t === "st") { const g = normGame(e.g); await ensurePacks(gameThemesAll(g)); return adopt(g); }
   if (e.t === "hello") { if (NET.ctrl && game) netSend({ t: "st", g: game }); return; }
   if (!game || !$("#dock")) return;
   if (e.t === "steal") return stealIn(e);
@@ -1465,7 +1478,7 @@ async function netCreate(btn) {
   btn.disabled = true; btn.textContent = t("Création de la partie…");
   try {
     await fbAuth(); const code = genCode(), me = setup.players[0];
-    await db("PUT", `rooms/${code}`, { meta: { host: NET.uid, status: "lobby", size: setup.size, timer: !!setup.timer, themes: okThemes(setup.themes), t: { ".sv": "timestamp" } }, players: { [NET.uid]: { name: me.name, level: me.level, t: { ".sv": "timestamp" } } } });
+    await db("PUT", `rooms/${code}`, { meta: { host: NET.uid, status: "lobby", size: setup.size, timer: !!setup.timer, themes: okThemes(setup.themes), finalTh: okFinal(setup.finalTh), t: { ".sv": "timestamp" } }, players: { [NET.uid]: { name: me.name, level: me.level, t: { ".sv": "timestamp" } } } });
     NET.code = code; store.set("net", { code }); openLobby();
   } catch (e) { console.warn(e); btn.disabled = false; btn.textContent = t("Connexion impossible, réessaie"); }
 }
@@ -1480,8 +1493,8 @@ function renderLobby() {
   const link = location.origin + location.pathname + "#join=" + NET.code, m = NET.lobby.meta || {}, host = m.host === NET.uid, pl = lobbyPlayers(), msg = t("Viens jouer à La Caravane du Savoir avec moi !") + " " + link;
   root.innerHTML = `<div class="setup">
     <div class="hero"><div class="langrow">${langSelect("lang")}</div><h1>${t("Partie en ligne")}</h1><p>${t("Envoie le lien à ta famille : chacun joue chez soi, sur son téléphone, dans sa langue.")}</p></div>
-    <section class="panel"><p class="lab2">${t("Code de la partie")}</p><div class="netcode" dir="ltr">${esc(NET.code)}</div>
-      ${arr(m.themes).length ? `<p class="hint">${t("Thèmes : {l}", { l: okThemes(arr(m.themes)).map(thName).join(LANG === "ar" ? "، " : ", ") })}</p>` : ""}<div class="seg"><button id="share">${navigator.share ? t("Partager le lien") : t("Copier le lien")}</button><button id="wa">WhatsApp</button></div></section>
+    <section class="panel"><p class="lab2">${t("Code de la partie")}</p><div class="netcode" dir="ltr">${esc(NET.code)}</div><p class="hint" style="text-align:center;margin:-6px 0 12px">${t("Pas de WhatsApp ? Donne simplement ce code : sur l'accueil du jeu, « Rejoindre avec un code ».")}</p>
+      ${arr(m.themes).length ? `<p class="hint">${t("Thèmes : {l}", { l: okThemes(arr(m.themes)).map(thName).join(LANG === "ar" ? "، " : ", ") })}${okFinal(m.finalTh) ? " · " + esc(t("Thème de la question finale : {th}", { th: thName(m.finalTh) })) : ""}</p>` : ""}<div class="seg"><button id="share">${navigator.share ? t("Partager le lien") : t("Copier le lien")}</button><button id="wa">WhatsApp</button></div></section>
     <section class="panel"><p class="lab2">${t("Joueurs connectés ({n}/6)", { n: pl.length })}</p>
       ${pl.map(([u, p], i) => `<div class="prow">${av(i)}<span class="pname">${esc(p.name)}${u === NET.uid ? " " + t("(toi)") : ""}${u === m.host ? " · " + t("hôte") : ""}</span><small class="plev">${t(p.level === "facile" ? "Facile" : p.level === "expert" ? "Expert" : "Normal")}</small></div>`).join("") || `<p class="hint">${t("Connexion…")}</p>`}
       <p class="hint">${host ? (pl.length < 2 ? t("En attente d'au moins un autre joueur…") : t("Tout le monde est là ? Lance la partie.")) : t("En attente que l'hôte lance la partie…")}</p></section>
@@ -1496,7 +1509,8 @@ function renderLobby() {
 async function netStart() {
   const pl = lobbyPlayers(), m = NET.lobby.meta; if (pl.length < 2) return;
   const themes = await ensurePacks(arr(m.themes).length ? arr(m.themes) : setup.themes);
-  const g = newGame(m.size || 36, pl.slice(0, 6).map(([, p]) => ({ name: p.name, level: p.level || "normal" })), themes);
+  const fth = okFinal(m.finalTh != null ? m.finalTh : setup.finalTh); if (fth) await ensurePacks([fth]);
+  const g = newGame(m.size || 36, pl.slice(0, 6).map(([, p]) => ({ name: p.name, level: p.level || "normal" })), themes, fth);
   g.players.forEach((p, i) => p.uid = pl[i][0]); g.timer = !!m.timer; g.turn = 0;
   await db("PUT", `rooms/${NET.code}/state`, g); await db("PATCH", `rooms/${NET.code}/meta`, { status: "playing" });
 }
@@ -1504,7 +1518,7 @@ async function enterGame() {
   if (NET.entering) return; NET.entering = true; netCloseAll(); NET.lobby = null;
   try {
     const g = await db("GET", `rooms/${NET.code}/state`); if (!g) throw new Error("no state");
-    NET.on = true; NET.ctrl = false; game = normGame(g); await ensurePacks(game.themes); store.set("game3", game); NET.seen = new Set(); NET.evFirst = true; NET.queue = [];
+    NET.on = true; NET.ctrl = false; game = normGame(g); await ensurePacks(gameThemesAll(game)); store.set("game3", game); NET.seen = new Set(); NET.evFirst = true; NET.queue = [];
     dbListen(`rooms/${NET.code}/ev`, onEv); renderGame(); window.scrollTo(0, 0); netSend({ t: "hello" });
   } catch (e) { console.warn(e); netLeave(); } finally { NET.entering = false; }
 }
@@ -1661,7 +1675,8 @@ function renderSetup() {
     </div>
     <section class="panel"><p class="lab2">${t("Thèmes de la partie")}</p>
       <div class="themes">${TH_KEYS.map(th => { const on = okThemes(setup.themes).includes(th); return `<button class="thb${on ? " on" : ""}" data-th="${th}" aria-pressed="${on}" style="--tc:${THEMES[th].color}"><i></i>${thName(th)}</button>`; }).join("")}</div>
-      <p class="hint">${t("Choisis un ou plusieurs thèmes : les questions de la partie viendront seulement de ceux-là.")}</p></section>
+      <p class="hint">${t("Choisis un ou plusieurs thèmes : les questions de la partie viendront seulement de ceux-là.")}</p>
+      <label class="finrow"><span>${t("Question finale")}</span><select id="finth"><option value="">${t("Thèmes de la partie")}</option>${TH_KEYS.map(th => `<option value="${th}" ${okFinal(setup.finalTh) === th ? "selected" : ""}>${thName(th)}</option>`).join("")}</select></label></section>
     ${dailyHTML()}
     <div class="rules">
       <div class="rule" style="background:var(--duo)"><b>${t("Duo")}</b><span>${t("2 réponses")}<br>${t("moitié du dé")}</span></div>
@@ -1687,8 +1702,10 @@ function renderSetup() {
     </section>
     <section class="panel">
       <p class="lab2">${t("Jouer à distance")}</p>
-      <p class="hint">${t("Chacun chez soi, sur son téléphone : crée une partie, envoie le lien sur WhatsApp, et jouez ensemble. Ton nom est celui de la 1re caravane.")}</p>
+      <p class="hint">${t("Chacun chez soi, sur son téléphone ou sa tablette : crée une partie, envoie le lien ou donne le code, et jouez ensemble. Ton nom est celui de la 1re caravane.")}</p>
       <button class="addbtn" id="online">${t("Créer une partie en ligne")}</button>
+      <p class="lab2" style="margin-top:6px">${t("Rejoindre avec un code")}</p>
+      <div class="jrow"><input id="jcode" maxlength="8" inputmode="text" autocapitalize="characters" autocomplete="off" autocorrect="off" spellcheck="false" dir="ltr" placeholder="${t("Code de la partie")}" aria-label="${t("Code de la partie")}"><button id="jcgo">${t("Rejoindre")}</button></div>
     </section>
     <button class="big w" id="start">${t("Partir à l'aventure")}</button>
     <p class="hint" style="text-align:center">${t("{n} questions · {l}", { n: Q.filter(q => q && okThemes(setup.themes).includes(q.th)).length, l: okThemes(setup.themes).map(thName).join(LANG === "ar" ? "، " : ", ") })}</p>
@@ -1697,16 +1714,19 @@ function renderSetup() {
   root.querySelectorAll("input,select:not(#lang)").forEach(el => el.onchange = () => { read(); save(); });
   bindLang("lang", () => { read(); renderSetup(); });
   bindDaily();
+  const fin = $("#finth"); if (fin) fin.onchange = () => { read(); setup.finalTh = okFinal(fin.value); save(); if (setup.finalTh) ensurePacks([setup.finalTh]); };
+  const jc = $("#jcode"), jgo = () => { const c = (jc.value || "").toUpperCase().replace(/[^A-Z0-9]/g, ""); if (c.length < 4) { jc.focus(); jc.classList.add("bad"); return; } read(); save(); if (!fbOk()) return; renderJoin(c); window.scrollTo(0, 0); };
+  if (jc) { $("#jcgo").onclick = jgo; jc.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); jgo(); } }; jc.oninput = () => jc.classList.remove("bad"); }
   const add = $("#add"); if (add) add.onclick = () => { read(); setup.players.push({ name: t("Joueur {n}", { n: setup.players.length + 1 }), level: "normal" }); save(); renderSetup(); };
   root.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => { read(); setup.players.splice(+b.dataset.rm, 1); save(); renderSetup(); });
   root.querySelectorAll("[data-s]").forEach(b => b.onclick = () => { read(); setup.size = +b.dataset.s; save(); renderSetup(); });
   root.querySelectorAll("[data-o]").forEach(b => b.onclick = () => { read(); setup[b.dataset.o] = !setup[b.dataset.o]; save(); renderSetup(); });
   $("#online").onclick = () => { read(); save(); if (!fbOk()) { $("#online").textContent = t("Le mode en ligne arrive bientôt"); return; } netCreate($("#online")); };
-  $("#start").onclick = async () => { read(); const b = $("#start"); b.disabled = true; setup.themes = await ensurePacks(setup.themes); SFX.bonus(); game = newGame(setup.size, setup.players); save(); renderGame(); window.scrollTo(0, 0); };
+  $("#start").onclick = async () => { read(); const b = $("#start"); b.disabled = true; setup.themes = await ensurePacks(setup.themes); setup.finalTh = okFinal(setup.finalTh); if (setup.finalTh) await ensurePacks([setup.finalTh]); SFX.bonus(); game = newGame(setup.size, setup.players); save(); renderGame(); window.scrollTo(0, 0); };
   root.querySelectorAll("[data-th]").forEach(b => b.onclick = () => { read(); const th = b.dataset.th, cur = okThemes(setup.themes);
     setup.themes = cur.includes(th) ? (cur.length > 1 ? cur.filter(x => x !== th) : cur) : [...cur, th]; SFX.tap(); save(); ensurePacks(setup.themes).then(() => { if (!game) renderSetup(); }); renderSetup(); });
 }
-const newGame = (size, pl, themes = setup.themes) => ({ themes: okThemes(themes), cats: boardKeys(themes), cells: makeCells(size, boardKeys(themes)), players: pl.map(p => ({ name: p.name, level: p.level, pos: 0, skip: false, good: 0, streak: 0, shield: false, miss: [] })), deck: [], cur: 0, phase: "roll", used: [], die: 1, q: null, winner: null, timer: setup.timer, read: setup.read });
+const newGame = (size, pl, themes = setup.themes, finalTh = setup.finalTh) => ({ themes: okThemes(themes), finalTh: okFinal(finalTh), cats: boardKeys(themes), cells: makeCells(size, boardKeys(themes)), players: pl.map(p => ({ name: p.name, level: p.level, pos: 0, skip: false, good: 0, streak: 0, shield: false, miss: [] })), deck: [], cur: 0, phase: "roll", used: [], die: 1, q: null, winner: null, timer: setup.timer, read: setup.read });
 
 /* ============ partie ============ */
 const PIPS = { 1: [4], 2: [0, 8], 3: [0, 4, 8], 4: [0, 2, 6, 8], 5: [0, 2, 4, 6, 8], 6: [0, 2, 3, 5, 6, 8] };
@@ -1736,7 +1756,7 @@ const quiet = f => { NET.mute = true; try { return f(); } finally { NET.mute = f
 function openSheet(html) { const c = $("#card"); c.innerHTML = html; c.scrollTop = 0; requestAnimationFrame(() => $("#sheet").classList.add("open")); }
 function closeSheet() { const s = $("#sheet"); if (s) s.classList.remove("open"); markDest([]); }
 function renderPick(p, live) {
-  openSheet(`<div class="band" style="background:linear-gradient(90deg,#8A5A0C,#F2B441)"><span>${t("Question finale")}</span></div><div class="cbody"><p class="qfor">${esc(t("Pour {n} · les autres choisissent la catégorie", { n: p.name }))}</p><div class="pickcat">${KEYS.map(k => `<button data-k="${k}" style="background:${CATS[k].color};color:${CATS[k].ink || "#fff"}">${t(CATS[k].name)}</button>`).join("")}</div><p class="tiny">${t("La question finale se joue en Cash. Si elle est ratée, la caravane recule de 5 cases.")}</p></div>`);
+  openSheet(`<div class="band" style="background:linear-gradient(90deg,#8A5A0C,#F2B441)"><span>${t("Question finale")}</span></div><div class="cbody"><p class="qfor">${esc(t("Pour {n} · les autres choisissent la catégorie", { n: p.name }))}</p>${okFinal(game.finalTh) ? `<p class="tiny" style="margin:0 0 8px">${esc(t("Thème de la question finale : {th}", { th: thName(game.finalTh) }))}</p>` : ""}<div class="pickcat">${finalKeys().map(k => `<button data-k="${k}" style="background:${CATS[k].color};color:${CATS[k].ink || "#fff"}">${esc(catName(k))}</button>`).join("")}</div><p class="tiny">${t("La question finale se joue en Cash. Si elle est ratée, la caravane recule de 5 cases.")}</p></div>`);
   if (live) $("#card").querySelectorAll("[data-k]").forEach(b => b.onclick = () => { SFX.tap(); const k = b.dataset.k; game.q = { id: draw(k, p.level, true), cat: k, mode: "cash", final: true }; game.phase = "question"; save(); step(); });
 }
 function step() {
@@ -2073,13 +2093,13 @@ function showWin(back) {
   if (!back) { quiet(() => SFX.win()); buzz([80, 60, 80, 60, 200]);
   show(() => rocket(innerWidth * (.15 + Math.random() * .7)), 14, 380);
   setTimeout(() => confetti(innerWidth / 2, innerHeight * .35, 160), 300); }
-  if ($("#again")) $("#again").onclick = () => { const old = game; game = newGame(old.cells.length, old.players, old.themes); if (NET.on) { game.players.forEach((p, i) => p.uid = old.players[i].uid); game.timer = old.timer; game.turn = (old.turn || 0) + 1; } save(); renderGame(); };
+  if ($("#again")) $("#again").onclick = () => { const old = game; game = newGame(old.cells.length, old.players, old.themes, old.finalTh); if (NET.on) { game.players.forEach((p, i) => p.uid = old.players[i].uid); game.timer = old.timer; game.turn = (old.turn || 0) + 1; } save(); renderGame(); };
   $("#home").onclick = () => { if (NET.on) return netLeave(); game = null; save(); renderSetup(); };
 }
 function validGame(g) { try { return g && Array.isArray(g.cells) && g.cells.length >= 10 && Array.isArray(g.players) && g.players.length >= 2 && g.players.every(p => typeof p.pos === "number" && p.pos >= 0 && p.pos < g.cells.length) && g.cur >= 0 && g.cur < g.players.length && Array.isArray(g.used); } catch (e) { return false; } }
 async function boot() {
   try { await setLang(detectLang()); } catch (e) { console.warn(e); }
-  try { const g0 = store.get("game3", null); await ensurePacks([...okThemes(setup && setup.themes), ...(g0 && Array.isArray(g0.themes) ? g0.themes : [])]); } catch (e) { console.warn(e); }
+  try { const g0 = store.get("game3", null); await ensurePacks([...okThemes(setup && setup.themes), ...(okFinal(setup && setup.finalTh) ? [setup.finalTh] : []), ...(g0 && Array.isArray(g0.themes) ? g0.themes : []), ...(g0 && okFinal(g0.finalTh) ? [g0.finalTh] : [])]); } catch (e) { console.warn(e); }
   try { if ("serviceWorker" in navigator && (location.protocol === "https:" || /^(localhost|127\.)/.test(location.hostname))) navigator.serviceWorker.register("sw.js").catch(() => {}); } catch (e) {}
   try {
     if (setup && Array.isArray(setup.players)) setup.players = setup.players.slice(0, 6); else setup = { players: [{ name: t("Joueur {n}", { n: 1 }), level: "normal" }, { name: t("Joueur {n}", { n: 2 }), level: "normal" }], size: 36, timer: false, read: true, view3d: true };
