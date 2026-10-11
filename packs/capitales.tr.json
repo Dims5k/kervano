@@ -1,0 +1,1901 @@
+{
+ "cats": {
+  "ca_afrique": "Afrika",
+  "ca_ameriques": "Amerika",
+  "ca_asie": "Asya",
+  "ca_europe": "Avrupa",
+  "ca_oceanie": "Okyanusya"
+ },
+ "q": {
+  "0": [
+   "Arnavutluk'un başkenti neresidir?",
+   "Tiran",
+   [
+    "Draç",
+    "İşkodra",
+    "Avlonya"
+   ],
+   "Tiran, 1920'de Arnavutluk'un başkenti oldu."
+  ],
+  "1": [
+   "Andorra'nın başkenti neresidir?",
+   "Andorra la Vella",
+   [
+    "Escaldes-Engordany",
+    "Encamp",
+    "Canillo"
+   ],
+   "1.000 metreyi aşan rakımıyla Avrupa'nın en yüksek başkentlerinden biridir."
+  ],
+  "2": [
+   "Avusturya'nın başkenti hangi şehirdir?",
+   "Viyana",
+   [
+    "Salzburg",
+    "Graz",
+    "Innsbruck"
+   ],
+   "Viyana klasik müziğiyle ünlüdür: Mozart ve Beethoven burada yaşamıştır."
+  ],
+  "3": [
+   "Belarus'un başkentinin adı nedir?",
+   "Minsk",
+   [
+    "Gomel",
+    "Brest",
+    "Vitebsk"
+   ],
+   "Minsk, İkinci Dünya Savaşı'ndan sonra neredeyse tamamen yeniden inşa edildi."
+  ],
+  "4": [
+   "Belçika'nın başkenti neresidir?",
+   "Brüksel",
+   [
+    "Anvers",
+    "Liège",
+    "Gent"
+   ],
+   "Brüksel, Avrupa Birliği'nin başlıca kurumlarına da ev sahipliği yapar."
+  ],
+  "5": [
+   "Bosna-Hersek'in başkenti neresidir?",
+   "Saraybosna",
+   [
+    "Mostar",
+    "Banja Luka",
+    "Tuzla"
+   ],
+   "Saraybosna, 1984 Kış Olimpiyat Oyunları'na ev sahipliği yaptı."
+  ],
+  "6": [
+   "Bulgaristan'ın başkenti hangi şehirdir?",
+   "Sofya",
+   [
+    "Filibe",
+    "Varna",
+    "Burgaz"
+   ],
+   "Sofya adını, en eski kiliselerinden biri olan Ayasofya Bazilikası'ndan alır."
+  ],
+  "7": [
+   "Hırvatistan'ın başkentinin adı nedir?",
+   "Zagreb",
+   [
+    "Split",
+    "Dubrovnik",
+    "Rijeka"
+   ],
+   "Split ve Dubrovnik'in aksine Zagreb, Adriyatik kıyısında değildir."
+  ],
+  "8": [
+   "Kıbrıs'ın başkenti neresidir?",
+   "Lefkoşa",
+   [
+    "Limasol",
+    "Larnaka",
+    "Baf"
+   ],
+   "Lefkoşa adanın ortasında, denizden uzakta yer alır."
+  ],
+  "9": [
+   "Çekya'nın başkenti neresidir?",
+   "Prag",
+   [
+    "Brno",
+    "Ostrava",
+    "Pilsen"
+   ],
+   "Prag'a «yüz kuleli şehir» denir."
+  ],
+  "10": [
+   "Danimarka'nın başkenti hangi şehirdir?",
+   "Kopenhag",
+   [
+    "Aarhus",
+    "Odense",
+    "Aalborg"
+   ],
+   "Ünlü Küçük Deniz Kızı heykeli Kopenhag'dadır."
+  ],
+  "11": [
+   "Estonya'nın başkentinin adı nedir?",
+   "Tallinn",
+   [
+    "Tartu",
+    "Pärnu",
+    "Narva"
+   ],
+   "Tallinn'in Orta Çağ'dan kalma eski şehri UNESCO Dünya Mirası Listesi'ndedir."
+  ],
+  "12": [
+   "Finlandiya'nın başkenti neresidir?",
+   "Helsinki",
+   [
+    "Tampere",
+    "Turku",
+    "Oulu"
+   ],
+   "Helsinki'den önce Finlandiya'nın başkenti Turku'ydu."
+  ],
+  "13": [
+   "Fransa'nın başkenti neresidir?",
+   "Paris",
+   [
+    "Lyon",
+    "Marsilya",
+    "Toulouse"
+   ],
+   "Paris adını, Seine kıyısına yerleşmiş bir Galya halkı olan Parisiilerden alır."
+  ],
+  "14": [
+   "Almanya'nın başkenti hangi şehirdir?",
+   "Berlin",
+   [
+    "Münih",
+    "Frankfurt",
+    "Hamburg"
+   ],
+   "Ülke bölünmüşken Batı Almanya'nın başkenti Bonn'du."
+  ],
+  "15": [
+   "Yunanistan'ın başkentinin adı nedir?",
+   "Atina",
+   [
+    "Selanik",
+    "Patras",
+    "Heraklion"
+   ],
+   "Yunan mitolojisine göre Atina adını tanrıça Athena'dan alır."
+  ],
+  "16": [
+   "Macaristan'ın başkenti neresidir?",
+   "Budapeşte",
+   [
+    "Debrecen",
+    "Szeged",
+    "Peçuy"
+   ],
+   "Budapeşte, 1873'te Tuna'nın iki yakasındaki Buda, Óbuda ve Peşte'nin birleşmesiyle doğdu."
+  ],
+  "17": [
+   "İzlanda'nın başkenti neresidir?",
+   "Reykjavik",
+   [
+    "Akureyri",
+    "Kópavogur",
+    "Hafnarfjörður"
+   ],
+   "Reykjavik, dünyanın en kuzeydeki devlet başkentidir; adı «dumanlı koy» anlamına gelir."
+  ],
+  "18": [
+   "İrlanda'nın başkenti hangi şehirdir?",
+   "Dublin",
+   [
+    "Cork",
+    "Galway",
+    "Limerick"
+   ],
+   "Dublin adı, İrlandaca «kara gölet» anlamına gelen «Dubh Linn»den gelir."
+  ],
+  "19": [
+   "İtalya'nın başkentinin adı nedir?",
+   "Roma",
+   [
+    "Milano",
+    "Napoli",
+    "Torino"
+   ],
+   "Roma'ya «Ebedi Şehir» denir."
+  ],
+  "20": [
+   "Letonya'nın başkenti neresidir?",
+   "Riga",
+   [
+    "Daugavpils",
+    "Liepāja",
+    "Jelgava"
+   ],
+   "Riga, Baltık ülkelerinin en büyük şehridir."
+  ],
+  "21": [
+   "Lihtenştayn'ın başkenti neresidir?",
+   "Vaduz",
+   [
+    "Schaan",
+    "Balzers",
+    "Triesen"
+   ],
+   "Lihtenştayn prensi, Vaduz'a tepeden bakan şatoda yaşar."
+  ],
+  "22": [
+   "Litvanya'nın başkenti hangi şehirdir?",
+   "Vilnius",
+   [
+    "Kaunas",
+    "Klaipėda",
+    "Šiauliai"
+   ],
+   "Kaunas, iki dünya savaşı arasında Litvanya'nın geçici başkentiydi."
+  ],
+  "23": [
+   "Lüksemburg'un başkentinin adı nedir?",
+   "Lüksemburg",
+   [
+    "Esch-sur-Alzette",
+    "Differdange",
+    "Dudelange"
+   ],
+   "Başkent ülkeyle aynı adı taşır; genellikle Lüksemburg Şehri diye anılır."
+  ],
+  "24": [
+   "Malta'nın başkenti neresidir?",
+   "Valletta",
+   [
+    "Mdina",
+    "Sliema",
+    "Birkirkara"
+   ],
+   "Valletta adını, şehri 16. yüzyılda kuran büyük üstat Jean de La Valette'ten alır."
+  ],
+  "25": [
+   "Moldova'nın başkenti neresidir?",
+   "Kişinev",
+   [
+    "Bălți",
+    "Cahul",
+    "Orhei"
+   ],
+   "Kişinev, çok sayıdaki parkı ve yeşil alanıyla tanınır."
+  ],
+  "26": [
+   "Monako Prensliği'nin başkenti neresidir?",
+   "Monako",
+   [
+    "Monte Carlo",
+    "Nice",
+    "Menton"
+   ],
+   "Monako bir şehir devletidir: başkent ile ülke aynı adı taşır."
+  ],
+  "27": [
+   "Karadağ'ın başkentinin adı nedir?",
+   "Podgorica",
+   [
+    "Bar",
+    "Nikšić",
+    "Budva"
+   ],
+   "Yugoslavya döneminde Podgorica'nın adı Titograd'dı."
+  ],
+  "28": [
+   "Hollanda'nın başkenti neresidir?",
+   "Amsterdam",
+   [
+    "Rotterdam",
+    "Utrecht",
+    "Eindhoven"
+   ],
+   "Resmî başkent Amsterdam'dır, ancak hükûmet ve parlamento Lahey'dedir."
+  ],
+  "29": [
+   "Kuzey Makedonya'nın başkenti neresidir?",
+   "Üsküp",
+   [
+    "Manastır",
+    "Ohri",
+    "Kumanova"
+   ],
+   "Rahibe Teresa 1910'da Üsküp'te doğdu."
+  ],
+  "30": [
+   "Norveç'in başkenti hangi şehirdir?",
+   "Oslo",
+   [
+    "Bergen",
+    "Trondheim",
+    "Stavanger"
+   ],
+   "Oslo yaklaşık üç yüzyıl boyunca Christiania adını taşıdı."
+  ],
+  "31": [
+   "Polonya'nın başkentinin adı nedir?",
+   "Varşova",
+   [
+    "Krakov",
+    "Gdańsk",
+    "Wrocław"
+   ],
+   "Varşova'dan önce Polonya'nın başkenti Krakov'du."
+  ],
+  "32": [
+   "Portekiz'in başkenti neresidir?",
+   "Lizbon",
+   [
+    "Porto",
+    "Coimbra",
+    "Faro"
+   ],
+   "Lizbon'un büyük bölümü 1755'te korkunç bir depremle yıkıldı."
+  ],
+  "33": [
+   "Romanya'nın başkenti neresidir?",
+   "Bükreş",
+   [
+    "Cluj-Napoca",
+    "Temeşvar",
+    "Yaş"
+   ],
+   "Bükreş'teki Parlamento Sarayı, dünyanın en büyük idari binalarından biridir."
+  ],
+  "34": [
+   "Rusya'nın başkenti hangi şehirdir?",
+   "Moskova",
+   [
+    "St. Petersburg",
+    "Novosibirsk",
+    "Kazan"
+   ],
+   "St. Petersburg yaklaşık iki yüzyıl boyunca Rusya'nın başkentiydi."
+  ],
+  "35": [
+   "San Marino'nun başkentinin adı nedir?",
+   "San Marino",
+   [
+    "Serravalle",
+    "Borgo Maggiore",
+    "Domagnano"
+   ],
+   "San Marino, kendini dünyanın hâlâ var olan en eski cumhuriyeti olarak tanıtır."
+  ],
+  "36": [
+   "Sırbistan'ın başkenti neresidir?",
+   "Belgrad",
+   [
+    "Novi Sad",
+    "Niş",
+    "Kragujevac"
+   ],
+   "Belgrad, Sırpçada «beyaz şehir» anlamına gelir."
+  ],
+  "37": [
+   "Slovakya'nın başkenti neresidir?",
+   "Bratislava",
+   [
+    "Košice",
+    "Nitra",
+    "Žilina"
+   ],
+   "Bratislava, aynı anda iki ülkeye, Avusturya ve Macaristan'a sınırı olan tek başkenttir."
+  ],
+  "38": [
+   "Slovenya'nın başkenti hangi şehirdir?",
+   "Ljubljana",
+   [
+    "Maribor",
+    "Celje",
+    "Koper"
+   ],
+   "Ejderha, Ljubljana'nın simgesidir ve en ünlü köprülerinden birini süsler."
+  ],
+  "39": [
+   "İspanya'nın başkentinin adı nedir?",
+   "Madrid",
+   [
+    "Barselona",
+    "Sevilla",
+    "Valencia"
+   ],
+   "Madrid, İber Yarımadası'nın neredeyse tam ortasında yer alır."
+  ],
+  "40": [
+   "İsveç'in başkenti neresidir?",
+   "Stockholm",
+   [
+    "Göteborg",
+    "Malmö",
+    "Uppsala"
+   ],
+   "Stockholm, köprülerle birbirine bağlanan 14 ada üzerine kurulmuştur."
+  ],
+  "41": [
+   "İsviçre hükûmeti ve parlamentosu hangi şehirdedir?",
+   "Bern",
+   [
+    "Zürih",
+    "Cenevre",
+    "Basel"
+   ],
+   "İsviçre'nin resmî bir başkenti yoktur: Bern «federal şehir» unvanını taşır."
+  ],
+  "42": [
+   "Türkiye'nin başkenti hangi şehirdir?",
+   "Ankara",
+   [
+    "İstanbul",
+    "İzmir",
+    "Antalya"
+   ],
+   "Atatürk, 1923'te İstanbul'un yerine Ankara'yı başkent yaptı."
+  ],
+  "43": [
+   "Ukrayna'nın başkentinin adı nedir?",
+   "Kiev",
+   [
+    "Harkiv",
+    "Odessa",
+    "Lviv"
+   ],
+   "Kiev'deki Ayasofya Katedrali UNESCO Dünya Mirası Listesi'ndedir."
+  ],
+  "44": [
+   "Birleşik Krallık'ın başkenti neresidir?",
+   "Londra",
+   [
+    "Manchester",
+    "Birmingham",
+    "Liverpool"
+   ],
+   "Londra'yı Romalılar kurdu ve ona Londinium adını verdi."
+  ],
+  "45": [
+   "Dünyanın en küçük ülkesi olan Vatikan hangi şehrin içindedir?",
+   "Roma",
+   [
+    "Milano",
+    "Floransa",
+    "Napoli"
+   ],
+   "Vatikan, dört bir yanı Roma şehriyle çevrili bağımsız bir devlettir."
+  ],
+  "46": [
+   "Afganistan'ın başkenti hangi şehirdir?",
+   "Kabil",
+   [
+    "Kandahar",
+    "Herat",
+    "Mezar-ı Şerif"
+   ],
+   "Kabil'in çevresi yüksek dağlarla kaplıdır."
+  ],
+  "47": [
+   "Ermenistan'ın başkentinin adı nedir?",
+   "Erivan",
+   [
+    "Gümrü",
+    "Vanadzor",
+    "Eçmiyadzin"
+   ],
+   "Erivan kuruluşunu MÖ 782'ye tarihler; bu da onu dünyanın en eski şehirlerinden biri yapar."
+  ],
+  "48": [
+   "Azerbaycan'ın başkenti neresidir?",
+   "Bakü",
+   [
+    "Gence",
+    "Sumgayıt",
+    "Lenkeran"
+   ],
+   "Bakü, deniz seviyesinin altında yer alan, dünyanın en alçak başkentidir."
+  ],
+  "49": [
+   "Bahreyn'in başkenti neresidir?",
+   "Manama",
+   [
+    "Rifa",
+    "Muharrak",
+    "İsa Şehri"
+   ],
+   "Bahreyn bir takımadadır; Manama ana adadadır."
+  ],
+  "50": [
+   "Bangladeş'in başkenti hangi şehirdir?",
+   "Dakka",
+   [
+    "Chittagong",
+    "Khulna",
+    "Sylhet"
+   ],
+   "Dakka'ya «dünyanın çekçek başkenti» denir."
+  ],
+  "51": [
+   "Butan'ın başkentinin adı nedir?",
+   "Thimphu",
+   [
+    "Paro",
+    "Punakha",
+    "Katmandu"
+   ],
+   "Thimphu, trafik ışığı olmayan nadir başkentlerden biridir."
+  ],
+  "52": [
+   "Brunei'nin başkenti neresidir?",
+   "Bandar Seri Begawan",
+   [
+    "Kuala Belait",
+    "Seria",
+    "Tutong"
+   ],
+   "Brunei'nin başkentinde, Kampong Ayer adında ünlü bir su üstü köyü bulunur."
+  ],
+  "53": [
+   "Kamboçya'nın başkenti neresidir?",
+   "Phnom Penh",
+   [
+    "Siem Reap",
+    "Battambang",
+    "Sihanoukville"
+   ],
+   "Phnom Penh, Mekong ile Tonle Sap nehirlerinin birleştiği yerdedir."
+  ],
+  "54": [
+   "Çin'in başkenti hangi şehirdir?",
+   "Pekin",
+   [
+    "Şanghay",
+    "Hong Kong",
+    "Kanton"
+   ],
+   "Pekin, Çincede «kuzeyin başkenti» anlamına gelir."
+  ],
+  "55": [
+   "Gürcistan'ın başkentinin adı nedir?",
+   "Tiflis",
+   [
+    "Batum",
+    "Kutaisi",
+    "Rustavi"
+   ],
+   "Tiflis adı, sıcak su kaynakları nedeniyle «sıcak» anlamına gelen Gürcüce bir kelimeden gelir."
+  ],
+  "56": [
+   "Hindistan'ın başkenti neresidir?",
+   "Yeni Delhi",
+   [
+    "Mumbai",
+    "Kalküta",
+    "Bangalore"
+   ],
+   "Yeni Delhi'den önce Britanya Hindistanı'nın başkenti Kalküta'ydı."
+  ],
+  "57": [
+   "İran'ın başkenti neresidir?",
+   "Tahran",
+   [
+    "İsfahan",
+    "Şiraz",
+    "Meşhed"
+   ],
+   "İsfahan, Safeviler döneminde İran'ın başkentiydi."
+  ],
+  "58": [
+   "Irak'ın başkenti hangi şehirdir?",
+   "Bağdat",
+   [
+    "Basra",
+    "Musul",
+    "Kerkük"
+   ],
+   "Bağdat, 8. yüzyılda Abbasi halifesi Mansur tarafından kuruldu."
+  ],
+  "59": [
+   "Japonya'nın başkentinin adı nedir?",
+   "Tokyo",
+   [
+    "Osaka",
+    "Kyoto",
+    "Hiroşima"
+   ],
+   "Kyoto, bin yılı aşkın süre Japonya'nın imparatorluk başkentiydi."
+  ],
+  "60": [
+   "Ürdün'ün başkenti neresidir?",
+   "Amman",
+   [
+    "Zerka",
+    "İrbid",
+    "Akabe"
+   ],
+   "Antik çağda Amman'ın adı Philadelphia'ydı."
+  ],
+  "61": [
+   "Kazakistan'ın başkenti neresidir?",
+   "Astana",
+   [
+    "Almatı",
+    "Çimkent",
+    "Karağandı"
+   ],
+   "Almatı, 1997'ye kadar Kazakistan'ın başkentiydi."
+  ],
+  "62": [
+   "Kuveyt'in başkenti hangi şehirdir?",
+   "Kuveyt Şehri",
+   [
+    "Cehra",
+    "Ahmedi",
+    "Havalli"
+   ],
+   "Başkent ülkeyle aynı adı taşır; Kuveyt «küçük kale» anlamına gelir."
+  ],
+  "63": [
+   "Kırgızistan'ın başkentinin adı nedir?",
+   "Bişkek",
+   [
+    "Oş",
+    "Karakol",
+    "Celalabad"
+   ],
+   "Sovyet döneminde Bişkek'in adı Frunze'ydi."
+  ],
+  "64": [
+   "Laos'un başkenti neresidir?",
+   "Vientiane",
+   [
+    "Luang Prabang",
+    "Savannakhet",
+    "Pakse"
+   ],
+   "Vientiane, Mekong kıyısında, Tayland'ın tam karşısında kurulmuştur."
+  ],
+  "65": [
+   "Lübnan'ın başkenti neresidir?",
+   "Beyrut",
+   [
+    "Sayda",
+    "Sur",
+    "Baalbek"
+   ],
+   "Beyrut'a uzun süre «Orta Doğu'nun Paris'i» dendi."
+  ],
+  "66": [
+   "Malezya'nın başkenti hangi şehirdir?",
+   "Kuala Lumpur",
+   [
+    "George Town",
+    "Johor Bahru",
+    "Malakka"
+   ],
+   "Hükûmetin büyük kısmı Putrajaya'dadır, ama resmî başkent Kuala Lumpur'dur."
+  ],
+  "67": [
+   "Maldivler'in başkentinin adı nedir?",
+   "Male",
+   [
+    "Addu",
+    "Victoria",
+    "Port Louis"
+   ],
+   "Male dünyanın en küçük başkentlerinden biridir; bulunduğu ada tamamen şehirle kaplıdır."
+  ],
+  "68": [
+   "Moğolistan'ın başkenti neresidir?",
+   "Ulan Batur",
+   [
+    "Erdenet",
+    "Darhan",
+    "Karakurum"
+   ],
+   "Ulan Batur «kızıl kahraman» anlamına gelir; dünyanın en soğuk başkentidir."
+  ],
+  "69": [
+   "Myanmar'ın (Burma) başkenti neresidir?",
+   "Naypyidaw",
+   [
+    "Yangon",
+    "Mandalay",
+    "Bago"
+   ],
+   "Naypyidaw, 2005'te Yangon'un yerine başkent oldu."
+  ],
+  "70": [
+   "Nepal'in başkenti hangi şehirdir?",
+   "Katmandu",
+   [
+    "Pokhara",
+    "Lalitpur",
+    "Bhaktapur"
+   ],
+   "Katmandu, Himalayalar'daki bir vadide yer alır."
+  ],
+  "71": [
+   "Kuzey Kore'nin başkentinin adı nedir?",
+   "Pyongyang",
+   [
+    "Hamhung",
+    "Chongjin",
+    "Kaesong"
+   ],
+   "Pyongyang adı «düz toprak» anlamına gelir."
+  ],
+  "72": [
+   "Umman'ın başkenti neresidir?",
+   "Maskat",
+   [
+    "Salalah",
+    "Sohar",
+    "Nizva"
+   ],
+   "Maskat kayalık dağlarla çevrilidir ve Umman Denizi'ne kıyısı vardır."
+  ],
+  "73": [
+   "Pakistan'ın başkenti neresidir?",
+   "İslamabad",
+   [
+    "Karaçi",
+    "Lahor",
+    "Peşaver"
+   ],
+   "İslamabad, Karaçi'nin yerine başkent olması için 1960'larda inşa edildi."
+  ],
+  "74": [
+   "Filipinler'in başkenti hangi şehirdir?",
+   "Manila",
+   [
+    "Cebu",
+    "Davao",
+    "Zamboanga"
+   ],
+   "Manila adını, körfezinin kıyısında yetişen nilad adlı bir bitkiden alır."
+  ],
+  "75": [
+   "Katar'ın başkentinin adı nedir?",
+   "Doha",
+   [
+    "Rayyan",
+    "Vakra",
+    "Hor"
+   ],
+   "Katar, büyük bölümü Doha çevresinde oynanan 2022 Dünya Kupası'na ev sahipliği yaptı."
+  ],
+  "76": [
+   "Suudi Arabistan'ın başkenti neresidir?",
+   "Riyad",
+   [
+    "Cidde",
+    "Mekke",
+    "Medine"
+   ],
+   "Riyad, Arapçada «bahçeler» anlamına gelir."
+  ],
+  "77": [
+   "Singapur'un başkenti neresidir?",
+   "Singapur",
+   [
+    "Kuala Lumpur",
+    "Bangkok",
+    "Manila"
+   ],
+   "Singapur bir şehir devletidir: ülke ile başkent birdir."
+  ],
+  "78": [
+   "Güney Kore'nin başkenti hangi şehirdir?",
+   "Seul",
+   [
+    "Busan",
+    "Incheon",
+    "Daegu"
+   ],
+   "Seul, 1988 Yaz Olimpiyat Oyunları'na ev sahipliği yaptı."
+  ],
+  "79": [
+   "Sri Lanka'nın resmî başkenti neresidir?",
+   "Sri Jayawardenepura Kotte",
+   [
+    "Kandy",
+    "Galle",
+    "Jaffna"
+   ],
+   "En büyük şehir olan Kolombo, ekonomik merkez olmayı sürdürür ve birçok kamu kurumuna ev sahipliği yapar."
+  ],
+  "80": [
+   "Suriye'nin başkenti neresidir?",
+   "Şam",
+   [
+    "Halep",
+    "Humus",
+    "Lazkiye"
+   ],
+   "Şam, dünyada kesintisiz yerleşim görmüş en eski şehirler arasında sık sık anılır."
+  ],
+  "81": [
+   "Tacikistan'ın başkenti neresidir?",
+   "Duşanbe",
+   [
+    "Hucend",
+    "Kulob",
+    "Bohtar"
+   ],
+   "Duşanbe, Tacikçede «pazartesi» demektir; çünkü burada o gün pazar kurulurdu."
+  ],
+  "82": [
+   "Tayland'ın başkenti hangi şehirdir?",
+   "Bangkok",
+   [
+    "Chiang Mai",
+    "Phuket",
+    "Pattaya"
+   ],
+   "Bangkok'un Tayca tam adı, dünyanın en uzun yer adlarından biridir."
+  ],
+  "83": [
+   "Doğu Timor'un başkentinin adı nedir?",
+   "Dili",
+   [
+    "Baucau",
+    "Maliana",
+    "Lospalos"
+   ],
+   "Doğu Timor 2002'de bağımsız oldu ve Dili başkenti oldu."
+  ],
+  "84": [
+   "Türkmenistan'ın başkenti neresidir?",
+   "Aşkabat",
+   [
+    "Türkmenabat",
+    "Mary",
+    "Daşoguz"
+   ],
+   "Aşkabat, beyaz mermerle kaplı çok sayıdaki binasıyla ünlüdür."
+  ],
+  "85": [
+   "Birleşik Arap Emirlikleri'nin başkenti neresidir?",
+   "Abu Dabi",
+   [
+    "Dubai",
+    "Şarika",
+    "Acman"
+   ],
+   "Ülkenin en ünlü şehri Dubai'dir, ama başkent Abu Dabi'dir."
+  ],
+  "86": [
+   "Özbekistan'ın başkenti hangi şehirdir?",
+   "Taşkent",
+   [
+    "Semerkant",
+    "Buhara",
+    "Hive"
+   ],
+   "Semerkant ve Buhara daha ünlüdür, ama başkent Taşkent'tir."
+  ],
+  "87": [
+   "Vietnam'ın başkentinin adı nedir?",
+   "Hanoi",
+   [
+    "Ho Chi Minh Kenti",
+    "Da Nang",
+    "Hue"
+   ],
+   "Hue, Nguyen hanedanı döneminde Vietnam'ın imparatorluk başkentiydi."
+  ],
+  "88": [
+   "Cezayir'in başkenti neresidir?",
+   "Cezayir",
+   [
+    "Oran",
+    "Konstantin",
+    "Annabe"
+   ],
+   "Denize bakan beyaz binaları nedeniyle «Beyaz Cezayir» diye anılır."
+  ],
+  "89": [
+   "Angola'nın başkenti neresidir?",
+   "Luanda",
+   [
+    "Huambo",
+    "Benguela",
+    "Lobito"
+   ],
+   "Luanda, 16. yüzyılda Portekizliler tarafından kuruldu."
+  ],
+  "90": [
+   "Benin'in resmî başkenti neresidir?",
+   "Porto-Novo",
+   [
+    "Cotonou",
+    "Parakou",
+    "Abomey"
+   ],
+   "En büyük şehir olan Cotonou hükûmet merkezidir; resmî başkent ise Porto-Novo'dur."
+  ],
+  "91": [
+   "Botsvana'nın başkentinin adı nedir?",
+   "Gaborone",
+   [
+    "Francistown",
+    "Maun",
+    "Lobatse"
+   ],
+   "Gaborone, ülkenin 1966'daki bağımsızlığından hemen önce başkent seçildi."
+  ],
+  "92": [
+   "Burkina Faso'nun başkenti neresidir?",
+   "Vagadugu",
+   [
+    "Bobo-Dioulasso",
+    "Koudougou",
+    "Banfora"
+   ],
+   "Vagadugu, ünlü bir Afrika sinema festivali olan FESPACO'ya ev sahipliği yapar."
+  ],
+  "93": [
+   "Burundi'nin başkenti neresidir?",
+   "Gitega",
+   [
+    "Bujumbura",
+    "Ngozi",
+    "Muyinga"
+   ],
+   "Gitega, 2019'da Bujumbura'nın yerine siyasi başkent oldu; Bujumbura ekonomik başkent olarak kaldı."
+  ],
+  "94": [
+   "Yeşil Burun Adaları'nın başkenti hangi şehirdir?",
+   "Praia",
+   [
+    "Mindelo",
+    "Santa Maria",
+    "Assomada"
+   ],
+   "Praia, takımadanın en büyük adası olan Santiago'dadır."
+  ],
+  "95": [
+   "Kamerun'un başkentinin adı nedir?",
+   "Yaounde",
+   [
+    "Douala",
+    "Garoua",
+    "Bamenda"
+   ],
+   "En büyük şehir ve ana liman Douala'dır, ama başkent Yaounde'dir."
+  ],
+  "96": [
+   "Orta Afrika Cumhuriyeti'nin başkenti neresidir?",
+   "Bangui",
+   [
+    "Berbérati",
+    "Bambari",
+    "Bimbo"
+   ],
+   "Bangui, Ubangi Nehri kıyısında, Demokratik Kongo'nun karşısındadır."
+  ],
+  "97": [
+   "Çad'ın başkenti neresidir?",
+   "Encamena",
+   [
+    "Moundou",
+    "Abéché",
+    "Sarh"
+   ],
+   "Sömürge döneminde Encamena'nın adı Fort-Lamy'ydi."
+  ],
+  "98": [
+   "Komorlar'ın başkenti hangi şehirdir?",
+   "Moroni",
+   [
+    "Mutsamudu",
+    "Fomboni",
+    "Mitsamiouli"
+   ],
+   "Moroni, Büyük Komor adasında, Karthala Yanardağı'nın eteğindedir."
+  ],
+  "99": [
+   "Kongo Cumhuriyeti'nin (Kongo-Brazavil) başkentinin adı nedir?",
+   "Brazavil",
+   [
+    "Pointe-Noire",
+    "Dolisie",
+    "Kinşasa"
+   ],
+   "Brazavil ve Kinşasa, Kongo Nehri'nin iki yakasında karşı karşıyadır: dünyanın birbirine en yakın iki başkentidir."
+  ],
+  "100": [
+   "Demokratik Kongo Cumhuriyeti'nin başkenti neresidir?",
+   "Kinşasa",
+   [
+    "Lubumbashi",
+    "Kisangani",
+    "Goma"
+   ],
+   "Belçika sömürge döneminde Kinşasa'nın adı Léopoldville'di."
+  ],
+  "101": [
+   "Fildişi Sahili'nin resmî başkenti neresidir?",
+   "Yamoussoukro",
+   [
+    "Abidjan",
+    "Bouaké",
+    "San-Pédro"
+   ],
+   "Ekonomik başkent Abidjan'dır, ama Yamoussoukro 1983'ten beri siyasi başkenttir."
+  ],
+  "102": [
+   "Cibuti'nin başkenti hangi şehirdir?",
+   "Cibuti",
+   [
+    "Ali Sabieh",
+    "Tadjoura",
+    "Obock"
+   ],
+   "Başkent ülkeyle aynı adı taşır."
+  ],
+  "103": [
+   "Mısır'ın başkentinin adı nedir?",
+   "Kahire",
+   [
+    "İskenderiye",
+    "Luksor",
+    "Asvan"
+   ],
+   "Kahire adı, Arapçada «muzaffer» anlamına gelen el-Kahire'den gelir."
+  ],
+  "104": [
+   "Eritre'nin başkenti neresidir?",
+   "Asmara",
+   [
+    "Massava",
+    "Keren",
+    "Assab"
+   ],
+   "Asmara, UNESCO Dünya Mirası Listesi'ndeki modernist İtalyan mimarisiyle ünlüdür."
+  ],
+  "105": [
+   "Esvatini'nin (eski adıyla Svaziland) idari başkenti neresidir?",
+   "Mbabane",
+   [
+    "Manzini",
+    "Siteki",
+    "Nhlangano"
+   ],
+   "Lobamba kraliyet ve yasama başkenti, Mbabane ise idari başkenttir."
+  ],
+  "106": [
+   "Etiyopya'nın başkenti hangi şehirdir?",
+   "Addis Ababa",
+   [
+    "Dire Dava",
+    "Gondar",
+    "Bahir Dar"
+   ],
+   "«Yeni çiçek» anlamına gelen Addis Ababa, Afrika Birliği'nin merkezine ev sahipliği yapar."
+  ],
+  "107": [
+   "Gabon'un başkentinin adı nedir?",
+   "Libreville",
+   [
+    "Port-Gentil",
+    "Franceville",
+    "Oyem"
+   ],
+   "Libreville 19. yüzyılda özgürlüğüne kavuşmuş köleler tarafından kuruldu; adı da buradan gelir («özgür şehir»)."
+  ],
+  "108": [
+   "Gambiya'nın başkenti neresidir?",
+   "Banjul",
+   [
+    "Serekunda",
+    "Brikama",
+    "Farafenni"
+   ],
+   "İngiliz sömürge döneminde Banjul'un adı Bathurst'tü."
+  ],
+  "109": [
+   "Gana'nın başkenti neresidir?",
+   "Akra",
+   [
+    "Kumasi",
+    "Tamale",
+    "Takoradi"
+   ],
+   "Kumasi eski Aşanti Krallığı'nın başkentiydi, ama Gana'nın başkenti Akra'dır."
+  ],
+  "110": [
+   "Gine'nin başkenti hangi şehirdir?",
+   "Konakri",
+   [
+    "Kankan",
+    "Labé",
+    "Nzérékoré"
+   ],
+   "Konakri'nin bir bölümü Kaloum Yarımadası üzerine uzanır."
+  ],
+  "111": [
+   "Gine-Bissau'nun başkentinin adı nedir?",
+   "Bissau",
+   [
+    "Bafatá",
+    "Gabú",
+    "Bolama"
+   ],
+   "Bissau'dan önce Portekiz sömürgesinin başkenti Bolama'ydı."
+  ],
+  "112": [
+   "Kenya'nın başkenti neresidir?",
+   "Nairobi",
+   [
+    "Mombasa",
+    "Kisumu",
+    "Nakuru"
+   ],
+   "Nairobi'de, şehrin hemen kenarında aslanların ve zürafaların yaşadığı bir milli park vardır."
+  ],
+  "113": [
+   "Lesotho'nun başkenti neresidir?",
+   "Maseru",
+   [
+    "Teyateyaneng",
+    "Mafeteng",
+    "Leribe"
+   ],
+   "Lesotho'nun dört bir yanı Güney Afrika ile çevrilidir."
+  ],
+  "114": [
+   "Liberya'nın başkenti hangi şehirdir?",
+   "Monrovia",
+   [
+    "Gbarnga",
+    "Buchanan",
+    "Harper"
+   ],
+   "Monrovia adını ABD Başkanı James Monroe'dan alır."
+  ],
+  "115": [
+   "Libya'nın başkentinin adı nedir?",
+   "Trablus",
+   [
+    "Bingazi",
+    "Mısrata",
+    "Sirte"
+   ],
+   "Lübnan'da da Trablus adında bir şehir vardır; bu yüzden Libya'dakine eskiden Trablusgarp denirdi."
+  ],
+  "116": [
+   "Madagaskar'ın başkenti neresidir?",
+   "Antananarivo",
+   [
+    "Toamasina",
+    "Antsirabe",
+    "Mahajanga"
+   ],
+   "Antananarivo, şehri koruyan askerlere atfen «binlerin şehri» anlamına gelir."
+  ],
+  "117": [
+   "Malavi'nin başkenti neresidir?",
+   "Lilongwe",
+   [
+    "Blantyre",
+    "Mzuzu",
+    "Zomba"
+   ],
+   "Zomba, 1975'e kadar Malavi'nin başkentiydi."
+  ],
+  "118": [
+   "Mali'nin başkenti hangi şehirdir?",
+   "Bamako",
+   [
+    "Timbuktu",
+    "Gao",
+    "Mopti"
+   ],
+   "Bamako'nun içinden Nijer Nehri geçer."
+  ],
+  "119": [
+   "Moritanya'nın başkentinin adı nedir?",
+   "Nuakşot",
+   [
+    "Nuazibu",
+    "Atar",
+    "Rosso"
+   ],
+   "Nuakşot, ülkenin başkenti olmak üzere 1958'den itibaren inşa edildi."
+  ],
+  "120": [
+   "Mauritius'un başkenti neresidir?",
+   "Port Louis",
+   [
+    "Curepipe",
+    "Mahébourg",
+    "Quatre Bornes"
+   ],
+   "Port Louis adını Fransa Kralı XV. Louis'den alır."
+  ],
+  "121": [
+   "Fas'ın başkenti neresidir?",
+   "Rabat",
+   [
+    "Kazablanka",
+    "Marakeş",
+    "Fes"
+   ],
+   "Fas'ın en büyük şehri Kazablanka'dır, ama başkent Rabat'tır."
+  ],
+  "122": [
+   "Mozambik'in başkenti hangi şehirdir?",
+   "Maputo",
+   [
+    "Beira",
+    "Nampula",
+    "Quelimane"
+   ],
+   "Portekiz sömürge döneminde Maputo'nun adı Lourenço Marques'ti."
+  ],
+  "123": [
+   "Namibya'nın başkentinin adı nedir?",
+   "Windhoek",
+   [
+    "Walvis Bay",
+    "Swakopmund",
+    "Rundu"
+   ],
+   "Windhoek, ülkenin ortasında yüksek bir platoda yer alır."
+  ],
+  "124": [
+   "Nijer'in başkenti neresidir?",
+   "Niamey",
+   [
+    "Zinder",
+    "Maradi",
+    "Agadez"
+   ],
+   "Niamey'den önce Nijer'in başkenti Zinder'di."
+  ],
+  "125": [
+   "Nijerya'nın başkenti neresidir?",
+   "Abuja",
+   [
+    "Lagos",
+    "Kano",
+    "İbadan"
+   ],
+   "Abuja, 1991'de Lagos'un yerine başkent oldu."
+  ],
+  "126": [
+   "Ruanda'nın başkenti hangi şehirdir?",
+   "Kigali",
+   [
+    "Huye",
+    "Musanze",
+    "Rubavu"
+   ],
+   "Kigali, Afrika'nın en temiz şehirlerinden biri olarak sık sık anılır."
+  ],
+  "127": [
+   "São Tomé ve Príncipe'nin başkentinin adı nedir?",
+   "São Tomé",
+   [
+    "Santo António",
+    "Neves",
+    "Trindade"
+   ],
+   "Başkent adını havari Aziz Tomas'tan alır."
+  ],
+  "128": [
+   "Senegal'in başkenti neresidir?",
+   "Dakar",
+   [
+    "Saint-Louis",
+    "Thiès",
+    "Touba"
+   ],
+   "Dakar'dan önce Senegal'in başkenti Saint-Louis'ydi."
+  ],
+  "129": [
+   "Seyşeller'in başkenti neresidir?",
+   "Victoria",
+   [
+    "Anse Royale",
+    "Beau Vallon",
+    "Port Louis"
+   ],
+   "Mahé adasındaki Victoria, dünyanın en küçük başkentlerinden biridir."
+  ],
+  "130": [
+   "Sierra Leone'nin başkenti hangi şehirdir?",
+   "Freetown",
+   [
+    "Bo",
+    "Kenema",
+    "Makeni"
+   ],
+   "«Özgür şehir» anlamına gelen Freetown, özgürlüğüne kavuşmuş eski köleleri barındırmak için kuruldu."
+  ],
+  "131": [
+   "Somali'nin başkentinin adı nedir?",
+   "Mogadişu",
+   [
+    "Kismayo",
+    "Baidoa",
+    "Merka"
+   ],
+   "Mogadişu, Doğu Afrika kıyısının en eski ticaret limanlarından biridir."
+  ],
+  "132": [
+   "Güney Afrika'nın idari başkenti hangi şehirdir?",
+   "Pretoria",
+   [
+    "Johannesburg",
+    "Durban",
+    "Pietermaritzburg"
+   ],
+   "Güney Afrika'nın üç başkenti vardır: Pretoria (idari), Cape Town (yasama) ve Bloemfontein (yargı)."
+  ],
+  "133": [
+   "Güney Sudan'ın başkenti neresidir?",
+   "Juba",
+   [
+    "Malakal",
+    "Wau",
+    "Yei"
+   ],
+   "Güney Sudan, 2011'de bağımsız olan, dünyanın en genç devletlerinden biridir."
+  ],
+  "134": [
+   "Tanzanya'nın başkenti hangi şehirdir?",
+   "Dodoma",
+   [
+    "Darüsselam",
+    "Arusha",
+    "Mwanza"
+   ],
+   "En büyük şehir olan Darüsselam, Dodoma'dan önce uzun süre başkentti."
+  ],
+  "135": [
+   "Togo'nun başkentinin adı nedir?",
+   "Lome",
+   [
+    "Kara",
+    "Sokodé",
+    "Kpalimé"
+   ],
+   "Lome, Atlas Okyanusu kıyısında, Gana sınırına çok yakın büyük bir limandır."
+  ],
+  "136": [
+   "Tunus'un başkenti neresidir?",
+   "Tunus",
+   [
+    "Sfaks",
+    "Sus",
+    "Kayrevan"
+   ],
+   "Antik Kartaca'nın kalıntıları Tunus'un banliyösündedir."
+  ],
+  "137": [
+   "Uganda'nın başkenti neresidir?",
+   "Kampala",
+   [
+    "Entebbe",
+    "Gulu",
+    "Jinja"
+   ],
+   "Kampala ilk olarak yedi tepe üzerine kurulmuştu."
+  ],
+  "138": [
+   "Zambiya'nın başkenti hangi şehirdir?",
+   "Lusaka",
+   [
+    "Ndola",
+    "Kitwe",
+    "Livingstone"
+   ],
+   "Victoria Şelaleleri yakınındaki Livingstone, Lusaka'dan önce başkentti."
+  ],
+  "139": [
+   "Zimbabve'nin başkentinin adı nedir?",
+   "Harare",
+   [
+    "Bulawayo",
+    "Mutare",
+    "Gweru"
+   ],
+   "Sömürge döneminde Harare'nin adı Salisbury'ydi."
+  ],
+  "140": [
+   "Antigua ve Barbuda'nın başkenti neresidir?",
+   "Saint John's",
+   [
+    "English Harbour",
+    "Codrington",
+    "Basseterre"
+   ],
+   "Saint John's, ülkenin ana adası Antigua'nın başlıca limanıdır."
+  ],
+  "141": [
+   "Arjantin'in başkenti neresidir?",
+   "Buenos Aires",
+   [
+    "Córdoba",
+    "Rosario",
+    "Mendoza"
+   ],
+   "Buenos Aires, İspanyolcada «güzel rüzgârlar» anlamına gelir."
+  ],
+  "142": [
+   "Bahamalar'ın başkenti hangi şehirdir?",
+   "Nassau",
+   [
+    "Freeport",
+    "Marsh Harbour",
+    "Kingston"
+   ],
+   "Nassau, New Providence adasındadır."
+  ],
+  "143": [
+   "Barbados'un başkentinin adı nedir?",
+   "Bridgetown",
+   [
+    "Speightstown",
+    "Holetown",
+    "Oistins"
+   ],
+   "Bridgetown'un tarihî merkezi UNESCO Dünya Mirası Listesi'ndedir."
+  ],
+  "144": [
+   "Belize'in başkenti neresidir?",
+   "Belmopan",
+   [
+    "Belize City",
+    "San Ignacio",
+    "Orange Walk"
+   ],
+   "Belmopan, 1961'de bir kasırganın Belize City'yi harap etmesinin ardından inşa edildi."
+  ],
+  "145": [
+   "Bolivya'nın anayasal başkenti neresidir?",
+   "Sucre",
+   [
+    "Santa Cruz",
+    "Cochabamba",
+    "Potosí"
+   ],
+   "Daha büyük ve daha tanınmış olan La Paz hükûmet merkezidir; Sucre ise anayasal başkenttir."
+  ],
+  "146": [
+   "Brezilya'nın başkenti hangi şehirdir?",
+   "Brasilia",
+   [
+    "Rio de Janeiro",
+    "São Paulo",
+    "Salvador"
+   ],
+   "Brasilia 1960'ta açıldı; öncesinde başkent Rio de Janeiro'ydu."
+  ],
+  "147": [
+   "Kanada'nın başkentinin adı nedir?",
+   "Ottawa",
+   [
+    "Toronto",
+    "Montreal",
+    "Vancouver"
+   ],
+   "Ottawa, 19. yüzyılda Kraliçe Victoria tarafından başkent olarak seçildi."
+  ],
+  "148": [
+   "Şili'nin başkenti neresidir?",
+   "Santiago",
+   [
+    "Concepción",
+    "Antofagasta",
+    "Viña del Mar"
+   ],
+   "Santiago'nun çevresi And Dağları ile kuşatılmıştır."
+  ],
+  "149": [
+   "Kolombiya'nın başkenti neresidir?",
+   "Bogota",
+   [
+    "Medellín",
+    "Cali",
+    "Cartagena"
+   ],
+   "Bogota, And Dağları'nda yaklaşık 2.600 metre yükseklikte yer alır."
+  ],
+  "150": [
+   "Kosta Rika'nın başkenti hangi şehirdir?",
+   "San José",
+   [
+    "Limón",
+    "Alajuela",
+    "Cartago"
+   ],
+   "San José'den önce Kosta Rika'nın başkenti Cartago'ydu."
+  ],
+  "151": [
+   "Küba'nın başkentinin adı nedir?",
+   "Havana",
+   [
+    "Santiago de Cuba",
+    "Varadero",
+    "Camagüey"
+   ],
+   "Havana'nın tarihî merkezi UNESCO Dünya Mirası Listesi'ndedir."
+  ],
+  "152": [
+   "Dominika'nın başkenti neresidir?",
+   "Roseau",
+   [
+    "Portsmouth",
+    "Marigot",
+    "Castries"
+   ],
+   "Roseau adını, nehrinin kıyısında yetişen sazlardan (Fransızca «roseau») alır."
+  ],
+  "153": [
+   "Dominik Cumhuriyeti'nin başkenti neresidir?",
+   "Santo Domingo",
+   [
+    "Santiago de los Caballeros",
+    "Punta Cana",
+    "Puerto Plata"
+   ],
+   "Santo Domingo, Avrupalıların Amerika kıtasında kurduğu ve hâlâ yerleşim gören en eski şehirdir."
+  ],
+  "154": [
+   "Ekvador'un başkenti hangi şehirdir?",
+   "Quito",
+   [
+    "Guayaquil",
+    "Cuenca",
+    "Manta"
+   ],
+   "Quito, ülkeye adını veren ekvator çizgisinin hemen yakınındadır."
+  ],
+  "155": [
+   "El Salvador'un başkentinin adı nedir?",
+   "San Salvador",
+   [
+    "Santa Ana",
+    "San Miguel",
+    "Soyapango"
+   ],
+   "Ülke ve başkenti, adını «Kurtarıcı»dan, yani İsa'dan alır."
+  ],
+  "156": [
+   "Grenada'nın başkenti neresidir?",
+   "St. George's",
+   [
+    "Gouyave",
+    "Grenville",
+    "Kingstown"
+   ],
+   "Grenada'ya «baharat adası» denir; özellikle muskatıyla ünlüdür."
+  ],
+  "157": [
+   "Guatemala'nın başkenti neresidir?",
+   "Guatemala Şehri",
+   [
+    "Antigua Guatemala",
+    "Quetzaltenango",
+    "Escuintla"
+   ],
+   "Antigua Guatemala, 1773'te depremlerle yıkılmadan önce başkentti."
+  ],
+  "158": [
+   "Guyana'nın başkenti hangi şehirdir?",
+   "Georgetown",
+   [
+    "Linden",
+    "New Amsterdam",
+    "Paramaribo"
+   ],
+   "Georgetown'da dünyanın en yüksek ahşap katedrallerinden biri bulunur."
+  ],
+  "159": [
+   "Haiti'nin başkentinin adı nedir?",
+   "Port-au-Prince",
+   [
+    "Cap-Haïtien",
+    "Gonaïves",
+    "Jacmel"
+   ],
+   "Haiti, 1804'te dünyanın ilk bağımsız siyahi cumhuriyeti oldu."
+  ],
+  "160": [
+   "Honduras'ın başkenti neresidir?",
+   "Tegucigalpa",
+   [
+    "San Pedro Sula",
+    "La Ceiba",
+    "Comayagua"
+   ],
+   "Tegucigalpa'dan önce Honduras'ın başkenti Comayagua'ydı."
+  ],
+  "161": [
+   "Jamaika'nın başkenti neresidir?",
+   "Kingston",
+   [
+    "Montego Bay",
+    "Spanish Town",
+    "Ocho Rios"
+   ],
+   "Bob Marley Kingston'da büyüdü ve müziğini burada kaydetti."
+  ],
+  "162": [
+   "Meksika'nın başkenti hangi şehirdir?",
+   "Meksiko",
+   [
+    "Guadalajara",
+    "Monterrey",
+    "Cancún"
+   ],
+   "Meksiko, Aztek başkenti Tenochtitlan'ın kalıntıları üzerine kuruldu."
+  ],
+  "163": [
+   "Nikaragua'nın başkentinin adı nedir?",
+   "Managua",
+   [
+    "León",
+    "Granada",
+    "Masaya"
+   ],
+   "Managua, büyük bir gölün, Xolotlán Gölü'nün kıyısına kurulmuştur."
+  ],
+  "164": [
+   "Panama'nın başkenti neresidir?",
+   "Panama",
+   [
+    "Colón",
+    "David",
+    "Santiago de Veraguas"
+   ],
+   "Başkent ülkeyle aynı adı taşır ve ünlü kanalın girişinde yer alır."
+  ],
+  "165": [
+   "Paraguay'ın başkenti neresidir?",
+   "Asunción",
+   [
+    "Ciudad del Este",
+    "Encarnación",
+    "Concepción"
+   ],
+   "1537'de kurulan Asunción, Güney Amerika'nın en eski şehirlerindendir."
+  ],
+  "166": [
+   "Peru'nun başkenti hangi şehirdir?",
+   "Lima",
+   [
+    "Cusco",
+    "Arequipa",
+    "Trujillo"
+   ],
+   "Cusco İnka İmparatorluğu'nun başkentiydi, ama Peru'nun başkenti Lima'dır."
+  ],
+  "167": [
+   "Saint Kitts ve Nevis'in başkentinin adı nedir?",
+   "Basseterre",
+   [
+    "Charlestown",
+    "Sandy Point",
+    "Saint John's"
+   ],
+   "Basseterre 17. yüzyılda Fransızlar tarafından kuruldu; adı «alçak toprak» anlamına gelir."
+  ],
+  "168": [
+   "Saint Lucia'nın başkenti neresidir?",
+   "Castries",
+   [
+    "Soufrière",
+    "Vieux Fort",
+    "Roseau"
+   ],
+   "Castries adını, Fransız Denizcilik Bakanı Castries Markisi'nden alır."
+  ],
+  "169": [
+   "Saint Vincent ve Grenadinler'in başkenti neresidir?",
+   "Kingstown",
+   [
+    "Georgetown",
+    "Barrouallie",
+    "St. George's"
+   ],
+   "Kingstown, Amerika kıtasının en eski botanik bahçelerinden birine ev sahipliği yapar."
+  ],
+  "170": [
+   "Surinam'ın başkenti hangi şehirdir?",
+   "Paramaribo",
+   [
+    "Nieuw Nickerie",
+    "Lelydorp",
+    "Georgetown"
+   ],
+   "Eski bir Hollanda sömürgesi olan Surinam'ın resmî dili Felemenkçedir."
+  ],
+  "171": [
+   "Trinidad ve Tobago'nun başkentinin adı nedir?",
+   "Port of Spain",
+   [
+    "San Fernando",
+    "Chaguanas",
+    "Scarborough"
+   ],
+   "Port of Spain, her yıl düzenlenen büyük karnavalıyla tanınır."
+  ],
+  "172": [
+   "Amerika Birleşik Devletleri'nin başkenti neresidir?",
+   "Washington",
+   [
+    "New York",
+    "Los Angeles",
+    "Chicago"
+   ],
+   "Washington hiçbir eyalete bağlı değildir: Columbia federal bölgesini oluşturur."
+  ],
+  "173": [
+   "Uruguay'ın başkenti neresidir?",
+   "Montevideo",
+   [
+    "Punta del Este",
+    "Salto",
+    "Colonia del Sacramento"
+   ],
+   "Montevideo, 1930'da düzenlenen ilk Dünya Kupası'na ev sahipliği yaptı."
+  ],
+  "174": [
+   "Venezuela'nın başkenti hangi şehirdir?",
+   "Caracas",
+   [
+    "Maracaibo",
+    "Valencia",
+    "Barquisimeto"
+   ],
+   "Güney Amerika'nın bağımsızlık kahramanı Simón Bolívar, Caracas'ta doğdu."
+  ],
+  "175": [
+   "Avustralya'nın başkentinin adı nedir?",
+   "Canberra",
+   [
+    "Sidney",
+    "Melbourne",
+    "Perth"
+   ],
+   "Canberra, ikisi de başkent olmak isteyen Sidney ile Melbourne arasında bir uzlaşma olarak kuruldu."
+  ],
+  "176": [
+   "Fiji'nin başkenti neresidir?",
+   "Suva",
+   [
+    "Nadi",
+    "Lautoka",
+    "Labasa"
+   ],
+   "Suva'dan önce Fiji'nin ilk başkenti Levuka'ydı."
+  ],
+  "177": [
+   "Kiribati'nin başkenti neresidir?",
+   "Tarawa",
+   [
+    "Kiritimati",
+    "Funafuti",
+    "Majuro"
+   ],
+   "Kiribati, dört yarım kürenin hepsinde birden yer alan tek ülkedir."
+  ],
+  "178": [
+   "Marshall Adaları'nın başkenti hangi şehirdir?",
+   "Majuro",
+   [
+    "Ebeye",
+    "Jaluit",
+    "Tarawa"
+   ],
+   "Majuro bir atoldür; yani bir lagünü çevreleyen mercan halkasıdır."
+  ],
+  "179": [
+   "Mikronezya Federal Devletleri'nin başkentinin adı nedir?",
+   "Palikir",
+   [
+    "Kolonia",
+    "Weno",
+    "Majuro"
+   ],
+   "Palikir, Pohnpei adasındadır; 1989'da Kolonia'nın yerine başkent oldu."
+  ],
+  "180": [
+   "Resmî başkenti olmayan Nauru'da hükûmet merkezi hangi bölgededir?",
+   "Yaren",
+   [
+    "Aiwo",
+    "Denigomodu",
+    "Funafuti"
+   ],
+   "Dünyanın en küçük ülkelerinden biri olan Nauru'nun resmî bir başkenti yoktur."
+  ],
+  "181": [
+   "Yeni Zelanda'nın başkenti neresidir?",
+   "Wellington",
+   [
+    "Auckland",
+    "Christchurch",
+    "Queenstown"
+   ],
+   "Wellington, dünyanın en güneydeki devlet başkentidir."
+  ],
+  "182": [
+   "Palau'nun başkenti hangi şehirdir?",
+   "Ngerulmud",
+   [
+    "Koror",
+    "Airai",
+    "Kloulklubed"
+   ],
+   "Ngerulmud, 2006'da Koror'un yerine başkent oldu."
+  ],
+  "183": [
+   "Papua Yeni Gine'nin başkentinin adı nedir?",
+   "Port Moresby",
+   [
+    "Lae",
+    "Mount Hagen",
+    "Madang"
+   ],
+   "Papua Yeni Gine'de 800'den fazla dil konuşulur."
+  ],
+  "184": [
+   "Samoa'nın başkenti neresidir?",
+   "Apia",
+   [
+    "Salelologa",
+    "Faleolo",
+    "Pago Pago"
+   ],
+   "Yazar Robert Louis Stevenson son yıllarını Apia yakınlarında geçirdi."
+  ],
+  "185": [
+   "Solomon Adaları'nın başkenti neresidir?",
+   "Honiara",
+   [
+    "Gizo",
+    "Auki",
+    "Port Vila"
+   ],
+   "Honiara, Guadalcanal adasındadır."
+  ],
+  "186": [
+   "Tonga'nın başkenti hangi şehirdir?",
+   "Nuku'alofa",
+   [
+    "Neiafu",
+    "Pangai",
+    "Apia"
+   ],
+   "Nuku'alofa, Tonga dilinde «sevginin yurdu» anlamına gelir."
+  ],
+  "187": [
+   "Tuvalu'nun başkentinin adı nedir?",
+   "Funafuti",
+   [
+    "Vaitupu",
+    "Nukufetau",
+    "Suva"
+   ],
+   "Tuvalu, okyanusların yükselmesinden en çok tehdit altındaki ülkelerden biridir."
+  ],
+  "188": [
+   "Vanuatu'nun başkenti neresidir?",
+   "Port Vila",
+   [
+    "Luganville",
+    "Isangel",
+    "Honiara"
+   ],
+   "Vanuatu'da Bislama, İngilizce ve Fransızca konuşulur."
+  ]
+ }
+}

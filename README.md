@@ -1,6 +1,6 @@
 # Kervano
 
-Jeu de plateau-quiz à jouer en famille (sur un téléphone ou en ligne), en 6 langues. Thèmes au choix à l'accueil : Islam, Christianisme, Judaïsme, Histoire, Géographie, Sciences et nature, Maths et logique, Culture générale.
+Jeu de plateau-quiz à jouer en famille (sur un téléphone ou en ligne), en 6 langues. Thèmes au choix à l'accueil : Islam, Christianisme, Judaïsme, Histoire, Géographie, Sciences et nature, Maths et logique, Culture générale, Capitales du monde.
 
 Les thèmes autres que l'islam sont dans `packs/<thème>.json` (français) et `packs/<thème>.<langue>.json` (traductions). Vérifier un pack : `node packs/check.js packs/histoire.json packs/histoire.en.json`.
 

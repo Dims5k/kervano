@@ -686,9 +686,10 @@ const THEMES = {
   islam: { name: "Islam", color: "#2E9E5B" }, christianisme: { name: "Christianisme", color: "#3D7FD6" }, judaisme: { name: "Judaïsme", color: "#7A4FD0" },
   histoire: { name: "Histoire", color: "#E8862F" }, geographie: { name: "Géographie", color: "#139C9A" }, sciences: { name: "Sciences et nature", color: "#D24B6A" },
   maths: { name: "Maths et logique", color: "#E2B72E", ink: "#2A2118" }, culture: { name: "Culture générale", color: "#9C6B3F" },
+  capitales: { name: "Capitales du monde", color: "#2A8FBD" },
 };
 const TH_KEYS = Object.keys(THEMES);
-const PBASE = { christianisme: 10000, judaisme: 11000, histoire: 12000, geographie: 13000, sciences: 14000, maths: 15000, culture: 16000 };
+const PBASE = { christianisme: 10000, judaisme: 11000, histoire: 12000, geographie: 13000, sciences: 14000, maths: 15000, culture: 16000, capitales: 17000 };
 const SUBCOL = [["#2E9E5B"], ["#E8862F"], ["#3D7FD6"], ["#D24B6A"], ["#8A5CD0"], ["#E2B72E", "#2A2118"], ["#139C9A"]];
 KEYS.forEach(k => CATS[k].th = "islam");
 TH_KEYS.forEach(th => { CATS["t:" + th] = { name: THEMES[th].name, color: THEMES[th].color, ink: THEMES[th].ink, th, theme: true }; });
@@ -730,7 +731,7 @@ const MODES = { duo: { name: "Duo", sub: "2 réponses", color: "var(--duo)" }, c
 const steps = (mode, d) => mode === "cash" ? d + 3 : mode === "carre" ? d : Math.ceil(d / 2);
 const Q = QDATA.map((r, i) => ({ id: i, cat: r[0], d: r[1], q: r[2], a: r[3], w: r[4], note: r[5] || "", th: "islam" }));
 /* ============ langues : le français est dans le code, les autres dans lang/xx.json (chargées à la demande) ============ */
-const LV = 11;
+const LV = 12;
 const LANGS = { fr: ["Français", "fr-FR"], ar: ["العربية", "ar-SA", 1], en: ["English", "en-US"], nl: ["Nederlands", "nl-NL"], de: ["Deutsch", "de-DE"], tr: ["Türkçe", "tr-TR"] };
 let LANG = "fr", TR = {}, QL = null; const LCACHE = {};
 /* t("texte français", {var}) ; une variable qui commence par « @ » est elle-même un texte à traduire */

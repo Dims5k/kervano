@@ -1,0 +1,2279 @@
+{
+ "cats": {
+  "ca_afrique": "Afrique",
+  "ca_ameriques": "Amériques",
+  "ca_asie": "Asie",
+  "ca_europe": "Europe",
+  "ca_oceanie": "Océanie"
+ },
+ "q": [
+  [
+   "ca_europe",
+   2,
+   "Quelle est la capitale de l'Albanie ?",
+   "Tirana",
+   [
+    "Durrës",
+    "Shkodër",
+    "Vlorë"
+   ],
+   "Tirana est devenue la capitale de l'Albanie en 1920."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Quelle est la capitale de l'Andorre ?",
+   "Andorre-la-Vieille",
+   [
+    "Escaldes-Engordany",
+    "Encamp",
+    "Canillo"
+   ],
+   "C'est l'une des capitales les plus hautes d'Europe, à plus de 1 000 mètres d'altitude."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quelle ville est la capitale de l'Autriche ?",
+   "Vienne",
+   [
+    "Salzbourg",
+    "Graz",
+    "Innsbruck"
+   ],
+   "Vienne est célèbre pour sa musique classique : Mozart et Beethoven y ont vécu."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Quel est le nom de la capitale de la Biélorussie ?",
+   "Minsk",
+   [
+    "Gomel",
+    "Brest",
+    "Vitebsk"
+   ],
+   "Minsk a été presque entièrement reconstruite après la Seconde Guerre mondiale."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quelle est la capitale de la Belgique ?",
+   "Bruxelles",
+   [
+    "Anvers",
+    "Liège",
+    "Gand"
+   ],
+   "Bruxelles accueille aussi les principales institutions de l'Union européenne."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Quelle est la capitale de la Bosnie-Herzégovine ?",
+   "Sarajevo",
+   [
+    "Mostar",
+    "Banja Luka",
+    "Tuzla"
+   ],
+   "Sarajevo a accueilli les Jeux olympiques d'hiver en 1984."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Quelle ville est la capitale de la Bulgarie ?",
+   "Sofia",
+   [
+    "Plovdiv",
+    "Varna",
+    "Bourgas"
+   ],
+   "Sofia tient son nom de la basilique Sainte-Sophie, l'une de ses plus anciennes églises."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Quel est le nom de la capitale de la Croatie ?",
+   "Zagreb",
+   [
+    "Split",
+    "Dubrovnik",
+    "Rijeka"
+   ],
+   "Contrairement à Split ou Dubrovnik, Zagreb n'est pas au bord de la mer Adriatique."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Quelle est la capitale de Chypre ?",
+   "Nicosie",
+   [
+    "Limassol",
+    "Larnaca",
+    "Paphos"
+   ],
+   "Nicosie est située au centre de l'île, loin de la mer."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quelle est la capitale de la Tchéquie ?",
+   "Prague",
+   [
+    "Brno",
+    "Ostrava",
+    "Plzeň"
+   ],
+   "Prague est surnommée « la ville aux cent clochers »."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quelle ville est la capitale du Danemark ?",
+   "Copenhague",
+   [
+    "Aarhus",
+    "Odense",
+    "Aalborg"
+   ],
+   "La célèbre statue de la Petite Sirène se trouve à Copenhague."
+  ],
+  [
+   "ca_europe",
+   3,
+   "Quel est le nom de la capitale de l'Estonie ?",
+   "Tallinn",
+   [
+    "Tartu",
+    "Pärnu",
+    "Narva"
+   ],
+   "La vieille ville médiévale de Tallinn est inscrite au patrimoine mondial de l'UNESCO."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Quelle est la capitale de la Finlande ?",
+   "Helsinki",
+   [
+    "Tampere",
+    "Turku",
+    "Oulu"
+   ],
+   "Turku a été la capitale de la Finlande avant Helsinki."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quelle est la capitale de la France ?",
+   "Paris",
+   [
+    "Lyon",
+    "Marseille",
+    "Toulouse"
+   ],
+   "Paris doit son nom aux Parisii, un peuple gaulois installé sur les bords de la Seine."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quelle ville est la capitale de l'Allemagne ?",
+   "Berlin",
+   [
+    "Munich",
+    "Francfort",
+    "Hambourg"
+   ],
+   "Pendant la division du pays, Bonn était la capitale de l'Allemagne de l'Ouest."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quel est le nom de la capitale de la Grèce ?",
+   "Athènes",
+   [
+    "Thessalonique",
+    "Patras",
+    "Héraklion"
+   ],
+   "Selon la mythologie grecque, Athènes doit son nom à la déesse Athéna."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quelle est la capitale de la Hongrie ?",
+   "Budapest",
+   [
+    "Debrecen",
+    "Szeged",
+    "Pécs"
+   ],
+   "Budapest est née en 1873 de la fusion de Buda, Óbuda et Pest, de part et d'autre du Danube."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Quelle est la capitale de l'Islande ?",
+   "Reykjavik",
+   [
+    "Akureyri",
+    "Kópavogur",
+    "Hafnarfjörður"
+   ],
+   "Reykjavik est la capitale d'État la plus au nord du monde ; son nom signifie « baie des fumées »."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Quelle ville est la capitale de l'Irlande ?",
+   "Dublin",
+   [
+    "Cork",
+    "Galway",
+    "Limerick"
+   ],
+   "Le nom de Dublin vient de l'irlandais « Dubh Linn », la « mare noire »."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quel est le nom de la capitale de l'Italie ?",
+   "Rome",
+   [
+    "Milan",
+    "Naples",
+    "Turin"
+   ],
+   "Rome est surnommée « la Ville éternelle »."
+  ],
+  [
+   "ca_europe",
+   3,
+   "Quelle est la capitale de la Lettonie ?",
+   "Riga",
+   [
+    "Daugavpils",
+    "Liepāja",
+    "Jelgava"
+   ],
+   "Riga est la plus grande ville des pays baltes."
+  ],
+  [
+   "ca_europe",
+   3,
+   "Quelle est la capitale du Liechtenstein ?",
+   "Vaduz",
+   [
+    "Schaan",
+    "Balzers",
+    "Triesen"
+   ],
+   "Le prince du Liechtenstein réside dans le château qui domine Vaduz."
+  ],
+  [
+   "ca_europe",
+   3,
+   "Quelle ville est la capitale de la Lituanie ?",
+   "Vilnius",
+   [
+    "Kaunas",
+    "Klaipėda",
+    "Šiauliai"
+   ],
+   "Kaunas a servi de capitale provisoire de la Lituanie entre les deux guerres mondiales."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quel est le nom de la capitale du Luxembourg ?",
+   "Luxembourg",
+   [
+    "Esch-sur-Alzette",
+    "Differdange",
+    "Dudelange"
+   ],
+   "La capitale porte le même nom que le pays : on l'appelle souvent Luxembourg-Ville."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Quelle est la capitale de Malte ?",
+   "La Valette",
+   [
+    "Mdina",
+    "Sliema",
+    "Birkirkara"
+   ],
+   "La Valette doit son nom au grand maître Jean de La Valette, qui l'a fondée au XVIe siècle."
+  ],
+  [
+   "ca_europe",
+   3,
+   "Quelle est la capitale de la Moldavie ?",
+   "Chisinau",
+   [
+    "Bălți",
+    "Cahul",
+    "Orhei"
+   ],
+   "Chisinau est réputée pour ses nombreux parcs et espaces verts."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Quelle est la capitale de la principauté de Monaco ?",
+   "Monaco",
+   [
+    "Monte-Carlo",
+    "Nice",
+    "Menton"
+   ],
+   "Monaco est une cité-État : la capitale et le pays portent le même nom."
+  ],
+  [
+   "ca_europe",
+   3,
+   "Quel est le nom de la capitale du Monténégro ?",
+   "Podgorica",
+   [
+    "Bar",
+    "Nikšić",
+    "Budva"
+   ],
+   "À l'époque de la Yougoslavie, Podgorica s'appelait Titograd."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quelle est la capitale des Pays-Bas ?",
+   "Amsterdam",
+   [
+    "Rotterdam",
+    "Utrecht",
+    "Eindhoven"
+   ],
+   "Amsterdam est la capitale officielle, mais le gouvernement et le parlement siègent à La Haye."
+  ],
+  [
+   "ca_europe",
+   3,
+   "Quelle est la capitale de la Macédoine du Nord ?",
+   "Skopje",
+   [
+    "Bitola",
+    "Ohrid",
+    "Kumanovo"
+   ],
+   "Mère Teresa est née à Skopje en 1910."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quelle ville est la capitale de la Norvège ?",
+   "Oslo",
+   [
+    "Bergen",
+    "Trondheim",
+    "Stavanger"
+   ],
+   "Oslo s'est appelée Christiania pendant près de trois siècles."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quel est le nom de la capitale de la Pologne ?",
+   "Varsovie",
+   [
+    "Cracovie",
+    "Gdańsk",
+    "Wrocław"
+   ],
+   "Cracovie a été la capitale de la Pologne avant Varsovie."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quelle est la capitale du Portugal ?",
+   "Lisbonne",
+   [
+    "Porto",
+    "Coimbra",
+    "Faro"
+   ],
+   "Lisbonne a été en grande partie détruite par un terrible tremblement de terre en 1755."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Quelle est la capitale de la Roumanie ?",
+   "Bucarest",
+   [
+    "Cluj-Napoca",
+    "Timișoara",
+    "Iași"
+   ],
+   "Le Palais du Parlement de Bucarest est l'un des plus grands bâtiments administratifs du monde."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quelle ville est la capitale de la Russie ?",
+   "Moscou",
+   [
+    "Saint-Pétersbourg",
+    "Novossibirsk",
+    "Kazan"
+   ],
+   "Saint-Pétersbourg a été la capitale de la Russie pendant environ deux siècles."
+  ],
+  [
+   "ca_europe",
+   3,
+   "Quel est le nom de la capitale de Saint-Marin ?",
+   "Saint-Marin",
+   [
+    "Serravalle",
+    "Borgo Maggiore",
+    "Domagnano"
+   ],
+   "Saint-Marin se présente comme la plus ancienne république du monde encore existante."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Quelle est la capitale de la Serbie ?",
+   "Belgrade",
+   [
+    "Novi Sad",
+    "Niš",
+    "Kragujevac"
+   ],
+   "Belgrade signifie « ville blanche » en serbe."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Quelle est la capitale de la Slovaquie ?",
+   "Bratislava",
+   [
+    "Košice",
+    "Nitra",
+    "Žilina"
+   ],
+   "Bratislava est la seule capitale qui touche à la fois deux autres pays : l'Autriche et la Hongrie."
+  ],
+  [
+   "ca_europe",
+   3,
+   "Quelle ville est la capitale de la Slovénie ?",
+   "Ljubljana",
+   [
+    "Maribor",
+    "Celje",
+    "Koper"
+   ],
+   "Le dragon est le symbole de Ljubljana ; il orne l'un de ses ponts les plus célèbres."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quel est le nom de la capitale de l'Espagne ?",
+   "Madrid",
+   [
+    "Barcelone",
+    "Séville",
+    "Valence"
+   ],
+   "Madrid est située presque au centre de la péninsule Ibérique."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quelle est la capitale de la Suède ?",
+   "Stockholm",
+   [
+    "Göteborg",
+    "Malmö",
+    "Uppsala"
+   ],
+   "Stockholm est construite sur 14 îles reliées par des ponts."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Dans quelle ville siègent le gouvernement et le parlement suisses ?",
+   "Berne",
+   [
+    "Zurich",
+    "Genève",
+    "Bâle"
+   ],
+   "La Suisse n'a pas officiellement de capitale : Berne porte le titre de « ville fédérale »."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quelle ville est la capitale de la Turquie ?",
+   "Ankara",
+   [
+    "Istanbul",
+    "Izmir",
+    "Antalya"
+   ],
+   "Atatürk a fait d'Ankara la capitale en 1923, à la place d'Istanbul."
+  ],
+  [
+   "ca_europe",
+   2,
+   "Quel est le nom de la capitale de l'Ukraine ?",
+   "Kiev",
+   [
+    "Kharkiv",
+    "Odessa",
+    "Lviv"
+   ],
+   "La cathédrale Sainte-Sophie de Kiev est inscrite au patrimoine mondial de l'UNESCO."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Quelle est la capitale du Royaume-Uni ?",
+   "Londres",
+   [
+    "Manchester",
+    "Birmingham",
+    "Liverpool"
+   ],
+   "Londres a été fondée par les Romains, qui l'appelaient Londinium."
+  ],
+  [
+   "ca_europe",
+   1,
+   "Dans quelle ville se trouve l'État du Vatican, le plus petit pays du monde ?",
+   "Rome",
+   [
+    "Milan",
+    "Florence",
+    "Naples"
+   ],
+   "Le Vatican est un État indépendant entièrement entouré par la ville de Rome."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle ville est la capitale de l'Afghanistan ?",
+   "Kaboul",
+   [
+    "Kandahar",
+    "Hérat",
+    "Mazar-e Charif"
+   ],
+   "Kaboul est entourée de hautes montagnes."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quel est le nom de la capitale de l'Arménie ?",
+   "Erevan",
+   [
+    "Gyumri",
+    "Vanadzor",
+    "Etchmiadzin"
+   ],
+   "Erevan célèbre sa fondation en 782 av. J.-C., ce qui en fait l'une des plus anciennes villes du monde."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle est la capitale de l'Azerbaïdjan ?",
+   "Bakou",
+   [
+    "Gandja",
+    "Soumgaït",
+    "Lankaran"
+   ],
+   "Bakou est la capitale la plus basse du monde, située sous le niveau de la mer."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle est la capitale de Bahreïn ?",
+   "Manama",
+   [
+    "Riffa",
+    "Muharraq",
+    "Isa Town"
+   ],
+   "Bahreïn est un archipel ; Manama se trouve sur l'île principale."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle ville est la capitale du Bangladesh ?",
+   "Dacca",
+   [
+    "Chittagong",
+    "Khulna",
+    "Sylhet"
+   ],
+   "Dacca est surnommée la « capitale mondiale des rickshaws »."
+  ],
+  [
+   "ca_asie",
+   3,
+   "Quel est le nom de la capitale du Bhoutan ?",
+   "Thimphou",
+   [
+    "Paro",
+    "Punakha",
+    "Katmandou"
+   ],
+   "Thimphou est l'une des rares capitales du monde sans feux de circulation."
+  ],
+  [
+   "ca_asie",
+   3,
+   "Quelle est la capitale de Brunei ?",
+   "Bandar Seri Begawan",
+   [
+    "Kuala Belait",
+    "Seria",
+    "Tutong"
+   ],
+   "La capitale de Brunei abrite un célèbre village sur pilotis, Kampong Ayer."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle est la capitale du Cambodge ?",
+   "Phnom Penh",
+   [
+    "Siem Reap",
+    "Battambang",
+    "Sihanoukville"
+   ],
+   "Phnom Penh est située au confluent du Mékong et du Tonlé Sap."
+  ],
+  [
+   "ca_asie",
+   1,
+   "Quelle ville est la capitale de la Chine ?",
+   "Pékin",
+   [
+    "Shanghai",
+    "Hong Kong",
+    "Canton"
+   ],
+   "Pékin signifie « capitale du Nord » en chinois."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quel est le nom de la capitale de la Géorgie ?",
+   "Tbilissi",
+   [
+    "Batoumi",
+    "Koutaïssi",
+    "Roustavi"
+   ],
+   "Le nom Tbilissi vient d'un mot géorgien signifiant « chaud », en référence à ses sources d'eau chaude."
+  ],
+  [
+   "ca_asie",
+   1,
+   "Quelle est la capitale de l'Inde ?",
+   "New Delhi",
+   [
+    "Bombay",
+    "Calcutta",
+    "Bangalore"
+   ],
+   "Avant New Delhi, Calcutta était la capitale de l'Inde britannique."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle est la capitale de l'Iran ?",
+   "Téhéran",
+   [
+    "Ispahan",
+    "Chiraz",
+    "Mashhad"
+   ],
+   "Ispahan a été la capitale de la Perse sous la dynastie safavide."
+  ],
+  [
+   "ca_asie",
+   1,
+   "Quelle ville est la capitale de l'Irak ?",
+   "Bagdad",
+   [
+    "Bassora",
+    "Mossoul",
+    "Kirkouk"
+   ],
+   "Bagdad a été fondée au VIIIe siècle par le calife abbasside al-Mansour."
+  ],
+  [
+   "ca_asie",
+   1,
+   "Quel est le nom de la capitale du Japon ?",
+   "Tokyo",
+   [
+    "Osaka",
+    "Kyoto",
+    "Hiroshima"
+   ],
+   "Kyoto a été la capitale impériale du Japon pendant plus de mille ans."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle est la capitale de la Jordanie ?",
+   "Amman",
+   [
+    "Zarqa",
+    "Irbid",
+    "Aqaba"
+   ],
+   "Dans l'Antiquité, Amman s'appelait Philadelphie."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle est la capitale du Kazakhstan ?",
+   "Astana",
+   [
+    "Almaty",
+    "Chymkent",
+    "Karaganda"
+   ],
+   "Almaty a été la capitale du Kazakhstan jusqu'en 1997."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle ville est la capitale du Koweït ?",
+   "Koweït City",
+   [
+    "Al-Jahra",
+    "Al-Ahmadi",
+    "Hawalli"
+   ],
+   "La capitale porte le nom du pays, Koweït, qui signifie « petit fort »."
+  ],
+  [
+   "ca_asie",
+   3,
+   "Quel est le nom de la capitale du Kirghizistan ?",
+   "Bichkek",
+   [
+    "Och",
+    "Karakol",
+    "Jalal-Abad"
+   ],
+   "À l'époque soviétique, Bichkek s'appelait Frounzé."
+  ],
+  [
+   "ca_asie",
+   3,
+   "Quelle est la capitale du Laos ?",
+   "Vientiane",
+   [
+    "Luang Prabang",
+    "Savannakhet",
+    "Paksé"
+   ],
+   "Vientiane est bâtie sur les rives du Mékong, face à la Thaïlande."
+  ],
+  [
+   "ca_asie",
+   1,
+   "Quelle est la capitale du Liban ?",
+   "Beyrouth",
+   [
+    "Saïda",
+    "Tyr",
+    "Baalbek"
+   ],
+   "Beyrouth a longtemps été surnommée « le Paris du Moyen-Orient »."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle ville est la capitale de la Malaisie ?",
+   "Kuala Lumpur",
+   [
+    "George Town",
+    "Johor Bahru",
+    "Malacca"
+   ],
+   "Le gouvernement siège en grande partie à Putrajaya, mais Kuala Lumpur reste la capitale officielle."
+  ],
+  [
+   "ca_asie",
+   3,
+   "Quel est le nom de la capitale des Maldives ?",
+   "Malé",
+   [
+    "Addu",
+    "Victoria",
+    "Port-Louis"
+   ],
+   "Malé est l'une des plus petites capitales du monde ; son île est entièrement couverte par la ville."
+  ],
+  [
+   "ca_asie",
+   3,
+   "Quelle est la capitale de la Mongolie ?",
+   "Oulan-Bator",
+   [
+    "Erdenet",
+    "Darkhan",
+    "Karakorum"
+   ],
+   "Oulan-Bator signifie « héros rouge » ; c'est la capitale la plus froide du monde."
+  ],
+  [
+   "ca_asie",
+   3,
+   "Quelle est la capitale de la Birmanie (Myanmar) ?",
+   "Naypyidaw",
+   [
+    "Rangoun",
+    "Mandalay",
+    "Bago"
+   ],
+   "Naypyidaw a remplacé Rangoun comme capitale en 2005."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle ville est la capitale du Népal ?",
+   "Katmandou",
+   [
+    "Pokhara",
+    "Lalitpur",
+    "Bhaktapur"
+   ],
+   "Katmandou est située dans une vallée de l'Himalaya."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quel est le nom de la capitale de la Corée du Nord ?",
+   "Pyongyang",
+   [
+    "Hamhung",
+    "Chongjin",
+    "Kaesong"
+   ],
+   "Le nom Pyongyang signifie « terre plate »."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle est la capitale d'Oman ?",
+   "Mascate",
+   [
+    "Salalah",
+    "Sohar",
+    "Nizwa"
+   ],
+   "Mascate est entourée de montagnes rocheuses et bordée par la mer d'Oman."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle est la capitale du Pakistan ?",
+   "Islamabad",
+   [
+    "Karachi",
+    "Lahore",
+    "Peshawar"
+   ],
+   "Islamabad a été construite dans les années 1960 pour remplacer Karachi comme capitale."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle ville est la capitale des Philippines ?",
+   "Manille",
+   [
+    "Cebu",
+    "Davao",
+    "Zamboanga"
+   ],
+   "Manille doit son nom à une plante, le nilad, qui poussait au bord de sa baie."
+  ],
+  [
+   "ca_asie",
+   1,
+   "Quel est le nom de la capitale du Qatar ?",
+   "Doha",
+   [
+    "Al-Rayyan",
+    "Al-Wakrah",
+    "Al-Khor"
+   ],
+   "Le Qatar a accueilli la Coupe du monde de football 2022, en grande partie autour de Doha."
+  ],
+  [
+   "ca_asie",
+   1,
+   "Quelle est la capitale de l'Arabie saoudite ?",
+   "Riyad",
+   [
+    "Djeddah",
+    "La Mecque",
+    "Médine"
+   ],
+   "Riyad signifie « les jardins » en arabe."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle est la capitale de Singapour ?",
+   "Singapour",
+   [
+    "Kuala Lumpur",
+    "Bangkok",
+    "Manille"
+   ],
+   "Singapour est une cité-État : le pays et la capitale ne font qu'un."
+  ],
+  [
+   "ca_asie",
+   1,
+   "Quelle ville est la capitale de la Corée du Sud ?",
+   "Séoul",
+   [
+    "Busan",
+    "Incheon",
+    "Daegu"
+   ],
+   "Séoul a accueilli les Jeux olympiques d'été en 1988."
+  ],
+  [
+   "ca_asie",
+   3,
+   "Quelle est la capitale officielle du Sri Lanka ?",
+   "Sri Jayawardenepura Kotte",
+   [
+    "Kandy",
+    "Galle",
+    "Jaffna"
+   ],
+   "Colombo, la plus grande ville, reste le centre économique et abrite de nombreuses administrations."
+  ],
+  [
+   "ca_asie",
+   1,
+   "Quelle est la capitale de la Syrie ?",
+   "Damas",
+   [
+    "Alep",
+    "Homs",
+    "Lattaquié"
+   ],
+   "Damas est souvent citée parmi les plus anciennes villes habitées en permanence au monde."
+  ],
+  [
+   "ca_asie",
+   3,
+   "Quelle est la capitale du Tadjikistan ?",
+   "Douchanbé",
+   [
+    "Khodjent",
+    "Kulob",
+    "Bokhtar"
+   ],
+   "Douchanbé signifie « lundi » en tadjik, car un marché s'y tenait ce jour-là."
+  ],
+  [
+   "ca_asie",
+   1,
+   "Quelle ville est la capitale de la Thaïlande ?",
+   "Bangkok",
+   [
+    "Chiang Mai",
+    "Phuket",
+    "Pattaya"
+   ],
+   "Le nom thaï complet de Bangkok est l'un des plus longs noms de lieu au monde."
+  ],
+  [
+   "ca_asie",
+   3,
+   "Quel est le nom de la capitale du Timor oriental ?",
+   "Dili",
+   [
+    "Baucau",
+    "Maliana",
+    "Lospalos"
+   ],
+   "Le Timor oriental est devenu indépendant en 2002, avec Dili pour capitale."
+  ],
+  [
+   "ca_asie",
+   3,
+   "Quelle est la capitale du Turkménistan ?",
+   "Achgabat",
+   [
+    "Turkmenabat",
+    "Mary",
+    "Dachoguz"
+   ],
+   "Achgabat est célèbre pour ses nombreux bâtiments recouverts de marbre blanc."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quelle est la capitale des Émirats arabes unis ?",
+   "Abou Dabi",
+   [
+    "Dubaï",
+    "Charjah",
+    "Ajman"
+   ],
+   "Dubaï est la ville la plus célèbre du pays, mais c'est Abou Dabi la capitale."
+  ],
+  [
+   "ca_asie",
+   3,
+   "Quelle ville est la capitale de l'Ouzbékistan ?",
+   "Tachkent",
+   [
+    "Samarcande",
+    "Boukhara",
+    "Khiva"
+   ],
+   "Samarcande et Boukhara sont plus célèbres, mais c'est Tachkent la capitale."
+  ],
+  [
+   "ca_asie",
+   2,
+   "Quel est le nom de la capitale du Vietnam ?",
+   "Hanoï",
+   [
+    "Hô Chi Minh-Ville",
+    "Da Nang",
+    "Huê"
+   ],
+   "Huê a été la capitale impériale du Vietnam sous la dynastie Nguyên."
+  ],
+  [
+   "ca_afrique",
+   1,
+   "Quelle est la capitale de l'Algérie ?",
+   "Alger",
+   [
+    "Oran",
+    "Constantine",
+    "Annaba"
+   ],
+   "Alger est surnommée « Alger la Blanche » pour ses bâtiments blancs face à la mer."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle est la capitale de l'Angola ?",
+   "Luanda",
+   [
+    "Huambo",
+    "Benguela",
+    "Lobito"
+   ],
+   "Luanda a été fondée par les Portugais au XVIe siècle."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle est la capitale officielle du Bénin ?",
+   "Porto-Novo",
+   [
+    "Cotonou",
+    "Parakou",
+    "Abomey"
+   ],
+   "Cotonou, la plus grande ville, abrite le siège du gouvernement ; Porto-Novo est la capitale officielle."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quel est le nom de la capitale du Botswana ?",
+   "Gaborone",
+   [
+    "Francistown",
+    "Maun",
+    "Lobatse"
+   ],
+   "Gaborone a été choisie comme capitale juste avant l'indépendance du pays en 1966."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle est la capitale du Burkina Faso ?",
+   "Ouagadougou",
+   [
+    "Bobo-Dioulasso",
+    "Koudougou",
+    "Banfora"
+   ],
+   "Ouagadougou accueille le FESPACO, un célèbre festival de cinéma africain."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quelle est la capitale du Burundi ?",
+   "Gitega",
+   [
+    "Bujumbura",
+    "Ngozi",
+    "Muyinga"
+   ],
+   "Gitega a remplacé Bujumbura comme capitale politique en 2019 ; Bujumbura reste la capitale économique."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quelle ville est la capitale du Cap-Vert ?",
+   "Praia",
+   [
+    "Mindelo",
+    "Santa Maria",
+    "Assomada"
+   ],
+   "Praia se trouve sur l'île de Santiago, la plus grande de l'archipel."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quel est le nom de la capitale du Cameroun ?",
+   "Yaoundé",
+   [
+    "Douala",
+    "Garoua",
+    "Bamenda"
+   ],
+   "Douala est la plus grande ville et le principal port, mais la capitale est Yaoundé."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quelle est la capitale de la République centrafricaine ?",
+   "Bangui",
+   [
+    "Berbérati",
+    "Bambari",
+    "Bimbo"
+   ],
+   "Bangui est située au bord de l'Oubangui, face à la RD Congo."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle est la capitale du Tchad ?",
+   "N'Djaména",
+   [
+    "Moundou",
+    "Abéché",
+    "Sarh"
+   ],
+   "À l'époque coloniale, N'Djaména s'appelait Fort-Lamy."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quelle ville est la capitale des Comores ?",
+   "Moroni",
+   [
+    "Mutsamudu",
+    "Fomboni",
+    "Mitsamiouli"
+   ],
+   "Moroni se trouve sur la Grande Comore, au pied du volcan Karthala."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quel est le nom de la capitale de la République du Congo (Congo-Brazzaville) ?",
+   "Brazzaville",
+   [
+    "Pointe-Noire",
+    "Dolisie",
+    "Kinshasa"
+   ],
+   "Brazzaville et Kinshasa se font face de part et d'autre du fleuve Congo : ce sont les deux capitales les plus proches du monde."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle est la capitale de la République démocratique du Congo ?",
+   "Kinshasa",
+   [
+    "Lubumbashi",
+    "Kisangani",
+    "Goma"
+   ],
+   "À l'époque coloniale belge, Kinshasa s'appelait Léopoldville."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle est la capitale officielle de la Côte d'Ivoire ?",
+   "Yamoussoukro",
+   [
+    "Abidjan",
+    "Bouaké",
+    "San-Pédro"
+   ],
+   "Abidjan est la capitale économique, mais Yamoussoukro est la capitale politique depuis 1983."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle ville est la capitale de Djibouti ?",
+   "Djibouti",
+   [
+    "Ali Sabieh",
+    "Tadjourah",
+    "Obock"
+   ],
+   "La capitale porte le même nom que le pays."
+  ],
+  [
+   "ca_afrique",
+   1,
+   "Quel est le nom de la capitale de l'Égypte ?",
+   "Le Caire",
+   [
+    "Alexandrie",
+    "Louxor",
+    "Assouan"
+   ],
+   "Le Caire vient de l'arabe Al-Qahira, qui signifie « la victorieuse »."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quelle est la capitale de l'Érythrée ?",
+   "Asmara",
+   [
+    "Massaoua",
+    "Keren",
+    "Assab"
+   ],
+   "Asmara est célèbre pour son architecture moderniste italienne, inscrite au patrimoine mondial de l'UNESCO."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quelle est la capitale administrative de l'Eswatini (ex-Swaziland) ?",
+   "Mbabane",
+   [
+    "Manzini",
+    "Siteki",
+    "Nhlangano"
+   ],
+   "Lobamba est la capitale royale et législative, Mbabane la capitale administrative."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle ville est la capitale de l'Éthiopie ?",
+   "Addis-Abeba",
+   [
+    "Dire Dawa",
+    "Gondar",
+    "Bahir Dar"
+   ],
+   "Addis-Abeba, qui signifie « nouvelle fleur », abrite le siège de l'Union africaine."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quel est le nom de la capitale du Gabon ?",
+   "Libreville",
+   [
+    "Port-Gentil",
+    "Franceville",
+    "Oyem"
+   ],
+   "Libreville a été fondée au XIXe siècle par des esclaves libérés, d'où son nom."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quelle est la capitale de la Gambie ?",
+   "Banjul",
+   [
+    "Serrekunda",
+    "Brikama",
+    "Farafenni"
+   ],
+   "À l'époque coloniale britannique, Banjul s'appelait Bathurst."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle est la capitale du Ghana ?",
+   "Accra",
+   [
+    "Kumasi",
+    "Tamale",
+    "Takoradi"
+   ],
+   "Kumasi était la capitale de l'ancien royaume ashanti, mais c'est Accra la capitale du Ghana."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle ville est la capitale de la Guinée ?",
+   "Conakry",
+   [
+    "Kankan",
+    "Labé",
+    "Nzérékoré"
+   ],
+   "Une partie de Conakry s'étend sur une presqu'île, la presqu'île de Kaloum."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quel est le nom de la capitale de la Guinée-Bissau ?",
+   "Bissau",
+   [
+    "Bafatá",
+    "Gabú",
+    "Bolama"
+   ],
+   "Bolama a été la capitale de la colonie portugaise avant Bissau."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle est la capitale du Kenya ?",
+   "Nairobi",
+   [
+    "Mombasa",
+    "Kisumu",
+    "Nakuru"
+   ],
+   "Nairobi possède un parc national avec des lions et des girafes aux portes de la ville."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quelle est la capitale du Lesotho ?",
+   "Maseru",
+   [
+    "Teyateyaneng",
+    "Mafeteng",
+    "Leribe"
+   ],
+   "Le Lesotho est entièrement entouré par l'Afrique du Sud."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quelle ville est la capitale du Liberia ?",
+   "Monrovia",
+   [
+    "Gbarnga",
+    "Buchanan",
+    "Harper"
+   ],
+   "Monrovia doit son nom au président américain James Monroe."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quel est le nom de la capitale de la Libye ?",
+   "Tripoli",
+   [
+    "Benghazi",
+    "Misrata",
+    "Syrte"
+   ],
+   "Tripoli porte le même nom qu'une ville du Liban ; en arabe, on dit Tarabulus."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle est la capitale de Madagascar ?",
+   "Antananarivo",
+   [
+    "Toamasina",
+    "Antsirabe",
+    "Mahajanga"
+   ],
+   "Antananarivo signifie « la ville des mille », en référence aux soldats qui la gardaient."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quelle est la capitale du Malawi ?",
+   "Lilongwe",
+   [
+    "Blantyre",
+    "Mzuzu",
+    "Zomba"
+   ],
+   "Zomba a été la capitale du Malawi jusqu'en 1975."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle ville est la capitale du Mali ?",
+   "Bamako",
+   [
+    "Tombouctou",
+    "Gao",
+    "Mopti"
+   ],
+   "Bamako est traversée par le fleuve Niger."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quel est le nom de la capitale de la Mauritanie ?",
+   "Nouakchott",
+   [
+    "Nouadhibou",
+    "Atar",
+    "Rosso"
+   ],
+   "Nouakchott a été construite à partir de 1958 pour devenir la capitale du pays."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quelle est la capitale de l'île Maurice ?",
+   "Port-Louis",
+   [
+    "Curepipe",
+    "Mahébourg",
+    "Quatre Bornes"
+   ],
+   "Port-Louis doit son nom au roi de France Louis XV."
+  ],
+  [
+   "ca_afrique",
+   1,
+   "Quelle est la capitale du Maroc ?",
+   "Rabat",
+   [
+    "Casablanca",
+    "Marrakech",
+    "Fès"
+   ],
+   "Casablanca est la plus grande ville du Maroc, mais la capitale est Rabat."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle ville est la capitale du Mozambique ?",
+   "Maputo",
+   [
+    "Beira",
+    "Nampula",
+    "Quelimane"
+   ],
+   "À l'époque coloniale portugaise, Maputo s'appelait Lourenço Marques."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quel est le nom de la capitale de la Namibie ?",
+   "Windhoek",
+   [
+    "Walvis Bay",
+    "Swakopmund",
+    "Rundu"
+   ],
+   "Windhoek est située sur un haut plateau, au centre du pays."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle est la capitale du Niger ?",
+   "Niamey",
+   [
+    "Zinder",
+    "Maradi",
+    "Agadez"
+   ],
+   "Zinder a été la capitale du Niger avant Niamey."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle est la capitale du Nigeria ?",
+   "Abuja",
+   [
+    "Lagos",
+    "Kano",
+    "Ibadan"
+   ],
+   "Abuja a remplacé Lagos comme capitale en 1991."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle ville est la capitale du Rwanda ?",
+   "Kigali",
+   [
+    "Huye",
+    "Musanze",
+    "Rubavu"
+   ],
+   "Kigali est souvent citée comme l'une des villes les plus propres d'Afrique."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quel est le nom de la capitale de Sao Tomé-et-Principe ?",
+   "Sao Tomé",
+   [
+    "Santo António",
+    "Neves",
+    "Trindade"
+   ],
+   "La capitale porte le nom de l'apôtre saint Thomas."
+  ],
+  [
+   "ca_afrique",
+   1,
+   "Quelle est la capitale du Sénégal ?",
+   "Dakar",
+   [
+    "Saint-Louis",
+    "Thiès",
+    "Touba"
+   ],
+   "Saint-Louis a été la capitale du Sénégal avant Dakar."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quelle est la capitale des Seychelles ?",
+   "Victoria",
+   [
+    "Anse Royale",
+    "Beau Vallon",
+    "Port-Louis"
+   ],
+   "Victoria, sur l'île de Mahé, est l'une des plus petites capitales du monde."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quelle ville est la capitale de la Sierra Leone ?",
+   "Freetown",
+   [
+    "Bo",
+    "Kenema",
+    "Makeni"
+   ],
+   "Freetown, « la ville libre », a été fondée pour accueillir d'anciens esclaves libérés."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quel est le nom de la capitale de la Somalie ?",
+   "Mogadiscio",
+   [
+    "Kismaayo",
+    "Baidoa",
+    "Merca"
+   ],
+   "Mogadiscio est l'un des plus anciens ports commerciaux de la côte est-africaine."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle ville est la capitale administrative de l'Afrique du Sud ?",
+   "Pretoria",
+   [
+    "Johannesburg",
+    "Durban",
+    "Pietermaritzburg"
+   ],
+   "L'Afrique du Sud a trois capitales : Pretoria (administrative), Le Cap (législative) et Bloemfontein (judiciaire)."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quelle est la capitale du Soudan du Sud ?",
+   "Djouba",
+   [
+    "Malakal",
+    "Wau",
+    "Yei"
+   ],
+   "Le Soudan du Sud est l'un des plus jeunes États du monde, indépendant depuis 2011."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle ville est la capitale de la Tanzanie ?",
+   "Dodoma",
+   [
+    "Dar es Salaam",
+    "Arusha",
+    "Mwanza"
+   ],
+   "Dar es Salaam, la plus grande ville, a longtemps été la capitale avant Dodoma."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quel est le nom de la capitale du Togo ?",
+   "Lomé",
+   [
+    "Kara",
+    "Sokodé",
+    "Kpalimé"
+   ],
+   "Lomé est un grand port sur l'océan Atlantique, tout près de la frontière avec le Ghana."
+  ],
+  [
+   "ca_afrique",
+   1,
+   "Quelle est la capitale de la Tunisie ?",
+   "Tunis",
+   [
+    "Sfax",
+    "Sousse",
+    "Kairouan"
+   ],
+   "Les ruines de l'antique Carthage se trouvent dans la banlieue de Tunis."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quelle est la capitale de l'Ouganda ?",
+   "Kampala",
+   [
+    "Entebbe",
+    "Gulu",
+    "Jinja"
+   ],
+   "Kampala était à l'origine bâtie sur sept collines."
+  ],
+  [
+   "ca_afrique",
+   3,
+   "Quelle ville est la capitale de la Zambie ?",
+   "Lusaka",
+   [
+    "Ndola",
+    "Kitwe",
+    "Livingstone"
+   ],
+   "Livingstone, près des chutes Victoria, a été la capitale avant Lusaka."
+  ],
+  [
+   "ca_afrique",
+   2,
+   "Quel est le nom de la capitale du Zimbabwe ?",
+   "Harare",
+   [
+    "Bulawayo",
+    "Mutare",
+    "Gweru"
+   ],
+   "À l'époque coloniale, Harare s'appelait Salisbury."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quelle est la capitale d'Antigua-et-Barbuda ?",
+   "Saint John's",
+   [
+    "English Harbour",
+    "Codrington",
+    "Basseterre"
+   ],
+   "Saint John's est le principal port d'Antigua, l'île principale du pays."
+  ],
+  [
+   "ca_ameriques",
+   1,
+   "Quelle est la capitale de l'Argentine ?",
+   "Buenos Aires",
+   [
+    "Córdoba",
+    "Rosario",
+    "Mendoza"
+   ],
+   "Buenos Aires signifie « bons vents » en espagnol."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quelle ville est la capitale des Bahamas ?",
+   "Nassau",
+   [
+    "Freeport",
+    "Marsh Harbour",
+    "Kingston"
+   ],
+   "Nassau se trouve sur l'île de New Providence."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quel est le nom de la capitale de la Barbade ?",
+   "Bridgetown",
+   [
+    "Speightstown",
+    "Holetown",
+    "Oistins"
+   ],
+   "Le centre historique de Bridgetown est inscrit au patrimoine mondial de l'UNESCO."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quelle est la capitale du Belize ?",
+   "Belmopan",
+   [
+    "Belize City",
+    "San Ignacio",
+    "Orange Walk"
+   ],
+   "Belmopan a été construite après qu'un ouragan a dévasté Belize City en 1961."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quelle est la capitale constitutionnelle de la Bolivie ?",
+   "Sucre",
+   [
+    "Santa Cruz",
+    "Cochabamba",
+    "Potosí"
+   ],
+   "La Paz, plus grande et plus connue, est le siège du gouvernement ; Sucre est la capitale constitutionnelle."
+  ],
+  [
+   "ca_ameriques",
+   2,
+   "Quelle ville est la capitale du Brésil ?",
+   "Brasilia",
+   [
+    "Rio de Janeiro",
+    "São Paulo",
+    "Salvador"
+   ],
+   "Brasilia a été inaugurée en 1960 ; avant, la capitale était Rio de Janeiro."
+  ],
+  [
+   "ca_ameriques",
+   2,
+   "Quel est le nom de la capitale du Canada ?",
+   "Ottawa",
+   [
+    "Toronto",
+    "Montréal",
+    "Vancouver"
+   ],
+   "Ottawa a été choisie comme capitale par la reine Victoria au XIXe siècle."
+  ],
+  [
+   "ca_ameriques",
+   2,
+   "Quelle est la capitale du Chili ?",
+   "Santiago",
+   [
+    "Concepción",
+    "Antofagasta",
+    "Viña del Mar"
+   ],
+   "Santiago est entourée par la cordillère des Andes."
+  ],
+  [
+   "ca_ameriques",
+   2,
+   "Quelle est la capitale de la Colombie ?",
+   "Bogota",
+   [
+    "Medellín",
+    "Cali",
+    "Carthagène"
+   ],
+   "Bogota est perchée à environ 2 600 mètres d'altitude dans les Andes."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quelle ville est la capitale du Costa Rica ?",
+   "San José",
+   [
+    "Limón",
+    "Alajuela",
+    "Cartago"
+   ],
+   "Cartago a été la capitale du Costa Rica avant San José."
+  ],
+  [
+   "ca_ameriques",
+   1,
+   "Quel est le nom de la capitale de Cuba ?",
+   "La Havane",
+   [
+    "Santiago de Cuba",
+    "Varadero",
+    "Camagüey"
+   ],
+   "Le centre historique de La Havane est inscrit au patrimoine mondial de l'UNESCO."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quelle est la capitale de la Dominique ?",
+   "Roseau",
+   [
+    "Portsmouth",
+    "Marigot",
+    "Castries"
+   ],
+   "Roseau doit son nom aux roseaux qui poussaient au bord de sa rivière."
+  ],
+  [
+   "ca_ameriques",
+   2,
+   "Quelle est la capitale de la République dominicaine ?",
+   "Saint-Domingue",
+   [
+    "Santiago de los Caballeros",
+    "Punta Cana",
+    "Puerto Plata"
+   ],
+   "Saint-Domingue est la plus ancienne ville fondée par les Européens dans les Amériques encore habitée."
+  ],
+  [
+   "ca_ameriques",
+   2,
+   "Quelle ville est la capitale de l'Équateur ?",
+   "Quito",
+   [
+    "Guayaquil",
+    "Cuenca",
+    "Manta"
+   ],
+   "Quito est située tout près de la ligne de l'équateur, qui a donné son nom au pays."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quel est le nom de la capitale du Salvador ?",
+   "San Salvador",
+   [
+    "Santa Ana",
+    "San Miguel",
+    "Soyapango"
+   ],
+   "Le pays et sa capitale portent le nom du « Sauveur », c'est-à-dire Jésus."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quelle est la capitale de la Grenade ?",
+   "Saint-Georges",
+   [
+    "Gouyave",
+    "Grenville",
+    "Kingstown"
+   ],
+   "La Grenade est surnommée « l'île aux épices », célèbre pour sa noix de muscade."
+  ],
+  [
+   "ca_ameriques",
+   2,
+   "Quelle est la capitale du Guatemala ?",
+   "Ciudad de Guatemala",
+   [
+    "Antigua Guatemala",
+    "Quetzaltenango",
+    "Escuintla"
+   ],
+   "Antigua Guatemala était la capitale avant d'être détruite par des tremblements de terre en 1773."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quelle ville est la capitale du Guyana ?",
+   "Georgetown",
+   [
+    "Linden",
+    "New Amsterdam",
+    "Paramaribo"
+   ],
+   "Georgetown possède une grande cathédrale en bois, l'une des plus hautes du monde."
+  ],
+  [
+   "ca_ameriques",
+   2,
+   "Quel est le nom de la capitale d'Haïti ?",
+   "Port-au-Prince",
+   [
+    "Cap-Haïtien",
+    "Gonaïves",
+    "Jacmel"
+   ],
+   "Haïti est devenue en 1804 la première république noire indépendante du monde."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quelle est la capitale du Honduras ?",
+   "Tegucigalpa",
+   [
+    "San Pedro Sula",
+    "La Ceiba",
+    "Comayagua"
+   ],
+   "Comayagua a été la capitale du Honduras avant Tegucigalpa."
+  ],
+  [
+   "ca_ameriques",
+   2,
+   "Quelle est la capitale de la Jamaïque ?",
+   "Kingston",
+   [
+    "Montego Bay",
+    "Spanish Town",
+    "Ocho Rios"
+   ],
+   "Bob Marley a grandi et enregistré sa musique à Kingston."
+  ],
+  [
+   "ca_ameriques",
+   1,
+   "Quelle ville est la capitale du Mexique ?",
+   "Mexico",
+   [
+    "Guadalajara",
+    "Monterrey",
+    "Cancún"
+   ],
+   "Mexico a été construite sur les ruines de Tenochtitlan, la capitale aztèque."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quel est le nom de la capitale du Nicaragua ?",
+   "Managua",
+   [
+    "León",
+    "Granada",
+    "Masaya"
+   ],
+   "Managua est bâtie au bord d'un grand lac, le lac Xolotlán."
+  ],
+  [
+   "ca_ameriques",
+   2,
+   "Quelle est la capitale du Panama ?",
+   "Panama",
+   [
+    "Colón",
+    "David",
+    "Santiago de Veraguas"
+   ],
+   "La capitale porte le même nom que le pays et se trouve à l'entrée du célèbre canal."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quelle est la capitale du Paraguay ?",
+   "Asunción",
+   [
+    "Ciudad del Este",
+    "Encarnación",
+    "Concepción"
+   ],
+   "Asunción, fondée en 1537, est l'une des plus anciennes villes d'Amérique du Sud."
+  ],
+  [
+   "ca_ameriques",
+   2,
+   "Quelle ville est la capitale du Pérou ?",
+   "Lima",
+   [
+    "Cuzco",
+    "Arequipa",
+    "Trujillo"
+   ],
+   "Cuzco était la capitale de l'Empire inca, mais Lima est la capitale du Pérou."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quel est le nom de la capitale de Saint-Christophe-et-Niévès ?",
+   "Basseterre",
+   [
+    "Charlestown",
+    "Sandy Point",
+    "Saint John's"
+   ],
+   "Basseterre a été fondée par les Français au XVIIe siècle ; son nom signifie « terre basse »."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quelle est la capitale de Sainte-Lucie ?",
+   "Castries",
+   [
+    "Soufrière",
+    "Vieux Fort",
+    "Roseau"
+   ],
+   "Castries doit son nom au marquis de Castries, ministre français de la Marine."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quelle est la capitale de Saint-Vincent-et-les-Grenadines ?",
+   "Kingstown",
+   [
+    "Georgetown",
+    "Barrouallie",
+    "Saint-Georges"
+   ],
+   "Kingstown abrite l'un des plus anciens jardins botaniques des Amériques."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quelle ville est la capitale du Suriname ?",
+   "Paramaribo",
+   [
+    "Nieuw Nickerie",
+    "Lelydorp",
+    "Georgetown"
+   ],
+   "Le néerlandais est la langue officielle du Suriname, ancienne colonie des Pays-Bas."
+  ],
+  [
+   "ca_ameriques",
+   3,
+   "Quel est le nom de la capitale de Trinité-et-Tobago ?",
+   "Port-d'Espagne",
+   [
+    "San Fernando",
+    "Chaguanas",
+    "Scarborough"
+   ],
+   "Port-d'Espagne est connue pour son grand carnaval annuel."
+  ],
+  [
+   "ca_ameriques",
+   1,
+   "Quelle est la capitale des États-Unis ?",
+   "Washington",
+   [
+    "New York",
+    "Los Angeles",
+    "Chicago"
+   ],
+   "Washington n'appartient à aucun État : elle forme le district fédéral de Columbia."
+  ],
+  [
+   "ca_ameriques",
+   2,
+   "Quelle est la capitale de l'Uruguay ?",
+   "Montevideo",
+   [
+    "Punta del Este",
+    "Salto",
+    "Colonia del Sacramento"
+   ],
+   "Montevideo a accueilli la toute première Coupe du monde de football, en 1930."
+  ],
+  [
+   "ca_ameriques",
+   2,
+   "Quelle ville est la capitale du Venezuela ?",
+   "Caracas",
+   [
+    "Maracaibo",
+    "Valencia",
+    "Barquisimeto"
+   ],
+   "Simón Bolívar, héros de l'indépendance sud-américaine, est né à Caracas."
+  ],
+  [
+   "ca_oceanie",
+   2,
+   "Quel est le nom de la capitale de l'Australie ?",
+   "Canberra",
+   [
+    "Sydney",
+    "Melbourne",
+    "Perth"
+   ],
+   "Canberra a été créée comme compromis entre Sydney et Melbourne, qui voulaient toutes deux être capitale."
+  ],
+  [
+   "ca_oceanie",
+   3,
+   "Quelle est la capitale des Fidji ?",
+   "Suva",
+   [
+    "Nadi",
+    "Lautoka",
+    "Labasa"
+   ],
+   "Levuka a été la première capitale des Fidji avant Suva."
+  ],
+  [
+   "ca_oceanie",
+   3,
+   "Quelle est la capitale des Kiribati ?",
+   "Tarawa",
+   [
+    "Kiritimati",
+    "Funafuti",
+    "Majuro"
+   ],
+   "Les Kiribati sont le seul pays situé dans les quatre hémisphères à la fois."
+  ],
+  [
+   "ca_oceanie",
+   3,
+   "Quelle ville est la capitale des Îles Marshall ?",
+   "Majuro",
+   [
+    "Ebeye",
+    "Jaluit",
+    "Tarawa"
+   ],
+   "Majuro est un atoll, un anneau de corail entourant un lagon."
+  ],
+  [
+   "ca_oceanie",
+   3,
+   "Quel est le nom de la capitale des États fédérés de Micronésie ?",
+   "Palikir",
+   [
+    "Kolonia",
+    "Weno",
+    "Majuro"
+   ],
+   "Palikir se trouve sur l'île de Pohnpei ; elle a remplacé Kolonia comme capitale en 1989."
+  ],
+  [
+   "ca_oceanie",
+   3,
+   "Quel district abrite le siège du gouvernement de Nauru, pays sans capitale officielle ?",
+   "Yaren",
+   [
+    "Aiwo",
+    "Denigomodu",
+    "Funafuti"
+   ],
+   "Nauru, l'un des plus petits pays du monde, n'a pas de capitale officielle."
+  ],
+  [
+   "ca_oceanie",
+   2,
+   "Quelle est la capitale de la Nouvelle-Zélande ?",
+   "Wellington",
+   [
+    "Auckland",
+    "Christchurch",
+    "Queenstown"
+   ],
+   "Wellington est la capitale d'État la plus au sud du monde."
+  ],
+  [
+   "ca_oceanie",
+   3,
+   "Quelle ville est la capitale des Palaos ?",
+   "Ngerulmud",
+   [
+    "Koror",
+    "Airai",
+    "Kloulklubed"
+   ],
+   "Ngerulmud a remplacé Koror comme capitale en 2006."
+  ],
+  [
+   "ca_oceanie",
+   3,
+   "Quel est le nom de la capitale de la Papouasie-Nouvelle-Guinée ?",
+   "Port Moresby",
+   [
+    "Lae",
+    "Mount Hagen",
+    "Madang"
+   ],
+   "Plus de 800 langues sont parlées en Papouasie-Nouvelle-Guinée."
+  ],
+  [
+   "ca_oceanie",
+   3,
+   "Quelle est la capitale des Samoa ?",
+   "Apia",
+   [
+    "Salelologa",
+    "Faleolo",
+    "Pago Pago"
+   ],
+   "L'écrivain Robert Louis Stevenson a vécu ses dernières années près d'Apia."
+  ],
+  [
+   "ca_oceanie",
+   3,
+   "Quelle est la capitale des Îles Salomon ?",
+   "Honiara",
+   [
+    "Gizo",
+    "Auki",
+    "Port-Vila"
+   ],
+   "Honiara se trouve sur l'île de Guadalcanal."
+  ],
+  [
+   "ca_oceanie",
+   3,
+   "Quelle ville est la capitale des Tonga ?",
+   "Nuku'alofa",
+   [
+    "Neiafu",
+    "Pangai",
+    "Apia"
+   ],
+   "Nuku'alofa signifie « demeure de l'amour » en tongien."
+  ],
+  [
+   "ca_oceanie",
+   3,
+   "Quel est le nom de la capitale des Tuvalu ?",
+   "Funafuti",
+   [
+    "Vaitupu",
+    "Nukufetau",
+    "Suva"
+   ],
+   "Tuvalu est l'un des pays les plus menacés par la montée des océans."
+  ],
+  [
+   "ca_oceanie",
+   3,
+   "Quelle est la capitale du Vanuatu ?",
+   "Port-Vila",
+   [
+    "Luganville",
+    "Isangel",
+    "Honiara"
+   ],
+   "Au Vanuatu, on parle le bichelamar, l'anglais et le français."
+  ]
+ ]
+}
