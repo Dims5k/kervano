@@ -167,6 +167,8 @@ button{touch-action:manipulation}
 .timer{height:8px;border-radius:4px;background:#EADBBB;overflow:hidden}
 .timer i{display:block;height:100%;background:var(--gold2);transform-origin:left}
 .say{border:1.5px solid #E0CDA6;background:transparent;border-radius:999px;padding:3px 10px;font-weight:800;font-size:13px;color:var(--ink)}
+.votes{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}.votes span{display:inline-flex;align-items:center;gap:6px;background:#F4E8CF;border-radius:999px;padding:3px 10px 3px 3px;font-weight:700;font-size:14px}.votes span.ok{background:#E3F5EA}.votes .av{width:24px;height:24px;border-radius:50%;display:grid;place-items:center}
+.pickcat button:disabled{opacity:.55;filter:saturate(.6)}
 .pickcat{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .pickcat button:last-child:nth-child(odd){grid-column:1/-1}
 .pickcat button{border:0;border-radius:16px;padding:16px 8px;color:#fff;font-family:var(--f-display);font-size:17px;font-weight:700;box-shadow:0 5px 0 rgba(0,0,0,.25)}
@@ -726,7 +728,7 @@ const MODES = { duo: { name: "Duo", sub: "2 réponses", color: "var(--duo)" }, c
 const steps = (mode, d) => mode === "cash" ? d + 3 : mode === "carre" ? d : Math.ceil(d / 2);
 const Q = QDATA.map((r, i) => ({ id: i, cat: r[0], d: r[1], q: r[2], a: r[3], w: r[4], note: r[5] || "", th: "islam" }));
 /* ============ langues : le français est dans le code, les autres dans lang/xx.json (chargées à la demande) ============ */
-const LV = 7;
+const LV = 8;
 const LANGS = { fr: ["Français", "fr-FR"], ar: ["العربية", "ar-SA", 1], en: ["English", "en-US"], nl: ["Nederlands", "nl-NL"], de: ["Deutsch", "de-DE"], tr: ["Türkçe", "tr-TR"] };
 let LANG = "fr", TR = {}, QL = null; const LCACHE = {};
 /* t("texte français", {var}) ; une variable qui commence par « @ » est elle-même un texte à traduire */
@@ -1451,6 +1453,7 @@ async function applyEv(e) {
   if (e.t === "hello") { if (NET.ctrl && game) netSend({ t: "st", g: game }); return; }
   if (!game || !$("#dock")) return;
   if (e.t === "steal") return stealIn(e);
+  if (e.t === "vote") { setTimeout(() => voteIn(e), 0); return; } /* hors de applyEv, sinon l'état n'est pas diffusé */
   if (e.t === "stealx") { if (STEAL.guest && STEAL.guest.key === e.key) STEAL.guest.end(e.w < 0 ? null : e.w); return; }
   if (e.t === "mv") await animateMove(e.pi, e.from, e.to);
   else if (e.t === "jp") await jumpMove(e.pi, e.to);
@@ -1755,9 +1758,48 @@ function toast(a, b, bg, ms = 1500, va, vb) { netFx("toast", { a, b: b || "", bg
 const quiet = f => { NET.mute = true; try { return f(); } finally { NET.mute = false; } };
 function openSheet(html) { const c = $("#card"); c.innerHTML = html; c.scrollTop = 0; requestAnimationFrame(() => $("#sheet").classList.add("open")); }
 function closeSheet() { const s = $("#sheet"); if (s) s.classList.remove("open"); markDest([]); }
+/* ---------- question finale : les autres joueurs votent pour la catégorie (1 contre 1 : l'adversaire choisit) ---------- */
+const VOTE = { t: 0, key: null, sent: {} };
+const voteKey = () => `${game.turn || 0}|${game.cur}|${game.players[game.cur].pos}`;
+const voters = () => game.players.map((_, i) => i).filter(i => i !== game.cur && (!NET.on || game.players[i].uid));
+const gVote = () => (game.vote && typeof game.vote === "object" && !Array.isArray(game.vote)) ? game.vote : {};
+const voteDone = () => { const v = gVote(); return voters().every(i => v["p" + i] != null); };
+function finishVote() {
+  clearTimeout(VOTE.t); VOTE.t = 0; VOTE.key = null;
+  const keys = finalKeys(), v = gVote(), cnt = {};
+  Object.values(v).forEach(k => { if (keys.includes(k)) cnt[k] = (cnt[k] || 0) + 1; });
+  const best = Math.max(0, ...Object.values(cnt)), top = keys.filter(k => (cnt[k] || 0) === best), k = top[Math.floor(Math.random() * top.length)], p = game.players[game.cur];
+  if (voters().length > 1) toast("Le vote est terminé !", top.length > 1 ? "Égalité : tirage au sort." : "", "#8A5A0C", 1800);
+  game.vote = null; game.q = { id: draw(k, p.level, true), cat: k, mode: "cash", final: true }; game.phase = "question"; save(); step();
+}
 function renderPick(p, live) {
-  openSheet(`<div class="band" style="background:linear-gradient(90deg,#8A5A0C,#F2B441)"><span>${t("Question finale")}</span></div><div class="cbody"><p class="qfor">${esc(t("Pour {n} · les autres choisissent la catégorie", { n: p.name }))}</p>${okFinal(game.finalTh) ? `<p class="tiny" style="margin:0 0 8px">${esc(t("Thème de la question finale : {th}", { th: thName(game.finalTh) }))}</p>` : ""}<div class="pickcat">${finalKeys().map(k => `<button data-k="${k}" style="background:${CATS[k].color};color:${CATS[k].ink || "#fff"}">${esc(catName(k))}</button>`).join("")}</div><p class="tiny">${t("La question finale se joue en Cash. Si elle est ratée, la caravane recule de 5 cases.")}</p></div>`);
-  if (live) $("#card").querySelectorAll("[data-k]").forEach(b => b.onclick = () => { SFX.tap(); const k = b.dataset.k; game.q = { id: draw(k, p.level, true), cat: k, mode: "cash", final: true }; game.phase = "question"; save(); step(); });
+  const keys = finalKeys(), V = voters(), v = gVote(), vk = voteKey(), me = NET.on ? myIdx() : -1;
+  /* qui vote maintenant ? en ligne : chacun sur son téléphone ; sur un seul téléphone : l'un après l'autre */
+  const who = NET.on ? (V.includes(me) && v["p" + me] == null && VOTE.sent[vk] == null ? me : -1) : V.find(i => v["p" + i] == null);
+  const nm = i => esc(game.players[i].name);
+  const head = V.length === 1 ? t("{n} choisit la catégorie de la question finale de {f}.", { n: game.players[V[0]].name, f: p.name }) : t("Les autres joueurs votent pour la catégorie de la question finale de {f}. La majorité l'emporte.", { f: p.name });
+  const prompt = who != null && who >= 0 ? (NET.on ? t("À toi de choisir !") : t("Passe le téléphone à {n} : à toi de choisir !", { n: game.players[who].name })) : (NET.on && VOTE.sent[vk] != null ? t("Vote envoyé ✓") : t("Vote en cours…"));
+  openSheet(`<div class="band" style="background:linear-gradient(90deg,#8A5A0C,#F2B441)"><span>${t("Question finale")}</span></div><div class="cbody"><p class="qfor" dir="auto">${esc(head)}</p>${okFinal(game.finalTh) ? `<p class="tiny" style="margin:0 0 8px">${esc(t("Thème de la question finale : {th}", { th: thName(game.finalTh) }))}</p>` : ""}
+    ${V.length > 1 ? `<div class="votes">${V.map(i => `<span class="${v["p" + i] != null ? "ok" : ""}">${av(i)}${nm(i)} ${v["p" + i] != null ? "✓" : "…"}</span>`).join("")}</div>` : ""}
+    <p class="stealmsg" dir="auto" style="margin:0 0 10px">${esc(prompt)}</p>
+    <div class="pickcat">${keys.map(k => `<button class="st" data-k="${k}" style="background:${CATS[k].color};color:${CATS[k].ink || "#fff"}" ${who != null && who >= 0 ? "" : "disabled"}>${esc(catName(k))}</button>`).join("")}</div><p class="tiny">${t("La question finale se joue en Cash. Si elle est ratée, la caravane recule de 5 cases.")}</p></div>`);
+  if (who != null && who >= 0) $("#card").querySelectorAll("[data-k]").forEach(b => b.onclick = () => {
+    SFX.tap(); const k = b.dataset.k;
+    if (NET.on && !live) { VOTE.sent[vk] = k; netSend({ t: "vote", key: vk, k }); renderPick(p, false); return; }
+    game.vote = { ...gVote(), ["p" + who]: k }; save();
+    if (voteDone()) finishVote(); else renderPick(p, true);
+  });
+  if (live) {
+    if (!V.length || voteDone()) return finishVote();
+    /* en ligne : si quelqu'un ne répond pas, on clôt le vote au bout de 45 s */
+    if (NET.on && VOTE.key !== vk) { clearTimeout(VOTE.t); VOTE.key = vk; VOTE.t = setTimeout(() => { if (game && game.phase === "pick" && voteKey() === vk) finishVote(); }, 45000); }
+  }
+}
+function voteIn(e) {
+  if (!NET.ctrl || !game || game.phase !== "pick" || e.key !== voteKey()) return;
+  const pi = game.players.findIndex(p => p.uid === e.by); if (pi < 0 || !voters().includes(pi) || gVote()["p" + pi] != null || !finalKeys().includes(e.k)) return;
+  game.vote = { ...gVote(), ["p" + pi]: e.k }; save();
+  if (voteDone()) finishVote(); else renderPick(game.players[game.cur], true);
 }
 function step() {
   NET.ctrl = !NET.on || isMine(); netUI();
