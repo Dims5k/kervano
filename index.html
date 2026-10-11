@@ -713,7 +713,7 @@ const MODES = { duo: { name: "Duo", sub: "2 réponses", color: "var(--duo)" }, c
 const steps = (mode, d) => mode === "cash" ? d + 3 : mode === "carre" ? d : Math.ceil(d / 2);
 const Q = QDATA.map((r, i) => ({ id: i, cat: r[0], d: r[1], q: r[2], a: r[3], w: r[4], note: r[5] || "", th: "islam" }));
 /* ============ langues : le français est dans le code, les autres dans lang/xx.json (chargées à la demande) ============ */
-const LV = 5;
+const LV = 6;
 const LANGS = { fr: ["Français", "fr-FR"], ar: ["العربية", "ar-SA", 1], en: ["English", "en-US"], nl: ["Nederlands", "nl-NL"], de: ["Deutsch", "de-DE"], tr: ["Türkçe", "tr-TR"] };
 let LANG = "fr", TR = {}, QL = null; const LCACHE = {};
 /* t("texte français", {var}) ; une variable qui commence par « @ » est elle-même un texte à traduire */
@@ -1603,6 +1603,9 @@ const root = $("#root");
 function levelRange(level, final) { if (final) return { facile: [1, 2], normal: [2, 3], expert: [3, 3] }[level]; return { facile: [1, 1], normal: [1, 2], expert: [2, 3] }[level]; }
 function draw(cat, level, final) {
   const [lo, hi] = levelRange(level, final); const seen = new Set(store.get("seen", [])), used = new Set(game.used);
+  /* deux thèmes peuvent contenir la même question (ex. les pyramides en histoire et en géographie) : on ne la pose qu'une fois par partie */
+  const nk = q => q.q.toLowerCase().replace(/[^a-zà-ÿ0-9]/g, ""), usedTxt = new Set(game.used.map(id => Q[id] && nk(Q[id])));
+  Q.forEach(q => { if (q && usedTxt.has(nk(q))) used.add(q.id); });
   let pool = Q.filter(q => inCat(q, cat) && q.d >= lo && q.d <= hi && !used.has(q.id));
   if (!pool.length) pool = Q.filter(q => inCat(q, cat) && !used.has(q.id)); if (!pool.length) pool = Q.filter(q => inCat(q, cat));
   if (!pool.length) pool = Q.filter(q => q && q.th === "islam");

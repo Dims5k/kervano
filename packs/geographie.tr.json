@@ -706,6 +706,806 @@
     "Bamako"
    ],
    "Kerpiçten yapılmış Cingereyber Camii 14. yüzyıldan kalmadır."
+  ],
+  "70": [
+   "Portekiz'in başkenti neresidir?",
+   "Lizbon",
+   [
+    "Porto",
+    "Coimbra",
+    "Faro"
+   ],
+   "Lizbon, Tejo Nehri'nin halice açıldığı yerin kıyısına kurulmuştur."
+  ],
+  "71": [
+   "Rusya'nın başkenti neresidir?",
+   "Moskova",
+   [
+    "Sankt-Peterburg",
+    "Novosibirsk",
+    "Kazan"
+   ],
+   "Sankt-Peterburg yaklaşık 200 yıl boyunca Rusya'nın başkentiydi."
+  ],
+  "72": [
+   "Antik Kartaca'nın kalıntıları hangi şehrin hemen yakınındadır?",
+   "Tunus",
+   [
+    "Sfaks",
+    "Sus",
+    "Bizerte"
+   ],
+   "Tunus şehri, ülkeyle aynı adı taşıyan başkenttir."
+  ],
+  "73": [
+   "Güney Kore'nin başkenti neresidir?",
+   "Seul",
+   [
+    "Busan",
+    "İncheon",
+    "Daegu"
+   ],
+   "Seul'ün içinden Han Nehri geçer."
+  ],
+  "74": [
+   "Amerika Birleşik Devletleri'nin başkenti neresidir?",
+   "Washington",
+   [
+    "New York",
+    "Chicago",
+    "Philadelphia"
+   ],
+   "Şehir adını ABD'nin ilk başkanı George Washington'dan alır."
+  ],
+  "75": [
+   "Hangi Cezayir şehri, UNESCO Dünya Mirası listesindeki tarihi Kasbah'ıyla ünlüdür?",
+   "Cezayir",
+   [
+    "Oran",
+    "Konstantin",
+    "Annabe"
+   ],
+   "Ülkenin başkenti, ülkeyle aynı adı taşır: Cezayir."
+  ],
+  "76": [
+   "Norveç'in başkenti neresidir?",
+   "Oslo",
+   [
+    "Bergen",
+    "Stockholm",
+    "Kopenhag"
+   ],
+   "Oslo, Oslofjord adlı uzun bir fiyordun en iç ucunda yer alır."
+  ],
+  "77": [
+   "Avusturya'nın başkenti neresidir?",
+   "Viyana",
+   [
+    "Salzburg",
+    "Graz",
+    "Innsbruck"
+   ],
+   "Mozart eserlerinin büyük bölümünü Viyana'da besteledi."
+  ],
+  "78": [
+   "Hindistan'ın başkenti neresidir?",
+   "Yeni Delhi",
+   [
+    "Mumbai",
+    "Kalküta",
+    "Bangalore"
+   ],
+   "Yeni Delhi, 20. yüzyılın başında eski Delhi şehrinin yanına inşa edildi."
+  ],
+  "79": [
+   "Senegal'in başkenti neresidir?",
+   "Dakar",
+   [
+    "Saint-Louis",
+    "Thiès",
+    "Ziguinchor"
+   ],
+   "Dakar, Afrika anakarasının en batıdaki şehridir."
+  ],
+  "80": [
+   "Küba'nın başkenti neresidir?",
+   "Havana",
+   [
+    "Santiago de Cuba",
+    "Varadero",
+    "Camagüey"
+   ],
+   "Havana'nın eski şehri UNESCO Dünya Mirası listesindedir."
+  ],
+  "81": [
+   "Tayland'ın başkenti neresidir?",
+   "Bangkok",
+   [
+    "Phuket",
+    "Chiang Mai",
+    "Pattaya"
+   ],
+   "Taylandlılar başkentlerine «melekler şehri» anlamına gelen Krung Thep der."
+  ],
+  "82": [
+   "Nijerya'nın başkenti neresidir?",
+   "Abuja",
+   [
+    "Lagos",
+    "Kano",
+    "İbadan"
+   ],
+   "Abuja, 1991'de Lagos'un yerine başkent oldu."
+  ],
+  "83": [
+   "Gana'nın başkenti neresidir?",
+   "Akra",
+   [
+    "Kumasi",
+    "Tamale",
+    "Takoradi"
+   ],
+   "Akra, Gine Körfezi kıyısında yer alır."
+  ],
+  "84": [
+   "Özbekistan'ın başkenti neresidir?",
+   "Taşkent",
+   [
+    "Buhara",
+    "Bişkek",
+    "Aşkabat"
+   ],
+   "Taşkent, eski İpek Yolu üzerinde önemli bir duraktı."
+  ],
+  "85": [
+   "Suudi Arabistan'ın başkenti neresidir?",
+   "Riyad",
+   [
+    "Cidde",
+    "Dammam",
+    "Taif"
+   ],
+   "Riyad, Arap Yarımadası'nın ortasında, kıyılardan uzakta yer alır."
+  ],
+  "86": [
+   "Kolombiya hangi kıtadadır?",
+   "Güney Amerika",
+   [
+    "Afrika",
+    "Kuzey Amerika",
+    "Avrupa"
+   ],
+   "Kolombiya, hem Büyük Okyanus'a hem de Karayip Denizi'ne kıyısı olan tek Güney Amerika ülkesidir."
+  ],
+  "87": [
+   "Kuzey Kutbu'nu hangi okyanus çevreler?",
+   "Arktik Okyanusu",
+   [
+    "Güney Okyanusu",
+    "Hint Okyanusu",
+    "Büyük Okyanus"
+   ],
+   "Kuzey Kutbu, okyanusun ortasında, yüzen bir buz tabakasının üzerindedir."
+  ],
+  "88": [
+   "Orta Doğu'daki hangi göl o kadar tuzludur ki insan içinde zahmetsizce yüzer?",
+   "Lut Gölü",
+   [
+    "Kızıldeniz",
+    "Aral Gölü",
+    "Beyaz Deniz"
+   ],
+   "Kıyıları, Dünya'da açık havadaki en alçak noktadır."
+  ],
+  "89": [
+   "Belçika kıyılarında hangi deniz vardır?",
+   "Kuzey Denizi",
+   [
+    "Baltık Denizi",
+    "Manş Denizi",
+    "İrlanda Denizi"
+   ],
+   "Belçika kıyısı yaklaşık 65 km uzunluğundadır."
+  ],
+  "90": [
+   "Kanada hangi kıtadadır?",
+   "Kuzey Amerika",
+   [
+    "Avrupa",
+    "Asya",
+    "Güney Amerika"
+   ],
+   "Kanada'nın kara sınırı olan tek komşusu Amerika Birleşik Devletleri'dir."
+  ],
+  "91": [
+   "Türkiye'nin kuzeyinde hangi deniz vardır?",
+   "Karadeniz",
+   [
+    "Kızıldeniz",
+    "Sarı Deniz",
+    "Beyaz Deniz"
+   ],
+   "Karadeniz'in derin sularında çok az oksijen bulunur."
+  ],
+  "92": [
+   "Orta Amerika'daki hangi kanal Atlas Okyanusu'nu Büyük Okyanus'a bağlar?",
+   "Panama Kanalı",
+   [
+    "Kiel Kanalı",
+    "Korint Kanalı",
+    "Midi Kanalı"
+   ],
+   "Kanaldan geçmek için gemiler havuzlarla yaklaşık 26 m yükseltilir."
+  ],
+  "93": [
+   "Manş Denizi'nin en dar yeri olan hangi boğaz Fransa'yı İngiltere'den ayırır?",
+   "Dover Boğazı",
+   [
+    "Messina Boğazı",
+    "Bonifacio Boğazı",
+    "Skagerrak"
+   ],
+   "Manş Tüneli bu boğazın altından geçer."
+  ],
+  "94": [
+   "Akdeniz'in en büyük adası hangisidir?",
+   "Sicilya",
+   [
+    "Sardinya",
+    "Korsika",
+    "Kıbrıs"
+   ],
+   "Sicilya'daki Etna Yanardağı, Avrupa'nın en etkin yanardağlarından biridir."
+  ],
+  "95": [
+   "Kafkasya ile Orta Asya arasındaki hangi tuzlu su kütlesi dünyanın en büyük kapalı denizidir?",
+   "Hazar Denizi",
+   [
+    "Aral Gölü",
+    "Balkaş Gölü",
+    "Baltık Denizi"
+   ],
+   "İran, Rusya ve Kazakistan dahil 5 ülkeye kıyısı vardır."
+  ],
+  "96": [
+   "İtalya'yı Hırvatistan'dan hangi deniz ayırır?",
+   "Adriyatik Denizi",
+   [
+    "Tiren Denizi",
+    "İyon Denizi",
+    "Ligurya Denizi"
+   ],
+   "Adını İtalya'daki antik Adria limanından alır."
+  ],
+  "97": [
+   "Adalarla dolu hangi deniz Yunanistan'ı Türkiye'den ayırır?",
+   "Ege Denizi",
+   [
+    "İyon Denizi",
+    "Marmara Denizi",
+    "Tiren Denizi"
+   ],
+   "Yunan efsanesine göre adını Kral Aigeus'tan alır."
+  ],
+  "98": [
+   "Kızıldeniz'i Aden Körfezi'ne hangi boğaz bağlar?",
+   "Babülmendep Boğazı",
+   [
+    "Malakka Boğazı",
+    "Messina Boğazı",
+    "Tiran Boğazı"
+   ],
+   "Adı Arapçada «ağıtlar kapısı» anlamına gelir."
+  ],
+  "99": [
+   "İran'ı Umman Sultanlığı'ndan hangi boğaz ayırır?",
+   "Hürmüz Boğazı",
+   [
+    "Malakka Boğazı",
+    "Palk Boğazı",
+    "Tiran Boğazı"
+   ],
+   "Dünyanın en önemli deniz yollarından biridir."
+  ],
+  "100": [
+   "Güney Amerika'nın en güney ucundaki hangi boğaz adını Portekizli bir denizciden alır?",
+   "Macellan Boğazı",
+   [
+    "Drake Geçidi",
+    "Cook Boğazı",
+    "Bass Boğazı"
+   ],
+   "Macellan, ilk dünya turu sırasında 1520'de bu boğazı geçti."
+  ],
+  "101": [
+   "Kuzey Atlantik'teki hangi deniz, hiç kıyısı olmayan tek denizdir?",
+   "Sargasso Denizi",
+   [
+    "Karayip Denizi",
+    "Labrador Denizi",
+    "Irminger Denizi"
+   ],
+   "Avrupa yılan balıkları üremek için buraya gelir."
+  ],
+  "102": [
+   "Fransa'yı İspanya'dan hangi sıradağlar ayırır?",
+   "Pireneler",
+   [
+    "Vogezler",
+    "Jura Dağları",
+    "Masif Santral"
+   ],
+   "Küçük Andorra Prensliği, Pirenelerin tam ortasında yer alır."
+  ],
+  "103": [
+   "İsviçre'deki Matterhorn Dağı hangi sıradağlardadır?",
+   "Alpler",
+   [
+    "Karpatlar",
+    "Apeninler",
+    "Rocky Dağları"
+   ],
+   "Matterhorn neredeyse kusursuz bir piramit biçimindedir."
+  ],
+  "104": [
+   "Hindistan ve Nepal'in kuzeyinde uzanan, dünyanın en yüksek sıradağları hangisidir?",
+   "Himalayalar",
+   [
+    "Karakurum",
+    "Hindukuş",
+    "Tanrı Dağları"
+   ],
+   "Himalaya, Sanskritçede «karların yurdu» anlamına gelir."
+  ],
+  "105": [
+   "Her yanı suyla çevrili kara parçasına ne denir?",
+   "Ada",
+   [
+    "Yarımada",
+    "Körfez",
+    "Burun"
+   ],
+   "Yarımada ise bir yanıyla karaya bağlı kalır."
+  ],
+  "106": [
+   "Londra'nın içinden hangi nehir geçer?",
+   "Thames",
+   [
+    "Severn",
+    "Clyde",
+    "Mersey"
+   ],
+   "Ünlü Tower Köprüsü, Thames Nehri'nin üzerindedir."
+  ],
+  "107": [
+   "Kanada ile ABD sınırındaki büyük şelale hangisidir?",
+   "Niagara Şelalesi",
+   [
+    "Iguazu Şelaleleri",
+    "Angel Şelalesi",
+    "Yosemite Şelalesi"
+   ],
+   "Erie ve Ontario gölleri arasındaki Niagara Nehri üzerindedir."
+  ],
+  "108": [
+   "Moğolistan'ın güneyini ve Çin'in kuzeyini kaplayan büyük çöl hangisidir?",
+   "Gobi",
+   [
+    "Kalahari",
+    "Taklamakan",
+    "Thar"
+   ],
+   "1920'lerde burada fosilleşmiş dinozor yumurtaları bulundu."
+  ],
+  "109": [
+   "Viyana, Budapeşte ve Belgrad'ın içinden hangi nehir geçer?",
+   "Tuna",
+   [
+    "Ren",
+    "Elbe",
+    "Dinyeper"
+   ],
+   "Tuna Nehri 10 ülkenin içinden ya da sınırından geçer."
+  ],
+  "110": [
+   "Hindistan'ın hangi kutsal nehri Varanasi (Benares) şehrinden geçer?",
+   "Ganj",
+   [
+    "İndus",
+    "Brahmaputra",
+    "Mekong"
+   ],
+   "Hindu geleneğinde Ganj, Ganga adlı bir tanrıça olarak kutsanır."
+  ],
+  "111": [
+   "Fas, Cezayir ve Tunus boyunca hangi sıradağlar uzanır?",
+   "Atlas Dağları",
+   [
+    "Hoggar Dağları",
+    "Zagros Dağları",
+    "Toros Dağları"
+   ],
+   "Fas'taki Tubkal, Atlas Dağları'nın en yüksek zirvesidir."
+  ],
+  "112": [
+   "Rusya'da Avrupa ile Asya arasındaki geleneksel sınırı hangi sıradağlar çizer?",
+   "Ural Dağları",
+   [
+    "Kafkas Dağları",
+    "Altay Dağları",
+    "Karpatlar"
+   ],
+   "Ural Dağları kuzeyden güneye yaklaşık 2500 km uzanır."
+  ],
+  "113": [
+   "ABD'nin hangi büyük nehri New Orleans'tan geçer?",
+   "Mississippi",
+   [
+    "Colorado",
+    "Hudson",
+    "Rio Grande"
+   ],
+   "Adı bir Kızılderili dilinden gelir ve «büyük nehir» anlamına gelir."
+  ],
+  "114": [
+   "Bağdat'ın içinden hangi nehir geçer?",
+   "Dicle",
+   [
+    "Fırat",
+    "Şeria",
+    "Asi"
+   ],
+   "Dicle ve Fırat, yazının beşiği Mezopotamya'yı çevreler."
+  ],
+  "115": [
+   "Victoria Şelalesi, Güney Afrika bölgesindeki hangi nehrin üzerindedir?",
+   "Zambezi",
+   [
+    "Limpopo",
+    "Kongo",
+    "Orange"
+   ],
+   "Yerel halk ona «gürleyen duman» anlamına gelen Mosi-oa-Tunya der."
+  ],
+  "116": [
+   "Arap Yarımadası'nın güneyini kaplayan uçsuz bucaksız kum çölü hangisidir?",
+   "Rub'ül Hali",
+   [
+    "Nefud",
+    "Deşt-i Kevir",
+    "Thar"
+   ],
+   "Adı Arapçada «boş çeyrek» anlamına gelir."
+  ],
+  "117": [
+   "Batı Afrika'nın hangi nehri Bamako ve Niamey'den geçer?",
+   "Nijer",
+   [
+    "Senegal",
+    "Kongo",
+    "Volta"
+   ],
+   "Atlas Okyanusu'na 300 km'den daha yakın bir yerde, Gine'de doğar."
+  ],
+  "118": [
+   "Dev pandalar doğada hangi ülkede yaşar?",
+   "Çin",
+   [
+    "Hindistan",
+    "Tayland",
+    "Nepal"
+   ],
+   "Dev panda neredeyse yalnızca bambuyla beslenir."
+  ],
+  "119": [
+   "«Kırmızı şehir» diye anılan Marakeş hangi ülkededir?",
+   "Fas",
+   [
+    "Tunus",
+    "Cezayir",
+    "Mısır"
+   ],
+   "Büyük meydanı Cemaa el-Fna, UNESCO Somut Olmayan Kültürel Miras listesindedir."
+  ],
+  "120": [
+   "Antik Olimpiyat Oyunları'nın doğduğu ülke hangisidir?",
+   "Yunanistan",
+   [
+    "İtalya",
+    "Mısır",
+    "Kıbrıs"
+   ],
+   "Antik oyunlar, Zeus onuruna Olimpia'da düzenlenirdi."
+  ],
+  "121": [
+   "Ulusal sembolü yonca olan Avrupa ülkesi hangisidir?",
+   "İrlanda",
+   [
+    "İskoçya",
+    "Danimarka",
+    "Norveç"
+   ],
+   "Yonca, İrlanda'nın koruyucu azizi Aziz Patrick ile özdeşleşmiştir."
+  ],
+  "122": [
+   "Dünyanın en küçük ülkesi hangisidir?",
+   "Vatikan",
+   [
+    "Monako",
+    "Malta",
+    "Nauru"
+   ],
+   "Vatikan'ın yüzölçümü yarım kilometrekareden azdır."
+  ],
+  "123": [
+   "Tango ve gaucho'larıyla ünlü Güney Amerika ülkesi hangisidir?",
+   "Arjantin",
+   [
+    "Şili",
+    "Paraguay",
+    "Kolombiya"
+   ],
+   "Tango, 19. yüzyılın sonunda Río de la Plata bölgesinde doğdu."
+  ],
+  "124": [
+   "Yanardağları, buzulları ve gayzerleriyle ünlü Kuzey Avrupa ülkesi hangisidir?",
+   "İzlanda",
+   [
+    "Norveç",
+    "Finlandiya",
+    "İskoçya"
+   ],
+   "«Gayzer» kelimesi, Geysir adlı bir İzlanda kaynağının adından gelir."
+  ],
+  "125": [
+   "Haiti, Hispanyola Adası'nı hangi ülkeyle paylaşır?",
+   "Dominik Cumhuriyeti",
+   [
+    "Küba",
+    "Jamaika",
+    "Porto Riko"
+   ],
+   "Kristof Kolomb bu adaya 1492'de ayak bastı."
+  ],
+  "126": [
+   "Cava, Sumatra ve Bali dahil binlerce adadan oluşan Asya ülkesi hangisidir?",
+   "Endonezya",
+   [
+    "Filipinler",
+    "Malezya",
+    "Tayland"
+   ],
+   "Dünyanın en büyük takımadasıdır."
+  ],
+  "127": [
+   "Romanşça dahil 4 ulusal dili olan Avrupa ülkesi hangisidir?",
+   "İsviçre",
+   [
+    "Belçika",
+    "Avusturya",
+    "Lüksemburg"
+   ],
+   "Romanşça, Graubünden kantonunda konuşulur."
+  ],
+  "128": [
+   "Serengeti Milli Parkı hangi Doğu Afrika ülkesindedir?",
+   "Tanzanya",
+   [
+    "Kenya",
+    "Uganda",
+    "Ruanda"
+   ],
+   "Serengeti, gnuların büyük göçüyle ünlüdür."
+  ],
+  "129": [
+   "Danimarka, Polonya ve Fransa dahil 9 komşusu olan Avrupa ülkesi hangisidir?",
+   "Almanya",
+   [
+    "Avusturya",
+    "İsviçre",
+    "Belçika"
+   ],
+   "Komşuları arasında Belçika, Hollanda ve Lüksemburg da vardır."
+  ],
+  "130": [
+   "İsviçre ile Avusturya arasına sıkışmış küçük Alp ülkesi hangisidir?",
+   "Lihtenştayn",
+   [
+    "Andorra",
+    "Monako",
+    "Lüksemburg"
+   ],
+   "Başkenti Vaduz'dur."
+  ],
+  "131": [
+   "Rimini yakınlarında, her yanı İtalya ile çevrili küçük ülke hangisidir?",
+   "San Marino",
+   [
+    "Monako",
+    "Andorra",
+    "Malta"
+   ],
+   "San Marino, çoğu zaman dünyanın hâlâ var olan en eski cumhuriyeti olarak anılır."
+  ],
+  "132": [
+   "1000'den fazla mercan adasından oluşan, başkenti Male olan Hint Okyanusu ülkesi hangisidir?",
+   "Maldivler",
+   [
+    "Seyşeller",
+    "Mauritius",
+    "Komorlar"
+   ],
+   "Dünyanın en düz ülkelerinden biridir."
+  ],
+  "133": [
+   "Hangi Güney Afrika ülkesi, adını kıyısı boyunca uzanan bir çölden alır?",
+   "Namibya",
+   [
+    "Botsvana",
+    "Angola",
+    "Zambiya"
+   ],
+   "Namib, dünyanın en eski çöllerinden biri sayılır."
+  ],
+  "134": [
+   "Dev Kurtarıcı İsa heykeli hangi şehirdedir?",
+   "Rio de Janeiro",
+   [
+    "São Paulo",
+    "Buenos Aires",
+    "Salvador"
+   ],
+   "Heykel, Corcovado Dağı'nın tepesinden şehre bakar."
+  ],
+  "135": [
+   "Eğik kulesiyle ünlü İtalyan şehri hangisidir?",
+   "Pisa",
+   [
+    "Floransa",
+    "Verona",
+    "Napoli"
+   ],
+   "Kule, 12. yüzyılda daha inşa edilirken eğilmeye başladı."
+  ],
+  "136": [
+   "Mescid-i Nebevi (Peygamber Mescidi) hangi şehirdedir?",
+   "Medine",
+   [
+    "Mekke",
+    "Cidde",
+    "Taif"
+   ],
+   "Medine'nin eski adı Yesrib'dir."
+  ],
+  "137": [
+   "Golden Gate Köprüsü hangi şehirdedir?",
+   "San Francisco",
+   [
+    "Seattle",
+    "San Diego",
+    "Chicago"
+   ],
+   "Köprü, «uluslararası turuncu» denen bir renge boyanmıştır."
+  ],
+  "138": [
+   "Sinemasıyla ünlü Hollywood semti hangi şehirdedir?",
+   "Los Angeles",
+   [
+    "New York",
+    "Chicago",
+    "Miami"
+   ],
+   "Dev HOLLYWOOD harfleri şehre bakan bir tepede durur."
+  ],
+  "139": [
+   "Dev gökdelen Burj Khalifa hangi şehirdedir?",
+   "Dubai",
+   [
+    "Doha",
+    "Abu Dabi",
+    "Maskat"
+   ],
+   "Burj Khalifa 2010'da açıldı."
+  ],
+  "140": [
+   "Gaudí'nin tasarladığı Sagrada Família Bazilikası hangi şehirdedir?",
+   "Barselona",
+   [
+    "Madrid",
+    "Sevilla",
+    "Valensiya"
+   ],
+   "İnşaatına 1882'de başlandı."
+  ],
+  "141": [
+   "Çin imparatorlarının eski sarayı Yasak Şehir hangi şehirdedir?",
+   "Pekin",
+   [
+    "Şanghay",
+    "Şian",
+    "Nankin"
+   ],
+   "Yasak Şehir, hendekler ve yüksek kırmızı surlarla çevrilidir."
+  ],
+  "142": [
+   "Pembe kayalara oyulmuş antik şehir Petra hangi ülkededir?",
+   "Ürdün",
+   [
+    "Suriye",
+    "Lübnan",
+    "Suudi Arabistan"
+   ],
+   "Petra, Nebatîlerin başkentiydi."
+  ],
+  "143": [
+   "Elmas ticaretiyle dünyaca ünlü Belçika şehri hangisidir?",
+   "Anvers",
+   [
+    "Gent",
+    "Liège",
+    "Brugge"
+   ],
+   "Ressam Rubens, Anvers'te yaşadı ve çalıştı."
+  ],
+  "144": [
+   "Uluslararası Adalet Divanı Hollanda'nın hangi şehrindedir?",
+   "Lahey",
+   [
+    "Rotterdam",
+    "Utrecht",
+    "Eindhoven"
+   ],
+   "Divan, Barış Sarayı'nda toplanır."
+  ],
+  "145": [
+   "Petronas İkiz Kuleleri hangi şehirdedir?",
+   "Kuala Lumpur",
+   [
+    "Singapur",
+    "Cakarta",
+    "Manila"
+   ],
+   "Kuala Lumpur, Malezya'nın başkentidir."
+  ],
+  "146": [
+   "Emevi Camii hangi şehirdedir?",
+   "Şam",
+   [
+    "Bağdat",
+    "Kahire",
+    "Beyrut"
+   ],
+   "8. yüzyılın başında inşa edildi ve en eski büyük camiler arasında yer alır."
+  ],
+  "147": [
+   "Ukbe bin Nafi Camii hangi Tunus şehrindedir?",
+   "Kayrevan",
+   [
+    "Sus",
+    "Sfaks",
+    "Monastir"
+   ],
+   "Kayrevan, 670 civarında Ukbe bin Nafi tarafından kuruldu."
+  ],
+  "148": [
+   "Ünlü Registan Meydanı hangi Özbekistan şehrindedir?",
+   "Semerkant",
+   [
+    "Buhara",
+    "Hive",
+    "Termez"
+   ],
+   "Semerkant, Timur İmparatorluğu'nun başkentiydi."
+  ],
+  "149": [
+   "Persepolis kalıntıları hangi ülkededir?",
+   "İran",
+   [
+    "Irak",
+    "Suriye",
+    "Afganistan"
+   ],
+   "Persepolis, Ahameniş Pers İmparatorluğu'nun başkentlerinden biriydi."
   ]
  }
 }
