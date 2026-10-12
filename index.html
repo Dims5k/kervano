@@ -1803,19 +1803,35 @@ let game = store.get("game3", null), busy = false;
 function save() { store.set("setup3", setup); if (game) store.set("game3", game); else store.del("game3"); netState(); }
 const root = $("#root");
 function levelRange(level, final) { if (final) return { facile: [1, 2], normal: [2, 3], expert: [3, 3] }[level]; return { facile: [1, 1], normal: [1, 2], expert: [2, 3] }[level]; }
+/* Tirage « tour complet » : dans une catégorie, aucune question ne revient tant que toutes les autres n'ont pas été posées
+   (mémorisé sur l'appareil, d'une partie à l'autre). On garde le niveau du joueur tant qu'il reste des questions neuves à ce niveau,
+   puis on passe au niveau le plus proche ; quand tout a été vu, un nouveau tour commence pour cette catégorie. */
 function draw(cat, level, final) {
-  const [lo, hi] = levelRange(level, final); const seen = new Set(store.get("seen", [])), used = new Set(game.used);
-  /* deux thèmes peuvent contenir la même question (ex. les pyramides en histoire et en géographie) : on ne la pose qu'une fois par partie */
-  const nk = q => q.q.toLowerCase().replace(/[^a-zà-ÿ0-9]/g, ""), usedTxt = new Set(game.used.map(id => Q[id] && nk(Q[id])));
-  Q.forEach(q => { if (q && usedTxt.has(nk(q))) used.add(q.id); });
-  let pool = Q.filter(q => inCat(q, cat) && q.d >= lo && q.d <= hi && !used.has(q.id));
-  if (!pool.length) pool = Q.filter(q => inCat(q, cat) && !used.has(q.id)); if (!pool.length) pool = Q.filter(q => inCat(q, cat));
-  if (!pool.length) pool = Q.filter(q => q && q.th === "islam");
-  const fresh = pool.filter(q => !seen.has(q.id)); let q;
-  if (fresh.length) q = shuffle(fresh)[0];
-  else { const order = [...seen]; pool = pool.slice().sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id)); q = shuffle(pool.slice(0, Math.max(1, Math.ceil(pool.length / 3))))[0]; }
-  game.used.push(q.id); seen.delete(q.id); seen.add(q.id); /* l'ordre de « seen » = de la plus ancienne à la plus récente */
-  store.set("seen", [...seen]); return q.id;
+  const [lo, hi] = levelRange(level, final);
+  const nk = s => String(s || "").toLowerCase().replace(/[^a-zà-ÿ0-9]/g, "");
+  const seen = store.get("seen", []).filter(id => Q[id]);
+  /* deux thèmes peuvent contenir la même question (ex. les pyramides en histoire et en géographie) : même texte = même question */
+  const usedIds = new Set(game.used), usedTxt = new Set(), usedAns = new Set();
+  game.used.forEach(id => { const u = Q[id]; if (u) { usedTxt.add(nk(u.q)); usedAns.add(u.th + "|" + nk(u.a)); } });
+  let all = Q.filter(q => inCat(q, cat)); if (!all.length) all = Q.filter(q => q && q.th === "islam");
+  const notUsed = all.filter(q => !usedIds.has(q.id) && !usedTxt.has(nk(q.q)));
+  const cand = notUsed.length ? notUsed : all;
+  const isSeen = list => { const ids = new Set(list), txt = new Set(list.map(id => nk(Q[id].q))); return q => ids.has(q.id) || txt.has(nk(q.q)); };
+  let seenFn = isSeen(seen), fresh = cand.filter(q => !seenFn(q));
+  if (!fresh.length) {
+    /* tour terminé pour cette catégorie : on efface ses questions de la mémoire et on repart (sauf celles déjà posées dans cette partie) */
+    const catTxt = new Set(all.map(q => nk(q.q)));
+    const keep = seen.filter(id => !catTxt.has(nk(Q[id].q)));
+    seen.length = 0; seen.push(...keep); fresh = cand.slice();
+  }
+  /* priorité : bon niveau d'abord, puis une réponse pas encore sortie dans la partie (évite « Ibrâhîm » trois fois de suite) */
+  const dist = q => q.d < lo ? lo - q.d : q.d > hi ? q.d - hi : 0;
+  const score = q => dist(q) * 2 + (usedAns.has(q.th + "|" + nk(q.a)) ? 1 : 0);
+  const best = Math.min(...fresh.map(score));
+  const q = shuffle(fresh.filter(x => score(x) === best))[0];
+  game.used.push(q.id);
+  const i = seen.indexOf(q.id); if (i >= 0) seen.splice(i, 1); seen.push(q.id);
+  store.set("seen", seen); return q.id;
 }
 
 /* ============ accueil ============ */
