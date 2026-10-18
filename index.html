@@ -908,7 +908,7 @@ const SPEC = {
   short: { name: "Raccourci", icon: "i-short" },
   trap: { name: "Sables mouvants", icon: "i-trap" },
 };
-const PCOL = ["#1FA37A", "#E0533F", "#3D7FD6", "#F2B441", "#9B6AE0", "#EE7FB0"];
+const PCOL = ["#1FA37A", "#E0533F", "#3D7FD6", "#F2B441", "#9B6AE0", "#EE7FB0", "#2BB5C9", "#8C5A2B"];
 const MODES = { duo: { name: "Duo", sub: "2 réponses", color: "var(--duo)" }, carre: { name: "Carré", sub: "4 réponses", color: "var(--carre)", ink: "#2A1A05" }, cash: { name: "Cash", sub: "sans aide", color: "var(--cash)" } };
 const steps = (mode, d) => mode === "cash" ? d + 3 : mode === "carre" ? d : Math.ceil(d / 2);
 const Q = QDATA.map((r, i) => ({ id: i, cat: r[0], d: r[1], q: r[2], a: r[3], w: r[4], note: r[5] || "", th: "islam" }));
@@ -1698,7 +1698,7 @@ async function netStart() {
   const pl = lobbyPlayers(), m = NET.lobby.meta; if (pl.length < 2) return;
   const themes = await ensurePacks(arr(m.themes).length ? arr(m.themes) : setup.themes);
   const fth = okFinal(m.finalTh != null ? m.finalTh : setup.finalTh); if (fth) await ensurePacks([fth]);
-  const g = newGame(m.size || 36, pl.slice(0, 6).map(([, p]) => ({ name: p.name, level: p.level || "normal" })), themes, fth);
+  const g = newGame(m.size || 36, pl.slice(0, 8).map(([, p]) => ({ name: p.name, level: p.level || "normal" })), themes, fth);
   g.players.forEach((p, i) => p.uid = pl[i][0]); g.timer = !!m.timer; g.turn = 0;
   await db("PUT", `rooms/${NET.code}/state`, g); await db("PATCH", `rooms/${NET.code}/meta`, { status: "playing" });
 }
@@ -1736,7 +1736,7 @@ function renderJoin(code) {
     try {
       await fbAuth(); const meta = await db("GET", `rooms/${code}/meta`); if (!meta) throw new Error(t("Cette partie n'existe pas ou est terminée."));
       const players = (await db("GET", `rooms/${code}/players`)) || {};
-      if (!players[NET.uid]) { if (meta.status !== "lobby") throw new Error(t("La partie a déjà commencé.")); if (Object.keys(players).length >= 6) throw new Error(t("La partie est complète (6 joueurs).")); await db("PUT", `rooms/${code}/players/${NET.uid}`, { name, level, t: { ".sv": "timestamp" } }); }
+      if (!players[NET.uid]) { if (meta.status !== "lobby") throw new Error(t("La partie a déjà commencé.")); if (Object.keys(players).length >= 8) throw new Error(t("La partie est complète (8 joueurs).")); await db("PUT", `rooms/${code}/players/${NET.uid}`, { name, level, t: { ".sv": "timestamp" } }); }
       NET.code = code; store.set("net", { code }); history.replaceState(null, "", location.pathname);
       if (meta.status === "playing") enterGame(); else openLobby();
     } catch (e) { btn.disabled = false; btn.textContent = t("Rejoindre"); err.textContent = /^db|^auth|fetch/i.test(e.message) ? t("Connexion impossible, vérifie ta connexion internet.") : e.message; }
@@ -1887,9 +1887,9 @@ function renderSetup() {
       <div class="rule" style="background:var(--cash)"><b>${t("Cash")}</b><span>${t("sans aide")}<br>${t("dé + 3 cases")}</span></div>
     </div>
     <section class="panel">
-      <p class="lab2">${t("Les caravanes (2 à 6 joueurs ou équipes)")}</p>
+      <p class="lab2">${t("Les caravanes (2 à 8 joueurs ou équipes)")}</p>
       ${setup.players.map((p, i) => `<div class="prow">${av(i)}<input id="pn${i}" value="${esc(p.name)}" maxlength="16" aria-label="${t("Nom {n}", { n: i + 1 })}"><select id="pl${i}" aria-label="${t("Niveau")}"><option value="facile" ${p.level === "facile" ? "selected" : ""}>${t("Facile")}</option><option value="normal" ${p.level === "normal" ? "selected" : ""}>${t("Normal")}</option><option value="expert" ${p.level === "expert" ? "selected" : ""}>${t("Expert")}</option></select>${setup.players.length > 2 ? `<button class="x" data-rm="${i}" aria-label="${t("Retirer")}">×</button>` : "<span></span>"}</div>`).join("")}
-      ${setup.players.length < 6 ? `<button class="addbtn" id="add">${t("+ Ajouter une caravane")}</button>` : ""}
+      ${setup.players.length < 8 ? `<button class="addbtn" id="add">${t("+ Ajouter une caravane")}</button>` : ""}
       <p class="hint">${t("Le niveau règle la difficulté des questions de chaque joueur : facile pour les enfants, expert pour les plus calés.")}</p>
     </section>
     <section class="panel">
@@ -2346,7 +2346,7 @@ async function boot() {
   try { const g0 = store.get("game3", null); await ensurePacks([...okThemes(setup && setup.themes), ...(okFinal(setup && setup.finalTh) ? [setup.finalTh] : []), ...(g0 && Array.isArray(g0.themes) ? g0.themes : []), ...(g0 && okFinal(g0.finalTh) ? [g0.finalTh] : [])]); } catch (e) { console.warn(e); }
   try { if ("serviceWorker" in navigator && (location.protocol === "https:" || /^(localhost|127\.)/.test(location.hostname))) navigator.serviceWorker.register("sw.js").catch(() => {}); } catch (e) {}
   try {
-    if (setup && Array.isArray(setup.players)) setup.players = setup.players.slice(0, 6); else setup = { players: [{ name: t("Joueur {n}", { n: 1 }), level: "normal" }, { name: t("Joueur {n}", { n: 2 }), level: "normal" }], size: 36, timer: false, read: true, view3d: true };
+    if (setup && Array.isArray(setup.players)) setup.players = setup.players.slice(0, 8); else setup = { players: [{ name: t("Joueur {n}", { n: 1 }), level: "normal" }, { name: t("Joueur {n}", { n: 2 }), level: "normal" }], size: 36, timer: false, read: true, view3d: true };
     if (setup.view3d == null) setup.view3d = true;
     setup.themes = okThemes(setup.themes);
     if (fbOk() && (store.get("net", null) || /join=/i.test(location.hash))) { game = null; renderSetup(); netResume().then(ok => { if (!ok && !NET.code) renderSetup(); }); return; }
