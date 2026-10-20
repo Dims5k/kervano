@@ -293,7 +293,8 @@ body.tv .sheet.open .card{transform:none}
 body.tv .toast,body.tv .win .box,body.tv .cardfx .flip{zoom:var(--tvz)}
 body.tv .win .box{max-height:calc(94vh / var(--tvz))}
 body.tv.spectate #dock button,body.tv.spectate #card button,body.tv.spectate #cardfx button{filter:none;opacity:1}
-body.tv #say,body.tv #rep,body.tv #repz,body.tv .typed,body.tv #zone .row,body.tv #mi,body.tv #cont,body.tv #flip,body.tv #cok,body.tv #share{display:none!important}
+body.tv #rep,body.tv #repz,body.tv #share,body.tv.spectate #say,body.tv.spectate .typed,body.tv.spectate #zone .row,body.tv.spectate #mi,body.tv.spectate #cont,body.tv.spectate #flip,body.tv.spectate #cok{display:none!important}
+.tvpl b{font-weight:600;opacity:.7;font-size:.75em}
 body.tv .tvwait{display:block;font-weight:800;font-size:16px;color:var(--muted);text-align:center;margin:0;animation:breathe 1.6s ease-in-out infinite}
 @keyframes breathe{50%{opacity:.45}}
 /* téléphones-manettes */
@@ -1676,8 +1677,9 @@ function netState() { if (!(NET.on && NET.ctrl && !NET.applying && game)) return
 { const SFX0 = { ...SFX }; Object.keys(SFX0).forEach(k => { SFX[k] = (...a) => { if (k !== "step" && !NET.mute) netFx("sfx", { n: k, a }); if (isPad()) return; return SFX0[k](...a); }; }); }
 function netUI() { const b = document.body.classList; b.toggle("spectate", NET.on && !NET.ctrl); b.toggle("online", NET.on); b.toggle("tv", isTV()); b.toggle("pad", isPad()); if (isTV() || isPad()) wakeOn(); }
 /* ---------- Mode Salon : la TV est un écran de la salle (pas un joueur), chaque téléphone est une manette ---------- */
-function isTV() { return !!(NET.on && game && game.salon && myIdx() < 0); }
-function isPad() { return !!(NET.on && game && game.salon && myIdx() >= 0); }
+/* l'écran de la TV peut aussi être un joueur (p.tv) : il garde la vue TV et joue directement à l'écran */
+function isTV() { if (!(NET.on && game && game.salon)) return false; const me = myIdx(); return me < 0 || !!game.players[me].tv; }
+function isPad() { return !!(NET.on && game && game.salon && myIdx() >= 0 && !isTV()); }
 function tvFit() { const z = Math.max(.6, Math.min(2.6, innerHeight / 600, innerWidth / 1000)); document.documentElement.style.setProperty("--tvz", z.toFixed(3)); }
 addEventListener("resize", tvFit); tvFit();
 /* garder l'écran allumé pendant la partie (TV et manettes) */
@@ -1702,7 +1704,7 @@ function renderTVLobby() {
   w3dHide(); document.body.classList.remove("ingame"); document.body.classList.add("tvl"); wakeOn();
   const m = NET.lobby.meta || {}, pl = lobbyPlayers(), site = (location.host + location.pathname).replace(/\/(index\.html)?$/, "");
   const fsOk = !!(document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen);
-  const sig = JSON.stringify([LANG, NET.code, pl.map(([u, p]) => [u, p.name]), arr(m.themes)]);
+  const meIn = pl.some(([u]) => u === NET.uid), sig = JSON.stringify([LANG, NET.code, pl.map(([u, p]) => [u, p.name]), arr(m.themes)]);
   if (root.dataset.tvl === sig && $("#tvqr")) return; root.dataset.tvl = sig;
   root.innerHTML = `<div class="tvlobby">
     <div class="tvl-left"><img class="logo" src="icon-512.png" alt="" width="120" height="120"><h1>${t("Mode Salon")}</h1>
@@ -1711,11 +1713,20 @@ function renderTVLobby() {
       <p>${esc(t("Ou ouvre {u} et touche « Rejoindre avec un code ».", { u: site }))}</p>
       <div class="netcode" dir="ltr">${esc(NET.code)}</div></div>
     <div class="tvl-right"><section class="panel"><p class="lab2">${t("Joueurs ({n}/8)", { n: pl.length })}</p>
-      <div class="tvpl">${pl.map(([, p], i) => `<div>${av(i)}<span dir="auto">${esc(p.name)}</span></div>`).join("") || `<p class="hint">${t("Personne pour l'instant…")}</p>`}</div>
+      <div class="tvpl">${pl.map(([u, p], i) => `<div>${av(i)}<span dir="auto">${esc(p.name)}${u === NET.uid ? ` <b>${t("(cet écran)")}</b>` : ""}</span></div>`).join("") || `<p class="hint">${t("Personne pour l'instant…")}</p>`}</div>
       ${arr(m.themes).length ? `<p class="hint">${esc(t("Thèmes : {l}", { l: okThemes(arr(m.themes)).map(thName).join(LANG === "ar" ? "، " : ", ") }))}</p>` : ""}
       <p class="hint">${pl.length < 2 ? t("Il faut au moins 2 joueurs pour commencer.") : t("Tout le monde est là ? Lance la partie.")}</p></section>
       <button class="big w" id="go2" ${pl.length < 2 ? "disabled" : ""}>${t("Lancer la partie")}</button>
+      <div class="row"><button class="ghostbtn" id="tvme">${meIn ? t("Je ne joue plus") : t("Je joue aussi depuis cet écran")}</button></div>
+      ${meIn ? `<p class="hint">${t("Sur cet écran, tu réponds devant tout le monde et tu ne peux pas voler les réponses des autres.")}</p>` : ""}
       <div class="row">${fsOk ? `<button class="ghostbtn" id="fs">${t("Plein écran")}</button>` : ""}<button class="ghostbtn" id="leave">${t("Quitter")}</button></div></div></div>`;
+  $("#tvme").onclick = async () => {
+    const b = $("#tvme"); unlockAudio();
+    if (meIn) { b.disabled = true; try { await db("DELETE", `rooms/${NET.code}/players/${NET.uid}`); } catch (e) { b.disabled = false; } return; }
+    const name = (prompt(t("Ton prénom"), store.get("myname", "")) || "").trim().slice(0, 16); if (!name) return;
+    store.set("myname", name); b.disabled = true;
+    try { await db("PUT", `rooms/${NET.code}/players/${NET.uid}`, { name, level: "normal", tv: true, t: { ".sv": "timestamp" } }); } catch (e) { b.disabled = false; }
+  };
   loadQR().then(qr => { const box = $("#tvqr"); if (!box) return; const q = qr(0, "M"); q.addData(joinLink()); q.make(); box.innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); }).catch(() => { const box = $("#tvqr"); if (box) box.style.display = "none"; });
   const fs = $("#fs"); if (fs) fs.onclick = () => { const d = document.documentElement; try { (d.requestFullscreen || d.webkitRequestFullscreen).call(d); } catch (e) {} };
   $("#leave").onclick = netLeave;
@@ -1818,7 +1829,7 @@ async function netStart() {
   const themes = await ensurePacks(arr(m.themes).length ? arr(m.themes) : setup.themes);
   const fth = okFinal(m.finalTh != null ? m.finalTh : setup.finalTh); if (fth) await ensurePacks([fth]);
   const g = newGame(m.size || 36, pl.slice(0, 8).map(([, p]) => ({ name: p.name, level: p.level || "normal" })), themes, fth);
-  g.players.forEach((p, i) => p.uid = pl[i][0]); g.timer = !!m.timer; g.turn = 0;
+  g.players.forEach((p, i) => { p.uid = pl[i][0]; if (pl[i][1].tv) p.tv = true; }); g.timer = !!m.timer; g.turn = 0;
   if (m.salon) { g.salon = true; g.read = m.read !== false; }
   await db("PUT", `rooms/${NET.code}/state`, g); await db("PATCH", `rooms/${NET.code}/meta`, { status: "playing" });
 }
@@ -2204,7 +2215,7 @@ function stealIn(e) {
 }
 /* chez les autres : ils choisissent parmi les propositions restantes (une seule tentative) */
 function stealGuest(zone, q, excl) {
-  const me = myIdx(); if (me < 0 || me === game.cur) return false;
+  const me = myIdx(); if (me < 0 || me === game.cur || isTV()) return false;
   const key = qKey(), opts = [q.a, ...q.w], p = game.players[game.cur];
   const ks = shuffle([0, 1, 2, 3].filter(k => !excl.includes(k)));
   if (!excl.length) zone.innerHTML = ""; else { const old = zone.querySelector(".choices"); if (old) old.remove(); }
@@ -2250,7 +2261,7 @@ function reportBox(z, id) {
   };
 }
 /* sur la TV : on rappelle qui doit répondre (sans argument : on retire le message) */
-function tvWait(zone, key, p) { const old = zone.querySelector(".tvwait"); if (old) old.remove(); if (key && isTV()) zone.insertAdjacentHTML("afterbegin", `<p class="tvwait" dir="auto">${esc(t(key, { n: p.name }))}</p>`); }
+function tvWait(zone, key, p) { const old = zone.querySelector(".tvwait"); if (old) old.remove(); if (key && isTV() && !NET.ctrl) zone.insertAdjacentHTML("afterbegin", `<p class="tvwait" dir="auto">${esc(t(key, { n: p.name }))}</p>`); }
 function renderQuestion() {
   clearInterval(tmr);
   const p = game.players[game.cur], g = game.q, q = QT(g.id), c = CATS[g.cat], n = game.cells.length, live = NET.ctrl;
