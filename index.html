@@ -252,6 +252,59 @@ body.spectate #card .repbox textarea{pointer-events:auto}
 .rank .av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;flex:none}
 .rank .av svg{width:22px;height:18px}
 @media (max-width:400px){.rules span{font-size:11.5px}}
+/* ===== Mode Salon : la TV affiche le plateau (body.tv), les téléphones servent de manettes (body.pad) ===== */
+:root{--tvz:1}
+.tvwait,.padhome{display:none}
+/* salle d'attente sur la TV, en paysage */
+body.tvl{overflow:hidden;padding:0}
+body.tvl .wrap{max-width:none;padding:0;height:100dvh}
+.tvlobby{height:100dvh;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:4vmin;align-items:center;padding:4vmin 5vmin;font-size:2.6vmin}
+.tvl-left{display:grid;justify-items:center;text-align:center;gap:1.6vmin}
+.tvl-left .logo{width:13vmin;height:13vmin;border-radius:3vmin;box-shadow:0 1vmin 3vmin rgba(0,0,0,.45)}
+.tvl-left h1{font-size:6vmin;color:var(--gold);text-shadow:0 .4vmin 0 #6B3F08}
+.tvl-left p{margin:0;opacity:.9;max-width:46ch}
+.tvqr{width:36vmin;height:36vmin;background:#fff;border-radius:2.4vmin;padding:1.4vmin;box-shadow:0 1.2vmin 4vmin rgba(0,0,0,.5);display:grid;place-items:center}
+.tvqr svg{width:100%;height:100%;display:block}
+.tvlobby .netcode{font-size:9vmin;margin:0}
+.tvl-right{display:grid;gap:2vmin;align-content:center}
+.tvl-right .panel{border-radius:3vmin;padding:3vmin;gap:1.6vmin}
+.tvl-right .lab2{font-size:2.2vmin}
+.tvpl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.4vmin}
+.tvpl div{display:flex;align-items:center;gap:1.4vmin;background:rgba(255,255,255,.08);border-radius:999px;padding:.8vmin 2vmin .8vmin .8vmin;font-weight:800;font-size:3vmin;min-width:0}
+.tvpl span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tvpl .av{width:5vmin;height:5vmin;border-radius:50%;display:grid;place-items:center;flex:none}
+.tvpl .av svg{width:3.8vmin;height:3vmin}
+.tvl-right .hint{font-size:2.4vmin}
+.tvl-right .big{font-size:3.4vmin;min-height:9vmin;border-radius:2.6vmin}
+.tvl-right .row{display:flex;gap:1.6vmin}.tvl-right .row .ghostbtn{color:var(--cream);border-color:rgba(255,255,255,.3);font-size:2.4vmin;min-height:7vmin}
+@media (orientation:portrait){.tvlobby{grid-template-columns:1fr;align-content:center;overflow:auto;font-size:2.2vmax}.tvqr{width:30vmax;height:30vmax}}
+/* partie sur la TV */
+body.tv{overflow:hidden}
+body.tv .wrap{max-width:none;padding-bottom:0}
+body.tv .top{zoom:var(--tvz);background:none;padding-inline:8px}
+body.tv #snd,body.tv #quit{opacity:.55}
+body.tv .scene{width:min(100%,calc((100dvh - 190px) * 360 / 580));margin:0 auto}
+body.tv .dock{left:0;right:auto;background:none;padding:0 0 calc(2vh + env(safe-area-inset-bottom,0px)) 2vw;justify-content:flex-start}
+body.tv .dock-in{zoom:var(--tvz);width:auto;max-width:420px;background:rgba(12,9,24,.8);border-radius:22px;padding:12px 18px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+body.tv .dock-in:empty{display:none}
+body.tv .sheet{left:auto;right:0;top:0;bottom:0;align-items:center;padding:2vh 2vw}
+body.tv .sheet .card{zoom:var(--tvz);width:min(560px,calc(46vw / var(--tvz)));max-height:calc(94vh / var(--tvz));border-radius:26px;transform:translateX(115%);box-shadow:0 20px 60px rgba(0,0,0,.55)}
+body.tv .sheet.open .card{transform:none}
+body.tv .toast,body.tv .win .box,body.tv .cardfx .flip{zoom:var(--tvz)}
+body.tv .win .box{max-height:calc(94vh / var(--tvz))}
+body.tv.spectate #dock button,body.tv.spectate #card button,body.tv.spectate #cardfx button{filter:none;opacity:1}
+body.tv #say,body.tv #rep,body.tv #repz,body.tv .typed,body.tv #zone .row,body.tv #mi,body.tv #cont,body.tv #flip,body.tv #cok,body.tv #share{display:none!important}
+body.tv .tvwait{display:block;font-weight:800;font-size:16px;color:var(--muted);text-align:center;margin:0;animation:breathe 1.6s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.45}}
+/* téléphones-manettes */
+body.pad .stage,body.pad #snd,body.pad #say{display:none}
+body.pad .padhome{display:grid;justify-items:center;text-align:center;gap:10px;padding:8vh 8px 200px}
+.padhome .tok{width:120px;height:120px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.07);border:3px solid var(--pc)}
+.padhome .tok svg{width:84px;height:84px}
+.padhome h2{font-size:34px;color:var(--pc)}
+.padhome .pos{font-weight:800;font-size:19px}
+.padhome .stat{font-family:var(--f-display);font-size:24px;color:var(--gold);margin:6px 0 0}
+.padhome .hint{max-width:30ch}
 </style>
 
 </head>
@@ -1151,7 +1204,7 @@ async function animateMove(pi, from, to) {
 const W3D = { ok: false, loading: null, vis: false, key: "", raf: 0, anim: null, marks: [], fp: null, busy: false };
 const K3 = .065; /* 1 px du plateau = 6,5 cm : une case fait ~2 m, un palmier 7 à 11 m */
 const EYE = 1.65;
-function w3dOn() { return !reduceMotion && setup.view3d !== false; }
+function w3dOn() { return !reduceMotion && setup.view3d !== false && !isPad(); }
 function w3dInit() {
   if (W3D.loading) return W3D.loading;
   W3D.loading = (async () => {
@@ -1163,7 +1216,7 @@ function w3dInit() {
       box.innerHTML = `<canvas></canvas><div class="w3sun"></div><div class="w3hud"><i></i><b></b><small></small></div>`;
       document.body.appendChild(box); W3D.box = box;
       const r = new T.WebGLRenderer({ canvas: box.querySelector("canvas"), antialias: true, powerPreference: "high-performance" });
-      r.setPixelRatio(Math.min(1.6, window.devicePixelRatio || 1));
+      r.setPixelRatio(Math.min(isTV() ? 1.25 : 1.6, window.devicePixelRatio || 1)); /* TV : moins de pixels, plus fluide */
       r.outputColorSpace = T.SRGBColorSpace; r.toneMapping = T.ACESFilmicToneMapping; r.toneMappingExposure = 1.05;
       r.shadowMap.enabled = true; r.shadowMap.type = T.PCFSoftShadowMap;
       W3D.r = r; W3D.cam = new T.PerspectiveCamera(66, 1, .08, 1400);
@@ -1620,8 +1673,65 @@ function netFx(t, o) { if (NET.on && NET.ctrl && !NET.applying) netSend({ t, ...
 let stTimer = 0;
 function netState() { if (!(NET.on && NET.ctrl && !NET.applying && game)) return; netSend({ t: "st", g: game }); clearTimeout(stTimer); const code = NET.code; stTimer = setTimeout(() => { if (game) { const g = game; netDo(() => db("PUT", `rooms/${code}/state`, g)); } }, 1200); }
 /* sons : le pilote les fait entendre chez tout le monde */
-{ const SFX0 = { ...SFX }; Object.keys(SFX0).forEach(k => { SFX[k] = (...a) => { if (k !== "step" && !NET.mute) netFx("sfx", { n: k, a }); return SFX0[k](...a); }; }); }
-function netUI() { document.body.classList.toggle("spectate", NET.on && !NET.ctrl); document.body.classList.toggle("online", NET.on); }
+{ const SFX0 = { ...SFX }; Object.keys(SFX0).forEach(k => { SFX[k] = (...a) => { if (k !== "step" && !NET.mute) netFx("sfx", { n: k, a }); if (isPad()) return; return SFX0[k](...a); }; }); }
+function netUI() { const b = document.body.classList; b.toggle("spectate", NET.on && !NET.ctrl); b.toggle("online", NET.on); b.toggle("tv", isTV()); b.toggle("pad", isPad()); if (isTV() || isPad()) wakeOn(); }
+/* ---------- Mode Salon : la TV est un écran de la salle (pas un joueur), chaque téléphone est une manette ---------- */
+function isTV() { return !!(NET.on && game && game.salon && myIdx() < 0); }
+function isPad() { return !!(NET.on && game && game.salon && myIdx() >= 0); }
+function tvFit() { const z = Math.max(.6, Math.min(2.6, innerHeight / 600, innerWidth / 1000)); document.documentElement.style.setProperty("--tvz", z.toFixed(3)); }
+addEventListener("resize", tvFit); tvFit();
+/* garder l'écran allumé pendant la partie (TV et manettes) */
+const WL = { s: null, want: false };
+async function wakeOn() { WL.want = true; try { if (!WL.s && navigator.wakeLock && document.visibilityState === "visible") { const s = await navigator.wakeLock.request("screen"); WL.s = s; s.addEventListener("release", () => { if (WL.s === s) WL.s = null; }); } } catch (e) {} }
+function wakeOff() { WL.want = false; try { if (WL.s) WL.s.release(); } catch (e) {} WL.s = null; }
+document.addEventListener("visibilitychange", () => { if (WL.want && document.visibilityState === "visible") wakeOn(); });
+/* débloque le son et la voix (les navigateurs exigent un geste) */
+function unlockAudio() { try { ac(); } catch (e) {} try { if (canSpeak && !muted) { const u = new SpeechSynthesisUtterance(" "); u.volume = 0; speechSynthesis.speak(u); } } catch (e) {} }
+let QRP = null;
+const loadQR = () => QRP || (QRP = new Promise((res, rej) => { if (window.qrcode) return res(window.qrcode); const s = document.createElement("script"); s.src = "qrcode.js"; s.onload = () => window.qrcode ? res(window.qrcode) : rej(new Error("qr")); s.onerror = () => { QRP = null; rej(new Error("qr")); }; document.head.appendChild(s); }));
+async function netCreateTV(btn) {
+  unlockAudio(); btn.disabled = true; btn.textContent = t("Création de la partie…");
+  try {
+    await fbAuth(); const code = genCode();
+    await db("PUT", `rooms/${code}`, { meta: { host: NET.uid, status: "lobby", salon: true, size: setup.size, timer: !!setup.timer, read: setup.read !== false, themes: okThemes(setup.themes), finalTh: okFinal(setup.finalTh), t: { ".sv": "timestamp" } } });
+    NET.code = code; store.set("net", { code }); openLobby(); window.scrollTo(0, 0);
+  } catch (e) { console.warn(e); btn.disabled = false; btn.textContent = t("Connexion impossible, réessaie"); }
+}
+const joinLink = () => location.origin + location.pathname + "#join=" + NET.code;
+function renderTVLobby() {
+  w3dHide(); document.body.classList.remove("ingame"); document.body.classList.add("tvl"); wakeOn();
+  const m = NET.lobby.meta || {}, pl = lobbyPlayers(), site = (location.host + location.pathname).replace(/\/(index\.html)?$/, "");
+  const fsOk = !!(document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen);
+  const sig = JSON.stringify([LANG, NET.code, pl.map(([u, p]) => [u, p.name]), arr(m.themes)]);
+  if (root.dataset.tvl === sig && $("#tvqr")) return; root.dataset.tvl = sig;
+  root.innerHTML = `<div class="tvlobby">
+    <div class="tvl-left"><img class="logo" src="icon-512.png" alt="" width="120" height="120"><h1>${t("Mode Salon")}</h1>
+      <p>${t("Scanne le QR code avec ton téléphone pour rejoindre la partie.")}</p>
+      <div class="tvqr" id="tvqr" role="img" aria-label="QR code"></div>
+      <p>${esc(t("Ou ouvre {u} et touche « Rejoindre avec un code ».", { u: site }))}</p>
+      <div class="netcode" dir="ltr">${esc(NET.code)}</div></div>
+    <div class="tvl-right"><section class="panel"><p class="lab2">${t("Joueurs ({n}/8)", { n: pl.length })}</p>
+      <div class="tvpl">${pl.map(([, p], i) => `<div>${av(i)}<span dir="auto">${esc(p.name)}</span></div>`).join("") || `<p class="hint">${t("Personne pour l'instant…")}</p>`}</div>
+      ${arr(m.themes).length ? `<p class="hint">${esc(t("Thèmes : {l}", { l: okThemes(arr(m.themes)).map(thName).join(LANG === "ar" ? "، " : ", ") }))}</p>` : ""}
+      <p class="hint">${pl.length < 2 ? t("Il faut au moins 2 joueurs pour commencer.") : t("Tout le monde est là ? Lance la partie.")}</p></section>
+      <button class="big w" id="go2" ${pl.length < 2 ? "disabled" : ""}>${t("Lancer la partie")}</button>
+      <div class="row">${fsOk ? `<button class="ghostbtn" id="fs">${t("Plein écran")}</button>` : ""}<button class="ghostbtn" id="leave">${t("Quitter")}</button></div></div></div>`;
+  loadQR().then(qr => { const box = $("#tvqr"); if (!box) return; const q = qr(0, "M"); q.addData(joinLink()); q.make(); box.innerHTML = q.createSvgTag({ cellSize: 4, margin: 0, scalable: true }); }).catch(() => { const box = $("#tvqr"); if (box) box.style.display = "none"; });
+  const fs = $("#fs"); if (fs) fs.onclick = () => { const d = document.documentElement; try { (d.requestFullscreen || d.webkitRequestFullscreen).call(d); } catch (e) {} };
+  $("#leave").onclick = netLeave;
+  const go = $("#go2"); go.onclick = () => { unlockAudio(); go.disabled = true; go.textContent = t("Lancement…"); netStart().catch(e => { console.warn(e); go.disabled = false; go.textContent = t("Réessayer"); }); };
+  if (pl.length >= 2) try { go.focus({ preventScroll: true }); } catch (e) {}
+}
+/* écran d'accueil de la manette : ma caravane, et à qui c'est le tour */
+function padHome() {
+  const el = $("#padhome"); if (!el || !isPad()) return;
+  const me = myIdx(), p = game.players[me], cur = game.players[game.cur], n = game.cells.length - 1;
+  el.style.setProperty("--pc", PCOL[me]);
+  el.innerHTML = `<div class="tok"><svg viewBox="0 0 40 40"><use href="#tok${me % 8}" fill="${PCOL[me]}" stroke="#FFF6E0" stroke-width="2.2" paint-order="stroke"/></svg></div>
+    <p class="lab2">${t("Ta caravane")}</p><h2 dir="auto">${esc(p.name)}</h2><p class="pos">${esc(t("Case {n} sur {m}", { n: p.pos, m: n }))}</p>
+    <p class="stat" dir="auto">${game.winner != null ? "" : game.cur === me ? t("C'est ton tour !") : esc(t("C'est le tour de") + " " + cur.name)}</p>
+    <p class="hint">${t("Le plateau est sur la TV.")}</p>`;
+}
 function onEv(kind, path, data) {
   const parts = path.split("/").filter(Boolean), list = [];
   if (parts.length === 0) {
@@ -1682,14 +1792,18 @@ function openLobby() {
   dbListen(`rooms/${NET.code}/players`, (k, p, d) => { NET.lobby.players = mergeAt(NET.lobby.players, k, p, d); upd(); });
 }
 function renderLobby() {
-  w3dHide(); document.body.classList.remove("ingame");
-  const link = location.origin + location.pathname + "#join=" + NET.code, m = NET.lobby.meta || {}, host = m.host === NET.uid, pl = lobbyPlayers(), msg = t("Viens jouer à Kervano avec moi !") + " " + link;
+  const m = NET.lobby.meta || {};
+  if (m.salon && m.host === NET.uid) return renderTVLobby();
+  w3dHide(); document.body.classList.remove("ingame", "tvl"); delete root.dataset.tvl;
+  const link = location.origin + location.pathname + "#join=" + NET.code, pl = lobbyPlayers(), msg = t("Viens jouer à Kervano avec moi !") + " " + link;
+  /* en Mode Salon, la TV est l'hôte ; le premier joueur arrivé peut aussi lancer depuis son téléphone */
+  const host = m.host === NET.uid || (!!m.salon && !!pl[0] && pl[0][0] === NET.uid);
   root.innerHTML = `<div class="setup">
-    <div class="hero"><div class="langrow">${langSelect("lang")}</div><h1>${t("Partie en ligne")}</h1><p>${t("Envoie le lien à ta famille : chacun joue chez soi, sur son téléphone, dans sa langue.")}</p></div>
+    <div class="hero"><div class="langrow">${langSelect("lang")}</div><h1>${m.salon ? t("Mode Salon") : t("Partie en ligne")}</h1><p>${m.salon ? t("Regarde la TV : le plateau s'affiche en grand. Ton téléphone sert de manette.") : t("Envoie le lien à ta famille : chacun joue chez soi, sur son téléphone, dans sa langue.")}</p></div>
     <section class="panel"><p class="lab2">${t("Code de la partie")}</p><div class="netcode" dir="ltr">${esc(NET.code)}</div><p class="hint" style="text-align:center;margin:-6px 0 12px">${t("Pas de WhatsApp ? Donne simplement ce code : sur l'accueil du jeu, « Rejoindre avec un code ».")}</p>
       ${arr(m.themes).length ? `<p class="hint">${t("Thèmes : {l}", { l: okThemes(arr(m.themes)).map(thName).join(LANG === "ar" ? "، " : ", ") })}${okFinal(m.finalTh) ? " · " + esc(t("Thème de la question finale : {th}", { th: thName(m.finalTh) })) : ""}</p>` : ""}<div class="seg"><button id="share">${navigator.share ? t("Partager le lien") : t("Copier le lien")}</button><button id="wa">WhatsApp</button></div></section>
     <section class="panel"><p class="lab2">${t("Joueurs connectés ({n}/6)", { n: pl.length })}</p>
-      ${pl.map(([u, p], i) => `<div class="prow">${av(i)}<span class="pname">${esc(p.name)}${u === NET.uid ? " " + t("(toi)") : ""}${u === m.host ? " · " + t("hôte") : ""}</span><small class="plev">${t(p.level === "facile" ? "Facile" : p.level === "expert" ? "Expert" : "Normal")}</small></div>`).join("") || `<p class="hint">${t("Connexion…")}</p>`}
+      ${pl.map(([u, p], i) => `<div class="prow">${av(i)}<span class="pname">${esc(p.name)}${u === NET.uid ? " " + t("(toi)") : ""}${u === m.host && !m.salon ? " · " + t("hôte") : ""}</span><small class="plev">${t(p.level === "facile" ? "Facile" : p.level === "expert" ? "Expert" : "Normal")}</small></div>`).join("") || `<p class="hint">${t("Connexion…")}</p>`}
       <p class="hint">${host ? (pl.length < 2 ? t("En attente d'au moins un autre joueur…") : t("Tout le monde est là ? Lance la partie.")) : t("En attente que l'hôte lance la partie…")}</p></section>
     ${host ? `<button class="big w" id="go2" ${pl.length < 2 ? "disabled" : ""}>${t("Lancer la partie")}</button>` : ""}
     <button class="ghostbtn" id="leave">${t("Quitter")}</button></div>`;
@@ -1705,13 +1819,14 @@ async function netStart() {
   const fth = okFinal(m.finalTh != null ? m.finalTh : setup.finalTh); if (fth) await ensurePacks([fth]);
   const g = newGame(m.size || 36, pl.slice(0, 8).map(([, p]) => ({ name: p.name, level: p.level || "normal" })), themes, fth);
   g.players.forEach((p, i) => p.uid = pl[i][0]); g.timer = !!m.timer; g.turn = 0;
+  if (m.salon) { g.salon = true; g.read = m.read !== false; }
   await db("PUT", `rooms/${NET.code}/state`, g); await db("PATCH", `rooms/${NET.code}/meta`, { status: "playing" });
 }
 async function enterGame() {
   if (NET.entering) return; NET.entering = true; netCloseAll(); NET.lobby = null;
   try {
     const g = await db("GET", `rooms/${NET.code}/state`); if (!g) throw new Error("no state");
-    NET.on = true; NET.ctrl = false; game = normGame(g); await ensurePacks(gameThemesAll(game)); store.set("game3", game); NET.seen = new Set(); NET.evFirst = true; NET.queue = [];
+    NET.on = true; NET.ctrl = false; game = normGame(g); document.body.classList.remove("tvl"); delete root.dataset.tvl; await ensurePacks(gameThemesAll(game)); store.set("game3", game); NET.seen = new Set(); NET.evFirst = true; NET.queue = [];
     dbListen(`rooms/${NET.code}/ev`, onEv); renderGame(); window.scrollTo(0, 0); netSend({ t: "hello" });
   } catch (e) { console.warn(e); netLeave(); } finally { NET.entering = false; }
 }
@@ -1719,11 +1834,11 @@ function netLeave() {
   netCloseAll(); (NET.mo || []).forEach(m => m.disconnect()); NET.mo = [];
   const wasHostLobby = NET.lobby && NET.lobby.meta && NET.lobby.meta.host === NET.uid && NET.lobby.meta.status === "lobby", code = NET.code;
   if (wasHostLobby) db("DELETE", `rooms/${code}`).catch(() => {});
-  store.del("net"); NET.on = false; NET.code = null; NET.ctrl = false; NET.lobby = null; NET.queue = []; netUI();
+  store.del("net"); NET.on = false; NET.code = null; NET.ctrl = false; NET.lobby = null; NET.queue = []; netUI(); wakeOff(); document.body.classList.remove("tvl"); delete root.dataset.tvl;
   game = null; save(); renderSetup();
 }
 function renderJoin(code) {
-  w3dHide(); document.body.classList.remove("ingame");
+  w3dHide(); document.body.classList.remove("ingame", "tvl", "tv", "pad"); delete root.dataset.tvl;
   const prev = { n: ($("#jn") || {}).value, l: ($("#jl") || {}).value };
   root.innerHTML = `<div class="setup">
     <div class="hero"><div class="langrow">${langSelect("lang")}</div><h1>${t("Rejoindre la partie")}</h1><p>${t("On t'invite à jouer à Kervano.")} <span dir="ltr">${t("Code")} <b>${esc(code)}</b></span></p></div>
@@ -1753,7 +1868,7 @@ async function netResume() {
   const n = store.get("net", null); if (!n || !fbOk()) return false;
   try {
     await fbAuth(); const meta = await db("GET", `rooms/${n.code}/meta`), players = (await db("GET", `rooms/${n.code}/players`)) || {};
-    if (!meta || !players[NET.uid]) { store.del("net"); return false; }
+    if (!meta || (!players[NET.uid] && !(meta.salon && meta.host === NET.uid))) { store.del("net"); return false; }
     NET.code = n.code; if (meta.status === "playing") await enterGame(); else openLobby(); return true;
   } catch (e) { return false; }
 }
@@ -1776,7 +1891,7 @@ function bestVoice() {
     return s; };
   return cand.slice().sort((a, b) => sc(b) - sc(a))[0];
 }
-function speak(text) { if (!canSpeak || muted) return; try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text.replace(/ﷺ/g, "")); u.lang = voice(); const bv = bestVoice(); if (bv) u.voice = bv; u.rate = .95; speechSynthesis.speak(u); } catch (e) {} }
+function speak(text) { if (!canSpeak || muted || isPad()) return; try { speechSynthesis.cancel(); const u = new SpeechSynthesisUtterance(text.replace(/ﷺ/g, "")); u.lang = voice(); const bv = bestVoice(); if (bv) u.voice = bv; u.rate = .95; speechSynthesis.speak(u); } catch (e) {} }
 const normT = s => String(s).replace(/(\d)[\s\u202f\u00a0](?=\d{3}\b)/g, "$1").toLowerCase().replace(/ı/g, "i").replace(/ß/g, "ss").normalize("NFD").replace(/[\u0300-\u036f\u064b-\u0655\u0670\u0640]/g, "").replace(/[ٱ]/g, "ا").replace(/ة/g, "ه").replace(/ى/g, "ي").replace(/[٠-٩]/g, d => "٠١٢٣٤٥٦٧٨٩".indexOf(d)).replace(/[ʿʾ'’`«»"()?!.,;:\-،؟]/g, " ").replace(/(^|\s)(ال|وال)(?=\S{2,})/g, "$1").replace(/\b(le|la|les|l|un|une|des|de|du|d|al|an|ar|as|at|ad|az|ach|el|ibn|bint|environ|ans|fois|sourate|the|a|of|about|years|times|surah|sura|het|een|van|ongeveer|jaar|keer|der|die|das|den|dem|des|ein|eine|einen|von|etwa|jahre|mal|yaklasik|yil|kez|sure|suresi)\b/g, " ").replace(/\s+/g, " ").trim();
 function lev(a, b) { const m = a.length, n = b.length; if (!m) return n; if (!n) return m; const d = Array.from({ length: m + 1 }, (_, i) => [i]); for (let j = 1; j <= n; j++) d[0][j] = j; for (let i = 1; i <= m; i++) for (let j = 1; j <= n; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)); return d[m][n]; }
 const sim = (a, b) => (!a || !b) ? 0 : 1 - lev(a, b) / Math.max(a.length, b.length);
@@ -1872,7 +1987,7 @@ function bindDaily() {
   });
 }
 function renderSetup() {
-  w3dHide(); document.body.classList.remove("spectate", "online");
+  w3dHide(); document.body.classList.remove("spectate", "online", "tv", "pad", "tvl"); delete root.dataset.tvl;
   closeSheet(); document.body.classList.remove("ingame");
   root.innerHTML = `<div class="setup">
     <div class="hero">
@@ -1915,6 +2030,11 @@ function renderSetup() {
       <p class="lab2" style="margin-top:6px">${t("Rejoindre avec un code")}</p>
       <div class="jrow"><input id="jcode" maxlength="8" inputmode="text" autocapitalize="characters" autocomplete="off" autocorrect="off" spellcheck="false" dir="ltr" placeholder="${t("Code de la partie")}" aria-label="${t("Code de la partie")}"><button id="jcgo">${t("Rejoindre")}</button></div>
     </section>
+    <section class="panel">
+      <p class="lab2">${t("Jouer sur la TV du salon")}</p>
+      <p class="hint">${t("La TV affiche le plateau en grand, chacun répond sur son téléphone. Ouvre Kervano sur la TV (son navigateur internet) ou sur un iPhone, iPad ou Mac recopié en AirPlay, puis touche ce bouton.")}</p>
+      <button class="addbtn" id="tvgo">${t("Afficher le jeu sur cette TV")}</button>
+    </section>
     <button class="big w" id="start">${t("Partir à l'aventure")}</button>
     <p class="hint" style="text-align:center">${t("{n} questions · {l}", { n: Q.filter(q => q && okThemes(setup.themes).includes(q.th)).length, l: okThemes(setup.themes).map(thName).join(LANG === "ar" ? "، " : ", ") })}</p>
   </div>`;
@@ -1929,6 +2049,7 @@ function renderSetup() {
   root.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => { read(); setup.players.splice(+b.dataset.rm, 1); save(); renderSetup(); });
   root.querySelectorAll("[data-s]").forEach(b => b.onclick = () => { read(); setup.size = +b.dataset.s; save(); renderSetup(); });
   root.querySelectorAll("[data-o]").forEach(b => b.onclick = () => { read(); setup[b.dataset.o] = !setup[b.dataset.o]; save(); renderSetup(); });
+  $("#tvgo").onclick = () => { read(); save(); if (!fbOk()) return; netCreateTV($("#tvgo")); };
   $("#online").onclick = () => { read(); save(); if (!fbOk()) { $("#online").textContent = t("Le mode en ligne arrive bientôt"); return; } netCreate($("#online")); };
   $("#start").onclick = async () => { read(); const b = $("#start"); b.disabled = true; setup.themes = await ensurePacks(setup.themes); setup.finalTh = okFinal(setup.finalTh); if (setup.finalTh) await ensurePacks([setup.finalTh]); SFX.bonus(); game = newGame(setup.size, setup.players); save(); renderGame(); window.scrollTo(0, 0); };
   root.querySelectorAll("[data-th]").forEach(b => b.onclick = () => { read(); const th = b.dataset.th, cur = okThemes(setup.themes);
@@ -1945,17 +2066,17 @@ function renderGame() {
   root.innerHTML = `<div class="top"><div class="chips" id="chips"></div>
       <button class="icon-btn" id="snd" aria-label="${muted ? t("Activer le son") : t("Couper le son")}">${muted ? `<svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6" stroke="currentColor" stroke-width="2"/></svg>` : `<svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5a9 9 0 0 1 0 14" stroke="currentColor" stroke-width="2" fill="none"/></svg>`}</button>
       <button class="icon-btn" id="quit" aria-label="${t("Quitter la partie")}"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4"/></svg></button></div>
-    <div class="stage">${boardHTML()}</div><div class="cardfx" id="cardfx"></div>
+    <div class="stage">${boardHTML()}</div><div class="padhome" id="padhome"></div><div class="cardfx" id="cardfx"></div>
     <div class="dock"><div class="dock-in" id="dock"></div></div>
     <div class="sheet" id="sheet"><div class="card" id="card"></div></div>
     <div class="toast" id="toast"></div>
     <div class="win" id="win"></div>`;
   $("#snd").onclick = () => { muted = !muted; store.set("muted", muted); if (muted) try { speechSynthesis.cancel(); } catch (e) {} renderGame(); };
   $("#quit").onclick = () => { if ($("#quit").dataset.sure) { stopRec(); try { speechSynthesis.cancel(); } catch (e) {} if (NET.on) return netLeave(); game = null; save(); renderSetup(); } else { $("#quit").dataset.sure = "1"; $("#quit").style.background = "var(--ko)"; toastLocal("Touche encore la croix pour quitter", "", "#6B4526", 1600); setTimeout(() => { const q = $("#quit"); if (q) { delete q.dataset.sure; q.style.background = ""; } }, 2500); } };
-  QUI.k = null; camStart(); drawPawns(); chips(); step();
+  netUI(); QUI.k = null; camStart(); drawPawns(); chips(); step();
   if (w3dOn()) w3dReady().then(ok => { if (ok && game && $("#scene")) w3dBoardOn(); });
 }
-function chips() { const c = $("#chips"); if (!c) return; c.innerHTML = game.players.map((p, i) => `<div class="chip ${i === game.cur ? "cur" : ""}">${av(i)}<span>${esc(p.name)} <small>· ${p.pos}</small>${p.streak >= 2 ? ` <span class="fire">×${p.streak}</span>` : ""}${p.skip ? ` <small>${t("(passe)")}</small>` : ""}${p.shield ? ` <span class="shield">${t("bouclier")}</span>` : ""}</span></div>`).join(""); const cur = c.querySelector(".cur"); if (cur) cur.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" }); }
+function chips() { const c = $("#chips"); if (!c) return; c.innerHTML = game.players.map((p, i) => `<div class="chip ${i === game.cur ? "cur" : ""}">${av(i)}<span>${esc(p.name)} <small>· ${p.pos}</small>${p.streak >= 2 ? ` <span class="fire">×${p.streak}</span>` : ""}${p.skip ? ` <small>${t("(passe)")}</small>` : ""}${p.shield ? ` <span class="shield">${t("bouclier")}</span>` : ""}</span></div>`).join(""); const cur = c.querySelector(".cur"); if (cur) cur.scrollIntoView({ inline: "center", block: "nearest", behavior: "smooth" }); padHome(); }
 /* messages : le pilote les envoie en « clés » françaises, chaque téléphone les affiche dans sa langue */
 function toastLocal(a, b, bg, ms = 1500, va, vb) { const el = $("#toast"); if (!el) return; el.innerHTML = `<span class="t" style="background:${bg}">${esc(t(a, va))}</span>${b ? `<span class="s">${esc(t(b, vb))}</span>` : ""}`; el.classList.add("show"); clearTimeout(el._t); el._t = setTimeout(() => el.classList.remove("show"), ms); }
 function toast(a, b, bg, ms = 1500, va, vb) { netFx("toast", { a, b: b || "", bg, ms, va: va || null, vb: vb || null }); toastLocal(a, b, bg, ms, va, vb); }
@@ -2035,7 +2156,7 @@ function specRender() {
   if (game.winner != null) { if (!$("#win").classList.contains("show")) showWin(); return; }
   if (game.phase === "question" && game.q) { if (QUI.k !== qKey()) renderQuestion(); }
   else if (game.phase === "pick") renderPick(p, false);
-  else if (game.phase === "roll") { QUI.k = null; closeSheet(); }
+  else { QUI.k = null; closeSheet(); } /* lancer ou déplacement : la carte se range pour laisser voir le plateau */
 }
 function specRoll(v) { spin += 2; quiet(() => SFX.dice()); const cube = $("#cube"); if (cube) cube.style.transform = `rotateX(${ROT[v][0] + 360 * spin}deg) rotateY(${ROT[v][1] + 360 * spin}deg)`; }
 async function roll() {
@@ -2105,6 +2226,20 @@ function stealGuest(zone, q, excl) {
   } };
   return true;
 }
+/* sur la TV : on ne montre pas la bonne réponse tant que les autres peuvent encore la voler */
+function tvStealWait(zone, q, reveal) {
+  if (!isTV()) return false;
+  const key = qKey(); let s = 12;
+  zone.insertAdjacentHTML("beforeend", `<p class="stealmsg" id="tvst" dir="auto"></p>`);
+  const el = $("#tvst"), tick = () => { if (el) el.textContent = t("Les autres tentent leur chance… {s}", { s }); };
+  tick(); const iv = setInterval(() => { s--; if (s <= 0) clearInterval(iv); else tick(); }, 1000);
+  STEAL.guest = { key, end(w) {
+    STEAL.guest = null; clearInterval(iv);
+    if (el) el.textContent = w != null && game.players[w] ? t("{n} a trouvé en premier : +2 cases !", { n: game.players[w].name }) : t("Personne n'a trouvé.");
+    reveal(); sayAnswer(q);
+  } };
+  return true;
+}
 function reportBox(z, id) {
   if (!z) return; if (z.innerHTML) { z.innerHTML = ""; return; }
   z.innerHTML = `<div class="repbox"><textarea id="rept" maxlength="300" dir="auto" placeholder="${t("Qu'est-ce qui ne va pas ? (facultatif)")}"></textarea><button class="ghostbtn st" id="reps">${t("Envoyer")}</button></div>`;
@@ -2114,6 +2249,8 @@ function reportBox(z, id) {
     catch (e) { console.warn(e); b.disabled = false; z.insertAdjacentHTML("beforeend", `<p class="tiny">${t("Envoi impossible pour l'instant. Réessaie plus tard.")}</p>`); }
   };
 }
+/* sur la TV : on rappelle qui doit répondre (sans argument : on retire le message) */
+function tvWait(zone, key, p) { const old = zone.querySelector(".tvwait"); if (old) old.remove(); if (key && isTV()) zone.insertAdjacentHTML("afterbegin", `<p class="tvwait" dir="auto">${esc(t(key, { n: p.name }))}</p>`); }
 function renderQuestion() {
   clearInterval(tmr);
   const p = game.players[game.cur], g = game.q, q = QT(g.id), c = CATS[g.cat], n = game.cells.length, live = NET.ctrl;
@@ -2133,20 +2270,24 @@ function renderQuestion() {
   if (!g.mode) {
     markDest([[destOf("duo"), "#3D7FD6"], [destOf("carre"), "#E7A52C"], [destOf("cash"), "#D2493A"]]);
     zone.innerHTML = `<div class="modes">${["duo", "carre", "cash"].map(m => `<button class="mode" data-m="${m}" style="background:${MODES[m].color};color:${MODES[m].ink || "#fff"}"><b>${t(MODES[m].name)}</b><span>${t(MODES[m].sub)}</span><em>+${steps(m, game.die)}</em><small>${lab(destOf(m))}</small></button>`).join("")}</div>`;
+    tvWait(zone, "{n} choisit : Duo, Carré ou Cash", p);
     zone.querySelectorAll("[data-m]").forEach(b => b.onclick = () => { SFX.tap(); g.mode = b.dataset.m; if (g.mode !== "cash") g.choices = g.mode === "carre" ? shuffle([0, 1, 2, 3]) : shuffle([0, 1 + Math.floor(Math.random() * 3)]); save(); renderQuestion(); });
     return;
   }
   if (!g.final && !g.bonus) markDest([[destOf(g.mode), g.mode === "duo" ? "#3D7FD6" : g.mode === "carre" ? "#E7A52C" : "#D2493A"]]);
   if (g.mode !== "cash") {
     zone.innerHTML = `<div class="choices ${g.mode === "duo" ? "two" : ""}">${g.choices.map((k, i) => `<button class="choice" data-i="${i}" dir="auto">${esc(opts[k])}</button>`).join("")}</div>${SR ? `<div class="row"><button class="mic" id="mic">${MIC} ${t("Répondre au micro")}</button></div><p class="tiny" id="mi" hidden></p>` : ""}`;
+    tvWait(zone, "{n} répond sur son téléphone…", p);
     const choose = i => {
-      if (busy) return; busy = true; clearInterval(tmr); stopRec(); netFx("qr", { k: "c", i });
+      if (busy) return; busy = true; clearInterval(tmr); stopRec(); netFx("qr", { k: "c", i }); tvWait(zone);
       const ok = g.choices[i] === 0, st = canSteal(g, ok);
       zone.querySelectorAll(".choice").forEach(x => x.disabled = true);
       if (!ok) zone.querySelector(`.choice[data-i="${i}"]`).classList.add("wrong");
       quiet(() => ok ? SFX.good() : SFX.bad()); buzz(ok ? 30 : [60, 40, 60]);
       const m = $("#mic"); if (m) m.parentElement.remove(); busy = false;
       if (st && !live && stealGuest(zone, q, [g.choices[i]])) return;
+      const showRight = () => { zone.querySelectorAll(".choice").forEach(x => { if (g.choices[+x.dataset.i] === 0) x.classList.add("right"); }); if (q.note) zone.insertAdjacentHTML("beforeend", `<p class="note" dir="auto">${esc(q.note)}</p>`); };
+      if (st && !live && tvStealWait(zone, q, showRight)) return;
       zone.querySelectorAll(".choice").forEach(x => { if (g.choices[+x.dataset.i] === 0) x.classList.add("right"); });
       sayAnswer(q);
       if (q.note) zone.insertAdjacentHTML("beforeend", `<p class="note" dir="auto">${esc(q.note)}</p>`);
@@ -2163,6 +2304,7 @@ function renderQuestion() {
   } else {
     zone.innerHTML = `<form class="typed" id="tf" autocomplete="off"><input id="ti" type="text" dir="auto" placeholder="${t("Écris ta réponse…")}" aria-label="${t("Écris ta réponse…")}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="done" maxlength="80"><button class="big" type="submit">${t("Valider")}</button></form>
       <div class="row">${SR ? `<button class="mic" id="mic">${MIC} ${t("Répondre au micro")}</button>` : ""}${NET.on ? "" : `<button class="ghostbtn" id="show">${t("J'ai répondu à voix haute")}</button>`}</div><div id="heard"></div>`;
+    tvWait(zone, "{n} répond sur son téléphone…", p);
     const answerBox = `<div class="answer"><p class="lab" style="color:var(--ok)">${t("Bonne réponse")}</p><b dir="auto">${esc(q.a)}</b>${q.note ? `<p class="note" dir="auto" style="margin-top:6px">${esc(q.note)}</p>` : ""}</div>`;
     /* v = true : reconnue juste · false : reconnue fausse · null : au groupe de juger */
     const reveal = (tx, v, typed) => {
@@ -2172,8 +2314,10 @@ function renderQuestion() {
       if (NET.on && v === null) v = false;
       const st = v === false && canSteal(g, false);
       if (st && !live) { quiet(() => SFX.bad()); if (stealGuest(zone, q, [])) return; }
-      sayAnswer(q);
+      const tvSteal = st && !live && isTV();
+      if (!tvSteal) sayAnswer(q);
       const heard = tx ? `<div class="heard"><span class="lab" style="color:var(--muted)">${typed ? t("Ta réponse") : t("Réponse entendue")}</span><q dir="auto">${esc(tx)}</q><b style="color:${v === true ? "var(--ok)" : v === false ? "var(--ko)" : "var(--muted)"}">${v === true ? (typed ? t("Bonne réponse !") : t("Bonne réponse reconnue !")) : v === false ? t("Ce n'est pas la bonne réponse.") : t("Presque ! Au groupe de juger.")}</b></div>` : "";
+      if (tvSteal) { zone.innerHTML = heard; tvStealWait(zone, q, () => zone.insertAdjacentHTML("beforeend", answerBox)); return; }
       if (v === true || v === false) {
         quiet(() => v ? SFX.good() : SFX.bad()); buzz(v ? 30 : [60, 40, 60]);
         zone.innerHTML = `${heard}${answerBox}`;
@@ -2342,7 +2486,7 @@ function showWin(back) {
   if (!back) { quiet(() => SFX.win()); buzz([80, 60, 80, 60, 200]);
   show(() => rocket(innerWidth * (.15 + Math.random() * .7)), 14, 380);
   setTimeout(() => confetti(innerWidth / 2, innerHeight * .35, 160), 300); }
-  if ($("#again")) $("#again").onclick = () => { const old = game; game = newGame(old.cells.length, old.players, old.themes, old.finalTh); if (NET.on) { game.players.forEach((p, i) => p.uid = old.players[i].uid); game.timer = old.timer; game.turn = (old.turn || 0) + 1; } save(); renderGame(); };
+  if ($("#again")) $("#again").onclick = () => { const old = game; game = newGame(old.cells.length, old.players, old.themes, old.finalTh); if (NET.on) { game.players.forEach((p, i) => p.uid = old.players[i].uid); game.timer = old.timer; game.turn = (old.turn || 0) + 1; if (old.salon) { game.salon = true; game.read = old.read; } } save(); renderGame(); };
   $("#home").onclick = () => { if (NET.on) return netLeave(); game = null; save(); renderSetup(); };
 }
 function validGame(g) { try { return g && Array.isArray(g.cells) && g.cells.length >= 10 && Array.isArray(g.players) && g.players.length >= 2 && g.players.every(p => typeof p.pos === "number" && p.pos >= 0 && p.pos < g.cells.length) && g.cur >= 0 && g.cur < g.players.length && Array.isArray(g.used); } catch (e) { return false; } }

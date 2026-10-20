@@ -6,6 +6,10 @@ Les thèmes autres que l'islam sont dans `packs/<thème>.json` (français) et `p
 
 Jouer : https://dims5k.github.io/kervano/
 
+## Mode Salon (TV)
+
+Sur l'accueil, « Afficher le jeu sur cette TV » : à ouvrir dans le navigateur de la Smart TV, ou sur un iPhone / iPad / Mac recopié en AirPlay (iPhone tourné en paysage). La TV affiche le plateau 3D, les questions et les sons ; chaque joueur scanne le QR code et répond sur son téléphone, qui sert de manette (silencieux, sans plateau). La TV n'est pas un joueur : elle rejoint la salle Firebase comme écran. QR code généré par `qrcode.js` (Kazuhiko Arase, licence MIT).
+
 ## Firebase (mode en ligne et signalements)
 
 Règles à coller dans Realtime Database → Règles :
