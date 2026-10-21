@@ -1,5 +1,5 @@
 /* Kervano : hors ligne. Le jeu se recharge depuis Internet quand c'est possible (pour avoir les mises à jour), sinon depuis le cache. */
-const CACHE = "kervano-v6";
+const CACHE = "kervano-v7";
 const CORE = ["./", "index.html", "three.module.min.js", "manifest.json", "qrcode.js", "icon-192.png", "icon-512.png", "icon-180.png",
   "lang/en.json", "lang/ar.json", "lang/nl.json", "lang/de.json", "lang/tr.json"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE)).then(() => self.skipWaiting())); });

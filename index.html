@@ -306,6 +306,30 @@ body.pad .padhome{display:grid;justify-items:center;text-align:center;gap:10px;p
 .padhome .pos{font-weight:800;font-size:19px}
 .padhome .stat{font-family:var(--f-display);font-size:24px;color:var(--gold);margin:6px 0 0}
 .padhome .hint{max-width:30ch}
+/* ===== Paysage (téléphone tourné, recopie sur la TV, tablette, ordi) : la partie tient dans l'écran, sans défiler.
+   Le plateau prend toute la hauteur au centre, le dé et le joueur flottent en bas à gauche, la carte-question arrive par la droite. ===== */
+@media (orientation:landscape){
+body.ingame:not(.tv,.pad,.tvl){overflow:hidden;height:100dvh;min-height:0;padding-inline:max(12px,env(safe-area-inset-left,0px)) max(12px,env(safe-area-inset-right,0px))}
+body.ingame:not(.tv,.pad,.tvl) .wrap{max-width:none;padding-bottom:0;height:100dvh;display:flex;flex-direction:column}
+body.ingame:not(.tv,.pad,.tvl) .top{flex:none;padding-block:calc(6px + env(safe-area-inset-top,0px)) 4px;top:0}
+body.ingame:not(.tv,.pad,.tvl) .stage{flex:1;min-height:0;padding:0 0 max(6px,env(safe-area-inset-bottom,0px))}
+body.ingame:not(.tv,.pad,.tvl) .scene{aspect-ratio:auto;width:100%;height:100%}
+body.ingame:not(.tv,.pad,.tvl) .dock{left:env(safe-area-inset-left,0px);right:auto;background:none;padding:0 0 calc(10px + env(safe-area-inset-bottom,0px)) 12px;justify-content:flex-start}
+body.ingame:not(.tv,.pad,.tvl) .dock-in{width:auto;max-width:min(42vw,400px);gap:10px;background:rgba(12,9,24,.82);border-radius:20px;padding:8px 12px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+body.ingame:not(.tv,.pad,.tvl) .dock-in:empty{display:none}
+body.ingame:not(.tv,.pad,.tvl) .dock .who b{font-size:20px}
+body.ingame:not(.tv,.pad,.tvl) .dock .big{min-height:48px;padding:10px 16px;font-size:16px}
+body.ingame:not(.tv,.pad,.tvl) .sheet{left:auto;right:0;top:0;bottom:0;align-items:center;padding:8px max(8px,env(safe-area-inset-right,0px)) 8px 8px}
+body.ingame:not(.tv,.pad,.tvl) .sheet .card{width:min(480px,52vw);max-height:calc(100dvh - 16px);border-radius:22px;padding-bottom:0;transform:translateX(115%);box-shadow:0 20px 60px rgba(0,0,0,.55)}
+body.ingame:not(.tv,.pad,.tvl) .sheet.open .card{transform:none}
+body.ingame:not(.tv,.pad,.tvl) .band{padding:10px 16px}
+body.ingame:not(.tv,.pad,.tvl) .cbody{padding:12px 16px 16px;gap:10px}
+body.ingame:not(.tv,.pad,.tvl) .qtext{font-size:clamp(18px,2.6vw,24px)}
+body.ingame:not(.tv,.pad,.tvl) .toast{top:10%}
+body.ingame:not(.tv,.pad,.tvl) .cardfx .flip{width:min(78vw,300px,calc((100dvh - 40px) * 5 / 7))}
+}
+/* écran-TV qui est un téléphone tourné : le plateau prend toute la hauteur */
+@media (orientation:landscape) and (max-height:500px){body.tv .scene{width:100%;height:calc(100dvh - 64px);aspect-ratio:auto}}
 </style>
 
 </head>
@@ -2074,6 +2098,7 @@ const face = (v, cls) => `<div class="face ${cls}">${Array.from({ length: 9 }, (
 const ROT = { 1: [0, 0], 2: [0, -90], 3: [-90, 0], 4: [90, 0], 5: [0, 90], 6: [0, 180] };
 let spin = 0;
 function renderGame() {
+  document.body.classList.add("ingame");
   root.innerHTML = `<div class="top"><div class="chips" id="chips"></div>
       <button class="icon-btn" id="snd" aria-label="${muted ? t("Activer le son") : t("Couper le son")}">${muted ? `<svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6" stroke="currentColor" stroke-width="2"/></svg>` : `<svg viewBox="0 0 24 24"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16 8a5 5 0 0 1 0 8M18.5 5a9 9 0 0 1 0 14" stroke="currentColor" stroke-width="2" fill="none"/></svg>`}</button>
       <button class="icon-btn" id="quit" aria-label="${t("Quitter la partie")}"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" stroke="currentColor" stroke-width="2.4"/></svg></button></div>
