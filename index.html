@@ -2022,6 +2022,18 @@ function bindDaily() {
     if (k === 0) { const r = $("#daily").getBoundingClientRect(); confetti(r.left + r.width / 2, r.top + 40, 60); }
   });
 }
+/* codes spéciaux : un contenu chiffré, lisible seulement avec le bon code */
+async function codeX(c) {
+  try {
+    const enc = new TextEncoder(), S = crypto.subtle, h = [...new Uint8Array(await S.digest("SHA-256", enc.encode("kervano:" + c)))].map(b => b.toString(16).padStart(2, "0")).join("");
+    const r = await fetch(`packs/x/${h.slice(0, 20)}.bin`, { cache: "no-store" }); if (!r.ok) return false;
+    const raw = Uint8Array.from(atob((await r.text()).trim()), ch => ch.charCodeAt(0));
+    const key = await S.deriveKey({ name: "PBKDF2", salt: enc.encode("kervano-x1"), iterations: 200000, hash: "SHA-256" }, await S.importKey("raw", enc.encode(c), "PBKDF2", false, ["deriveKey"]), { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+    const src = new TextDecoder().decode(await S.decrypt({ name: "AES-GCM", iv: raw.slice(0, 12) }, key, raw.slice(12)));
+    await new Function("K", src)({ code: c, root, $, esc, db, dbListen, fbAuth, NET, store, renderSetup, buzz, shuffle, wakeOn, wakeOff, mergeAt });
+    return true;
+  } catch (e) { console.warn(e); return false; }
+}
 function renderSetup() {
   w3dHide(); document.body.classList.remove("spectate", "online", "tv", "pad", "tvl"); delete root.dataset.tvl;
   closeSheet(); document.body.classList.remove("ingame");
@@ -2079,7 +2091,7 @@ function renderSetup() {
   bindLang("lang", () => { read(); renderSetup(); });
   bindDaily();
   const fin = $("#finth"); if (fin) fin.onchange = () => { read(); setup.finalTh = okFinal(fin.value); save(); if (setup.finalTh) ensurePacks([setup.finalTh]); };
-  const jc = $("#jcode"), jgo = () => { const c = (jc.value || "").toUpperCase().replace(/[^A-Z0-9]/g, ""); if (c.length < 4) { jc.focus(); jc.classList.add("bad"); return; } read(); save(); if (!fbOk()) return; renderJoin(c); window.scrollTo(0, 0); };
+  const jc = $("#jcode"), jgo = async () => { const c = (jc.value || "").toUpperCase().replace(/[^A-Z0-9]/g, ""); if (c.length < 4) { jc.focus(); jc.classList.add("bad"); return; } read(); save(); if (!fbOk()) return; if (await codeX(c)) return; renderJoin(c); window.scrollTo(0, 0); };
   if (jc) { $("#jcgo").onclick = jgo; jc.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); jgo(); } }; jc.oninput = () => jc.classList.remove("bad"); }
   const add = $("#add"); if (add) add.onclick = () => { read(); setup.players.push({ name: t("Joueur {n}", { n: setup.players.length + 1 }), level: "normal" }); save(); renderSetup(); };
   root.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => { read(); setup.players.splice(+b.dataset.rm, 1); save(); renderSetup(); });
