@@ -973,7 +973,9 @@ KEYS.forEach(k => CATS[k].th = "islam");
 TH_KEYS.forEach(th => { CATS["t:" + th] = { name: THEMES[th].name, color: THEMES[th].color, ink: THEMES[th].ink, th, theme: true }; });
 const PACKS = {};
 /* thèmes cachés : visibles seulement une fois débloqués par un code */
-const visTH = () => TH_KEYS.filter(th => !THEMES[th].hidden || store.get("unl", []).includes(th));
+const visTH = () => TH_KEYS.filter(th => !THEMES[th].hidden);
+/* jeu caché en cours (débloqué par code) : il remplace le choix des thèmes */
+const hiddenOn = () => okThemes(setup.themes).find(th => THEMES[th].hidden);
 /* décor japonais : dès que le thème animés est dans la partie */
 const jpOn = () => (typeof game !== "undefined" && game ? gThemes() : okThemes(setup.themes)).includes("animes");
 const SPJ = { oasis: "Onsen", vent: "Vent divin", sable: "Typhon", puits: "Méditation", carte: "Parchemin", short: "Raccourci", trap: "Rizière" };
@@ -2142,7 +2144,7 @@ async function codeX(c) {
     const raw = Uint8Array.from(atob((await r.text()).trim()), ch => ch.charCodeAt(0));
     const key = await S.deriveKey({ name: "PBKDF2", salt: enc.encode("kervano-x1"), iterations: 200000, hash: "SHA-256" }, await S.importKey("raw", enc.encode(c), "PBKDF2", false, ["deriveKey"]), { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
     const src = new TextDecoder().decode(await S.decrypt({ name: "AES-GCM", iv: raw.slice(0, 12) }, key, raw.slice(12)));
-    await new Function("K", src)({ unlock: th => { const u = store.get("unl", []); if (!u.includes(th)) store.set("unl", [...u, th]); setup.themes = [th]; save(); }, ensurePacks, toast, code: c, root, $, esc, db, dbListen, fbAuth, NET, store, renderSetup, buzz, shuffle, wakeOn, wakeOff, mergeAt });
+    await new Function("K", src)({ unlock: th => { if (!hiddenOn()) setup.prevThemes = okThemes(setup.themes); setup.themes = [th]; if (okFinal(setup.finalTh) && THEMES[setup.finalTh] && !THEMES[setup.finalTh].hidden) setup.finalTh = ""; save(); }, ensurePacks, toast, code: c, root, $, esc, db, dbListen, fbAuth, NET, store, renderSetup, buzz, shuffle, wakeOn, wakeOff, mergeAt });
     return true;
   } catch (e) { console.warn(e); return false; }
 }
@@ -2156,10 +2158,10 @@ function renderSetup() {
       <h1 class="sr">Kervano</h1>
       <p>${okThemes(setup.themes).includes("animes") ? t("Lance le dé, réponds aux questions sur les animés et les mangas, et fais avancer ton pion jusqu'au château.") : okThemes(setup.themes).join() === "islam" ? t("Lance le dé, réponds aux questions sur l'islam et fais avancer ta caravane jusqu'à la ville. Plus tu prends de risques, plus tu avances vite.") : t("Lance le dé, réponds aux questions et fais avancer ta caravane jusqu'à la ville. Plus tu prends de risques, plus tu avances vite.")}</p>
     </div>
-    <section class="panel"><p class="lab2">${t("Thèmes de la partie")}</p>
+    ${hiddenOn() ? `<section class="panel" style="border:2px solid ${THEMES[hiddenOn()].color}"><p class="lab2">${t("Jeu caché")}</p><p style="margin:0;font-weight:800;font-size:22px">${thName(hiddenOn())}</p><p class="hint">${t("Plateau japonais, pions nippons et questions sur les animés.")}</p><button class="addbtn" id="hidx">${t("Revenir au Kervano classique")}</button></section>` : `<section class="panel"><p class="lab2">${t("Thèmes de la partie")}</p>
       <div class="themes">${visTH().map(th => { const on = okThemes(setup.themes).includes(th); return `<button class="thb${on ? " on" : ""}" data-th="${th}" aria-pressed="${on}" style="--tc:${THEMES[th].color}"><i></i>${thName(th)}</button>`; }).join("")}</div>
       <p class="hint">${t("Choisis un ou plusieurs thèmes : les questions de la partie viendront seulement de ceux-là.")}</p>
-      <label class="finrow"><span>${t("Question finale")}</span><select id="finth"><option value="">${t("Thèmes de la partie")}</option>${visTH().map(th => `<option value="${th}" ${okFinal(setup.finalTh) === th ? "selected" : ""}>${thName(th)}</option>`).join("")}</select></label></section>
+      <label class="finrow"><span>${t("Question finale")}</span><select id="finth"><option value="">${t("Thèmes de la partie")}</option>${visTH().map(th => `<option value="${th}" ${okFinal(setup.finalTh) === th ? "selected" : ""}>${thName(th)}</option>`).join("")}</select></label></section>`}
     ${dailyHTML()}
     <div class="rules">
       <div class="rule" style="background:var(--duo)"><b>${t("Duo")}</b><span>${t("2 réponses")}<br>${t("moitié du dé")}</span></div>
@@ -2205,6 +2207,7 @@ function renderSetup() {
   const fin = $("#finth"); if (fin) fin.onchange = () => { read(); setup.finalTh = okFinal(fin.value); save(); if (setup.finalTh) ensurePacks([setup.finalTh]); };
   const jc = $("#jcode"), jgo = async () => { const c = (jc.value || "").toUpperCase().replace(/[^A-Z0-9]/g, ""); if (c.length < 4) { jc.focus(); jc.classList.add("bad"); return; } read(); save(); if (!fbOk()) return; if (await codeX(c)) return; renderJoin(c); window.scrollTo(0, 0); };
   if (jc) { $("#jcgo").onclick = jgo; jc.onkeydown = e => { if (e.key === "Enter") { e.preventDefault(); jgo(); } }; jc.oninput = () => jc.classList.remove("bad"); }
+  const hx = $("#hidx"); if (hx) hx.onclick = () => { read(); const pv = okThemes(setup.prevThemes).filter(th => !THEMES[th].hidden); setup.themes = pv.length ? pv : ["islam"]; delete setup.prevThemes; SFX.tap(); save(); ensurePacks(setup.themes).then(() => { if (!game) renderSetup(); }); renderSetup(); };
   const add = $("#add"); if (add) add.onclick = () => { read(); setup.players.push({ name: t("Joueur {n}", { n: setup.players.length + 1 }), level: "normal" }); save(); renderSetup(); };
   root.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => { read(); setup.players.splice(+b.dataset.rm, 1); save(); renderSetup(); });
   root.querySelectorAll("[data-s]").forEach(b => b.onclick = () => { read(); setup.size = +b.dataset.s; save(); renderSetup(); });
