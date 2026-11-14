@@ -145,6 +145,7 @@ button{touch-action:manipulation}
 .choice:active{transform:scale(.98)}
 .choice.right{border-color:var(--ok);background:#E3F5EA;animation:pop .4s}
 .choice.wrong{border-color:var(--ko);background:#FBE5E2;animation:shake .4s}
+.choice.picked{border-color:#7A5AF8;background:#EEE8FF;outline:3px solid #7A5AF8;outline-offset:1px}
 @keyframes pop{50%{transform:scale(1.05)}}
 @keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
 .answer{border-radius:16px;padding:12px 14px;background:#E3F5EA;border:2.5px solid var(--ok)}
@@ -1742,7 +1743,7 @@ function renderTVLobby() {
       <p class="hint">${pl.length < 2 ? t("Il faut au moins 2 joueurs pour commencer.") : t("Tout le monde est là ? Lance la partie.")}</p></section>
       <button class="big w" id="go2" ${pl.length < 2 ? "disabled" : ""}>${t("Lancer la partie")}</button>
       <div class="row"><button class="ghostbtn" id="tvme">${meIn ? t("Je ne joue plus") : t("Je joue aussi depuis cet écran")}</button></div>
-      ${meIn ? `<p class="hint">${t("Sur cet écran, tu réponds devant tout le monde et tu ne peux pas voler les réponses des autres.")}</p>` : ""}
+      ${meIn ? `<p class="hint">${t("Sur cet écran, tu réponds devant tout le monde. Quand un autre se trompe, tu peux aussi voler la réponse ici, à l'écran.")}</p>` : ""}
       <div class="row">${fsOk ? `<button class="ghostbtn" id="fs">${t("Plein écran")}</button>` : ""}<button class="ghostbtn" id="leave">${t("Quitter")}</button></div></div></div>`;
   $("#tvme").onclick = async () => {
     const b = $("#tvme"); unlockAudio();
@@ -2239,23 +2240,26 @@ function stealIn(e) {
   if (STEAL.thief != null || stealers().every(i => STEAL.got[i] != null)) STEAL.fin();
 }
 /* chez les autres : ils choisissent parmi les propositions restantes (une seule tentative) */
-function stealGuest(zone, q, excl) {
-  const me = myIdx(); if (me < 0 || me === game.cur || isTV()) return false;
+function stealGuest(zone, q, excl, pre) {
+  const me = myIdx(); if (me < 0 || me === game.cur) return false;
+  /* l'écran TV peut être un joueur : il vole aussi, à l'écran, sans dévoiler aux autres si son choix est bon */
+  const onTV = isTV();
   const key = qKey(), opts = [q.a, ...q.w], p = game.players[game.cur];
   const ks = shuffle([0, 1, 2, 3].filter(k => !excl.includes(k)));
-  if (!excl.length) zone.innerHTML = ""; else { const old = zone.querySelector(".choices"); if (old) old.remove(); }
-  zone.insertAdjacentHTML("beforeend", `<p class="stealmsg" id="stg" dir="auto">${esc(t("{n} s'est trompé. À toi de tenter ta chance : +2 cases si tu trouves en premier !", { n: p.name }))}</p>
+  if (!excl.length) zone.innerHTML = pre || ""; else { const old = zone.querySelector(".choices"); if (old) old.remove(); }
+  zone.insertAdjacentHTML("beforeend", `<p class="stealmsg" id="stg" dir="auto">${esc(onTV ? t("{n} s'est trompé. {m}, tente ta chance ici, les autres sur leur téléphone : +2 cases au premier qui trouve !", { n: p.name, m: game.players[me].name }) : t("{n} s'est trompé. À toi de tenter ta chance : +2 cases si tu trouves en premier !", { n: p.name }))}</p>
     <div class="choices" id="stc">${ks.map(k => `<button class="choice st" data-k="${k}" dir="auto">${esc(opts[k])}</button>`).join("")}</div>`);
   const msg = $("#stg"), btns = [...zone.querySelectorAll("#stc .choice")];
   let done = false;
   btns.forEach(b => b.onclick = () => {
     if (done) return; done = true; const k = +b.dataset.k; btns.forEach(x => x.disabled = true);
-    b.classList.add(k === 0 ? "right" : "wrong"); quiet(() => k === 0 ? SFX.good() : SFX.bad()); buzz(k === 0 ? 30 : [60, 40, 60]);
-    msg.textContent = k === 0 ? t("Réponse envoyée ! Si tu es le premier à trouver, tu gagnes +2 cases.") : t("Raté !");
+    if (onTV) { b.classList.add("picked"); quiet(() => SFX.tap()); msg.textContent = t("Réponse de {m} envoyée ! Verdict dans un instant.", { m: game.players[me].name }); }
+    else { b.classList.add(k === 0 ? "right" : "wrong"); quiet(() => k === 0 ? SFX.good() : SFX.bad()); buzz(k === 0 ? 30 : [60, 40, 60]);
+    msg.textContent = k === 0 ? t("Réponse envoyée ! Si tu es le premier à trouver, tu gagnes +2 cases.") : t("Raté !"); }
     netSend({ t: "steal", key, k });
   });
   STEAL.guest = { key, end(w) {
-    STEAL.guest = null; done = true; btns.forEach(x => { x.disabled = true; if (+x.dataset.k === 0) x.classList.add("right"); });
+    STEAL.guest = null; done = true; btns.forEach(x => { x.disabled = true; if (+x.dataset.k === 0) x.classList.add("right"); else if (x.classList.contains("picked")) x.classList.add("wrong"); });
     msg.textContent = w != null && game.players[w] ? t("{n} a trouvé en premier : +2 cases !", { n: game.players[w].name }) : t("Personne n'a trouvé.");
     if (!zone.querySelector(".answer")) zone.insertAdjacentHTML("beforeend", `<div class="answer" style="margin-top:10px"><p class="lab" style="color:var(--ok)">${t("Bonne réponse")}</p><b dir="auto">${esc(q.a)}</b>${q.note ? `<p class="note" dir="auto" style="margin-top:6px">${esc(q.note)}</p>` : ""}</div>`);
     sayAnswer(q);
@@ -2349,10 +2353,10 @@ function renderQuestion() {
       /* en ligne, personne ne peut valider pour soi : sans réponse reconnue, c'est faux */
       if (NET.on && v === null) v = false;
       const st = v === false && canSteal(g, false);
-      if (st && !live) { quiet(() => SFX.bad()); if (stealGuest(zone, q, [])) return; }
+      const heard = tx ? `<div class="heard"><span class="lab" style="color:var(--muted)">${typed ? t("Ta réponse") : t("Réponse entendue")}</span><q dir="auto">${esc(tx)}</q><b style="color:${v === true ? "var(--ok)" : v === false ? "var(--ko)" : "var(--muted)"}">${v === true ? (typed ? t("Bonne réponse !") : t("Bonne réponse reconnue !")) : v === false ? t("Ce n'est pas la bonne réponse.") : t("Presque ! Au groupe de juger.")}</b></div>` : "";
+      if (st && !live) { quiet(() => SFX.bad()); if (stealGuest(zone, q, [], isTV() ? heard : "")) return; }
       const tvSteal = st && !live && isTV();
       if (!tvSteal) sayAnswer(q);
-      const heard = tx ? `<div class="heard"><span class="lab" style="color:var(--muted)">${typed ? t("Ta réponse") : t("Réponse entendue")}</span><q dir="auto">${esc(tx)}</q><b style="color:${v === true ? "var(--ok)" : v === false ? "var(--ko)" : "var(--muted)"}">${v === true ? (typed ? t("Bonne réponse !") : t("Bonne réponse reconnue !")) : v === false ? t("Ce n'est pas la bonne réponse.") : t("Presque ! Au groupe de juger.")}</b></div>` : "";
       if (tvSteal) { zone.innerHTML = heard; tvStealWait(zone, q, () => zone.insertAdjacentHTML("beforeend", answerBox)); return; }
       if (v === true || v === false) {
         quiet(() => v ? SFX.good() : SFX.bad()); buzz(v ? 30 : [60, 40, 60]);
