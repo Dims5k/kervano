@@ -2137,14 +2137,14 @@ function bindDaily() {
   });
 }
 /* codes spéciaux : un contenu chiffré, lisible seulement avec le bon code */
-async function codeX(c) {
+async function codeX(c, room) {
   try {
     const enc = new TextEncoder(), S = crypto.subtle, h = [...new Uint8Array(await S.digest("SHA-256", enc.encode("kervano:" + c)))].map(b => b.toString(16).padStart(2, "0")).join("");
     const r = await fetch(`packs/x/${h.slice(0, 20)}.bin`, { cache: "no-store" }); if (!r.ok) return false;
     const raw = Uint8Array.from(atob((await r.text()).trim()), ch => ch.charCodeAt(0));
     const key = await S.deriveKey({ name: "PBKDF2", salt: enc.encode("kervano-x1"), iterations: 200000, hash: "SHA-256" }, await S.importKey("raw", enc.encode(c), "PBKDF2", false, ["deriveKey"]), { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
     const src = new TextDecoder().decode(await S.decrypt({ name: "AES-GCM", iv: raw.slice(0, 12) }, key, raw.slice(12)));
-    await new Function("K", src)({ unlock: th => { if (!hiddenOn()) setup.prevThemes = okThemes(setup.themes); setup.themes = [th]; if (okFinal(setup.finalTh) && THEMES[setup.finalTh] && !THEMES[setup.finalTh].hidden) setup.finalTh = ""; save(); }, ensurePacks, toast, code: c, root, $, esc, db, dbListen, fbAuth, NET, store, renderSetup, buzz, shuffle, wakeOn, wakeOff, mergeAt });
+    await new Function("K", src)({ unlock: th => { if (!hiddenOn()) setup.prevThemes = okThemes(setup.themes); setup.themes = [th]; if (okFinal(setup.finalTh) && THEMES[setup.finalTh] && !THEMES[setup.finalTh].hidden) setup.finalTh = ""; save(); }, ensurePacks, toast, code: c, room: room || "", root, $, esc, db, dbListen, fbAuth, NET, store, renderSetup, buzz, shuffle, wakeOn, wakeOff, mergeAt });
     return true;
   } catch (e) { console.warn(e); return false; }
 }
@@ -2665,6 +2665,9 @@ async function boot() {
     if (setup && Array.isArray(setup.players)) setup.players = setup.players.slice(0, 8); else setup = { players: [{ name: t("Joueur {n}", { n: 1 }), level: "normal" }, { name: t("Joueur {n}", { n: 2 }), level: "normal" }], size: 36, timer: false, read: true, view3d: true };
     if (setup.view3d == null) setup.view3d = true;
     setup.themes = okThemes(setup.themes);
+    /* lien d'invitation vers un jeu caché : #x=… (code + partie) */
+    const xh = location.hash.match(/x=([A-Za-z0-9_-]+)/);
+    if (xh) { history.replaceState(null, "", location.pathname); let c = "", r = ""; try { [c, r] = atob(xh[1].replace(/-/g, "+").replace(/_/g, "/")).split("."); } catch (e) {} game = null; renderSetup(); if (c && fbOk()) codeX(c.toUpperCase().replace(/[^A-Z0-9]/g, ""), r).then(ok => { if (!ok) toastLocal("Ce lien ne marche pas.", "", "#B0173F", 2500); }); return; }
     if (fbOk() && (store.get("net", null) || /join=/i.test(location.hash))) { game = null; renderSetup(); netResume().then(ok => { if (!ok && !NET.code) renderSetup(); }); return; }
     if (game && !validGame(game)) { game = null; save(); }
     if (game) { if (game.phase !== "question" && game.phase !== "pick") { game.phase = "roll"; game.q = null; } if (game.phase === "question" && (!game.q || !Q[game.q.id] || (game.q.choices && typeof game.q.choices[0] !== "number"))) { game.phase = "roll"; game.q = null; } save(); renderGame(); } else renderSetup();
